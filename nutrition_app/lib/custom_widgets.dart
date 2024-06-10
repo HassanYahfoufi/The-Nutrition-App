@@ -52,3 +52,56 @@ class _SizedOutlinedButtonState extends State<SizedOutlinedButton> {
     );
   }
 }
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+
+    int currentIndex = 0;
+    return  Scaffold(
+       appBar: AppBar (
+      title: Text("Nutrition App"),
+    ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (index) => setState(() =>currentIndex = index),
+       items: [
+            BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+            backgroundColor: Colors.blue,
+            ),
+         BottomNavigationBarItem(
+            icon: Icon(Icons.lunch_dining),
+            label: 'Add New Food',
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.receipt),
+            label: 'Add New Recipie',
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.breakfast_dining),
+            label: 'Add Consumed Food',
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'Update Status',
+            backgroundColor: Colors.blue,
+          ),
+        ],
+      ),
+
+    );
+  }
+}
+
