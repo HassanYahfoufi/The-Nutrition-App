@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class PageWidget extends StatefulWidget {
   PageWidget({required this.home, required this.pageName, required this.body, this.onPressed, super.key});
   String pageName;
@@ -53,25 +54,17 @@ class _SizedOutlinedButtonState extends State<SizedOutlinedButton> {
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class bottomNavigationBar extends StatelessWidget {
+  final int currentIndex;
+  final Function(int) onTap;
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+  const bottomNavigationBar({Key? key, required this.currentIndex, required this.onTap}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
-
-    int currentIndex = 0;
-    return  Scaffold(
-       appBar: AppBar (
-      title: Text("Nutrition App"),
-    ),
-      bottomNavigationBar: BottomNavigationBar(
+    return BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (index) => setState(() =>currentIndex = index),
+        onTap: onTap,
        items: [
             BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -81,27 +74,26 @@ class _HomePageState extends State<HomePage> {
          BottomNavigationBarItem(
             icon: Icon(Icons.lunch_dining),
             label: 'Add New Food',
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.yellow,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.receipt),
             label: 'Add New Recipie',
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.breakfast_dining),
             label: 'Add Consumed Food',
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: 'Update Status',
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.purple,
           ),
         ],
-      ),
+      
 
     );
   }
 }
-
