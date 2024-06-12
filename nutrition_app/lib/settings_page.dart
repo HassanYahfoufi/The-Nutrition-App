@@ -21,7 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Container(),
         ),
         const Padding(
-          padding:  EdgeInsets.all(100.0),
+          padding:  EdgeInsets.all(80.0),
           child: Text(" Prefered Measuring System"), 
 
         ),

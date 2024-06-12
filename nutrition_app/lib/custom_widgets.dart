@@ -78,12 +78,12 @@ class bottomNavigationBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.receipt),
-            label: 'Add New Recipie',
+            label: 'Add New \n Recipie',
             backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.breakfast_dining),
-            label: 'Add Consumed Food',
+            label: 'Add Consumed \n        Food',
             backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
