@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/home_page.dart';
-import 'package:nutrition_app/custom_widgets.dart';
+import 'package:nutrition_app/settings_page.dart';
+
 
 
 Future<void> setUpDatabase() async
@@ -50,6 +51,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const HomePage(),
+      routes: {
+        '/settingspage' : (context) => const SettingsPage(),
+      }
     );
   }
 }

@@ -19,7 +19,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-       title: Text('Nutrition App'),
+       title: Text('Nutrition App',),
+       backgroundColor:Colors.blue,
+       actions: <Widget>[
+       IconButton(
+       icon: Icon(Icons.settings),
+       onPressed : (){
+         Navigator.pushNamed(context, '/settingspage');
+       },
+       ),
+  ],
       ),
     bottomNavigationBar: bottomNavigationBar(
       currentIndex: currentIndex,
