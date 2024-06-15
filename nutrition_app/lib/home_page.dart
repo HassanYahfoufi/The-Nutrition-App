@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
        title: Text('Nutrition App',),
-       backgroundColor:Colors.blue,
+       backgroundColor:Colors.green,
        actions: <Widget>[
        IconButton(
        icon: Icon(Icons.settings),

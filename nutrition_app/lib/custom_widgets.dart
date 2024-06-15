@@ -69,12 +69,12 @@ class bottomNavigationBar extends StatelessWidget {
             BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.green,
             ),
          BottomNavigationBarItem(
             icon: Icon(Icons.lunch_dining),
             label: 'Add New Food',
-            backgroundColor: Colors.yellow,
+            backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.receipt),
@@ -84,12 +84,12 @@ class bottomNavigationBar extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.breakfast_dining),
             label: 'Add Consumed \n        Food',
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: 'Update Status',
-            backgroundColor: Colors.purple,
+            backgroundColor: Colors.green,
           ),
         ],
       
