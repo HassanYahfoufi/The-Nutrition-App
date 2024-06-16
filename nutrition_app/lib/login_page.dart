@@ -96,6 +96,31 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 60),
               Text("Not a user? Register here:"),
+              
+              const SizedBox(height: 10),
+
+              TextButton(
+                onPressed : (){
+                  Navigator.pushNamed(context, '/registerpage');
+                },
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: const Center(
+                    child: Text('Register', style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                    )
+                  ),
+                ),
+              ),
+
             ]
           ),
         ),

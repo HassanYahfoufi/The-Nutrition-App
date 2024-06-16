@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/home_page.dart';
+import 'package:nutrition_app/register_page.dart';
 import 'package:nutrition_app/settings_page.dart';
 import 'package:nutrition_app/login_page.dart';
 
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/settingspage' : (context) => const SettingsPage(),
         '/homepage' : (context) => const HomePage(),
+        '/registerpage' : (context) => const RegisterPage(),
       }
     );
   }
