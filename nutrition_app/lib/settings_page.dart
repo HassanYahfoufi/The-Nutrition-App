@@ -30,7 +30,7 @@ class _SettingsPageState extends State<SettingsPage> {
     /*return Scaffold(
       appBar: 
       AppBar(title: Text('Settings'),
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.green,
       ),
     body: Row(
       children: <Widget>[
