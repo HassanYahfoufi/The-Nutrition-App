@@ -52,7 +52,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const LoginPage(),
+
+      home: const SettingsPage(),
+
       routes: {
         '/settingspage' : (context) => const SettingsPage(),
         '/homepage' : (context) => const HomePage(),

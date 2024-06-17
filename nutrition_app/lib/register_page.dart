@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -219,3 +218,4 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 }
+

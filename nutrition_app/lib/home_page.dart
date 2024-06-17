@@ -13,30 +13,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-   int currentIndex = 0;
-
+  double buttonHeight = 50;
+  double buttonWidth = 200;
+  double spacerHeight = 15;
   @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-       title: Text('Nutrition App',),
-       backgroundColor:Colors.green,
-       actions: <Widget>[
-       IconButton(
-       icon: Icon(Icons.settings),
-       onPressed : (){
-         Navigator.pushNamed(context, '/settingspage');
-       },
-       ),
-  ],
-      ),
-    bottomNavigationBar: bottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: (index) => setState(() => currentIndex = index),
-    ),
-    body: Center(child: Text("Work in progress"))
-    );
 
-
+  Widget build(BuildContext context) {
+    return PageWidget(home: () {}, pageName: "Home Page", body: [Center(
+      child: Column(children: [
+        SizedBox(height: 25,),
+        SizedBox(child: OutlinedButton(onPressed: () {}, child: Text("Placeholder")), height: 175, width: 350),
+        SizedBox(height: (spacerHeight * 2)),
+        SizedOutlinedButton(text: "Add New Food Item", height: buttonHeight, width: buttonWidth),
+        SizedBox(height: spacerHeight),
+        SizedOutlinedButton(text: "Add New Recipie", height: buttonHeight, width: buttonWidth),
+        SizedBox(height: spacerHeight),
+        SizedOutlinedButton(text: "Add Consumed Food", height: buttonHeight, width: buttonWidth),
+        SizedBox(height: spacerHeight),
+        SizedOutlinedButton(text: "Update Status", height: buttonHeight, width: buttonWidth),
+      ],),
+    )]);
   }
 }

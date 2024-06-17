@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 
 class PageWidget extends StatefulWidget {
-  PageWidget({required this.home, required this.pageName, required this.body, this.onPressed, super.key});
+  PageWidget({required this.home, required this.pageName, required this.body, this.onPressed, this.currentIndex = 0, super.key});
   String pageName;
   List<Widget> body;
   void Function() home;
   void Function()? onPressed;
+  int currentIndex;
 
   @override
   State<PageWidget> createState() => _PageWidgetState();
@@ -18,14 +19,14 @@ class _PageWidgetState extends State<PageWidget> {
 
     return Scaffold( 
             appBar: AppBar(actions: [IconButton(onPressed: widget.home, icon: Icon(Icons.home))], title: Text(widget.pageName)),
-            floatingActionButton: ElevatedButton(onPressed: widget.onPressed, child: const Icon(Icons.add)),
             body: Column(
               children: [
                 SingleChildScrollView(
                   child: Column(children: widget.body /*const [Scaffold(body: Text("[PageWidget] Test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"),)]*/),
                 )
               ],
-            )
+            ),
+            bottomNavigationBar: bottomNavigationBar(currentIndex: widget.currentIndex, onTap: (index) => setState(() => widget.currentIndex = index),),
           );
   }
 }
