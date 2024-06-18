@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
 
-      home: const SettingsPage(),
+      home: const LoginPage(),
 
       routes: {
         '/settingspage' : (context) => const SettingsPage(),

@@ -34,39 +34,58 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 30),
 
-              const Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
-                child: TextField(
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Username"
+                child: Form(
+                  key: GlobalKey<FormState>(),
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        controller: TextEditingController(),
+                        decoration: InputDecoration(labelText: 'Username',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                          fillColor: Colors.white,
+                          filled: true
+                        ), 
+                        validator: (value) {
+                          if(value == null || value.isEmpty){
+                            return 'Enter your username';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
                   ),
 
                 ),
               ),
               const SizedBox(height: 10),
-           const Padding(
+            Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: 'Password',
-                    
+                child: Form(
+              key: GlobalKey<FormState>(),
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        obscureText: true,
+                        controller: TextEditingController(),
+                        decoration: InputDecoration(labelText: 'Password',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                          fillColor: Colors.white,
+                          filled: true
+                        ), 
+                        validator: (value) {
+                          if(value == null || value.isEmpty){
+                            return 'Enter your password';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
                   ),
 
                 ),
@@ -74,6 +93,7 @@ class _LoginPageState extends State<LoginPage> {
              const  SizedBox(height: 20),
               TextButton(
                 onPressed : (){
+                  
                   Navigator.pushNamed(context, '/homepage');
                 },
                 child: Container(
