@@ -14,9 +14,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   double buttonHeight = 50;
-  double buttonWidth = 100;
+  double buttonWidth = 200;
   double spacerHeight = 15;
   @override
+
   Widget build(BuildContext context) {
     return PageWidget(home: () {}, pageName: "Home Page", body: [Center(
       child: Column(children: [
