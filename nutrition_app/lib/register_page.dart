@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutrition_app/classes.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -8,6 +9,64 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController sexController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  late User newUser;
+
+
+  
+  void signUp(String userName, String password) async {
+    debugPrint("[Register Page-> signUp()]^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+      newUser =  User(Username: usernameController, Password: passwordController);
+      //User(userName, password);
+
+      if (await newUser.userAlreadyExists()) 
+      {
+        setState(() {
+          showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign up failure!"), content: Text("User $userName already exists"),));
+          debugPrint("[Register Page-> signUp()]sign in fail! User already exists!!!!!!!!!!!!!!!!!!!!");
+        });
+        
+      } 
+      else //if you are here then the username hasn't been used yet
+      {
+        
+        debugPrint("[Register Page-> signUp()] username hasn't been used yet");
+        //User newUser = User(userName, password);
+
+        int insertResult = await newUser.createUser();
+        
+        if(insertResult != 0)
+        {
+          setState(() {
+            //change pages !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          });
+        }
+        else
+        {
+          setState(() {
+            debugPrint("[Register Page-> signUp()] Sign up failed!");
+            showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign in failed!"), content: Text("Insert operation failed!"),));
+            debugPrint("[Register Page-> signUp()] Sign up failed!");
+          });
+        }
+          
+          
+        
+        
+      }
+  }
+
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Center(
           child: Column(
             children: [
-               const SizedBox(height: 60),
+              const SizedBox(height: 60),
 
               const Icon(
                 Icons.rice_bowl,
@@ -25,16 +84,17 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 60),
 
-             const Text ('Register',
+              const Text ('Register',
                 style: TextStyle(color: Colors.black,
                 fontSize: 16,
                 ),
               ),
               const SizedBox(height: 30),
 
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: TextField(
+                  controller: firstNameController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -50,10 +110,11 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 ),
               ),
-            SizedBox(height: 10),
-            const Padding(
+              SizedBox(height: 10),
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: TextField(
+                  controller: lastNameController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -70,9 +131,10 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               
               SizedBox(height: 10),
-            const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: TextField(
+                  controller: dobController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -88,9 +150,29 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               SizedBox(height: 10),
-            const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: TextField(
+                  controller: sexController,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    hintText: "Sex"
+                  ),
+        
+                ),
+              ),
+              SizedBox(height: 10),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: TextField(
+                  controller: heightController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -106,9 +188,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               SizedBox(height: 10),
-            const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: TextField(
+                  controller: weightController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -124,9 +207,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               SizedBox(height: 10),
-            const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: TextField(
+                  controller: usernameController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -142,9 +226,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               SizedBox(height: 10),
-            const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: TextField(
+                  controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
@@ -184,7 +269,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               
               const SizedBox(height: 60),
-              Text("Have an Account? login here:"),
+              Text("Have an User? login here:"),
               
               const SizedBox(height: 10),
 

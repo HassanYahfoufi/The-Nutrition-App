@@ -3,6 +3,7 @@ import 'package:nutrition_app/home_page.dart';
 import 'package:nutrition_app/register_page.dart';
 import 'package:nutrition_app/settings_page.dart';
 import 'package:nutrition_app/login_page.dart';
+import 'package:nutrition_app/add_food_item.dart';
 
 
 
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
 
-      home: const SettingsPage(),
+      home: const RegisterPage(),
 
       routes: {
         '/settingspage' : (context) => const SettingsPage(),
