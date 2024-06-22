@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/classes.dart';
+import 'package:nutrition_app/database_helper.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -18,30 +19,32 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  DatabaseHelper databaseHelper = DatabaseHelper();
+
   late User newUser;
 
 
   
   void signUp(String userName, String password) async {
     debugPrint("[Register Page-> signUp()]^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-      newUser =  User(Username: usernameController, Password: passwordController);
+      newUser =  User(Username: usernameController.text, Password: passwordController.text);
       //User(userName, password);
 
-      if (await newUser.userAlreadyExists()) 
+      if (await newUser.countMatching() >= 1) 
       {
         setState(() {
           showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign up failure!"), content: Text("User $userName already exists"),));
-          debugPrint("[Register Page-> signUp()]sign in fail! User already exists!!!!!!!!!!!!!!!!!!!!");
+          debugPrint("[Register Page-> signUp()]sign up fail! User already exists!!!!!!!!!!!!!!!!!!!!");
         });
         
       } 
-      else //if you are here then the username hasn't been used yet
+      else //if you are here then the username and password combo hasn't been used yet
       {
         
-        debugPrint("[Register Page-> signUp()] username hasn't been used yet");
+        debugPrint("[Register Page-> signUp()] the username and password combo hasn't been used yet");
         //User newUser = User(userName, password);
 
-        int insertResult = await newUser.createUser();
+        int insertResult = await newUser.create();
         
         if(insertResult != 0)
         {

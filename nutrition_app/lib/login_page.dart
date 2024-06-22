@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nutrition_app/database_helper.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:nutrition_app/classes.dart';
 
 
 
@@ -10,6 +13,114 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  late User inputUser;
+
+  DatabaseHelper databaseHelper = DatabaseHelper();
+
+  void signIn(String userName, String password) async {
+    debugPrint("[LoginPage-> signIn()] Start");
+    debugPrint("[LoginPage-> signIn()] Logging in...");
+    //if username exists: continue with sign in
+    debugPrint("[LoginPage-> signIn()] Excecuting: inputAccount = Account(userName, password);...");
+    inputUser = User(Username: userName, Password: userName);
+    
+    if(await inputUser.userAlreadyExists())
+    {
+      
+      //if password matches the password of the account with username
+      debugPrint("[LoginPage-> signIn()] searching for matching accounts...");
+      int numMatchingAccounts = await inputUser.countMatching();
+      debugPrint("[LoginPage-> signIn()] matching accounts: $numMatchingAccounts");
+      if(numMatchingAccounts == 1)
+      {
+        debugPrint("[LoginPage-> signIn()] user already exists and there is only 1 matching account");
+        //await inputAccount.updateFromDatabase();
+        setState(() {
+          //Change page!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          debugPrint("Signing in...");
+        });
+        return;
+      }
+      else if(numMatchingAccounts == 0)
+      {
+        setState(() {
+          showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign in failed!"), content: Text("Password didnt match."),));
+        });
+      }
+      else
+      {
+        setState(() {
+          showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign in failed!"), content: Text("ERROR: Multiple matching accounts."),));
+        });
+      }
+
+    }
+    else
+    {
+      setState(() {
+        showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign in failed!"), content: Text("No user with username $userName."),));
+      });
+    }
+    
+   
+  }
+
+
+  Future<void> createNewDatabases(List<String> currTableNames) async
+  {
+    debugPrint("[LoginPage-> createNewDatabases()] Start");
+
+    DatabaseHelper databaseHelper = DatabaseHelper();
+    debugPrint("[LoginPage-> createNewDatabases()] getting database...");
+    Database? db = await databaseHelper.getDatabase();
+    String tempTableType;
+    for(String tableName in databaseHelper.table.values.map((table) => table.name))
+    {
+      tempTableType = databaseHelper.table[tableName]!.type;
+      if(currTableNames.contains(tempTableType) == false)
+      {
+        debugPrint("[LoginPage-> createNewDatabases()] creating $tableName table...");
+        await databaseHelper.createTable(db!, tableName);
+      }
+    }
+
+    debugPrint("[LoginPage-> createNewDatabases()] End");
+  }
+
+  Future<void> setUp() async
+  {
+    debugPrint("[LoginPage-> setUp()] Start");
+    /*List<String> deleteTableNames = [tableInfoName["Catagory"]!, M2MName["SuperCat-SubCat"]!];
+
+    for (String deleteTableName in deleteTableNames) {
+      debugPrint("Deleting ${deleteTableName} database ...");
+      await databaseHelper.deleteTable(deleteTableName);
+    }*/
+    
+    
+
+    debugPrint("\t[LoginPage-> setUp()] Table names:");
+    List<String> currentTables_names = await databaseHelper.getTableNames();
+    for(String name in currentTables_names)
+    {
+      debugPrint("\t\t$name");
+    }
+
+    debugPrint("\t[LoginPage-> setUp()] Excecuting: await createNewDatabases();...");
+    await createNewDatabases(currentTables_names);
+  }
+
+  @override
+  initState() {
+    //currentPage = Center(child: Text("Loading..."));!
+    setUp().then((value) => setState(() {}));
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,16 +138,17 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 60),
 
-             const Text ('Welcome to Nutrition',
+              const Text ('Welcome to Nutrition',
                 style: TextStyle(color: Colors.black,
                 fontSize: 16,
                 ),
               ),
               const SizedBox(height: 30),
 
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: TextField(
+                  controller: usernameController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -52,9 +164,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 10),
-           const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: TextField(
+                  controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
@@ -71,9 +184,13 @@ class _LoginPageState extends State<LoginPage> {
 
                 ),
               ),
-             const  SizedBox(height: 20),
+              const  SizedBox(height: 20),
               TextButton(
                 onPressed : (){
+                  String userName = usernameController.text;
+                  String password = passwordController.text;
+                  signIn(userName, password);
+                  //signIn(usernameController.text, passwordController.text);
                   Navigator.pushNamed(context, '/homepage');
                 },
                 child: Container(
@@ -100,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
 
               TextButton(
                 onPressed : (){
-                  Navigator.pushNamed(context, '/registerpage');
+                  Navigator.pushNamed(context, '/registerpage');//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 },
                 child: Container(
                   padding: EdgeInsets.all(20),

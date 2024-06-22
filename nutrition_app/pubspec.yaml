@@ -1,4 +1,4 @@
-name: goals_analyzer
+name: nutrition_app
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -30,20 +30,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  multiselect_search_dropdown_package:
-         path: C:/Users/dMbxE/OneDrive/Documents/Computer Science/Flutter/Packages/multiselect_search_dropdown_package
   
-  dropdown_search: 5.0.6
+  multiple_search_selection: ^2.6.4
 
-  syncfusion_flutter_calendar: ^18.4.46
+  dropdown_search: ^5.0.6
 
-  intl: ^0.17.0
+  syncfusion_flutter_calendar: ^26.1.38 
+
+  fl_chart: ^0.68.0
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  sqflite: ^2.2.8+4
+  intl: ^0.19.0
+  sqflite: ^2.3.3+1
   path_provider: ^2.0.15
 
 dev_dependencies:

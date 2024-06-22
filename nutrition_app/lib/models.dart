@@ -88,7 +88,7 @@ class TableInfo
     }
     this._sqlInfo = this._sqlInfo + ")";
 
-    //CREATE TABLE $tableType($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, $colDescription TEXT, $colPriority INTEGER, $colDate TEXT)
+    //CREATE TABLE $tableType($colID INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, $colDescription TEXT, $colPriority INTEGER, $colDate TEXT)
   }
   
 }
