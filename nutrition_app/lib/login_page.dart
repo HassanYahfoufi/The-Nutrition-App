@@ -27,43 +27,40 @@ class _LoginPageState extends State<LoginPage> {
     debugPrint("[LoginPage-> signIn()] Excecuting: inputAccount = Account(userName, password);...");
     inputUser = User(Username: userName, Password: userName);
     
-    if(await inputUser.userAlreadyExists())
-    {
-      
-      //if password matches the password of the account with username
-      debugPrint("[LoginPage-> signIn()] searching for matching accounts...");
-      int numMatchingAccounts = await inputUser.countMatching();
-      debugPrint("[LoginPage-> signIn()] matching accounts: $numMatchingAccounts");
-      if(numMatchingAccounts == 1)
-      {
-        debugPrint("[LoginPage-> signIn()] user already exists and there is only 1 matching account");
-        //await inputAccount.updateFromDatabase();
-        setState(() {
-          //Change page!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          debugPrint("Signing in...");
-        });
-        return;
-      }
-      else if(numMatchingAccounts == 0)
-      {
-        setState(() {
-          showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign in failed!"), content: Text("Password didnt match."),));
-        });
-      }
-      else
-      {
-        setState(() {
-          showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign in failed!"), content: Text("ERROR: Multiple matching accounts."),));
-        });
-      }
 
+    
+      
+      
+    debugPrint("[LoginPage-> signIn()] searching for matching accounts...");
+    int numMatchingAccounts = await inputUser.countMatching();
+    debugPrint("[LoginPage-> signIn()] matching accounts: $numMatchingAccounts");
+    if(numMatchingAccounts == 1)
+    {
+      debugPrint("[LoginPage-> signIn()] user already exists and there is only 1 matching account");
+      //await inputAccount.updateFromDatabase();
+      setState(() {
+        //Change page!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        debugPrint("Signing in...");
+      });
+      return;
+    }
+    else if(numMatchingAccounts == 0)
+    {
+      setState(() {
+        showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign in failed!"), content: Text("The Username Password combo didnt match any xisting users."),));
+      });
     }
     else
     {
       setState(() {
-        showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign in failed!"), content: Text("No user with username $userName."),));
+        showDialog(context: context, builder: (_)=>AlertDialog(title: Text("Sign in failed!"), content: Text("ERROR: Multiple matching accounts. Contact support (Deveelopers: check database and delete duplicate accounts.)"),));
+        //A potential solution is to use the oldest account
+        //You could also combine all information into one account and then delete the duplicates
+        //Then switch pages
       });
     }
+
+    
     
    
   }

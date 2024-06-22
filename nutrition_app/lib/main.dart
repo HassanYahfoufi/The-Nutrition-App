@@ -4,6 +4,8 @@ import 'package:nutrition_app/register_page.dart';
 import 'package:nutrition_app/settings_page.dart';
 import 'package:nutrition_app/login_page.dart';
 import 'package:nutrition_app/add_food_item.dart';
+import 'package:nutrition_app/database_helper.dart';
+import 'package:nutrition_app/models.dart';
 
 
 
@@ -11,7 +13,16 @@ Future<void> setUpDatabase() async
 {
   debugPrint("[main.dart-> setUpDatabase()] Start");
   debugPrint("[main.dart-> setUpDatabase()] setting up database...");
-  debugPrint("[main.dart-> setUpDatabase()] UNDER CONSTRUCTION (this hasn't been developed yet)");
+  DatabaseHelper databaseHelper = DatabaseHelper();
+  debugPrint("[main.dart-> setUpDatabase()] setting up User table ...");
+  databaseHelper.table["UserTable"] = TableInfo(name: "UserTable", type:  "user_table");
+  databaseHelper.table["UserTable"]!.addColumn("id", "INTEGER PRIMARY KEY AUTOINCREMENT");//replace id with account_id
+  databaseHelper.table["UserTable"]!.addColumn("username", "TEXT");
+  databaseHelper.table["UserTable"]!.addColumn("password", "TEXT");
+
+  databaseHelper.printTableVarKeys();
+  debugPrint("[main.dart-> setUpDatabase()] Set up complete.");  
+
   debugPrint("[main.dart-> setUpDatabase()] End");
 }
 
@@ -38,7 +49,8 @@ void main() async{
 */
 
 
-void main() {
+void main() async{
+  await setUpDatabase();
   runApp(const MyApp());
 }
 
