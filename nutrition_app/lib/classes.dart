@@ -80,7 +80,7 @@ class User {
     
     debugPrint("[Classes->User-> readID()] processing ...");
     _id = output[0][_databaseHelper.colID];
-    
+
     debugPrint("[Classes->User-> readID()] End");
   }
 
@@ -94,30 +94,140 @@ class User {
 
 
 
-  Future<int> createUser() async
+  Future<int> create() async
   {
-    int result = 0;
+    debugPrint("[Classes->User-> create()] Start");
 
+    debugPrint("[Classes->User-> create()] inserting new user into database ...");
+    int result = await _databaseHelper.insert(tableName: "UserTable", objectAsMap: toMap());
+    debugPrint("[Classes->User-> create()] Insertion COMPLETE. result = ${result}");
+
+    debugPrint("[Classes->User-> create()] End");
     return result;
   }
 
 
 
-  Future<void> readUserFromDatabase() async
+  Future<bool> readFromDatabase() async
   {
+    debugPrint("[Classes->User-> readFromDatabase()] Start");
+    if(_id == null)
+    {
+      Map<String, dynamic> matchConditions = Map<String, dynamic>();
+      matchConditions[_databaseHelper.colUsername] = username;
+      matchConditions[_databaseHelper.colPassword] = password;
 
+
+      debugPrint("[Classes->User-> readFromDatabase()] Retrieving data from database (using username and password)...");
+      List<Map<String, dynamic>> matchingUsers = await _databaseHelper.getMatchingRows_WhereColumns(tableName: "UserTable", conditions: matchConditions);
+      
+      
+      if(matchingUsers.length == 1)
+      {
+        debugPrint("[Classes->User-> readFromDatabase()] processing data...");
+        readUserFromMap(matchingUsers[0]);
+        return true;
+      }
+      else if(matchingUsers.length > 1)
+      {
+        debugPrint("[Classes->User-> readFromDatabase()] Error more than 1 account found but there should only be 1 or 0.");
+        debugPrint("[Classes->User-> readFromDatabase()] End");
+        return false;
+      }
+      else
+      {
+        debugPrint("[Classes->User-> readFromDatabase()] No matching users found!");
+        debugPrint("[Classes->User-> readFromDatabase()] End");
+        return false;
+      }
+    }
+    else
+    {
+      debugPrint("[Classes->User-> readFromDatabase()] Retrieving data from database (using id)...");
+      List<Map<String, dynamic>> matchingUsers = await _databaseHelper.getMatchingRows(tableName: "UserTable", column: _databaseHelper.colID, value: _id.toString());
+
+      debugPrint("[Classes->User-> readFromDatabase()] processing data...");
+      readUserFromMap(matchingUsers[0]);
+      debugPrint("[Classes->User-> readFromDatabase()] End");
+      return true;
+      
+    }
   }
   User.fromMap(Map<String, dynamic> map)
   {
+    debugPrint("[Classes->User-> User.fromMap()] Start");
+    
+    _id = map["id"];
+    username = map["username"];
+    password = map["password"];
+    name = map["name"];
+    dob = map["dob"];
+    sex = map["sex"];
+    weight = map["weight"];
+    height = map["height"];
+    bmi = map["bmi"];
 
+    debugPrint("[Classes->User-> User.fromMap()] End");
   }
   void readUserFromMap(Map<String, dynamic> map)
   {
+    debugPrint("[Classes->User-> readUserFromMap()] Start");
+    
+    _id = map["id"];
+    username = map["username"];
+    password = map["password"];
+    name = map["name"];
+    dob = map["dob"];
+    sex = map["sex"];
+    weight = map["weight"];
+    height = map["height"];
+    bmi = map["bmi"];
 
+    debugPrint("[Classes->User-> readUserFromMap()] End");
   }
-  Map<String, dynamic> UserToMap()
+  Map<String, dynamic> toMap()
   {
     Map<String, dynamic> map = Map<String, dynamic>();
+
+    if(_id != null)
+    {
+      map['id'] = _id;
+    }
+    map["username"] = this.username;
+    map["password"] = this.password;
+    map["name"] = name;
+    map["dob"] = dob;
+    map["sex"] = sex;
+    map["weight"] = weight;
+    map["height"] = height;
+    map["bmi"] = bmi;
+
+    /*
+    if(name != null)
+    {
+      map["name"] = name;
+    }
+    if(dob != null)
+    {
+      map["dob"] = dob;
+    }
+    if(sex != null)
+    {
+      map["sex"] = sex;
+    }
+    if(weight != null)
+    {
+      map["weight"] = weight;
+    }
+    if(height != null)
+    {
+      map["height"] = height;
+    }
+    if(bmi != null)
+    {
+      map["bmi"] = bmi;
+    }
+    */
 
     return map;
   }
