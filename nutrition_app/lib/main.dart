@@ -7,25 +7,23 @@ import 'package:nutrition_app/add_food_item.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/models.dart';
 
-
-
-Future<void> setUpDatabase() async
-{
+Future<void> setUpDatabase() async {
   debugPrint("[main.dart-> setUpDatabase()] Start");
   debugPrint("[main.dart-> setUpDatabase()] setting up database...");
   DatabaseHelper databaseHelper = DatabaseHelper();
   debugPrint("[main.dart-> setUpDatabase()] setting up User table ...");
-  databaseHelper.table["UserTable"] = TableInfo(name: "UserTable", type:  "user_table");
-  databaseHelper.table["UserTable"]!.addColumn("id", "INTEGER PRIMARY KEY AUTOINCREMENT");//replace id with account_id
+  databaseHelper.table["UserTable"] =
+      TableInfo(name: "UserTable", type: "user_table");
+  databaseHelper.table["UserTable"]!.addColumn(
+      "id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
   databaseHelper.table["UserTable"]!.addColumn("username", "TEXT");
   databaseHelper.table["UserTable"]!.addColumn("password", "TEXT");
 
   databaseHelper.printTableVarKeys();
-  debugPrint("[main.dart-> setUpDatabase()] Set up complete.");  
+  debugPrint("[main.dart-> setUpDatabase()] Set up complete.");
 
   debugPrint("[main.dart-> setUpDatabase()] End");
 }
-
 
 /*
 void main() async{
@@ -48,8 +46,7 @@ void main() async{
 }
 */
 
-
-void main() async{
+void main() async {
   await setUpDatabase();
   runApp(const MyApp());
 }
@@ -61,20 +58,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-
-      home: RegisterPage(),
-
-      routes: {
-        '/settingspage' : (context) => const SettingsPage(),
-        '/homepage' : (context) => HomePage(),
-        '/registerpage' : (context) => RegisterPage(),
-        '/loginpage' : (context) => const LoginPage(),
-      }
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        home: LoginPage(),
+        routes: {
+          '/settingspage': (context) => const SettingsPage(),
+          '/homepage': (context) => HomePage(),
+          '/registerpage': (context) => RegisterPage(),
+          '/loginpage': (context) => const LoginPage(),
+        });
   }
 }
-
