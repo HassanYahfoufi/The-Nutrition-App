@@ -157,7 +157,7 @@ class User {
     sex = map["sex"];
     weight = map["weight"];
     height = map["height"];
-    bmi = map["bmi"];
+    //bmi = map["bmi"];
 
     debugPrint("[Classes->User-> User.fromMap()] End");
   }
@@ -199,7 +199,7 @@ class User {
     map["sex"] = sex;
     map["weight"] = weight;
     map["height"] = height;
-    map["bmi"] = bmi;
+    //map["bmi"] = bmi;
 
     /*
     if(name != null)

@@ -17,11 +17,16 @@ Future<void> setUpDatabase() async {
   DatabaseHelper databaseHelper = DatabaseHelper();
   debugPrint("[main.dart-> setUpDatabase()] setting up User table ...");
   databaseHelper.table["UserTable"] =
-      TableInfo(name: "UserTable", type: "user_table");
+      TableInfo(name: "UserTable", type: "user_table_v1");
   databaseHelper.table["UserTable"]!.addColumn(
       "id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
   databaseHelper.table["UserTable"]!.addColumn("username", "TEXT");
   databaseHelper.table["UserTable"]!.addColumn("password", "TEXT");
+  databaseHelper.table["UserTable"]!.addColumn("name", "TEXT");
+  databaseHelper.table["UserTable"]!.addColumn("dob", "DATETIME");
+  databaseHelper.table["UserTable"]!.addColumn("sex", "INT");
+  databaseHelper.table["UserTable"]!.addColumn("height", "DOUBLE");
+  databaseHelper.table["UserTable"]!.addColumn("weight", "DOUBLE");
 
   databaseHelper.printTableVarKeys();
   debugPrint("[main.dart-> setUpDatabase()] Set up complete.");

@@ -34,10 +34,10 @@ class _LoginPageState extends State<LoginPage> {
       debugPrint(
           "[LoginPage-> signIn()] user already exists and there is only 1 matching account");
       //await inputAccount.updateFromDatabase();
-      setState(() {
-        debugPrint("Signing in...");
-        () => Navigator.pushNamed(context, '/homepage');
-      });
+
+      debugPrint("Signing in...");
+      Navigator.pushNamed(context, '/homepage');
+
       return;
     } else if (numMatchingAccounts == 0) {
       setState(() {
@@ -100,6 +100,10 @@ class _LoginPageState extends State<LoginPage> {
       debugPrint("\t\t$name");
     }
 
+    debugPrint(
+        "\t[LoginPage-> setUp()] Excecuting: await createNewDatabases();...");
+    await createNewDatabases(currentTables_names);
+
     //!!!!!!!!!!!!!!!!!!
     debugPrint("[LoginPage-> setUp()] Retrieving the User table...");
     //User tempUser = User(Username: "Username", Password: "Password");
@@ -111,15 +115,12 @@ class _LoginPageState extends State<LoginPage> {
       debugPrint("\t${user["username"]}");
     }
     //!!!!!!!!!!!!!!!!!!
-
-    debugPrint(
-        "\t[LoginPage-> setUp()] Excecuting: await createNewDatabases();...");
-    await createNewDatabases(currentTables_names);
   }
 
   @override
   initState() {
     //currentPage = Center(child: Text("Loading..."));!
+    debugPrint("[LoginPage] Start");
     setUp().then((value) => setState(() {}));
   }
 
