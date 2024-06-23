@@ -69,6 +69,7 @@ class DatabaseHelper {
 
   Future<Database> initializeDatabase() async {
     debugPrint("[DatabaseHelper -> initializeDatabase()] Start");
+
     debugPrint(
         "[DatabaseHelper -> initializeDatabase()] excecuting: Directory directory = await getApplicationDocumentsDirectory();...");
     Directory directory = await getApplicationDocumentsDirectory();
@@ -575,6 +576,23 @@ class DatabaseHelper {
 
     debugPrint("[DatabaseHelper -> getEntireTable(...)] End");
     return table;
+  }
+
+  Future<List<Map<String, dynamic>>> getEntireTable_asMap(
+      {required String tableName}) async {
+    //int size = await getCount(tableName: tableName) as int;
+    debugPrint(
+        "[DatabaseHelper -> getEntireTable(...)] Start\n\tGetting list ...");
+    debugPrint(
+        "[DatabaseHelper -> getEntireTable(...)] before Database? db = await getDatabase()");
+    Database? db = await getDatabase();
+    debugPrint(
+        "[DatabaseHelper -> getEntireTable(...)] before ...mapList = await getMapList...");
+    List<Map<String, dynamic>> mapList = await getMapList(
+        tableName: tableName); // as List<Map<String, dynamic>>;
+
+    debugPrint("[DatabaseHelper -> getEntireTable(...)] End");
+    return mapList;
   }
 
   Future<int> update(

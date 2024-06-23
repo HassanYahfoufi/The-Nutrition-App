@@ -3,15 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:nutrition_app/database_helper.dart';
 
 class User {
-  User({ID, required String Username, required String Password, String? Name, DateTime? DateOfBirth, int? Sex, double? Weight, double? Height, double? BMI})
-  {
+  User(
+      {ID,
+      required String Username,
+      required String Password,
+      String? Name,
+      DateTime? DateOfBirth,
+      int? Sex,
+      double? Weight,
+      double? Height,
+      double? BMI}) {
     debugPrint("[Classes->User-> CONSTRUCTOR] Start");
-    if(ID != null)
-    {
+    if (ID != null) {
       _id = ID;
     }
     username = Username;
-    password = password;
+    password = Password;
     name = Name;
     dob = DateOfBirth;
     sex = Sex;
@@ -36,37 +43,30 @@ class User {
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
 
-  Future<int> countMatching() async
-  {
+  Future<int> countMatching() async {
     debugPrint("[Classes->User-> countMatchingUser()] Entered");
     Map<String, dynamic> matchConditions = Map<String, dynamic>();
     matchConditions[_databaseHelper.colUsername] = username;
     matchConditions[_databaseHelper.colPassword] = password;
-    List<Map<String, dynamic>> matchingUsers = await _databaseHelper.getMatchingRows_WhereColumns(tableName: "UserTable", conditions: matchConditions);
-    
-    
-    if(matchingUsers.length == 1)
-    {
+    List<Map<String, dynamic>> matchingUsers =
+        await _databaseHelper.getMatchingRows_WhereColumns(
+            tableName: "UserTable", conditions: matchConditions);
+
+    if (matchingUsers.length == 1) {
       debugPrint("[Classes->User-> countMatchingUser()] End");
       return 1;
-    }
-    else if(matchingUsers.length > 1)
-    {
-      debugPrint("[Classes->User-> countMatchingUser()] Error more than 1 account found but there should only be 1 or 0.");
+    } else if (matchingUsers.length > 1) {
+      debugPrint(
+          "[Classes->User-> countMatchingUser()] Error more than 1 account found but there should only be 1 or 0.");
       debugPrint("[Classes->User-> countMatchingUser()] End");
       return matchingUsers.length;
-    }
-    else
-    {
+    } else {
       debugPrint("[Classes->User-> countMatchingUser()] End");
       return 0;
     }
-    
   }
 
-
-  Future<void> readID() async
-  {
+  Future<void> readID() async {
     debugPrint("[Classes->User-> readID()] Start");
     Map<String, dynamic> matchConditions = Map<String, dynamic>();
     matchConditions[_databaseHelper.colUsername] = username;
@@ -76,87 +76,79 @@ class User {
 
     debugPrint("[Classes->User-> readID()] retrieving data from database ...");
     //a list of matching rows except only the requested columns of each row are output.
-    List<Map<String, dynamic>> output = await _databaseHelper.getMatchingColumns_WhereColumns(tableName: "UserTable", conditions: matchConditions, outputColumns: outputColumns);
-    
+    List<Map<String, dynamic>> output =
+        await _databaseHelper.getMatchingColumns_WhereColumns(
+            tableName: "UserTable",
+            conditions: matchConditions,
+            outputColumns: outputColumns);
+
     debugPrint("[Classes->User-> readID()] processing ...");
     _id = output[0][_databaseHelper.colID];
 
     debugPrint("[Classes->User-> readID()] End");
   }
 
-  
-
-
-
-
-
-
-
-
-
-  Future<int> create() async
-  {
+  Future<int> create() async {
     debugPrint("[Classes->User-> create()] Start");
 
-    debugPrint("[Classes->User-> create()] inserting new user into database ...");
-    int result = await _databaseHelper.insert(tableName: "UserTable", objectAsMap: toMap());
-    debugPrint("[Classes->User-> create()] Insertion COMPLETE. result = ${result}");
+    debugPrint(
+        "[Classes->User-> create()] inserting new user into database ...");
+    int result = await _databaseHelper.insert(
+        tableName: "UserTable", objectAsMap: toMap());
+    debugPrint(
+        "[Classes->User-> create()] Insertion COMPLETE. result = ${result}");
 
     debugPrint("[Classes->User-> create()] End");
     return result;
   }
 
-
-
-  Future<bool> readFromDatabase() async
-  {
+  Future<bool> readFromDatabase() async {
     debugPrint("[Classes->User-> readFromDatabase()] Start");
-    if(_id == null)
-    {
+    if (_id == null) {
       Map<String, dynamic> matchConditions = Map<String, dynamic>();
       matchConditions[_databaseHelper.colUsername] = username;
       matchConditions[_databaseHelper.colPassword] = password;
 
+      debugPrint(
+          "[Classes->User-> readFromDatabase()] Retrieving data from database (using username and password)...");
+      List<Map<String, dynamic>> matchingUsers =
+          await _databaseHelper.getMatchingRows_WhereColumns(
+              tableName: "UserTable", conditions: matchConditions);
 
-      debugPrint("[Classes->User-> readFromDatabase()] Retrieving data from database (using username and password)...");
-      List<Map<String, dynamic>> matchingUsers = await _databaseHelper.getMatchingRows_WhereColumns(tableName: "UserTable", conditions: matchConditions);
-      
-      
-      if(matchingUsers.length == 1)
-      {
+      if (matchingUsers.length == 1) {
         debugPrint("[Classes->User-> readFromDatabase()] processing data...");
-        readUserFromMap(matchingUsers[0]);
+        readFromMap(matchingUsers[0]);
         return true;
-      }
-      else if(matchingUsers.length > 1)
-      {
-        debugPrint("[Classes->User-> readFromDatabase()] Error more than 1 account found but there should only be 1 or 0.");
+      } else if (matchingUsers.length > 1) {
+        debugPrint(
+            "[Classes->User-> readFromDatabase()] Error more than 1 account found but there should only be 1 or 0.");
+        debugPrint("[Classes->User-> readFromDatabase()] End");
+        return false;
+      } else {
+        debugPrint(
+            "[Classes->User-> readFromDatabase()] No matching users found!");
         debugPrint("[Classes->User-> readFromDatabase()] End");
         return false;
       }
-      else
-      {
-        debugPrint("[Classes->User-> readFromDatabase()] No matching users found!");
-        debugPrint("[Classes->User-> readFromDatabase()] End");
-        return false;
-      }
-    }
-    else
-    {
-      debugPrint("[Classes->User-> readFromDatabase()] Retrieving data from database (using id)...");
-      List<Map<String, dynamic>> matchingUsers = await _databaseHelper.getMatchingRows(tableName: "UserTable", column: _databaseHelper.colID, value: _id.toString());
+    } else {
+      debugPrint(
+          "[Classes->User-> readFromDatabase()] Retrieving data from database (using id)...");
+      List<Map<String, dynamic>> matchingUsers =
+          await _databaseHelper.getMatchingRows(
+              tableName: "UserTable",
+              column: _databaseHelper.colID,
+              value: _id.toString());
 
       debugPrint("[Classes->User-> readFromDatabase()] processing data...");
-      readUserFromMap(matchingUsers[0]);
+      readFromMap(matchingUsers[0]);
       debugPrint("[Classes->User-> readFromDatabase()] End");
       return true;
-      
     }
   }
-  User.fromMap(Map<String, dynamic> map)
-  {
+
+  User.fromMap(Map<String, dynamic> map) {
     debugPrint("[Classes->User-> User.fromMap()] Start");
-    
+
     _id = map["id"];
     username = map["username"];
     password = map["password"];
@@ -169,10 +161,9 @@ class User {
 
     debugPrint("[Classes->User-> User.fromMap()] End");
   }
-  void readUserFromMap(Map<String, dynamic> map)
-  {
+  void readFromMap(Map<String, dynamic> map) {
     debugPrint("[Classes->User-> readUserFromMap()] Start");
-    
+
     _id = map["id"];
     username = map["username"];
     password = map["password"];
@@ -185,12 +176,20 @@ class User {
 
     debugPrint("[Classes->User-> readUserFromMap()] End");
   }
-  Map<String, dynamic> toMap()
-  {
+
+  User fromMap(Map<String, dynamic> map) {
+    debugPrint("[Classes->User-> readUserFromMap()] Start");
+
+    User tempUser = User.fromMap(map);
+
+    debugPrint("[Classes->User-> readUserFromMap()] End");
+    return tempUser;
+  }
+
+  Map<String, dynamic> toMap() {
     Map<String, dynamic> map = Map<String, dynamic>();
 
-    if(_id != null)
-    {
+    if (_id != null) {
       map['id'] = _id;
     }
     map["username"] = this.username;
@@ -232,22 +231,15 @@ class User {
     return map;
   }
 
-
-
-  Future<int> updateUserInDB() async
-  {
+  Future<int> updateUserInDB() async {
     int result = 0;
 
     return result;
   }
 
-
-
-  Future<int> deleteUserFromDB() async
-  {
+  Future<int> deleteUserFromDB() async {
     int result = 0;
 
     return result;
   }
-  
 }

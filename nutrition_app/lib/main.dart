@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/home_page.dart';
 import 'package:nutrition_app/register_page.dart';
@@ -6,9 +8,11 @@ import 'package:nutrition_app/login_page.dart';
 import 'package:nutrition_app/add_food_item.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/models.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 Future<void> setUpDatabase() async {
   debugPrint("[main.dart-> setUpDatabase()] Start");
+
   debugPrint("[main.dart-> setUpDatabase()] setting up database...");
   DatabaseHelper databaseHelper = DatabaseHelper();
   debugPrint("[main.dart-> setUpDatabase()] setting up User table ...");
@@ -46,7 +50,13 @@ void main() async{
 }
 */
 
-void main() async {
+Future<void> main() async {
+  if (Platform.isWindows || Platform.isLinux) {
+    // Initialize FFI
+    sqfliteFfiInit();
+  }
+  databaseFactory = databaseFactoryFfi;
+
   await setUpDatabase();
   runApp(const MyApp());
 }
