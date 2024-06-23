@@ -6,6 +6,8 @@ import 'package:nutrition_app/login_page.dart';
 import 'package:nutrition_app/add_food_item.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/models.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:sqflite/sqflite.dart';
 
 
 
@@ -50,6 +52,9 @@ void main() async{
 
 
 void main() async{
+  sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
+  
   await setUpDatabase();
   runApp(const MyApp());
 }
@@ -66,7 +71,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
 
-      home: RegisterPage(),
+      home: LoginPage(),
 
       routes: {
         '/settingspage' : (context) => const SettingsPage(),
@@ -75,6 +80,7 @@ class MyApp extends StatelessWidget {
         '/loginpage' : (context) => const LoginPage(),
       }
     );
+  
   }
 }
 

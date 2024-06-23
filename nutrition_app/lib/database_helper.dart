@@ -95,7 +95,7 @@ class DatabaseHelper
     Directory directory = await getApplicationDocumentsDirectory();
 
                         debugPrint("     [initializeDatabase()] before: path");
-    String path = directory.path + "/GoalsAnalyzer.db";
+    String path = directory.path + "/NutritionApp.db";
                         debugPrint("     [initializeDatabase()] path: $path");
 
                         debugPrint("     [initializeDatabase()] before: ... openDatabase(...");

@@ -20,6 +20,9 @@ class _LoginPageState extends State<LoginPage> {
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
+  
+  
+
   void signIn(String userName, String password) async {
     debugPrint("[LoginPage-> signIn()] Start");
     debugPrint("[LoginPage-> signIn()] Logging in...");
@@ -96,6 +99,8 @@ class _LoginPageState extends State<LoginPage> {
       debugPrint("Deleting ${deleteTableName} database ...");
       await databaseHelper.deleteTable(deleteTableName);
     }*/
+
+    
     
     
 
