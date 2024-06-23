@@ -49,7 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
         if(insertResult != 0)
         {
           setState(() {
-            //change pages !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Navigator.pushNamed(context, '/homepage');//change pages !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           });
         }
         else

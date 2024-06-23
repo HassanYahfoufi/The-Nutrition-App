@@ -66,12 +66,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
 
-      home: const RegisterPage(),
+      home: RegisterPage(),
 
       routes: {
         '/settingspage' : (context) => const SettingsPage(),
-        '/homepage' : (context) => const HomePage(),
-        '/registerpage' : (context) => const RegisterPage(),
+        '/homepage' : (context) => HomePage(),
+        '/registerpage' : (context) => RegisterPage(),
         '/loginpage' : (context) => const LoginPage(),
       }
     );
