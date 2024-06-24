@@ -6,6 +6,7 @@ import 'package:nutrition_app/register_page.dart';
 import 'package:nutrition_app/settings_page.dart';
 import 'package:nutrition_app/login_page.dart';
 import 'package:nutrition_app/add_food_item.dart';
+import 'package:nutrition_app/view_food_items.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/models.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
