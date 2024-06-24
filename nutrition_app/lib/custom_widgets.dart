@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:nutrition_app/main.dart';
 
 class PageWidget extends StatefulWidget {
   PageWidget({required this.home, required this.pageName, required this.body, this.onPressed, this.currentIndex = 0, super.key});
@@ -18,7 +18,7 @@ class _PageWidgetState extends State<PageWidget> {
   Widget build(BuildContext context) {
 
     return Scaffold( 
-            appBar: AppBar(actions: [IconButton(onPressed: widget.home, icon: Icon(Icons.home))], title: Text(widget.pageName)),
+            appBar: AppBar(actions: [IconButton(onPressed: () => Navigator.pushNamed(context, '/homepage'), icon: Icon(Icons.home))], title: Text(widget.pageName)),
             body: Column(
               children: [
                 SingleChildScrollView(
@@ -61,18 +61,19 @@ class bottomNavigationBar extends StatelessWidget {
 
   const bottomNavigationBar({Key? key, required this.currentIndex, required this.onTap}) : super(key: key);
   
+  
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: onTap,
        items: [
-            BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home,),
             label: 'Home',
             backgroundColor: Colors.green,
             ),
-         BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.lunch_dining),
             label: 'Add New Food',
             backgroundColor: Colors.green,
