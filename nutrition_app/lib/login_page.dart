@@ -144,6 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.black,
                 fontSize: 16,
               ),
+
             ),
             const SizedBox(height: 30),
             Padding(
