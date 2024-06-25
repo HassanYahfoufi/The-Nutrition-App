@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 
@@ -22,100 +22,21 @@ nonDB_var##
 Non Database Var With Space ###
 */
 
-class CreateBlankPage extends StatefulWidget {
-  CreateBlankPage({required this.nextPage, super.key});
+class ViewSingleBlankPage extends StatefulWidget {
+  ViewSingleBlankPage({required this.nextPage, required this.thisBlank, super.key});
   final Widget nextPage;
+  Blank thisBlank;
 
   @override
-  State<CreateBlankPage> createState() => _CreateBlankPageState();
+  State<ViewSingleBlankPage> createState() => _ViewSingleBlankPageState();
 }
 
-class _CreateBlankPageState extends State<CreateBlankPage> {
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  TextEditingController required_var01Controller = TextEditingController();
-  TextEditingController required_var02Controller = TextEditingController();
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  TextEditingController optional_var01Controller = TextEditingController();
-  TextEditingController optional_var02Controller = TextEditingController();
-  TextEditingController optional_var03Controller = TextEditingController();
-  TextEditingController optional_var04Controller = TextEditingController();
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  TextEditingController nonDB_var01Controller = TextEditingController();
-  TextEditingController nonDB_var02Controller = TextEditingController();
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+class _ViewSingleBlankPageState extends State<ViewSingleBlankPage> {
 
   late Blank newBlank;
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
-  Future<void> submit() async
-  {
-    debugPrint("[Create Blank_WSpace Page-> submit()] Start");
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    late requiredVar01_DataType tempRequired_Var01 = requiredVar01_DataType.parse(required_var01Controller.text);
-    late requiredVar02_DataType tempRequired_Var02 = requiredVar02_DataType.parse(required_var02Controller.text);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    optionalVar01_DataType? tempOptional_Var01 = optionalVar01_DataType.parse(optional_var01Controller.text);
-    optionalVar02_DataType? tempOptional_Var02 = optionalVar02_DataType.parse(optional_var02Controller.text);
-    optionalVar03_DataType? tempOptional_Var03 = optionalVar03_DataType.parse(optional_var03Controller.text);
-    optionalVar04_DataType? tempOptional_Var04 = optionalVar04_DataType.parse(optional_var04Controller.text);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
-    
-
-
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    newBlank = Blank(/*!!!!!*/Required_Var01: tempRequired_Var01, Required_Var02: tempRequired_Var02/*!!!!!*//*!!!!!*/, Optional_Var01: tempOptional_Var01, Optional_Var02: tempOptional_Var02, Optional_Var03: tempOptional_Var03, Optional_Var04: tempOptional_Var04/*!!!!!*/);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    debugPrint("[Create Blank_WSpace Page-> submit()] Validating...");
-    if (await newBlank.countMatching() >= 1) {
-      setState(() {
-        showDialog(
-            context: context,
-            builder: (_) => AlertDialog(
-                  title: Text("Creation failure!"),
-                  content:
-                      Text("The Blank already exists"),
-                ));
-        debugPrint(
-            "[Create Blank_WSpace Page-> submit()]sign up fail! Blank already exists!!!!!!!!!!!!!!!!!!!!");
-      });
-    } else //if you are here then the combonation of alues for the required parameters hasn't been used yet
-    {
-      debugPrint("[Create Blank_WSpace Page-> submit()] the combo of values for the required parameters hasn't been used yet");
-      
-
-      int insertResult = await newBlank.create();
-
-      if (insertResult != 0) {
-        setState(() {
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>(widget.nextPage)),); 
-        });
-      } else {
-        setState(() {
-          debugPrint("[Create Blank_WSpace Page-> submit()] Sign up failed!");
-          showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                    title: Text("Sign in failed!"),
-                    content: Text("Insert operation failed!"),
-                  ));
-          debugPrint("[Create Blank_WSpace Page-> submit()] Sign up failed!");
-        });
-      }
-    }
-  }
-  
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   Widget currentPage({/*!!!!!*/required required_var01Controller, required required_var02Controller/*!!!!!*/, required optional_var01Controller, required optional_var02Controller, required optional_var03Controller, required optional_var04Controller/*!!!!!*/, required nonDB_var01Controller, required nonDB_var02Controller/*!!!!!*/})
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -314,7 +235,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
 
   @override
   initState() {
-    debugPrint("[CreateBlankPage] Start");
+    debugPrint("[ViewSingleBlankPage] Start");
   }
 
   @override
@@ -329,3 +250,4 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
     );
   }
 }
+*/

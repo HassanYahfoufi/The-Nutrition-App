@@ -6,79 +6,120 @@ import "package:nutrition_app/database_helper.dart";
 class Blank {
   Blank(
       {ID,
-      /*!!!!!!!!!!!!!!!!!!!!!!!!*/
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*//*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       required requiredVar01_DataType Required_Var01,
       required requiredVar02_DataType Required_Var02,
-      /*!!!!!!!!!!!!!!!!!!!!!!!!*/
-      /*!!!!!!!!!!!!!!!!!!!!!!!!*/
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       optionalVar01_DataType? Optional_Var01,
       optionalVar02_DataType? Optional_Var02,
       optionalVar03_DataType? Optional_Var03,
       optionalVar04_DataType? Optional_Var04,
-      /*!!!!!!!!!!!!!!!!!!!!!!!!*/
-      /*!!!!!!!!!!!!!!!!!!!!!!!!*/
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       nonDBVar01_DataType? NonDB_Var01,
       nonDBVar02_DataType? NonDB_Var02
-      /*!!!!!!!!!!!!!!!!!!!!!!!!*/
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*//*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       }) {
     debugPrint("[Classes->Blank-> CONSTRUCTOR] Start");
     if (ID != null) {
       _id = ID;
     }
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*//*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     required_var01 = Required_Var01;
     required_var02 = Required_Var02;
-    //!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     optional_var01 = Optional_Var01;
     optional_var02 = Optional_Var02;
     optional_var03 = Optional_Var03;
     optional_var04 = Optional_Var04;
-    //!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!s
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     _nonDB_var01 = NonDB_Var01;
     _nonDB_var02 = NonDB_Var02;
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*//*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
     debugPrint("[Classes->Blank-> CONSTRUCTOR] End");
   }
  
 
   int? _id;
+
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   late requiredVar01_DataType required_var01;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
   late requiredVar02_DataType required_var02;
   //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   optionalVar01_DataType? optional_var01;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
   optionalVar02_DataType? optional_var02;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
   optionalVar03_DataType? optional_var03;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
   optionalVar04_DataType? optional_var04;
   //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   nonDBVar01_DataType? _nonDB_var01;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
   nonDBVar02_DataType? _nonDB_var02;
   //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
-  List<m2oVar01_DataType> m2o_var01s = <m2oVar01_DataType>[];
-  List<m2oVar02_DataType> m2o_var022 = <m2oVar02_DataType>[];
+  List<m2oVar01_DataType> _m2o_var01s = <m2oVar01_DataType>[];
+  List<m2oVar01_DataType> newM2O_Var01s = <m2oVar01_DataType>[];
+  List<m2oVar01_DataType> updatedM2O_Var01s = <m2oVar01_DataType>[];
+  List<m2oVar01_DataType> deleteM2O_Var01s = <m2oVar01_DataType>[];
   //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  List<m2oVar02_DataType> _m2o_var022 = <m2oVar02_DataType>[];
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   List<int> _m2m_var01IDs = [];//add getter function for array and single item
   List<m2mVar01_DataType> _m2m_var01s = <m2mVar01_DataType>[];
   List<m2mVar01_DataType> newM2M_Var01s = <m2mVar01_DataType>[];
   List<m2mVar01_DataType> updatedM2M_Var01s = <m2mVar01_DataType>[];
+  List<m2mVar01_DataType> deleteM2M_Var01s = <m2mVar01_DataType>[];
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
   List<int> _m2m_var02IDs = [];//add getter function for array and single item
   List<m2mVar02_DataType> m2m_var02s = <m2mVar02_DataType>[];
   //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
 
 
   int? get id => _id;
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   nonDBVar01_DataType? get nonDB_var01 => _nonDB_var01;
   nonDBVar02_DataType? get nonDB_var02 => _nonDB_var02;
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 
 
   Future<int> countMatching() async {
@@ -149,16 +190,59 @@ class Blank {
 
   
 
-  /*Future<int> createM2O_Var01()
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!
+  void addM2O_Var01(m2oVar01_DataType newM2O_Var01)
   {
-    debugPrint("[Classes->Blank-> createM2O_Var01()] Start");
-    
+    newM2O_Var01s.add(newM2O_Var01);
   }
-  Future<bool> readM2O_Var01()
+  void removeM2O_Var01(m2oVar01_DataType m2o_var01)
+  {
+    if(_m2o_var01s.contains(m2o_var01))
+    {
+      //_m2o_var01s.remove(m2o_var01);//There is no need to remove it from this list. It would cause an issue if you wanted to add it later after you removed it initially(the object wouldn't be able to tell if it is an entity from the database, updated, or new and therefore wouldn't know what to do with it)
+      deleteM2O_Var01s.add(m2o_var01);
+    }
+    else if(newM2O_Var01s.contains(m2o_var01))
+    {
+      newM2O_Var01s.remove(m2o_var01);
+    }
+    else if(updatedM2O_Var01s.contains(m2o_var01))
+    {
+      updatedM2O_Var01s.remove(m2o_var01);
+    }
+  }
+
+  Future<List<int>> createM2O_Var01s() async
+  {
+    debugPrint("[Classes->Blank-> createM2O_Var01s()] Start");
+    List<int> results = [];
+    for (m2oVar01_DataType newM2O_Var01 in newM2O_Var01s) 
+    { 
+      debugPrint("[Classes->Blank-> createM2O_Var01s()] inserting new m2o_var01 into database ...");
+      int result = await _databaseHelper.insert(tableName: "BlankM2O_Var01ConnectionTable", objectAsMap: newM2O_Var01.toMap());
+      debugPrint("[Classes->Blank-> createM2O_Var01s()] Insertion COMPLETE. result = ${result}");
+      results.add(result);
+
+    }
+
+    debugPrint("[Classes->Blank-> createM2O_Var01s()] End");
+    return results;
+  }
+  Future<void> readM2O_Var01s() async 
   {
     debugPrint("[Classes->Blank-> readM2O_Var01()] Start");
+    _m2o_var01s.clear();
     
-  }*/
+
+
+    debugPrint("[Classes->Account-> readM2O_Var01()] retrieving m2o_var01s...");
+    List<Map<String, dynamic>> matchingM2O_Var01s = await _databaseHelper.getMatchingRows(tableName: "M2O_Var01Table", column: "blank_id", value: _id!.toString());
+
+    _m2o_var01s = matchingM2O_Var01s.map((m2o_var01) => m2oVar01_DataType.fromMap(m2o_var01)).toList();
+    debugPrint("[Classes->Blank-> readM2O_Var01()] End");
+  } 
   /*Future<int> updateM2O_Var01()
   {
     
@@ -167,26 +251,49 @@ class Blank {
   {
     
   }*/
+  //!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!
+  void addM2M_Var01(m2mVar01_DataType newM2M_Var01)
+  {
+    newM2M_Var01s.add(newM2M_Var01);
+  }
+  void removeM2M_Var01(m2mVar01_DataType m2m_var01)
+  {
+    if(_m2m_var01s.contains(m2m_var01))
+    {
+      //_m2m_var01s.remove(m2m_var01);//There is no need to remove it from this list. It would cause an issue if you wanted to add it later after you removed it initially(the object wouldn't be able to tell if it is an entity from the database, updated, or new and therefore wouldn't know what to do with it)
+      deleteM2M_Var01s.add(m2m_var01);
+    }
+    else if(newM2M_Var01s.contains(m2m_var01))
+    {
+      newM2M_Var01s.remove(m2m_var01);
+    }
+    else if(updatedM2M_Var01s.contains(m2m_var01))
+    {
+      updatedM2M_Var01s.remove(m2m_var01);
+    }
+  }
 
-
-
-  /*Future<List<int>> createM2M_Var01s() async
+  Future<List<int>> createM2M_Var01s() async
   {
     debugPrint("[Classes->Blank-> createM2M_Var01s()] Start");
-
-    
+    List<int> results = [];
     for (m2mVar01_DataType newM2M_Var01 in newM2M_Var01s) 
     { 
       BlankM2M_Var01Connection newBlankM2M_Var01Connection = BlankM2M_Var01Connection(_id!, newM2M_Var01.id!);
-      Map<String, dynamic> newBlankM2M_Var01Connection_asMap = BlankM2M_Var01Connection.toMap();
       debugPrint("[Classes->Blank-> createM2M_Var01s()] inserting new m2m_var01 into database ...");
-      int result = await _databaseHelper.insert(tableName: "BlankM2M_Var01ConnectionTable", objectAsMap: );
+      int result = await _databaseHelper.insert(tableName: "BlankM2M_Var01ConnectionTable", objectAsMap: newBlankM2M_Var01Connection.toMap());
       debugPrint("[Classes->Blank-> createM2M_Var01s()] Insertion COMPLETE. result = ${result}");
+      results.add(result);
+
     }
 
     debugPrint("[Classes->Blank-> createM2M_Var01s()] End");
-  }*/
-  Future<void> readM2M_Var01IDs() async
+    return results;
+  }
+  Future<void>  readM2M_Var01IDs() async
   {
     debugPrint("[Classes->Blank-> readM2M_Var01IDs()] Start");
 
@@ -212,7 +319,7 @@ class Blank {
 
     List<String> _m2m_var01IDs_string = _m2m_var01IDs.map((ID) => ID.toString()).toList();
 
-    debugPrint("[Classes->Account-> updateTasks()] retrieving m2m_var01s...");
+    debugPrint("[Classes->Blank-> readM2M_Var01()] retrieving m2m_var01s...");
     List<Map<String, dynamic>> matchingM2M_Var01s = await _databaseHelper.getMatchingRows_WhereColumnInValues(tableName: "M2M_Var01Table", column: _databaseHelper.colID, values: _m2m_var01IDs_string);
 
     _m2m_var01s = matchingM2M_Var01s.map((m2m_var01) => m2mVar01_DataType.fromMap(m2m_var01)).toList();
@@ -226,6 +333,66 @@ class Blank {
   {
     
   }*/
+  //!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Future<void> createLists() async
+  {
+    await createM2Os();
+    await createM2Ms();
+  }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Future<void> createM2Os() async
+  {
+    
+    //!!!!!!!!!!!!!!!!!!!!!!!!
+    await createM2O_Var01s();
+    //!!!!!!!!!!!!!!!!!!!!!!!!
+    
+  }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Future<void> createM2Ms() async
+  {
+    
+    //!!!!!!!!!!!!!!!!!!!!!!!!
+    await createM2M_Var01s();
+    //!!!!!!!!!!!!!!!!!!!!!!!!
+    
+  }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Future<void> readLists() async
+  {
+    await readM2Os();
+    await readM2Ms();
+  }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Future<void> readM2Os() async
+  {
+    
+    //!!!!!!!!!!!!!!!!!!!!!!!!
+    await readM2O_Var01s();
+    //!!!!!!!!!!!!!!!!!!!!!!!!
+    
+  }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Future<void> readM2Ms() async
+  {
+    
+    //!!!!!!!!!!!!!!!!!!!!!!!!
+    await readM2M_Var01IDs();
+    await readM2M_Var01s();
+    //!!!!!!!!!!!!!!!!!!!!!!!!
+    
+  }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
@@ -238,8 +405,9 @@ class Blank {
     debugPrint("[Classes->Blank-> create()] Insertion COMPLETE. result = ${result}");
     if(result >= 1)
     {
-      //!!!!!!!!!!!!!!!!!!!!!!!!
-      //!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      await createLists();
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 
     debugPrint("[Classes->Blank-> create()] End");
@@ -250,22 +418,26 @@ class Blank {
     debugPrint("[Classes->Blank-> readFromDatabase()] Start");
     if (_id == null) {
       Map<String, dynamic> matchConditions = Map<String, dynamic>();
-      //!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       matchConditions[_databaseHelper.colRequired_Var01] = required_var01;
       matchConditions[_databaseHelper.colRequired_Var02] = required_var02;
-      //!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-      //!!!!!!!!!!!!!!!!!!!!!!!!
-      debugPrint("[Classes->Blank-> readFromDatabase()] Retrieving data from database (using required_var01 and required_var02)...");
-      //!!!!!!!!!!!!!!!!!!!!!!!!
+      
+      debugPrint("[Classes->Blank-> readFromDatabase()] Retrieving data from database (using required variables)...");
+      
       List<Map<String, dynamic>> matchingBlanks = await _databaseHelper.getMatchingRows_WhereColumns( tableName: "BlankTable", conditions: matchConditions);
 
       if (matchingBlanks.length == 1) 
       {
         debugPrint("[Classes->Blank-> readFromDatabase()] processing data...");
         readFromMap(matchingBlanks[0]);
-        //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        await readLists();
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         return true;
       } 
       else if (matchingBlanks.length > 1) 
@@ -300,47 +472,55 @@ class Blank {
     debugPrint("[Classes->Blank-> Blank.fromMap()] Start");
 
     _id = map["id"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     required_var01 = map["required_var01"];
     required_var02 = map["required_var02"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     optional_var01 = map["optional_var01"];
     optional_var02 = map["optional_var02"];
     optional_var03 = map["optional_var03"];
     optional_var04 = map["optional_var04"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
 
     debugPrint("[Classes->Blank-> Blank.fromMap()] End");
   }
-  void readFromMap(Map<String, dynamic> map) {
+  Future<void> readFromMap(Map<String, dynamic> map) async 
+  {
     debugPrint("[Classes->Blank-> readBlankFromMap()] Start");
 
     _id = map["id"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     required_var01 = map["required_var01"];
     required_var02 = map["required_var02"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     optional_var01 = map["optional_var01"];
     optional_var02 = map["optional_var02"];
     optional_var03 = map["optional_var03"];
     optional_var04 = map["optional_var04"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!
-
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    await readLists();
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    
 
     debugPrint("[Classes->Blank-> readBlankFromMap()] End");
   }
 
-  Blank fromMap(Map<String, dynamic> map) {
+  Future<Blank> fromMap(Map<String, dynamic> map) async {
     debugPrint("[Classes->Blank-> readBlankFromMap()] Start");
 
     Blank tempBlank = Blank.fromMap(map);
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    await readLists();
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     debugPrint("[Classes->Blank-> readBlankFromMap()] End");
     return tempBlank;
@@ -457,11 +637,51 @@ class m2oVar01_DataType {
   int? _blankID;
 
   int? get blankID => _blankID;
+
+  m2oVar01_DataType.fromMap(Map<String, dynamic> map) 
+  {
+    debugPrint("[Classes->m2oVar01_DataType-> m2oVar01_DataType.fromMap()] Start");
+
+    
+
+    debugPrint("[Classes->m2oVar01_DataType-> m2oVar01_DataType.fromMap()] End");
+  }
+
+
+  Map<String, dynamic> toMap() 
+  {
+    Map<String, dynamic> map = Map<String, dynamic>();
+
+    
+    
+
+    return map;
+  }
 }
 class m2oVar02_DataType {
   int? _blankID;
 
   int? get blankID => _blankID;
+
+  m2oVar02_DataType.fromMap(Map<String, dynamic> map) 
+  {
+    debugPrint("[Classes->m2oVar02_DataType-> m2oVar02_DataType.fromMap()] Start");
+
+    
+
+    debugPrint("[Classes->m2oVar02_DataType-> m2oVar02_DataType.fromMap()] End");
+  }
+
+
+  Map<String, dynamic> toMap() 
+  {
+    Map<String, dynamic> map = Map<String, dynamic>();
+
+    
+    
+
+    return map;
+  }
 }
 
 class m2mVar01_DataType {
@@ -470,24 +690,46 @@ class m2mVar01_DataType {
 
   int? get id => _id;
 
-  m2mVar01_DataType.fromMap(Map<String, dynamic> map) {
+  m2mVar01_DataType.fromMap(Map<String, dynamic> map)
+  {
     debugPrint("[Classes->m2mVar01_DataType-> m2mVar01_DataType.fromMap()] Start");
 
     
 
     debugPrint("[Classes->m2mVar01_DataType-> m2mVar01_DataType.fromMap()] End");
   }
+
+  Map<String, dynamic> toMap() 
+  {
+    Map<String, dynamic> map = Map<String, dynamic>();
+
+    
+    
+
+    return map;
+  }
 }
 class m2mVar02_DataType {
   int? _id;
 
   int? get id => _id;
-  m2mVar02_DataType.fromMap(Map<String, dynamic> map) {
+  m2mVar02_DataType.fromMap(Map<String, dynamic> map) 
+  {
     debugPrint("[Classes->m2mVar02_DataType-> m2mVar02_DataType.fromMap()] Start");
 
     
 
     debugPrint("[Classes->m2mVar02_DataType-> m2mVar02_DataType.fromMap()] End");
+  }
+  
+  Map<String, dynamic> toMap() 
+  {
+    Map<String, dynamic> map = Map<String, dynamic>();
+
+    
+    
+
+    return map;
   }
 }
 class BlankM2M_Var01Connection
@@ -495,6 +737,7 @@ class BlankM2M_Var01Connection
   BlankM2M_Var01Connection(this._blankID, this._m2m_var01ID);
   late int _blankID;
   late int _m2m_var01ID;
+  List<int> _testList = [];
 
   int get blankID => _blankID;
   int get m2m_var01ID => _m2m_var01ID;
