@@ -31,8 +31,19 @@ class DatabaseHelper {
   String colBody = "body";
   String colSummary = "summary";
   String colDateCreated = "date_created";
-
   //-------------------------------------
+  //--------------- DELETE ---------------
+  String colRequired_Var01 = "required_var01";
+  String colRequired_Var02 = "required_var02";
+
+  String colOptional_Var01 = "optional_var01";
+  String colOptional_Var02 = "optional_var02";
+  String colOptional_Var03 = "optional_var03";
+  String colOptional_Var04 = "optional_var04";
+
+  String colnonDB_Var01 = "nonDB_var01";
+  String colnonDB_Var02 = "nonDB_var02";
+  //--------------- DELETE ---------------
 
   DatabaseHelper._createInstance();
 
