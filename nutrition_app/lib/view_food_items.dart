@@ -14,7 +14,27 @@ class _ViewFoodItemsState extends State<ViewFoodItems> {
       appBar: AppBar(
         title: Text("View Food Items"),
         backgroundColor: Colors.green,
-      )
+      ),
+      body: Stack(
+        children: <Widget>[
+          Center(
+            child: Text(
+              'Placeholder',
+            ),
+          ),
+          Align(alignment: Alignment.bottomRight,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: IconButton(
+              onPressed: (){
+                Navigator.pushNamed(context, '/addnewfooditems');
+              },
+              icon: Icon(Icons.add),
+            ),
+          ),
+          ),
+        ],
+      ),
     );
   }
 }

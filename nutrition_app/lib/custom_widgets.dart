@@ -26,7 +26,7 @@ class _PageWidgetState extends State<PageWidget> {
                 )
               ],
             ),
-            bottomNavigationBar: bottomNavigationBar(currentIndex: widget.currentIndex, onTap: (index) => setState(() => widget.currentIndex = index),),
+            //bottomNavigationBar: bottomNavigationBar(currentIndex: widget.currentIndex, onTap: (index) => setState(() => widget.currentIndex = index),),
           );
   }
 }
@@ -55,7 +55,7 @@ class _SizedOutlinedButtonState extends State<SizedOutlinedButton> {
   }
 }
 
-class bottomNavigationBar extends StatelessWidget {
+/*class bottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
@@ -98,4 +98,4 @@ class bottomNavigationBar extends StatelessWidget {
 
     );
   }
-}
+}*/
