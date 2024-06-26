@@ -89,7 +89,7 @@ class Blank {
   List<m2oVar01_DataType> deleteM2O_Var01s = <m2oVar01_DataType>[];
   //!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
-  List<m2oVar02_DataType> _m2o_var022 = <m2oVar02_DataType>[];
+  List<m2oVar02_DataType> _m2o_var02 = <m2oVar02_DataType>[];
   //!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -213,6 +213,7 @@ class Blank {
       updatedM2O_Var01s.remove(m2o_var01);
     }
   }
+  List<m2oVar01_DataType> get m2o_var01s => _m2o_var01s;
 
   Future<List<int>> createM2O_Var01s() async
   {
@@ -275,6 +276,7 @@ class Blank {
       updatedM2M_Var01s.remove(m2m_var01);
     }
   }
+  List<m2mVar01_DataType> get m2m_var01s => _m2m_var01s;
 
   Future<List<int>> createM2M_Var01s() async
   {
