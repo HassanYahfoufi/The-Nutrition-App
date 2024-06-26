@@ -19,6 +19,7 @@ class _PageWidgetState extends State<PageWidget> {
   Widget build(BuildContext context) {
 
     return Scaffold( 
+            resizeToAvoidBottomInset : true,
             appBar: AppBar(actions: [IconButton(onPressed: () => Navigator.pushNamed(context, '/homepage'), icon: Icon(Icons.home))], title: Text(widget.pageName)),
             body: Column(
               children: [
@@ -27,6 +28,7 @@ class _PageWidgetState extends State<PageWidget> {
                 )
               ],
             ),
+
             //bottomNavigationBar: bottomNavigationBar(currentIndex: widget.currentIndex, onTap: (index) => setState(() => widget.currentIndex = index),),
           );
   }
@@ -34,10 +36,11 @@ class _PageWidgetState extends State<PageWidget> {
 
 
 class SizedOutlinedButton extends StatefulWidget {
-  SizedOutlinedButton({required this.text, required this.height, required this.width, super.key});
+  SizedOutlinedButton({required this.text, required this.height, required this.width, this.onPressed, super.key});
   String text;
   double height;
   double width;
+  void Function()? onPressed;
 
 
   @override
@@ -50,7 +53,7 @@ class _SizedOutlinedButtonState extends State<SizedOutlinedButton> {
     return Column(
       children: [
         
-        Container(height: widget.height, width: widget.width, child: OutlinedButton(onPressed: () {}, child: Text(widget.text)),),
+        Container(height: widget.height, width: widget.width, child: OutlinedButton(onPressed: widget.onPressed, child: Text(widget.text)),),
       ],
     );
   }
