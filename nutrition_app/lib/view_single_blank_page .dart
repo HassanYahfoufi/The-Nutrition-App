@@ -1,4 +1,4 @@
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 
@@ -37,9 +37,8 @@ class _ViewSingleBlankPageState extends State<ViewSingleBlankPage> {
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  Widget currentPage({/*!!!!!*/required required_var01Controller, required required_var02Controller/*!!!!!*/, required optional_var01Controller, required optional_var02Controller, required optional_var03Controller, required optional_var04Controller/*!!!!!*/, required nonDB_var01Controller, required nonDB_var02Controller/*!!!!!*/})
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+  Widget currentPage()
   { 
     return Center(
           child: Column(children: [
@@ -56,37 +55,13 @@ class _ViewSingleBlankPageState extends State<ViewSingleBlankPage> {
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                controller: required_var01Controller,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Var With Space #01"),
-              ),
+              child: Text(widget.thisBlank.required_var01.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                controller: required_var02Controller,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Required Var With Space #02"),
-              ),
+              child: Text(widget.thisBlank.required_var02.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -95,75 +70,27 @@ class _ViewSingleBlankPageState extends State<ViewSingleBlankPage> {
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                controller: optional_var01Controller,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Optional Var With Space #01"),
-              ),
+              child: Text(widget.thisBlank.optional_var01.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                controller: optional_var02Controller,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Optional Var With Space #02"),
-              ),
+              child: Text(widget.thisBlank.optional_var02.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                controller: optional_var03Controller,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Optional Var With Space #03"),
-              ),
+              child: Text(widget.thisBlank.optional_var03.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                controller: optional_var04Controller,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Optional Var With Space #04"),
-              ),
+              child: Text(widget.thisBlank.optional_var04.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -172,63 +99,18 @@ class _ViewSingleBlankPageState extends State<ViewSingleBlankPage> {
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                controller: nonDB_var01Controller,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Non Database Var With Space #01"),
-              ),
+              child: Text(widget.thisBlank.nonDB_var01.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                controller: nonDB_var02Controller,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Non Database Var With Space #02"),
-              ),
+              child: Text(widget.thisBlank.nonDB_var02.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            SizedBox(height: 10),
-            TextButton(
-              onPressed: () {
-                submit();
-              },
-              child: Container(
-                padding: EdgeInsets.all(20),
-                margin: EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: const Center(
-                    child: Text('Submit',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ))),
-              ),
-            ),
           ]),
         );}
 
@@ -243,11 +125,8 @@ class _ViewSingleBlankPageState extends State<ViewSingleBlankPage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SingleChildScrollView(
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        child: currentPage(/*!!!!!*/required_var01Controller: required_var01Controller, required_var02Controller: required_var02Controller/*!!!!!*/, optional_var01Controller: optional_var01Controller, optional_var02Controller: optional_var02Controller, optional_var03Controller: optional_var03Controller, optional_var04Controller: optional_var04Controller/*!!!!!*/, nonDB_var01Controller: nonDB_var01Controller, nonDB_var02Controller: nonDB_var02Controller/*!!!!!*/),
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        child: currentPage(),
       ),
     );
   }
 }
-*/
