@@ -10,6 +10,7 @@ import 'package:nutrition_app/view_food_items.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/models.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 Future<void> setUpDatabase() async {
   debugPrint("[main.dart-> setUpDatabase()] Start");

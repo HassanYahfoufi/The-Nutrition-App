@@ -7,10 +7,10 @@ import 'package:nutrition_app/custom_widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 
 class _HomePageState extends State<HomePage> {
   double buttonHeight = 50;
@@ -19,14 +19,18 @@ class _HomePageState extends State<HomePage> {
   @override
 
   Widget build(BuildContext context) {
-    return PageWidget(home: () {}, pageName: "Home Page", body: [Center(
+    return PageWidget(home: () {}, pageName: "Home Page",  body: [Center(
+      
       child: Column(children: [
-        SizedBox(height: 25,),
-        SizedBox(child: OutlinedButton(onPressed: () {}, child: Text("Placeholder")), height: 175, width: 350),
+        
+        SizedBox(height: 25),
+        Icon(Icons.more_vert),
+        SizedBox(child: LineChartWidget(), height: 200, width: 700),
         SizedBox(height: (spacerHeight * 2)),
         TextButton(
           
           onPressed: (
+  
            
           ){ Navigator.pushNamed(context, '/viewfooditems');},
           
