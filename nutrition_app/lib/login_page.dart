@@ -145,6 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.black,
                 fontSize: 16,
               ),
+
             ),
             const SizedBox(height: 30),
             Padding(
@@ -213,8 +214,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 10),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context,
-                    '/registerpage'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                Navigator.pushNamed(context, '/registerpage'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
               },
               child: Container(
                 padding: EdgeInsets.all(20),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/main.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class PageWidget extends StatefulWidget {
   PageWidget({required this.home, required this.pageName, required this.body, this.onPressed, this.currentIndex = 0, super.key});
@@ -27,6 +28,8 @@ class _PageWidgetState extends State<PageWidget> {
                 )
               ],
             ),
+
+            //bottomNavigationBar: bottomNavigationBar(currentIndex: widget.currentIndex, onTap: (index) => setState(() => widget.currentIndex = index),),
           );
   }
 }
@@ -56,7 +59,7 @@ class _SizedOutlinedButtonState extends State<SizedOutlinedButton> {
   }
 }
 
-class bottomNavigationBar extends StatelessWidget {
+/*class bottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
@@ -96,6 +99,112 @@ class bottomNavigationBar extends StatelessWidget {
           ),
         ],
       
+
+    );
+  }
+}*/
+class LineChartWidget extends StatefulWidget {
+  const LineChartWidget({super.key});
+
+  @override
+  State<LineChartWidget> createState() => _LineChartWidgetState();
+}
+
+class _LineChartWidgetState extends State<LineChartWidget> {
+  @override
+  Widget build(BuildContext context) {
+    
+    return LineChart(
+      LineChartData(
+        lineBarsData: [
+          LineChartBarData(
+             spots: [
+              FlSpot(1, 50), //temporary data
+              FlSpot(2, 150),
+              FlSpot(3, 100),
+              FlSpot(4, 200),
+              FlSpot(5, 250),
+            ],
+            isCurved: true,
+           
+      
+           
+          
+          ),
+        ],
+        
+        titlesData: FlTitlesData(
+          topTitles: AxisTitles(
+            
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          rightTitles: AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+            showTitles: true,
+            getTitlesWidget: (value, meta){
+              switch(value.toInt()){
+                case 1:
+                  return Text('January');
+                case 2:
+                  return Text('February');
+                case 3:
+                  return Text('March');
+                case 4:
+                  return Text('April');
+                case 5:
+                  return Text('May');
+                case 6:
+                  return Text('June');
+                case 7:
+                  return Text('July');
+                case 8:
+                  return Text('August');
+                case 9:
+                  return Text('September');
+                case 10:
+                  return Text('October');
+                case 11:
+                  return Text('November');
+                case 12:
+                  return Text('December');
+                default:
+                  return Container();
+              }
+            },
+           interval: 1,
+          )
+          ),
+          leftTitles: AxisTitles(
+            sideTitles: SideTitles(
+              
+              showTitles: true,
+            getTitlesWidget: (value, meta){
+              switch(value.toInt()){
+                case 50:
+                  return Text('50');
+                case 100:
+                  return Text('100');
+                case 150:
+                  return Text('150');
+                case 200:
+                  return Text('200');
+                case 250:
+                  return Text('250');
+                case 300:
+                  return Text('300');
+                
+                default:
+                  return Container();
+              }
+            },
+            interval: 50,
+            ),
+          ),
+        ),
+      ),
 
     );
   }
