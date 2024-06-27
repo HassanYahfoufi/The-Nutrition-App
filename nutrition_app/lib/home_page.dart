@@ -58,6 +58,11 @@ class _HomePageState extends State<HomePage> {
         SizedOutlinedButton(text: "Add Consumed Food", height: buttonHeight, width: buttonWidth),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "Update Status", height: buttonHeight, width: buttonWidth),
+        SizedBox(height: spacerHeight),
+        SizedOutlinedButton(text: "Add New Blank", height: buttonHeight, width: buttonWidth),
+        SizedBox(height: spacerHeight),
+        SizedOutlinedButton(text: "Sign Out", height: buttonHeight, width: buttonWidth, onPressed: () {displayDialogSignOut(context);},)
+     
       ],),
     )]);
   }

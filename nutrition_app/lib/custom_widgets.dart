@@ -34,10 +34,11 @@ class _PageWidgetState extends State<PageWidget> {
 
 
 class SizedOutlinedButton extends StatefulWidget {
-  SizedOutlinedButton({required this.text, required this.height, required this.width, super.key});
+  SizedOutlinedButton({required this.text, required this.height, required this.width, this.onPressed, super.key});
   String text;
   double height;
   double width;
+  void Function()? onPressed;
 
 
   @override
@@ -50,7 +51,7 @@ class _SizedOutlinedButtonState extends State<SizedOutlinedButton> {
     return Column(
       children: [
         
-        Container(height: widget.height, width: widget.width, child: OutlinedButton(onPressed: () {}, child: Text(widget.text)),),
+        Container(height: widget.height, width: widget.width, child: OutlinedButton(onPressed: widget.onPressed, child: Text(widget.text)),),
       ],
     );
   }
@@ -205,4 +206,33 @@ class _LineChartWidgetState extends State<LineChartWidget> {
 
     );
   }
+}
+
+void displayDialogSignOut(BuildContext context){
+  showDialog(
+    context: context,
+    builder: (BuildContext context){
+      return AlertDialog(
+        content: Text("Are you sure you want to sign out?"),
+
+        actions: <Widget>[
+          TextButton(
+            child: Text('Cancel'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            child: Text("Sign Out"),
+            
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.pushNamed(context, '/loginpage');
+            },
+            
+          ),
+        ],
+      );
+    },
+  );
 }
