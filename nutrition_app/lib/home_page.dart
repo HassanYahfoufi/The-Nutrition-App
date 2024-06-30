@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+
 class _HomePageState extends State<HomePage> {
   double buttonHeight = 50;
   double buttonWidth = 200;
@@ -24,10 +25,36 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return PageWidget(home: () {}, pageName: "Home Page", thisUser: widget.thisUser, body: [Center(
       child: Column(children: [
-        SizedBox(height: 25,),
-        SizedBox(child: OutlinedButton(onPressed: () {}, child: Text("Placeholder")), height: 175, width: 350),
+        
+        SizedBox(height: 25),
+        Icon(Icons.more_vert),
+        SizedBox(child: LineChartWidget(), height: 200, width: 700),
         SizedBox(height: (spacerHeight * 2)),
-        SizedOutlinedButton(text: "Add New Food Item", height: buttonHeight, width: buttonWidth),
+        TextButton(
+          
+          onPressed: (
+  
+           
+          ){ Navigator.pushNamed(context, '/viewfooditems');},
+          
+          child: Container(
+                padding: EdgeInsets.all(20),
+                margin: EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Center(
+                    child: Text(
+                  'View Food items',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                )),
+              ),
+        ),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "Add New Recipie", height: buttonHeight, width: buttonWidth),
         SizedBox(height: spacerHeight),
