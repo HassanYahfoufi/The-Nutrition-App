@@ -5,10 +5,10 @@ import 'package:nutrition_app/classes.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class PageWidget extends StatefulWidget {
-  PageWidget({required this.home, required this.pageName, required this.body, required this.thisUser, this.onPressed, this.currentIndex = 0, super.key});
+  PageWidget({this.home, required this.pageName, required this.body, required this.thisUser, this.onPressed, this.currentIndex = 0, super.key});
   String pageName;
   List<Widget> body;
-  void Function() home;
+  void Function()? home;
   void Function()? onPressed;
   int currentIndex;
   User thisUser;
@@ -23,7 +23,7 @@ class _PageWidgetState extends State<PageWidget> {
 
     return Scaffold( 
             resizeToAvoidBottomInset : true,
-            appBar: AppBar(actions: [IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser,)),), icon: Icon(Icons.home)), /*IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ViewUserPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle ))*/], title: Text(widget.pageName)),
+            appBar: AppBar(actions: [IconButton(onPressed: () => widget.home ?? Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser)),), icon: Icon(Icons.home)), /*IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ViewUserPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle ))*/], title: Text(widget.pageName)),
             body: Column(
               children: [
                 SingleChildScrollView(

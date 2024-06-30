@@ -23,9 +23,10 @@ Non Database Var With Space ###
 */
 
 class ViewSingleBlankPage extends StatefulWidget {
-  ViewSingleBlankPage({required this.nextPage, required this.thisBlank, super.key});
+  ViewSingleBlankPage({required this.nextPage, required this.thisBlank, required this.thisUser, super.key});
   final Widget nextPage;
   Blank thisBlank;
+  User thisUser;
 
   @override
   State<ViewSingleBlankPage> createState() => _ViewSingleBlankPageState();

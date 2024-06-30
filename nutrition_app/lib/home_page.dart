@@ -3,6 +3,7 @@ import 'package:nutrition_app/custom_widgets.dart';
 //import 'package:nutrition_app/create_status_update_page.dart';
 import 'package:nutrition_app/create_blank_page.dart';
 import 'package:nutrition_app/classes.dart';
+import 'package:nutrition_app/login_page.dart';
 
 
 
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   @override
 
   Widget build(BuildContext context) {
-    return PageWidget(home: () {}, pageName: "Home Page", thisUser: widget.thisUser, body: [Center(
+    return PageWidget(home: () {Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);}, pageName: "Home Page", thisUser: widget.thisUser, body: [Center(
       child: Column(children: [
         
         SizedBox(height: 25),
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "Update Status", height: buttonHeight, width: buttonWidth, onPressed: (){/*Navigator.push(context, MaterialPageRoute(builder: (context) => CreateStatusUpdatePage()),);*/}),
         SizedBox(height: spacerHeight),
-        SizedOutlinedButton(text: "Add New Blank", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateBlankPage(nextPage: HomePage(thisUser: widget.thisUser,))),);}),
+        SizedOutlinedButton(text: "Add New Blank", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateBlankPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
       ],),
     )]);
   }

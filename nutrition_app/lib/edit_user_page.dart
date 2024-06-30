@@ -3,7 +3,8 @@ import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 
 class EditUserPage extends StatefulWidget {
-  const EditUserPage({super.key});
+  EditUserPage({required this.thisUser, super.key});
+  User thisUser;
 
   @override
   State<EditUserPage> createState() => _EditUserPageState();

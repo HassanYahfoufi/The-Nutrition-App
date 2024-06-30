@@ -35,7 +35,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ]),
         TextButton(
-          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => EditUserPage()),);}, 
+          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => EditUserPage(thisUser: widget.thisUser)),);}, 
           child: Text("Edit User Information")
         ),
       ]

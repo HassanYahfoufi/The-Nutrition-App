@@ -49,7 +49,7 @@ class _ViewAllBlanksPageState extends State<ViewAllBlanksPage> {
       home: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(HomePage(thisUser: widget.thisUser,))),);},
       pageName: "Blanks",
       body: [
-        (blanks.length > 0) ? Column(children: [...blanks.map((blank) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewSingleBlankPage(thisBlank: blank, nextPage: ViewAllBlanksPage(thisUser: widget.thisUser, parentObject: widget.parentObject)))),);}, child: Text(blank.required_var01.toString())))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
+        (blanks.length > 0) ? Column(children: [...blanks.map((blank) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewSingleBlankPage(thisBlank: blank, nextPage: ViewAllBlanksPage(thisUser: widget.thisUser, parentObject: widget.parentObject), thisUser: widget.thisUser))),);}, child: Text(blank.required_var01.toString())))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
       ],
     );
     //Navigator.push(context, MaterialPageRoute(builder: (context) =>(widget.nextPage)),);
