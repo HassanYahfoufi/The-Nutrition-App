@@ -16,10 +16,8 @@ Future<void> setUpDatabase() async {
   debugPrint("[main.dart-> setUpDatabase()] setting up database...");
   DatabaseHelper databaseHelper = DatabaseHelper();
   debugPrint("[main.dart-> setUpDatabase()] setting up User table ...");
-  databaseHelper.table["UserTable"] =
-      TableInfo(name: "UserTable", type: "user_table_v1");
-  databaseHelper.table["UserTable"]!.addColumn(
-      "id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
+  databaseHelper.table["UserTable"] = TableInfo(name: "UserTable", type: "user_table_v1");
+  databaseHelper.table["UserTable"]!.addColumn("id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
   databaseHelper.table["UserTable"]!.addColumn("username", "TEXT");
   databaseHelper.table["UserTable"]!.addColumn("password", "TEXT");
   databaseHelper.table["UserTable"]!.addColumn("name", "TEXT");
@@ -79,10 +77,8 @@ class MyApp extends StatelessWidget {
         ),
         home: LoginPage(),
         routes: {
-          '/settingspage': (context) => const SettingsPage(),
-          '/homepage': (context) => HomePage(),
           '/registerpage': (context) => RegisterPage(),
-          '/loginpage': (context) => const LoginPage(),
+          '/loginpage': (context) => LoginPage(),
         });
   }
 }

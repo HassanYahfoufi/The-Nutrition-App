@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/custom_widgets.dart';
+import 'package:nutrition_app/classes.dart';
 
 class AddNewFoodItem extends StatefulWidget {
-  const AddNewFoodItem({super.key});
+  AddNewFoodItem({required this.thisUser, super.key});
+  User thisUser;
 
   @override
   State<AddNewFoodItem> createState() => _AddNewFoodItemState();
@@ -15,7 +17,7 @@ class _AddNewFoodItemState extends State<AddNewFoodItem> {
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(home: () {}, pageName: "Add New Food Item", body: [
+    return PageWidget(home: () {}, pageName: "Add New Food Item", thisUser: widget.thisUser, body: [
       Column(
         children: [
           SingleChildScrollView(child: 

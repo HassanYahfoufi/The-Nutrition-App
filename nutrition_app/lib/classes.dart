@@ -43,6 +43,8 @@ class User {
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
 
+  int? get id => _id;
+
   Future<int> countMatching() async {
     debugPrint("[Classes->User-> countMatchingUser()] Entered");
     Map<String, dynamic> matchConditions = Map<String, dynamic>();
@@ -231,13 +233,21 @@ class User {
     return map;
   }
 
-  Future<int> updateUserInDB() async {
+  Future<int> update() async {
+    debugPrint("[Classes->User-> update()] Start");
     int result = 0;
 
+    debugPrint("[Classes->User-> update()] updating...");
+    result = await _databaseHelper.update(tableName: "UserTable", tableRow: this);
+    //result = await _databaseHelper.update_fromMap(tableName: "UserTable", values: toMap());
+    debugPrint("[Classes->User-> update()] update result: $result");
+
+    
+    debugPrint("[Classes->User-> update()] end");
     return result;
   }
 
-  Future<int> deleteUserFromDB() async {
+  Future<int> delete() async {
     int result = 0;
 
     return result;

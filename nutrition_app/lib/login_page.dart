@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:nutrition_app/classes.dart';
+import 'package:nutrition_app/home_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -34,9 +35,10 @@ class _LoginPageState extends State<LoginPage> {
       debugPrint(
           "[LoginPage-> signIn()] user already exists and there is only 1 matching account");
       //await inputAccount.updateFromDatabase();
+      inputUser.readFromDatabase();
 
       debugPrint("Signing in...");
-      Navigator.pushNamed(context, '/homepage');
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: inputUser,)),);
 
       return;
     } else if (numMatchingAccounts == 0) {

@@ -12,22 +12,23 @@ Blank
 
 required_var##
 Required_Var##
-Required Var With Space ###
+Required Variable With Space ###
 
 optional_var##
 Optional_Var##
-Optional Var With Space ###
+Optional Variable With Space ###
 */
 
-class CreateBlankPage extends StatefulWidget {
-  CreateBlankPage({required this.nextPage, super.key});
+class UpdateBlankPage extends StatefulWidget {
+  UpdateBlankPage({required this.nextPage, required this.thisBlank, super.key});
   final Widget nextPage;
+  Blank thisBlank;
 
   @override
-  State<CreateBlankPage> createState() => _CreateBlankPageState();
+  State<UpdateBlankPage> createState() => _UpdateBlankPageState();
 }
 
-class _CreateBlankPageState extends State<CreateBlankPage> {
+class _UpdateBlankPageState extends State<UpdateBlankPage> {
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   TextEditingController required_var01Controller = TextEditingController();
@@ -51,34 +52,81 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  late Blank newBlank;
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
   Future<void> submit() async
   {
-    debugPrint("[Create Blank With Space Page-> submit()] Start");
+    debugPrint("\[UpdateBlankPage-> submit()] Start");
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    late requiredVar01_DataType tempRequired_Var01 = requiredVar01_DataType.parse(required_var01Controller.text);
-    late requiredVar02_DataType tempRequired_Var02 = requiredVar02_DataType.parse(required_var02Controller.text);
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(required_var01Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.required_var01 = requiredVar01_DataType.parse(required_var01Controller.text);
+    }
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(required_var02Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.required_var02 = requiredVar02_DataType.parse(required_var02Controller.text);
+    }
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    late required_conversionVar01_DataType tempRequired_Conversion_Var01 = required_conversionVar01_DataType.parse(required_conversion_var01Controller.text);
-    late required_conversionVar02_DataType tempRequired_Conversion_Var02 = required_conversionVar02_DataType.parse(required_conversion_var02Controller.text);
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(required_conversion_var01Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.required_conversion_var01 = required_conversionVar01_DataType.parse(required_conversion_var01Controller.text);
+    }
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(required_conversion_var02Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.required_conversion_var02 = required_conversionVar02_DataType.parse(required_conversion_var02Controller.text);
+    }
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    optionalVar01_DataType? tempOptional_Var01 = optionalVar01_DataType.parse(optional_var01Controller.text);
-    optionalVar02_DataType? tempOptional_Var02 = optionalVar02_DataType.parse(optional_var02Controller.text);
-    optionalVar03_DataType? tempOptional_Var03 = optionalVar03_DataType.parse(optional_var03Controller.text);
-    optionalVar04_DataType? tempOptional_Var04 = optionalVar04_DataType.parse(optional_var04Controller.text);
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(optional_var01Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.optional_var01 = optionalVar01_DataType.parse(optional_var01Controller.text);
+    }
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(optional_var02Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.optional_var02 = optionalVar02_DataType.parse(optional_var02Controller.text);
+    }
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(optional_var03Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.optional_var03 = optionalVar03_DataType.parse(optional_var03Controller.text);
+    }
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(optional_var04Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.optional_var04 = optionalVar04_DataType.parse(optional_var04Controller.text);
+    }
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    optional_conversionVar01_DataType? tempOptional_Conversion_Var01 = optional_conversionVar01_DataType.parse(optional_conversion_var01Controller.text);
-    optional_conversionVar02_DataType? tempOptional_Conversion_Var02 = optional_conversionVar02_DataType.parse(optional_conversion_var02Controller.text);
-    optional_conversionVar03_DataType? tempOptional_Conversion_Var03 = optional_conversionVar03_DataType.parse(optional_conversion_var03Controller.text);
-    optional_conversionVar04_DataType? tempOptional_Conversion_Var04 = optional_conversionVar04_DataType.parse(optional_conversion_var04Controller.text);
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(optional_conversion_var01Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.optional_conversion_var01 = optional_conversionVar01_DataType.parse(optional_conversion_var01Controller.text);
+    }
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(optional_conversion_var02Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.optional_conversion_var02 = optional_conversionVar02_DataType.parse(optional_conversion_var02Controller.text);
+    }
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(optional_conversion_var03Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.optional_conversion_var03 = optional_conversionVar03_DataType.parse(optional_conversion_var03Controller.text);
+    }
+    debugPrint("\[UpdateBlankPage-> submit()] processing ...");
+    if(optional_conversion_var04Controller.text.isNotEmpty)
+    {
+      widget.thisBlank.optional_conversion_var04 = optional_conversionVar04_DataType.parse(optional_conversion_var04Controller.text);
+    }
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     
@@ -87,46 +135,32 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
 
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    newBlank = Blank(/*!!!!!*/Required_Var01: tempRequired_Var01, Required_Var02: tempRequired_Var02/*!!!!!*//*!!!!!*/, Required_Conversion_Var01: tempRequired_Conversion_Var01, Required_Conversion_Var02: tempRequired_Conversion_Var02/*!!!!!*//*!!!!!*/, Optional_Var01: tempOptional_Var01, Optional_Var02: tempOptional_Var02, Optional_Var03: tempOptional_Var03, Optional_Var04: tempOptional_Var04/*!!!!!*//*!!!!!*/, Optional_Conversion_Var01: tempOptional_Conversion_Var01, Optional_Conversion_Var02: tempOptional_Conversion_Var02, Optional_Conversion_Var03: tempOptional_Conversion_Var03, Optional_Conversion_Var04: tempOptional_Conversion_Var04/*!!!!!*/);
+    //newBlank = Blank(/*!!!!!*/Required_Var01: tempRequired_Var01, Required_Var02: tempRequired_Var02/*!!!!!*//*!!!!!*/, Required_Conversion_Var01: tempRequired_Conversion_Var01, Required_Conversion_Var02: tempRequired_Conversion_Var02/*!!!!!*//*!!!!!*/, Optional_Var01: tempOptional_Var01, Optional_Var02: tempOptional_Var02, Optional_Var03: tempOptional_Var03, Optional_Var04: tempOptional_Var04/*!!!!!*//*!!!!!*/, Optional_Conversion_Var01: tempOptional_Conversion_Var01, Optional_Conversion_Var02: tempOptional_Conversion_Var02, Optional_Conversion_Var03: tempOptional_Conversion_Var03, Optional_Conversion_Var04: tempOptional_Conversion_Var04/*!!!!!*/);
+    //widget.thisBlank
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    debugPrint("[Create Blank With Space Page-> submit()] Validating...");
-    if (await newBlank.countMatching() >= 1) {
+    debugPrint("\[UpdateBlankPage-> submit()] Updating...");
+    int updateResult = await widget.thisBlank.update();
+
+    if (updateResult != 0) {
       setState(() {
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>(widget.nextPage)),); 
+      });
+    } else {
+      setState(() {
+        debugPrint("\[UpdateBlankPage-> submit()] Update failed!");
         showDialog(
             context: context,
             builder: (_) => AlertDialog(
-                  title: Text("Creation failure!"),
-                  content:
-                      Text("The Blank already exists"),
+                  title: Text("Update failed!"),
+                  content: Text("Update operation failed!"),
                 ));
-        debugPrint(
-            "[Create Blank With Space Page-> submit()]sign up fail! Blank already exists!!!!!!!!!!!!!!!!!!!!");
+        debugPrint("\[UpdateBlankPage-> submit()] Update failed!");
       });
-    } else //if you are here then the combonation of alues for the required parameters hasn't been used yet
-    {
-      debugPrint("[Create Blank With Space Page-> submit()] the combo of values for the required parameters hasn't been used yet");
-      
-
-      int insertResult = await newBlank.create();
-
-      if (insertResult != 0) {
-        setState(() {
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>(widget.nextPage)),); 
-        });
-      } else {
-        setState(() {
-          debugPrint("[Create Blank With Space Page-> submit()] Sign up failed!");
-          showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                    title: Text("Sign in failed!"),
-                    content: Text("Insert operation failed!"),
-                  ));
-          debugPrint("[Create Blank With Space Page-> submit()] Sign up failed!");
-        });
-      }
     }
+
+
+    
   }
   
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -150,6 +184,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: TextField(
                 controller: required_var01Controller,
+                //onSubmitted: (text){},
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -159,7 +194,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     ),
                     fillColor: Colors.white,
                     filled: true,
-                    hintText: "Var With Space #01"),
+                    hintText: "Required Variable With Space #01"),
               ),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
@@ -237,7 +272,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     ),
                     fillColor: Colors.white,
                     filled: true,
-                    hintText: "Optional Var With Space #01"),
+                    hintText: "Optional Variable With Space #01"),
               ),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
@@ -256,7 +291,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     ),
                     fillColor: Colors.white,
                     filled: true,
-                    hintText: "Optional Var With Space #02"),
+                    hintText: "Optional Variable With Space #02"),
               ),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
@@ -274,7 +309,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     ),
                     fillColor: Colors.white,
                     filled: true,
-                    hintText: "Optional Var With Space #03"),
+                    hintText: "Optional Variable With Space #03"),
               ),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
@@ -293,7 +328,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     ),
                     fillColor: Colors.white,
                     filled: true,
-                    hintText: "Optional Var With Space #04"),
+                    hintText: "Optional Variable With Space #04"),
               ),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
@@ -403,7 +438,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
 
   @override
   initState() {
-    debugPrint("[CreateBlankPage] Start");
+    debugPrint("[UpdateBlankPage] Start");
   }
 
   @override

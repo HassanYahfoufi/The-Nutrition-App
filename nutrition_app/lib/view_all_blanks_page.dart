@@ -5,13 +5,14 @@ import 'package:nutrition_app/custom_widgets.dart';
 import 'package:nutrition_app/view_single_blank_page.dart';
 import 'package:nutrition_app/home_page.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 import 'package:nutrition_app/class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 class ViewAllBlanksPage extends StatefulWidget {
-  ViewAllBlanksPage({required this.parentObject, super.key});
+  ViewAllBlanksPage({required this.parentObject, required this.thisUser, super.key});
   dynamic parentObject;
+  User thisUser;
   
 
 
@@ -44,10 +45,11 @@ class _ViewAllBlanksPageState extends State<ViewAllBlanksPage> {
   @override
   Widget build(BuildContext context) {
     return PageWidget(
-      home: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(HomePage())),);},
+      thisUser: widget.thisUser,
+      home: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(HomePage(thisUser: widget.thisUser,))),);},
       pageName: "Blanks",
       body: [
-        (blanks.length > 0) ? Column(children: [...blanks.map((blank) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewSingleBlankPage(thisBlank: blank, nextPage: ViewAllBlanksPage(parentObject: widget.parentObject)))),);}, child: Text(blank.required_var01.toString())))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
+        (blanks.length > 0) ? Column(children: [...blanks.map((blank) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewSingleBlankPage(thisBlank: blank, nextPage: ViewAllBlanksPage(thisUser: widget.thisUser, parentObject: widget.parentObject)))),);}, child: Text(blank.required_var01.toString())))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
       ],
     );
     //Navigator.push(context, MaterialPageRoute(builder: (context) =>(widget.nextPage)),);

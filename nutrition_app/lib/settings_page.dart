@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 import 'package:nutrition_app/edit_user_page.dart';
+import 'package:nutrition_app/classes.dart';
+
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  SettingsPage({required this.thisUser, super.key});
+  User thisUser;
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -13,6 +16,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return PageWidget(
+      thisUser: widget.thisUser,
       home: () {}, 
       pageName: "Settings", 
       body: [

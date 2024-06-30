@@ -1,6 +1,82 @@
 import "package:flutter/material.dart";
 import "package:nutrition_app/database_helper.dart";
 
+/*
+  required_var01
+  requiredVar01_DataType
+  Required_Var01
+  required_var_underscore01
+  Required Variable With Space #01
+
+  required_conversion_var01
+  required_conversionVar01_DataType
+  Required_Conversion_Var01
+  required_conversion_var_underscore01
+  Required Conversion Variable With Space #01
+
+
+  optional_var01
+  optionalVar01_DataType
+  Optional_Var01
+  optional_var_underscore01
+  Optional Variable With Space #01
+
+  optional_conversion_var01
+  optional_conversionVar01_DataType
+  Optional_Conversion_Var01
+  optional_conversion_var_underscore01
+  Optional Conversion Variable With Space #01
+
+
+  nonDB_var01
+  nonDBVar01_DataType
+  NonDB_Var01
+
+  m2o_var01
+  m2oVar01_DataType
+  M2O_Var01
+
+  m2m_var01
+  m2mVar01_DataType
+  M2M_Var01
+  
+*/
+/*
+  required_conversion_var01
+  required_conversionVar01_DataType
+  Required_Conversion_Var01
+  required_conversion_var_underscore01
+
+  required_conversion_var01
+  required_conversionVar01_DataType
+  Required_Conversion_Var01
+  required_conversion_var_underscore01
+
+
+  optional_conversion_var01
+  optional_conversionVar01_DataType
+  Optional_Conversion_Var01
+  optional_conversion_var_underscore01
+
+  optional_conversion_var01
+  optional_conversionVar01_DataType
+  Optional_Conversion_Var01
+  optional_conversionvar_underscore01
+
+
+  nonDB_var01
+  nonDBVar01_DataType
+  NonDB_Var01
+
+  m2o_var01
+  m2oVar01_DataType
+  M2O_Var01
+
+  m2m_var01
+  m2mVar01_DataType
+  M2M_Var01
+  
+*/
 
 
 class Blank {
@@ -12,10 +88,20 @@ class Blank {
       required requiredVar02_DataType Required_Var02,
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+      required required_conversionVar01_DataType Required_Conversion_Var01,
+      required required_conversionVar02_DataType Required_Conversion_Var02,
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       optionalVar01_DataType? Optional_Var01,
       optionalVar02_DataType? Optional_Var02,
       optionalVar03_DataType? Optional_Var03,
       optionalVar04_DataType? Optional_Var04,
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+      /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+      optional_conversionVar01_DataType? Optional_Conversion_Var01,
+      optional_conversionVar02_DataType? Optional_Conversion_Var02,
+      optional_conversionVar03_DataType? Optional_Conversion_Var03,
+      optional_conversionVar04_DataType? Optional_Conversion_Var04,
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       nonDBVar01_DataType? NonDB_Var01,
@@ -33,10 +119,20 @@ class Blank {
     required_var02 = Required_Var02;
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    required_conversion_var01 = Required_Conversion_Var01;
+    required_conversion_var02 = Required_Conversion_Var02;
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     optional_var01 = Optional_Var01;
     optional_var02 = Optional_Var02;
     optional_var03 = Optional_Var03;
     optional_var04 = Optional_Var04;
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    optional_conversion_var01 = Optional_Conversion_Var01;
+    optional_conversion_var02 = Optional_Conversion_Var02;
+    optional_conversion_var03 = Optional_Conversion_Var03;
+    optional_conversion_var04 = Optional_Conversion_Var04;
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     _nonDB_var01 = NonDB_Var01;
@@ -50,16 +146,24 @@ class Blank {
 
   int? _id;
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   late requiredVar01_DataType required_var01;
   //!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   late requiredVar02_DataType required_var02;
   //!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  late required_conversionVar01_DataType required_conversion_var01;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  late required_conversionVar02_DataType required_conversion_var02;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   optionalVar01_DataType? optional_var01;
   //!!!!!!!!!!!!!!!!!!!!!!!!
@@ -72,16 +176,30 @@ class Blank {
   //!!!!!!!!!!!!!!!!!!!!!!!!
   optionalVar04_DataType? optional_var04;
   //!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  optional_conversionVar01_DataType? optional_conversion_var01;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  optional_conversionVar02_DataType? optional_conversion_var02;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  optional_conversionVar03_DataType? optional_conversion_var03;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  optional_conversionVar04_DataType? optional_conversion_var04;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   nonDBVar01_DataType? _nonDB_var01;
   //!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   nonDBVar02_DataType? _nonDB_var02;
   //!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   List<m2oVar01_DataType> _m2o_var01s = <m2oVar01_DataType>[];
   List<m2oVar01_DataType> newM2O_Var01s = <m2oVar01_DataType>[];
@@ -91,8 +209,8 @@ class Blank {
   //!!!!!!!!!!!!!!!!!!!!!!!!
   List<m2oVar02_DataType> _m2o_var02 = <m2oVar02_DataType>[];
   //!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   List<int> _m2m_var01IDs = [];//add getter function for array and single item
   List<m2mVar01_DataType> _m2m_var01s = <m2mVar01_DataType>[];
@@ -104,31 +222,35 @@ class Blank {
   List<int> _m2m_var02IDs = [];//add getter function for array and single item
   List<m2mVar02_DataType> m2m_var02s = <m2mVar02_DataType>[];
   //!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
 
 
   int? get id => _id;
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   nonDBVar01_DataType? get nonDB_var01 => _nonDB_var01;
   nonDBVar02_DataType? get nonDB_var02 => _nonDB_var02;
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
-
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<int> countMatching() async {
     debugPrint("[Classes->Blank->countMatching()] Entered");
     Map<String, dynamic> matchConditions = Map<String, dynamic>();
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
     matchConditions[_databaseHelper.colRequired_Var01] = required_var01;
     matchConditions[_databaseHelper.colRequired_Var02] = required_var02;
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
+    matchConditions[_databaseHelper.colRequired_Conversion_Var01] = required_conversion_var01;
+    matchConditions[_databaseHelper.colRequired_Conversion_Var02] = required_conversion_var02;
+    //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
 
     //A list of rows that matched the given criteria from the target table
     List<Map<String, dynamic>> matchingBlanks =
@@ -148,14 +270,20 @@ class Blank {
       return 0;
     }
   }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<void> readID() async {
     debugPrint("[Classes->Blank-> readID()] Start");
     Map<String, dynamic> matchConditions = Map<String, dynamic>();
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
     matchConditions[_databaseHelper.colRequired_Var01] = required_var01;
     matchConditions[_databaseHelper.colRequired_Var02] = required_var02;
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
+    matchConditions[_databaseHelper.colRequired_Conversion_Var01] = required_conversion_var01;
+    matchConditions[_databaseHelper.colRequired_Conversion_Var02] = required_conversion_var02;
+    //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
 
     List<String> outputColumns = [_databaseHelper.colID];
 
@@ -187,11 +315,12 @@ class Blank {
 
     debugPrint("[Classes->Blank-> readID()] End");
   }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
   
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!
   void addM2O_Var01(m2oVar01_DataType newM2O_Var01)
   {
@@ -253,8 +382,8 @@ class Blank {
     
   }*/
   //!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!
   void addM2M_Var01(m2mVar01_DataType newM2M_Var01)
   {
@@ -336,17 +465,17 @@ class Blank {
     
   }*/
   //!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<void> createLists() async
   {
     await createM2Os();
     await createM2Ms();
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<void> createM2Os() async
   {
     
@@ -355,8 +484,8 @@ class Blank {
     //!!!!!!!!!!!!!!!!!!!!!!!!
     
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<void> createM2Ms() async
   {
     
@@ -365,15 +494,15 @@ class Blank {
     //!!!!!!!!!!!!!!!!!!!!!!!!
     
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<void> readLists() async
   {
     await readM2Os();
     await readM2Ms();
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<void> readM2Os() async
   {
     
@@ -382,8 +511,8 @@ class Blank {
     //!!!!!!!!!!!!!!!!!!!!!!!!
     
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<void> readM2Ms() async
   {
     
@@ -393,8 +522,8 @@ class Blank {
     //!!!!!!!!!!!!!!!!!!!!!!!!
     
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
@@ -407,24 +536,29 @@ class Blank {
     debugPrint("[Classes->Blank-> create()] Insertion COMPLETE. result = ${result}");
     if(result >= 1)
     {
-      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
       await createLists();
-      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 
     debugPrint("[Classes->Blank-> create()] End");
     return result;
   }
 
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<bool> readFromDatabase() async {
     debugPrint("[Classes->Blank-> readFromDatabase()] Start");
     if (_id == null) {
       Map<String, dynamic> matchConditions = Map<String, dynamic>();
-      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      
+      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
       matchConditions[_databaseHelper.colRequired_Var01] = required_var01;
       matchConditions[_databaseHelper.colRequired_Var02] = required_var02;
-      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+      matchConditions[_databaseHelper.colRequired_Conversion_Var01] = required_conversion_var01;
+      matchConditions[_databaseHelper.colRequired_Conversion_Var02] = required_conversion_var02;
+      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
       
       debugPrint("[Classes->Blank-> readFromDatabase()] Retrieving data from database (using required variables)...");
@@ -435,10 +569,10 @@ class Blank {
       {
         debugPrint("[Classes->Blank-> readFromDatabase()] processing data...");
         readFromMap(matchingBlanks[0]);
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
         await readLists();
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+        
 
         return true;
       } 
@@ -469,92 +603,128 @@ class Blank {
       return true;
     }
   }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Blank.fromMap(Map<String, dynamic> map) {
     debugPrint("[Classes->Blank-> Blank.fromMap()] Start");
 
     _id = map["id"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     required_var01 = map["required_var01"];
     required_var02 = map["required_var02"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    required_conversion_var01 = required_conversionVar01_DataType.parse(map["required_conversion_var_underscore01"]);
+    required_conversion_var02 = required_conversionVar02_DataType.parse(map["required_conversion_var_underscore02"]);
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     optional_var01 = map["optional_var01"];
     optional_var02 = map["optional_var02"];
     optional_var03 = map["optional_var03"];
     optional_var04 = map["optional_var04"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    optional_conversion_var01 = optional_conversionVar01_DataType.parse(map["optional_conversion_var_underscore01"]);
+    optional_conversion_var02 = optional_conversionVar02_DataType.parse(map["optional_conversion_var_underscore02"]);
+    optional_conversion_var03 = optional_conversionVar03_DataType.parse(map["optional_conversion_var_underscore03"]);
+    optional_conversion_var04 = optional_conversionVar04_DataType.parse(map["optional_conversion_var_underscore04"]);
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    
     
 
     debugPrint("[Classes->Blank-> Blank.fromMap()] End");
   }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<void> readFromMap(Map<String, dynamic> map) async 
   {
     debugPrint("[Classes->Blank-> readBlankFromMap()] Start");
 
     _id = map["id"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     required_var01 = map["required_var01"];
     required_var02 = map["required_var02"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    required_conversion_var01 = required_conversionVar01_DataType.parse(map["required_conversion_var_underscore01"]);
+    required_conversion_var02 = required_conversionVar02_DataType.parse(map["required_conversion_var_underscore02"]);
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     optional_var01 = map["optional_var01"];
     optional_var02 = map["optional_var02"];
     optional_var03 = map["optional_var03"];
     optional_var04 = map["optional_var04"];
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    optional_conversion_var01 = optional_conversionVar01_DataType.parse(map["optional_conversion_var_underscore01"]);
+    optional_conversion_var02 = optional_conversionVar02_DataType.parse(map["optional_conversion_var_underscore02"]);
+    optional_conversion_var03 = optional_conversionVar03_DataType.parse(map["optional_conversion_var_underscore03"]);
+    optional_conversion_var04 = optional_conversionVar04_DataType.parse(map["optional_conversion_var_underscore04"]);
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     await readLists();
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     
 
     debugPrint("[Classes->Blank-> readBlankFromMap()] End");
   }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<Blank> fromMap(Map<String, dynamic> map) async {
     debugPrint("[Classes->Blank-> readBlankFromMap()] Start");
 
     Blank tempBlank = Blank.fromMap(map);
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     await readLists();
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
     debugPrint("[Classes->Blank-> readBlankFromMap()] End");
     return tempBlank;
   }
-
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = Map<String, dynamic>();
 
     if (_id != null) {
       map['id'] = _id;
     }
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     map["required_var01"] = this.required_var01;
     map["required_var02"] = this.required_var02;
-    //!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    map["required_conversion_var_underscore01"] = required_conversion_var01.toString();
+    map["required_conversion_var_underscore02"] = required_conversion_var02.toString();
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     map["optional_var01"] = optional_var01;
     map["optional_var02"] = optional_var02;
     map["optional_var03"] = optional_var03;
     map["optional_var04"] = optional_var04;
-    //!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    map["optional_conversion_var_underscore01"] = optional_conversion_var01.toString();
+    map["optional_conversion_var_underscore02"] = optional_conversion_var02.toString();
+    map["optional_conversion_var_underscore03"] = optional_conversion_var03.toString();
+    map["optional_conversion_var_underscore04"] = optional_conversion_var04.toString();
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
     return map;
   }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  Future<int> updateBlankInDB() async {
+  Future<int> update() async {
     int result = 0;
 
     return result;
   }
 
-  Future<int> deleteBlankFromDB() async {
+  Future<int> delete() async {
     int result = 0;
 
     return result;
@@ -596,6 +766,23 @@ class requiredVar02_DataType {
   
 }
 
+class required_conversionVar01_DataType {
+  static required_conversionVar01_DataType parse(String input)
+  {
+
+    return required_conversionVar01_DataType();
+  }
+}
+class required_conversionVar02_DataType {
+  static required_conversionVar02_DataType parse(String input)
+  {
+
+    return required_conversionVar02_DataType();
+  }
+  
+}
+
+
 class optionalVar01_DataType {
   static optionalVar01_DataType parse(String input)
   {
@@ -623,6 +810,36 @@ class optionalVar04_DataType {
   {
 
     return optionalVar04_DataType();
+  }
+}
+
+class optional_conversionVar01_DataType {
+  static optional_conversionVar01_DataType parse(String input)
+  {
+
+    return optional_conversionVar01_DataType();
+  }
+  
+}
+class optional_conversionVar02_DataType {
+  static optional_conversionVar02_DataType parse(String input)
+  {
+
+    return optional_conversionVar02_DataType();
+  }
+}
+class optional_conversionVar03_DataType {
+  static optional_conversionVar03_DataType parse(String input)
+  {
+
+    return optional_conversionVar03_DataType();
+  }
+}
+class optional_conversionVar04_DataType {
+  static optional_conversionVar04_DataType parse(String input)
+  {
+
+    return optional_conversionVar04_DataType();
   }
 }
 
