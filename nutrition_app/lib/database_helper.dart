@@ -31,9 +31,37 @@ class DatabaseHelper {
   String colBody = "body";
   String colSummary = "summary";
   String colDateCreated = "date_created";
-
   //-------------------------------------
+  //-----------Status Update--------------
+  String colUserID = "userID";
+  //String colTitle = "title";
 
+  String colTimestamp = "timestamp";
+  //String colDateCreated = "dateCreated";
+  String colDateModified = "dateModified";
+  
+  String colNote = "note";
+  //-------------------------------------
+  //--------------- DELETE ---------------
+  String colRequired_Var01 = "required_var01";
+  String colRequired_Var02 = "required_var02";
+
+  String colRequired_Conversion_Var01 = "required_conversion_var01";
+  String colRequired_Conversion_Var02 = "required_conversion_var02";
+
+  String colOptional_Var01 = "optional_var01";
+  String colOptional_Var02 = "optional_var02";
+  String colOptional_Var03 = "optional_var03";
+  String colOptional_Var04 = "optional_var04";
+
+  String colOptional_Conversion_Var01 = "optional_conversion_var01";
+  String colOptional_Conversion_Var02 = "optional_conversion_var02";
+  String colOptional_Conversion_Var03 = "optional_conversion_var03";
+  String colOptional_Conversion_Var04 = "optional_conversion_var04";
+
+  String colnonDB_Var01 = "nonDB_var01";
+  String colnonDB_Var02 = "nonDB_var02";
+  //--------------- DELETE ---------------
   DatabaseHelper._createInstance();
 
   void printTableVarKeys() {
@@ -360,11 +388,11 @@ class DatabaseHelper {
     debugPrint("[DatabaseHelper -> getMatchingColumns()] Start");
     String outputColumnsSQL = "";
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     outputColumnsSQL = "${outputColumns[0]}";
     for (int i = 1; i < outputColumns.length; i++) {
       outputColumnsSQL = ", ${outputColumns[i]}";
-    } //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    } //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     String tableType = table[tableName]!.type;
     Database? db = await getDatabase();
     //List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column = $value");
@@ -449,7 +477,7 @@ class DatabaseHelper {
   }
 
   //Change from account to User
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<List<Map<String, dynamic>>> getRowsFromAccount_WhereColumns(
       {required String tableName,
       required String column,
@@ -536,7 +564,7 @@ class DatabaseHelper {
     debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] End");
     return result;
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   Future<List<Map<String, dynamic>>> getMapList(
       {required String tableName, String orderByCol = ""}) async {
@@ -605,6 +633,16 @@ class DatabaseHelper {
 
     return result;
   }
+  Future<int> update_fromMap(
+      {required String tableName, required Map<String, Object?> values}) async {
+    //String tableType = tableTypes[tableName]!;
+    String tableType = table[tableName]!.type;
+    Database? db = await getDatabase();
+    var result = await db!.update(tableType, values,
+        where: "$colID = ?", whereArgs: [values[colID]]);
+
+    return result;
+  }
 
   Future<int> delete({required String tableName, required int id}) async {
     //String tableType = tableTypes[tableName]!;
@@ -617,7 +655,7 @@ class DatabaseHelper {
     return result;
   }
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   Future<void> deleteTable(String tableName) async {
     debugPrint("[DatabaseHelper -> deleteTable()] Start");
     String tableType;
@@ -708,6 +746,6 @@ class DatabaseHelper {
     debugPrint("[DatabaseHelper -> deleteTable()] End");*/
   }
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }

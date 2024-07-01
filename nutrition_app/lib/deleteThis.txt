@@ -1,0 +1,48 @@
+  Status Update = Status Update
+  StatusUpdate = StatusUpdate
+  statusUpdate = statusUpdate
+  
+  userID = userID
+  int = int
+  UserID = UserID
+  user_id = user_id
+  User ID = User ID
+
+  title = title
+  String = String
+  Title = Title
+  title = title
+  Title = Title
+  
+  timestamp = timestamp
+  DateTime = DateTime
+  Timestamp = Timestamp
+  timestamp = timestamp
+  Timestamp = Timestamp
+
+  dateCreated = dateCreated
+  DateTime = DateTime
+  DateCreated = DateCreated
+  date_created = date_created
+  Date Created = Date Created
+
+  dateModified = dateModified
+  DateTime = DateTime
+  DateModified = DateModified
+  date_modified = date_modified
+  Date Modified = Date Modified
+
+  
+
+
+  note = note
+  String = String
+  Note = Note
+  note = note
+  Note = Note
+
+  weight = weight
+  double = double
+  Weight = Weight
+  weight = weight
+  Weight = Weight

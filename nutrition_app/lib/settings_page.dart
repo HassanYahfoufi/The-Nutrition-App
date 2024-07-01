@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/custom_widgets.dart';
+//import 'package:nutrition_app/update_user_page.dart';
+import 'package:nutrition_app/classes.dart';
+
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  SettingsPage({required this.thisUser, super.key});
+  User thisUser;
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -12,9 +16,12 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return PageWidget(
+      thisUser: widget.thisUser,
       home: () {}, 
       pageName: "Settings", 
-      body: [Row(
+      body: [
+        Column(children: [
+          Row(
             children: <Widget>[
               Expanded(
                 child: Container(),
@@ -25,7 +32,13 @@ class _SettingsPageState extends State<SettingsPage> {
 
               ),
             ],
-          ),]
+          ),
+        ]),
+        TextButton(
+          onPressed: (){/*Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateUserPage(thisUser: widget.thisUser)),);*/}, 
+          child: Text("Edit User Information")
+        ),
+      ]
     );
     /*return Scaffold(
       appBar: 

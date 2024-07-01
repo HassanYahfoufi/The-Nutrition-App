@@ -5,7 +5,6 @@ import 'package:nutrition_app/home_page.dart';
 import 'package:nutrition_app/register_page.dart';
 import 'package:nutrition_app/settings_page.dart';
 import 'package:nutrition_app/login_page.dart';
-import 'package:nutrition_app/add_food_item.dart';
 import 'package:nutrition_app/view_food_items.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/models.dart';
@@ -18,10 +17,8 @@ Future<void> setUpDatabase() async {
   debugPrint("[main.dart-> setUpDatabase()] setting up database...");
   DatabaseHelper databaseHelper = DatabaseHelper();
   debugPrint("[main.dart-> setUpDatabase()] setting up User table ...");
-  databaseHelper.table["UserTable"] =
-      TableInfo(name: "UserTable", type: "user_table_v1");
-  databaseHelper.table["UserTable"]!.addColumn(
-      "id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
+  databaseHelper.table["UserTable"] = TableInfo(name: "UserTable", type: "user_table_v1");
+  databaseHelper.table["UserTable"]!.addColumn("id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
   databaseHelper.table["UserTable"]!.addColumn("username", "TEXT");
   databaseHelper.table["UserTable"]!.addColumn("password", "TEXT");
   databaseHelper.table["UserTable"]!.addColumn("name", "TEXT");
@@ -29,6 +26,17 @@ Future<void> setUpDatabase() async {
   databaseHelper.table["UserTable"]!.addColumn("sex", "INT");
   databaseHelper.table["UserTable"]!.addColumn("height", "DOUBLE");
   databaseHelper.table["UserTable"]!.addColumn("weight", "DOUBLE");
+
+  debugPrint("[main.dart-> setUpDatabase()] setting up StatusUpdate table ...");
+  databaseHelper.table["StatusUpdateTable"] = TableInfo(name: "StatusUpdateTable", type: "statusUpdate_table_v1");
+  databaseHelper.table["StatusUpdateTable"]!.addColumn("id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
+  databaseHelper.table["StatusUpdateTable"]!.addColumn("user_id", "INTEGER");
+  databaseHelper.table["StatusUpdateTable"]!.addColumn("title", "TEXT");
+  databaseHelper.table["StatusUpdateTable"]!.addColumn("timestamp", "TEXT");
+  databaseHelper.table["StatusUpdateTable"]!.addColumn("date_created", "TEXT");
+  databaseHelper.table["StatusUpdateTable"]!.addColumn("date_modified", "TEXT");
+  databaseHelper.table["StatusUpdateTable"]!.addColumn("note", "TEXT");
+  databaseHelper.table["StatusUpdateTable"]!.addColumn("weight", "REAL");
 
   databaseHelper.printTableVarKeys();
   debugPrint("[main.dart-> setUpDatabase()] Set up complete.");
@@ -75,23 +83,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-
-      home: const LoginPage(),
-
-      routes: {
-        '/settingspage' : (context) => const SettingsPage(),
-        '/homepage' : (context) => HomePage(),
-        '/registerpage' : (context) => const RegisterPage(),
-        '/loginpage' : (context) => const LoginPage(),
-        '/viewfooditems' : (context) => const ViewFoodItems(),
-        '/addnewfooditems' : (context) => const AddNewFoodItem(),
-      }
-    );
-
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        home: LoginPage(),
+        routes: {
+          '/registerpage': (context) => RegisterPage(),
+          '/loginpage': (context) => LoginPage(),
+        });
   }
 }
