@@ -64,12 +64,15 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "Add Consumed Food", height: buttonHeight, width: buttonWidth),
         SizedBox(height: spacerHeight),
+
         SizedOutlinedButton(text: "Update Status", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateStatusUpdatePage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "Add New Blank", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateBlankPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "View Status Updates", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllStatusUpdatesPage(parentObject:widget.thisUser, thisUser: widget.thisUser)),);}),
-        
+        SizedBox(height: spacerHeight),
+        SizedOutlinedButton(text: "Sign Out", height: buttonHeight, width: buttonWidth, onPressed: () {displayDialogSignOut(context);},)
+     
       ],),
     )]);
   }
