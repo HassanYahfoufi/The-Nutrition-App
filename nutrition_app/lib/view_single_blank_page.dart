@@ -4,7 +4,7 @@ import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-import 'package:nutrition_app/class_template.dart';
+import 'package:nutrition_app/blank_class_template.dart';
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
@@ -68,6 +68,19 @@ class _ViewSingleBlankPageState extends State<ViewSingleBlankPage> {
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisBlank.required_conversion_var01.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisBlank.required_conversion_var02.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
@@ -93,6 +106,35 @@ class _ViewSingleBlankPageState extends State<ViewSingleBlankPage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.optional_var04.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisBlank.optional_conversion_var01.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisBlank.optional_conversion_var02.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisBlank.optional_conversion_var03.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisBlank.optional_conversion_var04.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!

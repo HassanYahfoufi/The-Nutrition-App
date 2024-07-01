@@ -6,7 +6,7 @@ import 'package:nutrition_app/view_single_blank_page.dart';
 import 'package:nutrition_app/home_page.dart';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-import 'package:nutrition_app/class_template.dart';
+import 'package:nutrition_app/blank_class_template.dart';
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 class ViewAllBlanksPage extends StatefulWidget {

@@ -28,7 +28,7 @@ class _PageWidgetState extends State<PageWidget> {
             body: Column(
               children: [
                 SingleChildScrollView(
-                  child: Column(children: widget.body /*const [Scaffold(body: Text("[PageWidget] Test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"),)]*/),
+                  child: Column(children: widget.body, ),
                 )
               ],
             ),

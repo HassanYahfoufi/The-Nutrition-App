@@ -1,7 +1,16 @@
 import "package:flutter/material.dart";
 import "package:nutrition_app/database_helper.dart";
 
+import 'package:nutrition_app/models.dart'; 
+
 /*
+  Blank With Space
+  Blank
+  blank
+
+  
+
+  
   required_var01
   requiredVar01_DataType
   Required_Var01
@@ -26,42 +35,6 @@ import "package:nutrition_app/database_helper.dart";
   Optional_Conversion_Var01
   optional_conversion_var_underscore01
   Optional Conversion Variable With Space #01
-
-
-  nonDB_var01
-  nonDBVar01_DataType
-  NonDB_Var01
-
-  m2o_var01
-  m2oVar01_DataType
-  M2O_Var01
-
-  m2m_var01
-  m2mVar01_DataType
-  M2M_Var01
-  
-*/
-/*
-  required_conversion_var01
-  required_conversionVar01_DataType
-  Required_Conversion_Var01
-  required_conversion_var_underscore01
-
-  required_conversion_var01
-  required_conversionVar01_DataType
-  Required_Conversion_Var01
-  required_conversion_var_underscore01
-
-
-  optional_conversion_var01
-  optional_conversionVar01_DataType
-  Optional_Conversion_Var01
-  optional_conversion_var_underscore01
-
-  optional_conversion_var01
-  optional_conversionVar01_DataType
-  Optional_Conversion_Var01
-  optional_conversionvar_underscore01
 
 
   nonDB_var01
@@ -534,12 +507,14 @@ class Blank {
     debugPrint("[Classes->Blank-> create()] inserting new blank into database ...");
     int result = await _databaseHelper.insert(tableName: "BlankTable", objectAsMap: toMap());
     debugPrint("[Classes->Blank-> create()] Insertion COMPLETE. result = ${result}");
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     if(result >= 1)
     {
-      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+      
       await createLists();
-      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+      
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
     debugPrint("[Classes->Blank-> create()] End");
     return result;
@@ -612,18 +587,18 @@ class Blank {
     _id = map["id"];
     
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    required_var01 = map["required_var01"];
-    required_var02 = map["required_var02"];
+    required_var01 = map["required_var_underscore01"];
+    required_var02 = map["required_var_underscore02"];
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     required_conversion_var01 = required_conversionVar01_DataType.parse(map["required_conversion_var_underscore01"]);
     required_conversion_var02 = required_conversionVar02_DataType.parse(map["required_conversion_var_underscore02"]);
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    optional_var01 = map["optional_var01"];
-    optional_var02 = map["optional_var02"];
-    optional_var03 = map["optional_var03"];
-    optional_var04 = map["optional_var04"];
+    optional_var01 = map["optional_var_underscore01"];
+    optional_var02 = map["optional_var_underscore02"];
+    optional_var03 = map["optional_var_underscore03"];
+    optional_var04 = map["optional_var_underscore04"];
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     optional_conversion_var01 = optional_conversionVar01_DataType.parse(map["optional_conversion_var_underscore01"]);
@@ -644,18 +619,18 @@ class Blank {
 
     _id = map["id"];
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    required_var01 = map["required_var01"];
-    required_var02 = map["required_var02"];
+    required_var01 = map["required_var_underscore01"];
+    required_var02 = map["required_var_underscore02"];
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     required_conversion_var01 = required_conversionVar01_DataType.parse(map["required_conversion_var_underscore01"]);
     required_conversion_var02 = required_conversionVar02_DataType.parse(map["required_conversion_var_underscore02"]);
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    optional_var01 = map["optional_var01"];
-    optional_var02 = map["optional_var02"];
-    optional_var03 = map["optional_var03"];
-    optional_var04 = map["optional_var04"];
+    optional_var01 = map["optional_var_underscore01"];
+    optional_var02 = map["optional_var_underscore02"];
+    optional_var03 = map["optional_var_underscore03"];
+    optional_var04 = map["optional_var_underscore04"];
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     optional_conversion_var01 = optional_conversionVar01_DataType.parse(map["optional_conversion_var_underscore01"]);
@@ -679,7 +654,7 @@ class Blank {
     Blank tempBlank = Blank.fromMap(map);
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    await readLists();
+    await tempBlank.readLists();
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
     debugPrint("[Classes->Blank-> readBlankFromMap()] End");
@@ -694,18 +669,18 @@ class Blank {
       map['id'] = _id;
     }
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    map["required_var01"] = this.required_var01;
-    map["required_var02"] = this.required_var02;
+    map["required_var_underscore01"] = this.required_var01;
+    map["required_var_underscore01"] = this.required_var02;
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     map["required_conversion_var_underscore01"] = required_conversion_var01.toString();
     map["required_conversion_var_underscore02"] = required_conversion_var02.toString();
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    map["optional_var01"] = optional_var01;
-    map["optional_var02"] = optional_var02;
-    map["optional_var03"] = optional_var03;
-    map["optional_var04"] = optional_var04;
+    map["optional_var_underscore01"] = optional_var01;
+    map["optional_var_underscore02"] = optional_var02;
+    map["optional_var_underscore03"] = optional_var03;
+    map["optional_var_underscore04"] = optional_var04;
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     map["optional_conversion_var_underscore01"] = optional_conversion_var01.toString();
@@ -719,8 +694,16 @@ class Blank {
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
   Future<int> update() async {
+    debugPrint("[Classes->Blank-> update()] Start");
     int result = 0;
 
+    debugPrint("[Classes->Blank-> update()] updating...");
+    result = await _databaseHelper.update(tableName: "BlankTable", tableRow: this);
+    //result = await _databaseHelper.update_fromMap(tableName: "BlankTable", values: toMap());
+    debugPrint("[Classes->Blank-> update()] update result: $result");
+
+    
+    debugPrint("[Classes->Blank-> update()] end");
     return result;
   }
 
@@ -737,7 +720,39 @@ class Blank {
 
 
 
+main()
+{
+  DatabaseHelper databaseHelper = DatabaseHelper();
+  //TEXT  INTEGER   REAL
 
+ 
+  debugPrint("[main.dart-> setUpDatabase()] setting up Blank table ...");
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  databaseHelper.table["BlankTable"] = TableInfo(name: "BlankTable", type: "blank_table_v1");
+  databaseHelper.table["BlankTable"]!.addColumn("id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  databaseHelper.table["BlankTable"]!.addColumn("required_var_underscore01", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("required_var_underscore02", "BLOB");
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  databaseHelper.table["BlankTable"]!.addColumn("required_conversion_var_underscore01", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("required_conversion_var_underscore02", "BLOB");
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  databaseHelper.table["BlankTable"]!.addColumn("optional_var_underscore01", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("optional_var_underscore02", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("optional_var_underscore03", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("optional_var_underscore04", "BLOB");
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  databaseHelper.table["BlankTable"]!.addColumn("optional_conversion_var_underscore01", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("optional_conversion_var_underscore02", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("optional_conversion_var_underscore03", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("optional_conversion_var_underscore04", "BLOB");
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+
+}
 
 
 

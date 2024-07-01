@@ -4,7 +4,7 @@ import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-import 'package:nutrition_app/class_template.dart';
+import 'package:nutrition_app/blank_class_template.dart';
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
@@ -63,72 +63,96 @@ class _UpdateBlankPageState extends State<UpdateBlankPage> {
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(required_var01Controller.text.isNotEmpty)
     {
       widget.thisBlank.required_var01 = requiredVar01_DataType.parse(required_var01Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(required_var02Controller.text.isNotEmpty)
     {
       widget.thisBlank.required_var02 = requiredVar02_DataType.parse(required_var02Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(required_conversion_var01Controller.text.isNotEmpty)
     {
       widget.thisBlank.required_conversion_var01 = required_conversionVar01_DataType.parse(required_conversion_var01Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(required_conversion_var02Controller.text.isNotEmpty)
     {
       widget.thisBlank.required_conversion_var02 = required_conversionVar02_DataType.parse(required_conversion_var02Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(optional_var01Controller.text.isNotEmpty)
     {
       widget.thisBlank.optional_var01 = optionalVar01_DataType.parse(optional_var01Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(optional_var02Controller.text.isNotEmpty)
     {
       widget.thisBlank.optional_var02 = optionalVar02_DataType.parse(optional_var02Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(optional_var03Controller.text.isNotEmpty)
     {
       widget.thisBlank.optional_var03 = optionalVar03_DataType.parse(optional_var03Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(optional_var04Controller.text.isNotEmpty)
     {
       widget.thisBlank.optional_var04 = optionalVar04_DataType.parse(optional_var04Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(optional_conversion_var01Controller.text.isNotEmpty)
     {
       widget.thisBlank.optional_conversion_var01 = optional_conversionVar01_DataType.parse(optional_conversion_var01Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(optional_conversion_var02Controller.text.isNotEmpty)
     {
       widget.thisBlank.optional_conversion_var02 = optional_conversionVar02_DataType.parse(optional_conversion_var02Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(optional_conversion_var03Controller.text.isNotEmpty)
     {
       widget.thisBlank.optional_conversion_var03 = optional_conversionVar03_DataType.parse(optional_conversion_var03Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     debugPrint("\[UpdateBlankPage-> submit()] processing ...");
     if(optional_conversion_var04Controller.text.isNotEmpty)
     {
       widget.thisBlank.optional_conversion_var04 = optional_conversionVar04_DataType.parse(optional_conversion_var04Controller.text);
     }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     

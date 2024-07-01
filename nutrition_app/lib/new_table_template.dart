@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nutrition_app/class_template.dart'; 
 import 'package:nutrition_app/models.dart'; 
 import 'package:nutrition_app/database_helper.dart'; 
 
@@ -18,11 +17,30 @@ main()
   databaseHelper.table["BlankTable"]!.addColumn("required_var_underscore02", "BLOB");
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  databaseHelper.table["BlankTable"]!.addColumn("required_conversion_var_underscore01", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("required_conversion_var_underscore02", "BLOB");
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   databaseHelper.table["BlankTable"]!.addColumn("optional_var_underscore01", "BLOB");
   databaseHelper.table["BlankTable"]!.addColumn("optional_var_underscore02", "BLOB");
   databaseHelper.table["BlankTable"]!.addColumn("optional_var_underscore03", "BLOB");
   databaseHelper.table["BlankTable"]!.addColumn("optional_var_underscore04", "BLOB");
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  databaseHelper.table["BlankTable"]!.addColumn("optional_conversion_var_underscore01", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("optional_conversion_var_underscore02", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("optional_conversion_var_underscore03", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("optional_conversion_var_underscore04", "BLOB");
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 }
+
+/*
+Blank
+blank
+
+required_var_underscore01
+
+optional_var_underscore01
+ */
