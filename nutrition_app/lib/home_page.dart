@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   @override
 
   Widget build(BuildContext context) {
-    return PageWidget(home: () {Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);}, pageName: "Home Page", thisUser: widget.thisUser, body: [Center(
+    return PageWidget(home: () { debugPrint("[HomePage-> build] Going to Log-In Page"); Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);}, pageName: "Home Page", thisUser: widget.thisUser, body: [Center(
       child: Column(children: [
         
         SizedBox(height: 25),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
+import 'package:nutrition_app/custom_widgets.dart';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 import 'package:nutrition_app/class_template.dart';
@@ -123,11 +124,7 @@ class _ViewSingleBlankPageState extends State<ViewSingleBlankPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[300],
-      body: SingleChildScrollView(
-        child: currentPage(),
-      ),
-    );
+    return PageWidget(pageName: "View Singular Blank With Space Page", body: [currentPage()], thisUser: widget.thisUser,);
+    
   }
 }

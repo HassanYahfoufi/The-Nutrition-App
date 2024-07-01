@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/custom_widgets.dart';
-import 'package:nutrition_app/edit_user_page.dart';
+//import 'package:nutrition_app/update_user_page.dart';
 import 'package:nutrition_app/classes.dart';
 
 
@@ -35,7 +35,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ]),
         TextButton(
-          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => EditUserPage(thisUser: widget.thisUser)),);}, 
+          onPressed: (){/*Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateUserPage(thisUser: widget.thisUser)),);*/}, 
           child: Text("Edit User Information")
         ),
       ]
