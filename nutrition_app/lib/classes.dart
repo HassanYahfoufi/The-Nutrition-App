@@ -38,8 +38,8 @@ class User {
   double? weight;
   double? height;
   double? bmi;
-  //List<StatusUpdate> statusUpdates;
-  //List<ConsumedFodd> consumedFoods;
+  List<StatusUpdate> statusUpdates = [];
+  //List<ConsumedFodd> consumedFoods = [];
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
 
@@ -90,6 +90,35 @@ class User {
     debugPrint("[Classes->User-> readID()] End");
   }
 
+
+
+  Future<void> readStatusUpdates() async 
+  {
+    debugPrint("[Classes->User-> readStatusUpdates()] Start");
+    statusUpdates.clear();
+    
+
+
+    debugPrint("[Classes->Account-> readStatusUpdates()] retrieving statusUpdates...");
+    List<Map<String, dynamic>> matchingStatusUpdates = await _databaseHelper.getMatchingRows(tableName: "StatusUpdateTable", column: "user_id", value: _id!.toString());
+
+    statusUpdates = matchingStatusUpdates.map((statusUpdate) => StatusUpdate.fromMap(statusUpdate)).toList();
+    debugPrint("[Classes->User-> readStatusUpdates()] End");
+  }
+
+  Future<void> readLists() async
+  {
+    await readM2Os();
+  }
+  
+  Future<void> readM2Os() async
+  {
+    
+    await readStatusUpdates();
+    
+  }
+
+
   Future<int> create() async {
     debugPrint("[Classes->User-> create()] Start");
 
@@ -106,7 +135,8 @@ class User {
 
   Future<bool> readFromDatabase() async {
     debugPrint("[Classes->User-> readFromDatabase()] Start");
-    if (_id == null) {
+    if (_id == null) 
+    {
       Map<String, dynamic> matchConditions = Map<String, dynamic>();
       matchConditions[_databaseHelper.colUsername] = username;
       matchConditions[_databaseHelper.colPassword] = password;
@@ -120,6 +150,8 @@ class User {
       if (matchingUsers.length == 1) {
         debugPrint("[Classes->User-> readFromDatabase()] processing data...");
         readFromMap(matchingUsers[0]);
+
+        await readLists();
         return true;
       } else if (matchingUsers.length > 1) {
         debugPrint(
@@ -143,6 +175,10 @@ class User {
 
       debugPrint("[Classes->User-> readFromDatabase()] processing data...");
       readFromMap(matchingUsers[0]);
+
+      debugPrint("[Classes->User-> readFromDatabase()] retrieving lists from database (i.e. await readLists())...");
+      await readLists();
+
       debugPrint("[Classes->User-> readFromDatabase()] End");
       return true;
     }
@@ -163,7 +199,7 @@ class User {
 
     debugPrint("[Classes->User-> User.fromMap()] End");
   }
-  void readFromMap(Map<String, dynamic> map) {
+  Future<void> readFromMap(Map<String, dynamic> map) async {
     debugPrint("[Classes->User-> readUserFromMap()] Start");
 
     _id = map["id"];
@@ -176,13 +212,17 @@ class User {
     height = map["height"];
     bmi = map["bmi"];
 
+    await readLists();
+
     debugPrint("[Classes->User-> readUserFromMap()] End");
   }
 
-  User fromMap(Map<String, dynamic> map) {
+  Future<User> fromMap(Map<String, dynamic> map) async {
     debugPrint("[Classes->User-> readUserFromMap()] Start");
 
     User tempUser = User.fromMap(map);
+
+    await tempUser.readLists();
 
     debugPrint("[Classes->User-> readUserFromMap()] End");
     return tempUser;
@@ -253,3 +293,276 @@ class User {
     return result;
   }
 }
+
+
+class StatusUpdate {
+  StatusUpdate(
+      {ID,
+      required int UserID,
+      required String Title,
+      required DateTime Timestamp,
+      required DateTime DateCreated,
+      required DateTime DateModified,
+      String? Note,
+      double? Weight,
+      }) {
+    debugPrint("[Classes->StatusUpdate-> CONSTRUCTOR] Start");
+    if (ID != null) {
+      _id = ID;
+    }
+    userID = UserID;
+    title = Title;
+    timestamp = Timestamp;
+    dateCreated = DateCreated;
+    dateModified = DateModified;
+    note = Note;
+    weight = Weight;
+    
+    debugPrint("[Classes->StatusUpdate-> CONSTRUCTOR] End");
+  }
+ 
+
+  int? _id;
+
+  late int userID;
+  late String title;
+  late DateTime timestamp;
+  late DateTime dateCreated;
+  late DateTime dateModified;
+  String? note;
+  double? weight;
+
+  
+
+  DatabaseHelper _databaseHelper = DatabaseHelper();
+
+
+  int? get id => _id;
+  
+
+
+  
+  Future<int> countMatching() async {
+    debugPrint("[Classes->StatusUpdate->countMatching()] Entered");
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+    
+    matchConditions[_databaseHelper.colUserID] = userID;
+    matchConditions[_databaseHelper.colTitle] = title;
+    matchConditions[_databaseHelper.colTimestamp] = timestamp;
+    matchConditions[_databaseHelper.colDateCreated] = dateCreated;
+    matchConditions[_databaseHelper.colDateModified] = dateModified;
+    
+    //A list of rows that matched the given criteria from the target table
+    List<Map<String, dynamic>> matchingStatusUpdates =
+        await _databaseHelper.getMatchingRows_WhereColumns(
+            tableName: "StatusUpdateTable", conditions: matchConditions);
+
+    if (matchingStatusUpdates.length == 1) {
+      debugPrint("[Classes->StatusUpdate->countMatching()] End");
+      return 1;
+    } else if (matchingStatusUpdates.length > 1) {
+      debugPrint(
+          "[Classes->StatusUpdate->countMatching()] Error more than 1 statusUpdate found but there should only be 1 or 0.");
+      debugPrint("[Classes->StatusUpdate->countMatching()] End");
+      return matchingStatusUpdates.length;
+    } else {
+      debugPrint("[Classes->StatusUpdate->countMatching()] End");
+      return 0;
+    }
+  }
+  
+
+  Future<void> readID() async {
+    debugPrint("[Classes->StatusUpdate-> readID()] Start");
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+    matchConditions[_databaseHelper.colUserID] = userID;
+    matchConditions[_databaseHelper.colTitle] = title;
+    matchConditions[_databaseHelper.colTimestamp] = timestamp;
+    matchConditions[_databaseHelper.colDateCreated] = dateCreated;
+    matchConditions[_databaseHelper.colDateModified] = dateModified;
+    
+    List<String> outputColumns = [_databaseHelper.colID];
+
+    debugPrint("[Classes->StatusUpdate-> readID()] retrieving data from database ...");
+    //a list of matching rows except only the requested columns of each row are output.
+    List<Map<String, dynamic>> output =
+        await _databaseHelper.getMatchingColumns_WhereColumns(
+            tableName: "StatusUpdateTable",
+            conditions: matchConditions,
+            outputColumns: outputColumns);
+
+    debugPrint("[Classes->StatusUpdate-> readID()] processing ...");
+    if(output.length == 1)
+    {
+      _id = output[0][_databaseHelper.colID];
+    }
+    else
+    {
+      if(output.length == 0)
+      {
+        debugPrint("[Classes->StatusUpdate-> readID()] ERROR: No matching users found!");
+      }
+      else
+      {
+        debugPrint("[Classes->StatusUpdate-> readID()] ERROR: ${output.length} matching users found!");
+      }
+      
+    }
+
+    debugPrint("[Classes->StatusUpdate-> readID()] End");
+  }
+  
+  
+
+  
+
+  
+
+
+
+  Future<int> create() async {
+    debugPrint("[Classes->StatusUpdate-> create()] Start");
+
+    debugPrint("[Classes->StatusUpdate-> create()] inserting new statusUpdate into database ...");
+    int result = await _databaseHelper.insert(tableName: "StatusUpdateTable", objectAsMap: toMap());
+    debugPrint("[Classes->StatusUpdate-> create()] Insertion COMPLETE. result = ${result}");
+    
+
+    debugPrint("[Classes->StatusUpdate-> create()] End");
+    return result;
+  }
+
+  Future<bool> readFromDatabase() async {
+    debugPrint("[Classes->StatusUpdate-> readFromDatabase()] Start");
+    if (_id == null) {
+      Map<String, dynamic> matchConditions = Map<String, dynamic>();
+      
+      matchConditions[_databaseHelper.colUserID] = userID;
+      matchConditions[_databaseHelper.colTitle] = title;
+      matchConditions[_databaseHelper.colTimestamp] = timestamp;
+      matchConditions[_databaseHelper.colDateCreated] = dateCreated;
+      matchConditions[_databaseHelper.colDateModified] = dateModified;
+      
+      
+      debugPrint("[Classes->StatusUpdate-> readFromDatabase()] Retrieving data from database (using required variables)...");
+      
+      List<Map<String, dynamic>> matchingStatusUpdates = await _databaseHelper.getMatchingRows_WhereColumns( tableName: "StatusUpdateTable", conditions: matchConditions);
+
+      if (matchingStatusUpdates.length == 1) 
+      {
+        debugPrint("[Classes->StatusUpdate-> readFromDatabase()] processing data...");
+        readFromMap(matchingStatusUpdates[0]);
+        
+
+        return true;
+      } 
+      else if (matchingStatusUpdates.length > 1) 
+      {
+        debugPrint("[Classes->StatusUpdate-> readFromDatabase()] Error more than 1 statusUpdate found but there should only be 1 or 0.");
+        debugPrint("[Classes->StatusUpdate-> readFromDatabase()] End");
+        return false;
+      } 
+      else 
+      {
+        debugPrint("[Classes->StatusUpdate-> readFromDatabase()] No matching statusUpdates found!");
+        debugPrint("[Classes->StatusUpdate-> readFromDatabase()] End");
+        return false;
+      }
+    } else {
+      debugPrint(
+          "[Classes->StatusUpdate-> readFromDatabase()] Retrieving data from database (using id)...");
+      List<Map<String, dynamic>> matchingStatusUpdates =
+          await _databaseHelper.getMatchingRows(
+              tableName: "StatusUpdateTable",
+              column: _databaseHelper.colID,
+              value: _id.toString());
+
+      debugPrint("[Classes->StatusUpdate-> readFromDatabase()] processing data...");
+      readFromMap(matchingStatusUpdates[0]);
+      debugPrint("[Classes->StatusUpdate-> readFromDatabase()] End");
+      return true;
+    }
+  }
+  
+  StatusUpdate.fromMap(Map<String, dynamic> map) {
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] Start");
+
+    _id = map["id"];
+    
+    userID = map["user_id"];
+    title = map["title"];
+    timestamp = DateTime.parse(map["timestamp"]);
+    dateCreated = DateTime.parse(map["date_created"]);
+    dateModified = DateTime.parse(map["date_modified"]);
+    note = map["note"];
+    weight = map["weight"];
+    
+    
+
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] End");
+  }
+  Future<void> readFromMap(Map<String, dynamic> map) async 
+  {
+    debugPrint("[Classes->StatusUpdate-> readStatusUpdateFromMap()] Start");
+
+    _id = map["id"];
+    userID = map["user_id"];
+    title = map["title"];
+    timestamp = DateTime.parse(map["timestamp"]);
+    dateCreated = DateTime.parse(map["date_created"]);
+    dateModified = DateTime.parse(map["date_modified"]);
+    note = map["note"];
+    weight = map["weight"];
+    
+
+    debugPrint("[Classes->StatusUpdate-> readStatusUpdateFromMap()] End");
+  }
+  
+  Future<StatusUpdate> fromMap(Map<String, dynamic> map) async {
+    debugPrint("[Classes->StatusUpdate-> readStatusUpdateFromMap()] Start");
+
+    StatusUpdate tempStatusUpdate = StatusUpdate.fromMap(map);
+
+    debugPrint("[Classes->StatusUpdate-> readStatusUpdateFromMap()] End");
+    return tempStatusUpdate;
+  }
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> map = Map<String, dynamic>();
+
+    if (_id != null) {
+      map['id'] = _id;
+    }
+    map["user_id"] = this.userID;
+    map["title"] = this.title;
+    map["timestamp"] = timestamp.toString();
+    map["date_created"] = dateCreated.toString();
+    map["date_modified"] = dateModified.toString();
+    map["note"] = note;
+    map["weight"] = weight;
+    
+
+    return map;
+  }
+  
+  Future<int> update() async {
+    debugPrint("[Classes->StatusUpdate-> update()] Start");
+    int result = 0;
+
+    debugPrint("[Classes->StatusUpdate-> update()] updating...");
+    result = await _databaseHelper.update(tableName: "StatusUpdateTable", tableRow: this);
+    //result = await _databaseHelper.update_fromMap(tableName: "StatusUpdateTable", values: toMap());
+    debugPrint("[Classes->StatusUpdate-> update()] update result: $result");
+
+    
+    debugPrint("[Classes->StatusUpdate-> update()] end");
+    return result;
+  }
+
+  Future<int> delete() async {
+    int result = 0;
+
+    return result;
+  }
+}
+
+

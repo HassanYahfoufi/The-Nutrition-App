@@ -32,6 +32,16 @@ class DatabaseHelper {
   String colSummary = "summary";
   String colDateCreated = "date_created";
   //-------------------------------------
+  //-----------Status Update--------------
+  String colUserID = "userID";
+  //String colTitle = "title";
+
+  String colTimestamp = "timestamp";
+  //String colDateCreated = "dateCreated";
+  String colDateModified = "dateModified";
+  
+  String colNote = "note";
+  //-------------------------------------
   //--------------- DELETE ---------------
   String colRequired_Var01 = "required_var01";
   String colRequired_Var02 = "required_var02";
@@ -52,7 +62,6 @@ class DatabaseHelper {
   String colnonDB_Var01 = "nonDB_var01";
   String colnonDB_Var02 = "nonDB_var02";
   //--------------- DELETE ---------------
-
   DatabaseHelper._createInstance();
 
   void printTableVarKeys() {
