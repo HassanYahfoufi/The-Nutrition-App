@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:nutrition_app/create_blank_page.dart';
 import 'package:nutrition_app/home_page.dart';
 import 'package:nutrition_app/register_page.dart';
 import 'package:nutrition_app/settings_page.dart';
@@ -8,8 +9,10 @@ import 'package:nutrition_app/login_page.dart';
 import 'package:nutrition_app/view_food_items.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/models.dart';
+import 'package:nutrition_app/create_new_food_items.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:fl_chart/fl_chart.dart';
+
 
 Future<void> setUpDatabase() async {
   debugPrint("[main.dart-> setUpDatabase()] Start");
@@ -91,6 +94,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/registerpage': (context) => RegisterPage(),
           '/loginpage': (context) => LoginPage(),
+          
         });
   }
 }

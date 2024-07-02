@@ -25,12 +25,12 @@ class _PageWidgetState extends State<PageWidget> {
     return Scaffold( 
             resizeToAvoidBottomInset : true,
             appBar: AppBar(actions: [IconButton(onPressed: widget.home ?? (){debugPrint("[${widget.pageName}] widget.home was empty. Navigating to default which is HomePage()...");Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser)));}, icon: Icon(Icons.home)), IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle ))], title: Text(widget.pageName)),
-            body: Column(
-              children: [
-                SingleChildScrollView(
-                  child: Column(children: widget.body, ),
-                )
-              ],
+            body: SingleChildScrollView(
+            child: Column(children: widget.body, ),
+              
+                
+                
+              
             ),
 
             //bottomNavigationBar: bottomNavigationBar(currentIndex: widget.currentIndex, onTap: (index) => setState(() => widget.currentIndex = index),),

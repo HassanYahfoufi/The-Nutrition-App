@@ -5,6 +5,7 @@ import 'package:nutrition_app/create_blank_page.dart';
 import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/login_page.dart';
 import 'package:nutrition_app/view_all_status_updates_page.dart';
+import 'package:nutrition_app/view_food_items.dart';
 
 
 
@@ -34,31 +35,8 @@ class _HomePageState extends State<HomePage> {
         Icon(Icons.more_vert),
         SizedBox(child: LineChartWidget(), height: 200, width: 700),
         SizedBox(height: (spacerHeight * 2)),
-        TextButton(
-          
-          onPressed: (
-  
-           
-          ){ Navigator.pushNamed(context, '/viewfooditems');},
-          
-          child: Container(
-                padding: EdgeInsets.all(20),
-                margin: EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: const Center(
-                    child: Text(
-                  'View Food items',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                )),
-              ),
-        ),
+        SizedOutlinedButton(text: "View Food Items", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewFoodItems(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
+
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "Add New Recipie", height: buttonHeight, width: buttonWidth),
         SizedBox(height: spacerHeight),
