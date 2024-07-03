@@ -6,11 +6,13 @@ import 'package:nutrition_app/classes.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class PageWidget extends StatefulWidget {
-  PageWidget({this.home, required this.pageName, required this.body, required this.thisUser, this.onPressed, this.currentIndex = 0, super.key});
+  PageWidget({this.home, required this.pageName, required this.body, required this.thisUser, this.onPressed, this.lastPage, this.editPage, this.currentIndex = 0, super.key});
   String pageName;
   List<Widget> body;
   void Function()? home;
   void Function()? onPressed;
+  Widget? lastPage;
+  Widget? editPage;
   int currentIndex;
   User thisUser;
 
@@ -24,15 +26,59 @@ class _PageWidgetState extends State<PageWidget> {
 
     return Scaffold( 
             resizeToAvoidBottomInset : true,
-            appBar: AppBar(actions: [IconButton(onPressed: widget.home ?? (){debugPrint("[${widget.pageName}] widget.home was empty. Navigating to default which is HomePage()...");Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser)));}, icon: Icon(Icons.home)), IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle ))], title: Text(widget.pageName)),
+            appBar: AppBar(actions: [
+              IconButton(onPressed: widget.home ?? (){debugPrint("[${widget.pageName}] widget.home was empty. Navigating to default which is HomePage()...");Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser)));}, icon: Icon(Icons.home)), 
+              (widget.lastPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.lastPage!),), icon: Icon(Icons.close )) : Container(),
+              
+              (widget.editPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.editPage!),), icon: Icon(Icons.edit )) : SizedBox.shrink(),
+              IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle ))
+            ], 
+            title: Text(widget.pageName)),
+            body: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Column(children: widget.body, ),
+                ),
+              ],
+            ),
+            //bottomNavigationBar: bottomNavigationBar(currentIndex: widget.currentIndex, onTap: (index) => setState(() => widget.currentIndex = index),),
+          );
+  }
+}
+
+class ViewAllPageWidget extends StatefulWidget {
+  ViewAllPageWidget({this.home, required this.pageName, required this.body, required this.thisUser, this.onPressed, required this.createPage, this.currentIndex = 0, super.key});
+  String pageName;
+  List<Widget> body;
+  void Function()? home;
+  void Function()? onPressed;
+  Widget createPage;
+  int currentIndex;
+  User thisUser;
+
+  @override
+  State<ViewAllPageWidget> createState() => _ViewAllPageWidgetState();
+}
+
+class _ViewAllPageWidgetState extends State<ViewAllPageWidget> {
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold( 
+            resizeToAvoidBottomInset : true,
+            appBar: AppBar(actions: [
+              IconButton(onPressed: widget.home ?? (){debugPrint("[${widget.pageName}] widget.home was empty. Navigating to default which is HomePage()...");Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser)));}, icon: Icon(Icons.home)), 
+              IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle ))
+            ], 
+            title: Text(widget.pageName)),
             body: Column(
               children: [
                 SingleChildScrollView(
                   child: Column(children: widget.body, ),
-                )
+                ),
               ],
             ),
-
+            floatingActionButton: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => widget.createPage),);}, child: const Icon(Icons.add)),
             //bottomNavigationBar: bottomNavigationBar(currentIndex: widget.currentIndex, onTap: (index) => setState(() => widget.currentIndex = index),),
           );
   }

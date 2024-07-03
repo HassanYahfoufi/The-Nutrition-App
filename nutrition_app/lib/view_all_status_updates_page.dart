@@ -3,6 +3,7 @@ import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 import 'package:nutrition_app/view_status_update_page.dart';
+import 'package:nutrition_app/create_status_update_page.dart';
 import 'package:nutrition_app/home_page.dart';
 
 
@@ -60,12 +61,13 @@ class _ViewAllStatusUpdatesPageState extends State<ViewAllStatusUpdatesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(
+    return ViewAllPageWidget(
       thisUser: widget.thisUser,
+      createPage: CreateStatusUpdatePage(nextPage: ViewAllStatusUpdatesPage(parentObject: widget.parentObject, thisUser: widget.thisUser), thisUser: widget.thisUser),
       home: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(HomePage(thisUser: widget.thisUser,))),);},
       pageName: "StatusUpdates",
       body: [
-        (statusUpdates.length > 0) ? Column(children: [...statusUpdates.map((statusUpdate) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewSingleStatusUpdatePage(thisStatusUpdate: statusUpdate, nextPage: ViewAllStatusUpdatesPage(thisUser: widget.thisUser, parentObject: widget.parentObject), thisUser: widget.thisUser))),);}, child: Text(statusUpdate.title)))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
+        (statusUpdates.length > 0) ? Column(children: [...statusUpdates.map((statusUpdate) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewSingleStatusUpdatePage(thisStatusUpdate: statusUpdate, thisUser: widget.thisUser))),);}, child: Text(statusUpdate.title)))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
       ],
     );
     //Navigator.push(context, MaterialPageRoute(builder: (context) =>(widget.nextPage)),);
