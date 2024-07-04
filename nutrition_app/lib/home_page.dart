@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 import 'package:nutrition_app/create_status_update_page.dart';
+import 'package:nutrition_app/create_status_update_page_v2.dart';
 import 'package:nutrition_app/create_blank_page.dart';
 import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/login_page.dart';
@@ -65,6 +66,8 @@ class _HomePageState extends State<HomePage> {
         SizedOutlinedButton(text: "Add Consumed Food", height: buttonHeight, width: buttonWidth),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "Update Status", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateStatusUpdatePage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
+        SizedBox(height: spacerHeight),
+        SizedOutlinedButton(text: "Update Status v2", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateStatusUpdatePage_v2(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "Add New Blank", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateBlankPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),

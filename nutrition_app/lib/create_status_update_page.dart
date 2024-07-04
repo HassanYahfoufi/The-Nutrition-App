@@ -76,7 +76,7 @@ class _CreateStatusUpdatePageState extends State<CreateStatusUpdatePage> {
         debugPrint(
             "[Create Status Update Page-> submit()]sign up fail! StatusUpdate already exists!!!!!!!!!!!!!!!!!!!!");
       });
-    } else //if you are here then the combonation of alues for the required parameters hasn't been used yet
+    } else //if you are here then the combination of alues for the required parameters hasn't been used yet
     {*/
       debugPrint("[Create Status Update Page-> submit()] the combo of values for the required parameters hasn't been used yet");
       

@@ -233,7 +233,7 @@ class User {
 
     if (_id != null) {
       map['id'] = _id;
-    }
+    } 
     map["username"] = this.username;
     map["password"] = this.password;
     map["name"] = name;
@@ -487,14 +487,22 @@ class StatusUpdate {
   StatusUpdate.fromMap(Map<String, dynamic> map) {
     debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] Start");
 
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing id...");
     _id = map["id"];
     
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing user_id...");
     userID = map["user_id"];
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing title...");
     title = map["title"];
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing timestamp...");
     timestamp = DateTime.parse(map["timestamp"]);
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing date_created...");
     dateCreated = DateTime.parse(map["date_created"]);
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing date_modified...");
     dateModified = DateTime.parse(map["date_modified"]);
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing note...");
     note = map["note"];
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing weight...");
     weight = map["weight"];
     
     

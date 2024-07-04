@@ -33,34 +33,31 @@ class DatabaseHelper {
   String colDateCreated = "date_created";
   //-------------------------------------
   //-----------Status Update--------------
-  String colUserID = "userID";
+  String colUserID = "user_id ";
   //String colTitle = "title";
 
   String colTimestamp = "timestamp";
   //String colDateCreated = "dateCreated";
-  String colDateModified = "dateModified";
+  String colDateModified = "date_modified";
   
   String colNote = "note";
   //-------------------------------------
   //--------------- DELETE ---------------
-  String colRequired_Var01 = "required_var01";
-  String colRequired_Var02 = "required_var02";
+  String colRequired_Var01 = "required_var_underscore01";
+  String colRequired_Var02 = "required_var_underscore02";
 
-  String colRequired_Conversion_Var01 = "required_conversion_var01";
-  String colRequired_Conversion_Var02 = "required_conversion_var02";
+  String colRequired_Conversion_Var01 = "required_conversion_var_underscore01";
+  String colRequired_Conversion_Var02 = "required_conversion_var_underscore02";
 
-  String colOptional_Var01 = "optional_var01";
-  String colOptional_Var02 = "optional_var02";
-  String colOptional_Var03 = "optional_var03";
-  String colOptional_Var04 = "optional_var04";
+  String colOptional_Var01 = "optional_var_underscore01";
+  String colOptional_Var02 = "optional_var_underscore02";
+  String colOptional_Var03 = "optional_var_underscore03";
+  String colOptional_Var04 = "optional_var_underscore04";
 
-  String colOptional_Conversion_Var01 = "optional_conversion_var01";
-  String colOptional_Conversion_Var02 = "optional_conversion_var02";
-  String colOptional_Conversion_Var03 = "optional_conversion_var03";
-  String colOptional_Conversion_Var04 = "optional_conversion_var04";
-
-  String colnonDB_Var01 = "nonDB_var01";
-  String colnonDB_Var02 = "nonDB_var02";
+  String colOptional_Conversion_Var01 = "optional_conversion_var_underscore01";
+  String colOptional_Conversion_Var02 = "optional_conversion_var_underscore02";
+  String colOptional_Conversion_Var03 = "optional_conversion_var_underscore03";
+  String colOptional_Conversion_Var04 = "optional_conversion_var_underscore04";
   //--------------- DELETE ---------------
   DatabaseHelper._createInstance();
 
