@@ -13,32 +13,33 @@ Blank
 
 required_var##
 Required_Var##
-Required Var With Space ###
+Required Variable With Space ###
 
 optional_var##
 Optional_Var##
-Optional Var With Space ###
+Optional Variable With Space ###
 */
 
-class CreateBlankPage extends StatefulWidget {
-  CreateBlankPage({required this.nextPage, required this.thisUser, super.key});
+class UpdateBlankPage extends StatefulWidget {
+  UpdateBlankPage({required this.nextPage, required this.thisBlank, required this.thisUser, super.key});
   final Widget nextPage;
+  Blank thisBlank;
   User thisUser;
 
   @override
-  State<CreateBlankPage> createState() => _CreateBlankPageState();
+  State<UpdateBlankPage> createState() => _UpdateBlankPageState();
 }
 
-class _CreateBlankPageState extends State<CreateBlankPage> {
+class _UpdateBlankPageState extends State<UpdateBlankPage> {
   Map<String,Map<String, dynamic>> variablesInfo = Map<String,Map<String, dynamic>>();
 
-  late Blank newBlank;
+  //late Blank newBlank;
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
   Future<void> submit() async
   {
-    debugPrint("[CreateBlankPagev2-> submit()] Start");
+    debugPrint("\[UpdateBlankPage-> submit()] Start");
 
     String underscoreName;
     Map<String, dynamic> blankMap = Map<String, dynamic>();
@@ -75,47 +76,32 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
       }
     }
     
-    debugPrint("[CreateBlankPagev2-> submit()] creating the new status update...");
-    newBlank = Blank.fromMap(blankMap);
+    debugPrint("[CreateBlankPagev2-> submit()] creating the updated blank...");
+    widget.thisBlank.fromMap(blankMap);
     
 
-    debugPrint("[CreateBlankPagev2-> submit()] Validating...");
-    if (await newBlank.countMatching() >= 1) {
+    debugPrint("\[UpdateBlankPage-> submit()] Updating...");
+    int updateResult = await widget.thisBlank.update();
+
+    if (updateResult != 0) {
       setState(() {
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>(widget.nextPage)),); 
+      });
+    } else {
+      setState(() {
+        debugPrint("\[UpdateBlankPage-> submit()] Update failed!");
         showDialog(
             context: context,
             builder: (_) => AlertDialog(
-                  title: Text("Creation failure!"),
-                  content:
-                      Text("The Blank already exists"),
+                  title: Text("Update failed!"),
+                  content: Text("Update operation failed!"),
                 ));
-        debugPrint(
-            "[CreateBlankPagev2-> submit()]sign up fail! Blank already exists!!!!!!!!!!!!!!!!!!!!");
+        debugPrint("\[UpdateBlankPage-> submit()] Update failed!");
       });
-    } else //if you are here then the combination of alues for the required parameters hasn't been used yet
-    {
-      debugPrint("[CreateBlankPagev2-> submit()] the combo of values for the required parameters hasn't been used yet");
-      
-
-      int insertResult = await newBlank.create();
-
-      if (insertResult != 0) {
-        setState(() {
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>(widget.nextPage)),); 
-        });
-      } else {
-        setState(() {
-          debugPrint("[CreateBlankPagev2-> submit()] Sign up failed!");
-          showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                    title: Text("Sign in failed!"),
-                    content: Text("Insert operation failed!"),
-                  ));
-          debugPrint("[CreateBlankPagev2-> submit()] Sign up failed!");
-        });
-      }
     }
+
+
+    
   }
   
   Widget currentPage({required variablesInfo})
@@ -131,6 +117,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
               ),
             ),
             const SizedBox(height: 30),
+
             ...variablesInfo.entries.map((variableInfo) => Column(children: [
               const SizedBox(height: 10),
               Padding(
@@ -150,6 +137,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                 ),
               ),
             ])),
+
             SizedBox(height: 10),
             TextButton(
               onPressed: () {
@@ -175,20 +163,22 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
         );}
 
 
+  
+
   @override
   initState() {
+    debugPrint("[UpdateBlankPage] Start");
+
     debugPrint("[CreateBlankPage] Start");
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["required_var01"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_var01"]!["DataType"] = requiredVar01_DataType;
     variablesInfo["required_var01"]!["name_with_underscore"] = "required_var_underscore01";
     variablesInfo["required_var01"]!["NameWithSpace"] = "Required Variable With Space #01";
     //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["required_var02"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_var02"]!["DataType"] = requiredVar02_DataType;
     variablesInfo["required_var02"]!["name_with_underscore"] = "required_var_underscore02";
@@ -197,14 +187,12 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["required_conversion_var01"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_conversion_var01"]!["DataType"] = required_conversionVar01_DataType;
     variablesInfo["required_conversion_var01"]!["name_with_underscore"] = "required_conversion_var_underscore01";
     variablesInfo["required_conversion_var01"]!["NameWithSpace"] = "Required Conversion Variable With Space #01";
     //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["required_conversion_var02"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_conversion_var02"]!["DataType"] = required_conversionVar02_DataType;
     variablesInfo["required_conversion_var02"]!["name_with_underscore"] = "required_conversion_var_underscore02";
@@ -213,28 +201,24 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["optional_var01"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_var01"]!["DataType"] = optionalVar01_DataType;
     variablesInfo["optional_var01"]!["name_with_underscore"] = "optional_var_underscore01";
     variablesInfo["optional_var01"]!["NameWithSpace"] = "Optional Variable With Space #01";
     //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["optional_var02"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_var02"]!["DataType"] = optionalVar02_DataType;
     variablesInfo["optional_var02"]!["name_with_underscore"] = "optional_var_underscore02";
     variablesInfo["optional_var02"]!["NameWithSpace"] = "Optional Variable With Space #02";
     //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["optional_var03"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_var03"]!["DataType"] = optionalVar03_DataType;
     variablesInfo["optional_var03"]!["name_with_underscore"] = "optional_var_underscore03";
     variablesInfo["optional_var03"]!["NameWithSpace"] = "Optional Variable With Space #03";
     //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["optional_var04"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_var04"]!["DataType"] = optionalVar04_DataType;
     variablesInfo["optional_var04"]!["name_with_underscore"] = "optional_var_underscore04";
@@ -243,28 +227,24 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["optional_conversion_var01"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_conversion_var01"]!["DataType"] = optional_conversionVar01_DataType;
     variablesInfo["optional_conversion_var01"]!["name_with_underscore"] = "optional_conversion_var_underscore01";
     variablesInfo["optional_conversion_var01"]!["NameWithSpace"] = "Optional Conversion Variable With Space #01";
     //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["optional_conversion_var02"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_conversion_var02"]!["DataType"] = optional_conversionVar02_DataType;
     variablesInfo["optional_conversion_var02"]!["name_with_underscore"] = "optional_conversion_var_underscore02";
     variablesInfo["optional_conversion_var02"]!["NameWithSpace"] = "Optional Conversion Variable With Space #02";
     //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["optional_conversion_var03"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_conversion_var03"]!["DataType"] = optional_conversionVar03_DataType;
     variablesInfo["optional_conversion_var03"]!["name_with_underscore"] = "optional_conversion_var_underscore03";
     variablesInfo["optional_conversion_var03"]!["NameWithSpace"] = "Optional Conversion Variable With Space #03";
     //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
-    variablesInfo[""] = <String, dynamic>{};
     variablesInfo["optional_conversion_var04"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_conversion_var04"]!["DataType"] = optional_conversionVar04_DataType;
     variablesInfo["optional_conversion_var04"]!["name_with_underscore"] = "optional_conversion_var_underscore04";
@@ -276,6 +256,8 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(pageName: "CreateBlankPagev2", body: [currentPage(variablesInfo: variablesInfo)], thisUser: widget.thisUser,);
+    
+    return PageWidget(pageName: "Update Blank With Space Page", body: [currentPage(variablesInfo: variablesInfo)], thisUser: widget.thisUser,);
+    
   }
 }

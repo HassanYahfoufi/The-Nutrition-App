@@ -4,12 +4,12 @@ import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-//import 'package:nutrition_app/statusUpdate_class_template.dart';
+import 'package:nutrition_app/consumed_food_class_template.dart';
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 /*
-StatusUpdate
+ConsumedFood
 
 required_var##
 Required_Var##
@@ -20,88 +20,86 @@ Optional_Var##
 Optional Var With Space ###
 */
 
-class CreateStatusUpdatePage_v2 extends StatefulWidget {
-  CreateStatusUpdatePage_v2({required this.nextPage, required this.thisUser, super.key});
+class CreateConsumedFoodPage extends StatefulWidget {
+  CreateConsumedFoodPage({required this.nextPage, required this.thisUser, super.key});
   final Widget nextPage;
   User thisUser;
 
   @override
-  State<CreateStatusUpdatePage_v2> createState() => _CreateStatusUpdatePage_v2State();
+  State<CreateConsumedFoodPage> createState() => _CreateConsumedFoodPageState();
 }
 
-class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
+class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
   Map<String,Map<String, dynamic>> variablesInfo = Map<String,Map<String, dynamic>>();
 
-  late StatusUpdate newStatusUpdate;
+  late ConsumedFood newConsumedFood;
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
   Future<void> submit() async
   {
-    debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] Start");
+    debugPrint("[CreateConsumedFoodPagev2-> submit()] Start");
 
     String underscoreName;
-    Map<String, dynamic> statusUpdateMap = Map<String, dynamic>();
-    debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] creating map...");
-
-    debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] processing user id...");
-    statusUpdateMap[databaseHelper.colUserID] = widget.thisUser.id;
-
+    Map<String, dynamic> consumedFoodMap = Map<String, dynamic>();
+    debugPrint("[CreateConsumedFoodPagev2-> submit()] creating map...");
+    debugPrint("[CreateConsumedFoodPagev2-> submit()] ...");
+    consumedFoodMap[databaseHelper.colUserID] = widget.thisUser.id;
     for (var entry in variablesInfo.entries) 
     {
-      debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\tprocessing ${entry.key} info...");
-      debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\t\texcecuting: underscoreName = entry.value[\"name_with_underscore\"];...");
+      debugPrint("[CreateConsumedFoodPagev2-> submit()]\tprocessing ${entry.key} info...");
+      debugPrint("[CreateConsumedFoodPagev2-> submit()]\t\texcecuting: underscoreName = entry.value[\"name_with_underscore\"];...");
       underscoreName = entry.value["name_with_underscore"];
       
-      debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\t\t checking data type of ${entry.key}");
-      debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\t\t${entry.key}'s data type: ${entry.value["DataType"]}");
+      debugPrint("[CreateConsumedFoodPagev2-> submit()]\t\t checking data type of ${entry.key}");
+      debugPrint("[CreateConsumedFoodPagev2-> submit()]\t\t${entry.key}'s data type: ${entry.value["DataType"]}");
       if(entry.value["DataType"] == String)
       {
-        debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\t\t${entry.key} is a String");
-        statusUpdateMap[underscoreName] = entry.value["TextEditingController"].text;
+        debugPrint("[CreateConsumedFoodPagev2-> submit()]\t\t${entry.key} is a String");
+        consumedFoodMap[underscoreName] = entry.value["TextEditingController"].text;
       }
       else
       {
-        debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\t\t${entry.key} is not a String");
+        debugPrint("[CreateConsumedFoodPagev2-> submit()]\t\t${entry.key} is not a String");
         if(entry.value["DataType"] == int)
         {
-          statusUpdateMap[underscoreName] = int.parse(entry.value["TextEditingController"].text);
+          consumedFoodMap[underscoreName] = int.parse(entry.value["TextEditingController"].text);
         }
         else if(entry.value["DataType"] == double)
         {
-          statusUpdateMap[underscoreName] = double.parse(entry.value["TextEditingController"].text);
+          consumedFoodMap[underscoreName] = double.parse(entry.value["TextEditingController"].text);
         }
         else
         {
-          statusUpdateMap[underscoreName] = entry.value["TextEditingController"].text;
+          consumedFoodMap[underscoreName] = entry.value["TextEditingController"].text;
         }
         
       }
     }
     
-    debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] creating the new status update...");
-    newStatusUpdate = StatusUpdate.fromMap(statusUpdateMap);
+    debugPrint("[CreateConsumedFoodPagev2-> submit()] creating the new status update...");
+    newConsumedFood = ConsumedFood.fromMap(consumedFoodMap);
     
 
-    debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] Validating...");
-    if (await newStatusUpdate.countMatching() >= 1) {
+    debugPrint("[CreateConsumedFoodPagev2-> submit()] Validating...");
+    if (await newConsumedFood.countMatching() >= 1) {
       setState(() {
         showDialog(
             context: context,
             builder: (_) => AlertDialog(
                   title: Text("Creation failure!"),
                   content:
-                      Text("The StatusUpdate already exists"),
+                      Text("The ConsumedFood already exists"),
                 ));
         debugPrint(
-            "[CreateStatusUpdatePage_v2v2-> submit()]sign up fail! StatusUpdate already exists!!!!!!!!!!!!!!!!!!!!");
+            "[CreateConsumedFoodPagev2-> submit()]sign up fail! ConsumedFood already exists!!!!!!!!!!!!!!!!!!!!");
       });
     } else //if you are here then the combination of alues for the required parameters hasn't been used yet
     {
-      debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] the combo of values for the required parameters hasn't been used yet");
+      debugPrint("[CreateConsumedFoodPagev2-> submit()] the combo of values for the required parameters hasn't been used yet");
       
 
-      int insertResult = await newStatusUpdate.create();
+      int insertResult = await newConsumedFood.create();
 
       if (insertResult != 0) {
         setState(() {
@@ -109,14 +107,14 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
         });
       } else {
         setState(() {
-          debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] Sign up failed!");
+          debugPrint("[CreateConsumedFoodPagev2-> submit()] Sign up failed!");
           showDialog(
               context: context,
               builder: (_) => AlertDialog(
                     title: Text("Sign in failed!"),
                     content: Text("Insert operation failed!"),
                   ));
-          debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] Sign up failed!");
+          debugPrint("[CreateConsumedFoodPagev2-> submit()] Sign up failed!");
         });
       }
     }
@@ -128,7 +126,7 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
           child: Column(children: [
             const SizedBox(height: 60),
             const Text(
-              'StatusUpdate',
+              'ConsumedFood',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -181,57 +179,47 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
 
   @override
   initState() {
-    debugPrint("[CreateStatusUpdatePage_v2] Start");
-
-    debugPrint("[CreateStatusUpdatePag e_v2] Processing title info...");
-    variablesInfo["title"] = <String, dynamic>{};
-    variablesInfo["title"]!["TextEditingController"] = TextEditingController();
-    variablesInfo["title"]!["DataType"] = String;
-    variablesInfo["title"]!["name_with_underscore"] = "title";
-    variablesInfo["title"]!["NameWithSpace"] = "Title";
-
-    debugPrint("[CreateStatusUpdatePage_v2_v2] Processing timestamp info...");
+    debugPrint("[CreateConsumedFoodPage] Start");
+    /*variablesInfo["userID"] = <String, dynamic>{};
+    variablesInfo["userID"]!["TextEditingController"] = TextEditingController();
+    variablesInfo["userID"]!["DataType"] = int;
+    variablesInfo["userID"]!["name_with_underscore"] = "user_id";
+    variablesInfo["userID"]!["NameWithSpace"] = "User ID";*/
+    variablesInfo["foodItemID"] = <String, dynamic>{};
+    variablesInfo["foodItemID"]!["TextEditingController"] = TextEditingController();
+    variablesInfo["foodItemID"]!["DataType"] = int;
+    variablesInfo["foodItemID"]!["name_with_underscore"] = "food_item_id";
+    variablesInfo["foodItemID"]!["NameWithSpace"] = "Food Item ID";
+    variablesInfo["amount"] = <String, dynamic>{};
+    variablesInfo["amount"]!["TextEditingController"] = TextEditingController();
+    variablesInfo["amount"]!["DataType"] = double;
+    variablesInfo["amount"]!["name_with_underscore"] = "amount";
+    variablesInfo["amount"]!["NameWithSpace"] = "Amount";
     variablesInfo["timestamp"] = <String, dynamic>{};
     variablesInfo["timestamp"]!["TextEditingController"] = TextEditingController();
     variablesInfo["timestamp"]!["DataType"] = DateTime;
     variablesInfo["timestamp"]!["name_with_underscore"] = "timestamp";
     variablesInfo["timestamp"]!["NameWithSpace"] = "Timestamp";
-
-    debugPrint("[CreateStatusUpdatePage_v2_v2] Processing dateCreated info...");
     variablesInfo["dateCreated"] = <String, dynamic>{};
     variablesInfo["dateCreated"]!["TextEditingController"] = TextEditingController();
     variablesInfo["dateCreated"]!["DataType"] = DateTime;
     variablesInfo["dateCreated"]!["name_with_underscore"] = "date_created";
     variablesInfo["dateCreated"]!["NameWithSpace"] = "Date Created";
-    
-
-    debugPrint("[CreateStatusUpdatePage_v2_v2] Processing dateModified info...");
     variablesInfo["dateModified"] = <String, dynamic>{};
     variablesInfo["dateModified"]!["TextEditingController"] = TextEditingController();
     variablesInfo["dateModified"]!["DataType"] = DateTime;
     variablesInfo["dateModified"]!["name_with_underscore"] = "date_modified";
     variablesInfo["dateModified"]!["NameWithSpace"] = "Date Modified";
-    
-
-    debugPrint("[CreateStatusUpdatePage_v2_v2] Processing note info...");
     variablesInfo["note"] = <String, dynamic>{};
     variablesInfo["note"]!["TextEditingController"] = TextEditingController();
     variablesInfo["note"]!["DataType"] = String;
     variablesInfo["note"]!["name_with_underscore"] = "note";
     variablesInfo["note"]!["NameWithSpace"] = "Note";
-    
-
-    debugPrint("[CreateStatusUpdatePage_v2_v2] Processing weight info...");
-    variablesInfo["weight"] = <String, dynamic>{};
-    variablesInfo["weight"]!["TextEditingController"] = TextEditingController();
-    variablesInfo["weight"]!["DataType"] = double;
-    variablesInfo["weight"]!["name_with_underscore"] = "weight";
-    variablesInfo["weight"]!["NameWithSpace"] = "Weight";
-
+      
   }
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(pageName: "CreateStatusUpdatePage_v2v2", body: [currentPage(variablesInfo: variablesInfo)], thisUser: widget.thisUser,);
+    return PageWidget(pageName: "CreateConsumedFoodPagev2", body: [currentPage(variablesInfo: variablesInfo)], thisUser: widget.thisUser,);
   }
 }
