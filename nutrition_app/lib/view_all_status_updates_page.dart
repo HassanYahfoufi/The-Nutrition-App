@@ -76,7 +76,7 @@ class _ViewAllStatusUpdatesPageState extends State<ViewAllStatusUpdatesPage> {
       home: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(HomePage(thisUser: widget.thisUser,))),);},
       pageName: "StatusUpdates",
       body: [
-        (statusUpdates.length > 0) ? Column(children: [...statusUpdates.map((statusUpdate) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewSingleStatusUpdatePage(thisStatusUpdate: statusUpdate, thisUser: widget.thisUser))),);}, child: Text(statusUpdate.title)))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
+        (statusUpdates.length > 0) ? Column(children: [...statusUpdates.map((statusUpdate) => Column(children:[const SizedBox(height: 10) , ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewSingleStatusUpdatePage(thisStatusUpdate: statusUpdate, thisUser: widget.thisUser))),);}, child: Text(statusUpdate.title))]))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
       ],
     );
     //Navigator.push(context, MaterialPageRoute(builder: (context) =>(widget.nextPage)),);
