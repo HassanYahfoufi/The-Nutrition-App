@@ -317,3 +317,32 @@ class _LineChartWidgetState extends State<LineChartWidget> {
     );
   }
 }
+
+void displayDialogSignOut(BuildContext context){
+  showDialog(
+    context: context,
+    builder: (BuildContext context){
+      return AlertDialog(
+        content: Text("Are you sure you want to sign out?"),
+
+        actions: <Widget>[
+          TextButton(
+            child: Text('Cancel'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            child: Text("Sign Out"),
+            
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.pushNamed(context, '/loginpage');
+            },
+            
+          ),
+        ],
+      );
+    },
+  );
+}
