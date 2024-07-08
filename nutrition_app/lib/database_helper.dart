@@ -33,16 +33,19 @@ class DatabaseHelper {
   String colDateCreated = "date_created";
   //-------------------------------------
   //-----------Status Update--------------
-  String colUserID = "userID";
+  String colUserID = "user_id";
   //String colTitle = "title";
 
   String colTimestamp = "timestamp";
   //String colDateCreated = "dateCreated";
-  String colDateModified = "dateModified";
+  String colDateModified = "date_modified";
   
   String colNote = "note";
+  String colFoodItemID = "food_item_id";
+  String colAmount = "amount";
   //-------------------------------------
   //--------------- DELETE ---------------
+  
   String colRequired_Var01 = "required_var01";
   String colRequired_Var02 = "required_var02";
 

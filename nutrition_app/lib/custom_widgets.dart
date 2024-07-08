@@ -85,6 +85,62 @@ class _ViewAllPageWidgetState extends State<ViewAllPageWidget> {
 }
 
 
+class CardWidget extends StatefulWidget {
+  CardWidget(
+      {required this.title,
+      required this.body,
+      this.cardColor = const Color.fromARGB(135, 63, 41, 207),
+      this.appBarColor = const Color.fromARGB(160, 18, 0, 138),
+      this.onCardTap,
+      super.key});
+  Color cardColor;
+  Color appBarColor;
+  String title;
+  List<Widget> body;
+  void Function()? onCardTap;
+
+  @override
+  State<CardWidget> createState() => _CardWidgetState();
+}
+
+class _CardWidgetState extends State<CardWidget> {
+  @override
+  Widget build(BuildContext context) {
+    String title = widget.title;
+    return Card(
+      
+      color: widget.cardColor,
+      elevation: 30,
+      // clipBehavior is necessary because, without it, the InkWell's animation
+      // will extend beyond the rounded edges of the [Card] (see https://github.com/flutter/flutter/issues/109776)
+      // This comes with a small performance cost, and you should not set [clipBehavior]
+      // unless you need it.
+      clipBehavior: Clip.hardEdge,
+
+      child: InkWell(
+        splashColor: Colors.blue.withAlpha(30),
+
+        onDoubleTap: widget.onCardTap,
+        child: SizedBox(
+          width: 300,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppBar(
+                backgroundColor: widget.appBarColor,
+                toolbarHeight: 25,
+                title: Text(title),
+              ),
+              ...widget.body,
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
 
 
 class SizedOutlinedButton extends StatefulWidget {
