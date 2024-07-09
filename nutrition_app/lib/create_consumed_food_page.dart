@@ -35,7 +35,7 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
   late ConsumedFood newConsumedFood;
 
   DatabaseHelper databaseHelper = DatabaseHelper();
-
+ 
   Future<void> submit() async
   {
     debugPrint("[CreateConsumedFoodPagev2-> submit()] Start");
