@@ -42,6 +42,11 @@ class DatabaseHelper {
   
   String colNote = "note";
   //-------------------------------------
+  String colAmount = "amount";
+  String colFoodName = "foodName";
+  String colIngredient = "ingredient";
+  String ColAllergen = "allergen";
+
   //--------------- DELETE ---------------
   String colRequired_Var01 = "required_var01";
   String colRequired_Var02 = "required_var02";
