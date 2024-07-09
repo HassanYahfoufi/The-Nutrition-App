@@ -820,3 +820,277 @@ Future<int> create() async {
 
 
 }
+class ConsumedFood {
+  ConsumedFood(
+      {ID,
+      required int UserID,
+      required int FoodItemID,
+      required double Amount,
+      required DateTime Timestamp,
+      required DateTime DateCreated,
+      required DateTime DateModified,
+      String? Note,
+      }) {
+    debugPrint("[Classes->ConsumedFood-> CONSTRUCTOR] Start");
+    if (ID != null) {
+      _id = ID;
+    }
+    userID = UserID;
+    foodItemID = FoodItemID;
+    amount = Amount;
+    timestamp = Timestamp;
+    dateCreated = DateCreated;
+    dateModified = DateModified;
+    note = Note;
+
+    debugPrint("[Classes->ConsumedFood-> CONSTRUCTOR] End");
+  }
+ 
+
+  int? _id;
+  late int userID;
+  late int foodItemID;
+  late double amount;
+  late DateTime timestamp;
+  late DateTime dateCreated;
+  late DateTime dateModified;
+  String? note;
+  
+
+  DatabaseHelper _databaseHelper = DatabaseHelper();
+
+
+  int? get id => _id;
+
+
+
+  Future<int> countMatching() async {
+    debugPrint("[Classes->ConsumedFood->countMatching()] Entered");
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+    matchConditions[_databaseHelper.colUserID] = userID;
+    matchConditions[_databaseHelper.colFoodItemID] = foodItemID;
+    matchConditions[_databaseHelper.colAmount] = amount;
+    matchConditions[_databaseHelper.colTimestamp] = timestamp;
+    matchConditions[_databaseHelper.colDateCreated] = dateCreated;
+    matchConditions[_databaseHelper.colDateModified] = dateModified;
+    
+    //A list of rows that matched the given criteria from the target table
+    List<Map<String, dynamic>> matchingConsumedFoods =
+        await _databaseHelper.getMatchingRows_WhereColumns(
+            tableName: "ConsumedFoodTable", conditions: matchConditions);
+
+    if (matchingConsumedFoods.length == 1) {
+      debugPrint("[Classes->ConsumedFood->countMatching()] End");
+      return 1;
+    } else if (matchingConsumedFoods.length > 1) {
+      debugPrint(
+          "[Classes->ConsumedFood->countMatching()] Error more than 1 consumedFood found but there should only be 1 or 0.");
+      debugPrint("[Classes->ConsumedFood->countMatching()] End");
+      return matchingConsumedFoods.length;
+    } else {
+      debugPrint("[Classes->ConsumedFood->countMatching()] End");
+      return 0;
+    }
+  }
+  
+  Future<void> readID() async {
+    debugPrint("[Classes->ConsumedFood-> readID()] Start");
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+    matchConditions[_databaseHelper.colUserID] = userID;
+    matchConditions[_databaseHelper.colFoodItemID] = foodItemID;
+    matchConditions[_databaseHelper.colAmount] = amount;
+    matchConditions[_databaseHelper.colTimestamp] = timestamp;
+    matchConditions[_databaseHelper.colDateCreated] = dateCreated;
+    matchConditions[_databaseHelper.colDateModified] = dateModified;
+
+    List<String> outputColumns = [_databaseHelper.colID];
+
+    debugPrint("[Classes->ConsumedFood-> readID()] retrieving data from database ...");
+    //a list of matching rows except only the requested columns of each row are output.
+    List<Map<String, dynamic>> output =
+        await _databaseHelper.getMatchingColumns_WhereColumns(
+            tableName: "ConsumedFoodTable",
+            conditions: matchConditions,
+            outputColumns: outputColumns);
+
+    debugPrint("[Classes->ConsumedFood-> readID()] processing ...");
+    if(output.length == 1)
+    {
+      _id = output[0][_databaseHelper.colID];
+    }
+    else
+    {
+      if(output.length == 0)
+      {
+        debugPrint("[Classes->ConsumedFood-> readID()] ERROR: No matching users found!");
+      }
+      else
+      {
+        debugPrint("[Classes->ConsumedFood-> readID()] ERROR: ${output.length} matching users found!");
+      }
+      
+    }
+
+    debugPrint("[Classes->ConsumedFood-> readID()] End");
+  }
+  
+  
+
+  
+
+  
+
+
+  Future<int> create() async {
+    debugPrint("[Classes->ConsumedFood-> create()] Start");
+
+    debugPrint("[Classes->ConsumedFood-> create()] inserting new consumedFood into database ...");
+    int result = await _databaseHelper.insert(tableName: "ConsumedFoodTable", objectAsMap: toMap());
+    debugPrint("[Classes->ConsumedFood-> create()] Insertion COMPLETE. result = ${result}");
+
+    debugPrint("[Classes->ConsumedFood-> create()] End");
+    return result;
+  }
+
+  Future<bool> readFromDatabase() async {
+    debugPrint("[Classes->ConsumedFood-> readFromDatabase()] Start");
+    if (_id == null) {
+      Map<String, dynamic> matchConditions = Map<String, dynamic>();
+      
+      matchConditions[_databaseHelper.colUserID] = userID;
+      matchConditions[_databaseHelper.colFoodItemID] = foodItemID;
+      matchConditions[_databaseHelper.colAmount] = amount;
+      matchConditions[_databaseHelper.colTimestamp] = timestamp;
+      matchConditions[_databaseHelper.colDateCreated] = dateCreated;
+      matchConditions[_databaseHelper.colDateModified] = dateModified;
+
+      
+      debugPrint("[Classes->ConsumedFood-> readFromDatabase()] Retrieving data from database (using required variables)...");
+      
+      List<Map<String, dynamic>> matchingConsumedFoods = await _databaseHelper.getMatchingRows_WhereColumns( tableName: "ConsumedFoodTable", conditions: matchConditions);
+
+      if (matchingConsumedFoods.length == 1) 
+      {
+        debugPrint("[Classes->ConsumedFood-> readFromDatabase()] processing data...");
+        readFromMap(matchingConsumedFoods[0]);
+        
+
+        return true;
+      } 
+      else if (matchingConsumedFoods.length > 1) 
+      {
+        debugPrint("[Classes->ConsumedFood-> readFromDatabase()] Error more than 1 consumedFood found but there should only be 1 or 0.");
+        debugPrint("[Classes->ConsumedFood-> readFromDatabase()] End");
+        return false;
+      } 
+      else 
+      {
+        debugPrint("[Classes->ConsumedFood-> readFromDatabase()] No matching consumedFoods found!");
+        debugPrint("[Classes->ConsumedFood-> readFromDatabase()] End");
+        return false;
+      }
+    } else {
+      debugPrint(
+          "[Classes->ConsumedFood-> readFromDatabase()] Retrieving data from database (using id)...");
+      List<Map<String, dynamic>> matchingConsumedFoods =
+          await _databaseHelper.getMatchingRows(
+              tableName: "ConsumedFoodTable",
+              column: _databaseHelper.colID,
+              value: _id.toString());
+
+      debugPrint("[Classes->ConsumedFood-> readFromDatabase()] processing data...");
+      readFromMap(matchingConsumedFoods[0]);
+      debugPrint("[Classes->ConsumedFood-> readFromDatabase()] End");
+      return true;
+    }
+  }
+  
+  ConsumedFood.fromMap(Map<String, dynamic> map) {
+    debugPrint("[Classes->ConsumedFood-> ConsumedFood.fromMap()] Start");
+
+    _id = map["id"];
+    
+    userID = map["user_id"];
+    if(map["food_item_id"] != null)
+    {
+      foodItemID = map["food_item_id"];
+    }
+    else
+    {
+      foodItemID = 0;
+    }
+    amount = map["amount"];
+    timestamp = DateTime.parse(map["timestamp"]);
+    dateCreated = DateTime.parse(map["date_created"]);
+    dateModified = DateTime.parse(map["date_modified"]);
+    note = map["note"];
+    
+    
+    
+
+    debugPrint("[Classes->ConsumedFood-> ConsumedFood.fromMap()] End");
+  }
+  Future<void> readFromMap(Map<String, dynamic> map) async 
+  {
+    debugPrint("[Classes->ConsumedFood-> readConsumedFoodFromMap()] Start");
+
+    _id = map["id"];
+    userID = map["user_id"];
+    foodItemID = map["food_item_id"];
+    amount = map["amount"];
+    timestamp = DateTime.parse(map["timestamp"]);
+    dateCreated = DateTime.parse(map["date_created"]);
+    dateModified = DateTime.parse(map["date_modified"]);
+    note = map["note"];
+    
+
+    debugPrint("[Classes->ConsumedFood-> readConsumedFoodFromMap()] End");
+  }
+  
+  Future<ConsumedFood> fromMap(Map<String, dynamic> map) async {
+    debugPrint("[Classes->ConsumedFood-> readConsumedFoodFromMap()] Start");
+
+    ConsumedFood tempConsumedFood = ConsumedFood.fromMap(map);
+
+    
+    debugPrint("[Classes->ConsumedFood-> readConsumedFoodFromMap()] End");
+    return tempConsumedFood;
+  }
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> map = Map<String, dynamic>();
+
+    if (_id != null) {
+      map['id'] = _id;
+    }
+    map["user_id"] = this.userID;
+    map["user_id"] = this.foodItemID;
+    map["amount"] = this.amount;
+    map["timestamp"] = timestamp.toString();
+    map["date_created"] = dateCreated.toString();
+    map["date_modified"] = dateModified.toString();
+    map["note"] = note;
+    
+
+    return map;
+  }
+  
+  Future<int> update() async {
+    debugPrint("[Classes->ConsumedFood-> update()] Start");
+    int result = 0;
+
+    debugPrint("[Classes->ConsumedFood-> update()] updating...");
+    result = await _databaseHelper.update(tableName: "ConsumedFoodTable", tableRow: this);
+    //result = await _databaseHelper.update_fromMap(tableName: "ConsumedFoodTable", values: toMap());
+    debugPrint("[Classes->ConsumedFood-> update()] update result: $result");
+
+    
+    debugPrint("[Classes->ConsumedFood-> update()] end");
+    return result;
+  }
+
+  Future<int> delete() async {
+    int result = 0;
+
+    return result;
+  }
+}
