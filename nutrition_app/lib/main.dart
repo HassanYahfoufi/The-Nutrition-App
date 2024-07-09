@@ -41,6 +41,17 @@ Future<void> setUpDatabase() async {
   databaseHelper.table["StatusUpdateTable"]!.addColumn("note", "TEXT");
   databaseHelper.table["StatusUpdateTable"]!.addColumn("weight", "REAL");
 
+  debugPrint("[main.dart-> setUpDatabase()] setting up ConsumedFood table ...");
+  databaseHelper.table["ConsumedFoodTable"] = TableInfo(name: "ConsumedFoodTable", type: "consumedFood_table_v2");
+  databaseHelper.table["ConsumedFoodTable"]!.addColumn("id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
+  databaseHelper.table["ConsumedFoodTable"]!.addColumn("user_id", "INTEGER");
+  databaseHelper.table["ConsumedFoodTable"]!.addColumn("food_item_id", "INTEGER");
+  databaseHelper.table["ConsumedFoodTable"]!.addColumn("amount", "REAL");
+  databaseHelper.table["ConsumedFoodTable"]!.addColumn("timestamp", "TEXT");
+  databaseHelper.table["ConsumedFoodTable"]!.addColumn("date_created", "TEXT");
+  databaseHelper.table["ConsumedFoodTable"]!.addColumn("date_modified", "TEXT");
+  databaseHelper.table["ConsumedFoodTable"]!.addColumn("note", "TEXT");
+
   databaseHelper.printTableVarKeys();
   debugPrint("[main.dart-> setUpDatabase()] Set up complete.");
 

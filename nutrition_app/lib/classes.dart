@@ -39,7 +39,7 @@ class User {
   double? height;
   double? bmi;
   List<StatusUpdate> statusUpdates = [];
-  //List<ConsumedFodd> FoodItems = [];
+  List<ConsumedFood> consumedFoods = [];
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
 
@@ -98,24 +98,44 @@ class User {
     statusUpdates.clear();
     
 
+    debugPrint("[Classes->User-> readStatusUpdates()] id = $_id");
+    debugPrint("[Classes->User-> readStatusUpdates()] retrieving statusUpdates...");
+    List<Map<String, dynamic>> matchingStatusUpdates = await _databaseHelper.getMatchingRows(tableName: "StatusUpdateTable", column: _databaseHelper.colUserID, value: _id!.toString());
+    debugPrint("[Classes->User-> readStatusUpdates()] retrieved ${matchingStatusUpdates.length} statusUpdates");
 
-    debugPrint("[Classes->Account-> readStatusUpdates()] retrieving statusUpdates...");
-    List<Map<String, dynamic>> matchingStatusUpdates = await _databaseHelper.getMatchingRows(tableName: "StatusUpdateTable", column: "user_id", value: _id!.toString());
-
+    debugPrint("[Classes->User-> readStatusUpdates()] processing...");
     statusUpdates = matchingStatusUpdates.map((statusUpdate) => StatusUpdate.fromMap(statusUpdate)).toList();
     debugPrint("[Classes->User-> readStatusUpdates()] End");
+  }
+  Future<void> readConsumedFoods() async 
+  {
+    debugPrint("[Classes->User-> readConsumedFoods()] Start");
+    consumedFoods.clear();
+    
+
+    debugPrint("[Classes->User-> readConsumedFoods()] id = $_id");
+    debugPrint("[Classes->User-> readConsumedFoods()] retrieving consumedFoods...");
+    List<Map<String, dynamic>> matchingConsumedFoods = await _databaseHelper.getMatchingRows(tableName: "ConsumedFoodTable", column: _databaseHelper.colUserID, value: _id!.toString());
+    debugPrint("[Classes->User-> readConsumedFoods()] retrieved ${matchingConsumedFoods.length} consumedFoods");
+
+    debugPrint("[Classes->User-> readConsumedFoods()] processing...");
+    consumedFoods = matchingConsumedFoods.map((consumedFood) => ConsumedFood.fromMap(consumedFood)).toList();
+    debugPrint("[Classes->User-> readConsumedFoods()] End");
   }
 
   Future<void> readLists() async
   {
+    debugPrint("[Classes->User-> readLists()] Start");
     await readM2Os();
+    debugPrint("[Classes->User-> readLists()] End");
   }
   
   Future<void> readM2Os() async
   {
-    
+    debugPrint("[Classes->User-> readM2Os()] Start");
     await readStatusUpdates();
-    
+    await readConsumedFoods();
+    debugPrint("[Classes->User-> readM2Os()] End");
   }
 
 
@@ -151,6 +171,7 @@ class User {
         debugPrint("[Classes->User-> readFromDatabase()] processing data...");
         readFromMap(matchingUsers[0]);
 
+        debugPrint("[Classes->User-> readFromDatabase()] reading lists...");
         await readLists();
         return true;
       } else if (matchingUsers.length > 1) {
@@ -233,7 +254,7 @@ class User {
 
     if (_id != null) {
       map['id'] = _id;
-    }
+    } 
     map["username"] = this.username;
     map["password"] = this.password;
     map["name"] = name;
@@ -487,14 +508,24 @@ class StatusUpdate {
   StatusUpdate.fromMap(Map<String, dynamic> map) {
     debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] Start");
 
+    debugPrint("[CreateStatusUpdatePage_v2->submit()] statusUpdateMap: ${map.toString()}");
+
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing id(${map["id"]})...");
     _id = map["id"];
     
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing user_id(${map["user_id"]})...");
     userID = map["user_id"];
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing title(${map["title"]})...");
     title = map["title"];
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing timestamp(${map["timestamp"]})...");
     timestamp = DateTime.parse(map["timestamp"]);
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing date_created(${map["date_created"]})...");
     dateCreated = DateTime.parse(map["date_created"]);
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing date_modified(${map["date_modified"]})...");
     dateModified = DateTime.parse(map["date_modified"]);
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing note(${map["note"]})...");
     note = map["note"];
+    debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing weight(${map["weight"]})...");
     weight = map["weight"];
     
     
@@ -820,6 +851,7 @@ Future<int> create() async {
 
 
 }
+
 class ConsumedFood {
   ConsumedFood(
       {ID,
@@ -1093,4 +1125,5 @@ class ConsumedFood {
 
     return result;
   }
+
 }

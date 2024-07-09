@@ -105,7 +105,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
         debugPrint(
             "[Create Blank With Space Page-> submit()]sign up fail! Blank already exists!!!!!!!!!!!!!!!!!!!!");
       });
-    } else //if you are here then the combonation of alues for the required parameters hasn't been used yet
+    } else //if you are here then the combination of alues for the required parameters hasn't been used yet
     {
       debugPrint("[Create Blank With Space Page-> submit()] the combo of values for the required parameters hasn't been used yet");
       
