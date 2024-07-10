@@ -45,11 +45,11 @@ class DatabaseHelper {
   String colFoodItemID = "food_item_id";
   String colAmount = "amount";
   //-------------------------------------
-  String colAmount = "amount";
+ 
   String colFoodName = "foodName";
   String colIngredient = "ingredient";
   String ColAllergen = "allergen";
-  String colFoodItemID = "food_item_id";
+  
   //--------------- DELETE ---------------
   
   String colRequired_Var01 = "required_var01";

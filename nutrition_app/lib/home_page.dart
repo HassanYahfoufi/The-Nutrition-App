@@ -37,7 +37,17 @@ class _HomePageState extends State<HomePage> {
         
         SizedBox(height: 25),
         Icon(Icons.more_vert),
-        SizedBox(child: LineChartWidget(), height: 200, width: 700),
+
+        Center(child:
+          Column(children:[
+            Row(children:[
+              SizedOutlinedButton(text: "Calories", height: buttonHeight, width: buttonWidth),
+              SizedOutlinedButton(text: "BMI", height: buttonHeight, width: buttonWidth),
+              SizedOutlinedButton(text: "Weight", height: buttonHeight, width: buttonWidth),
+            ]),
+            SizedBox(child: LineChartWidget(), height: 200, width: 700),
+          ]),
+        ),
         SizedBox(height: (spacerHeight * 2)),
         SizedOutlinedButton(text: "View Food Items", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewFoodItems(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
 
