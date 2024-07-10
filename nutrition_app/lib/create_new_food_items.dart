@@ -327,9 +327,31 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
                               hintText: "Amount"),
                         ),
                       ),
+                      SizedBox(width: 8),
+              Column(
+                children: <Widget>[
+                  DropdownButton<String>(
+                    value: oldvalue,
+                    onChanged: (String? newValue){
+                      setState(() {
+                        oldvalue = newValue!;
+                      });
+                    },
+                    items: <String>['g', 'mg']
+                    .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
                     ],
+                    
                   ),
                 );
+                
 
             }).toList(),
 
