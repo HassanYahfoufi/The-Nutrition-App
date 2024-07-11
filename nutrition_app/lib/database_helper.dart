@@ -45,6 +45,7 @@ class DatabaseHelper {
   String colFoodItemID = "food_item_id";
   String colAmount = "amount";
   //-------------------------------------
+ 
   String colFoodName = "foodName";
   String colIngredient = "ingredient";
   String colAllergen = "allergen";
