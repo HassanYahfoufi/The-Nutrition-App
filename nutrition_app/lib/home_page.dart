@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
               SizedOutlinedButton(text: "BMI", height: buttonHeight, width: buttonWidth),
               SizedOutlinedButton(text: "Weight", height: buttonHeight, width: buttonWidth),
             ]),
-            SizedBox(child: LineChartWidget(), height: 200, width: 700),
+            SizedBox(child: LineChartWidget(), height: 300, width: 700),
           ]),
         ),
         SizedBox(height: (spacerHeight * 2)),
@@ -76,8 +76,7 @@ class _HomePageState extends State<HomePage> {
         SizedOutlinedButton(text: "View Status Updates", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllStatusUpdatesPage(parentObject:widget.thisUser, thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "View Consumed Foods", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllConsumedFoodsPage(parentObject:widget.thisUser, thisUser: widget.thisUser)),);}),
-        SizedBox(height: spacerHeight),
-        SizedOutlinedButton(text: "Sign Out", height: buttonHeight, width: buttonWidth, onPressed: () {displayDialogSignOut(context);},)
+       
       ],),
     )]);
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multiple_search_selection/multiple_search_selection.dart';
 import 'package:nutrition_app/main.dart';
 import 'package:nutrition_app/home_page.dart';
 import 'package:nutrition_app/settings_page.dart';
@@ -32,7 +33,11 @@ class _PageWidgetState extends State<PageWidget> {
               (widget.lastPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.lastPage!),), icon: Icon(Icons.close )) : Container(),
               
               (widget.editPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.editPage!),), icon: Icon(Icons.edit )) : SizedBox.shrink(),
-              IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle ))
+              IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle )),
+
+              IconButton(onPressed: () { displayDialogSignOut(context);}, icon: Icon(Icons.exit_to_app)),
+
+
             ], 
             title: Text(widget.pageName)),
             body: Stack(
@@ -347,3 +352,4 @@ void displayDialogSignOut(BuildContext context){
     },
   );
 }
+
