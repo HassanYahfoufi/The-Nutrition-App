@@ -36,11 +36,19 @@ class _HomePageState extends State<HomePage> {
       child: Column(children: [
         
         SizedBox(height: 25),
-        Icon(Icons.more_vert),
+       
 
         Center(child:
-          Column(children:[
-            Row(children:[
+          Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+            children:[
+  
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              
+              children:[
               SizedOutlinedButton(text: "Calories", height: buttonHeight, width: buttonWidth),
               SizedOutlinedButton(text: "BMI", height: buttonHeight, width: buttonWidth),
               SizedOutlinedButton(text: "Weight", height: buttonHeight, width: buttonWidth),
