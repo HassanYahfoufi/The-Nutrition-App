@@ -46,7 +46,7 @@ class _ViewAllStatusUpdatesPageState extends State<ViewAllStatusUpdatesPage> {
     widget.parentObject.readFromDatabase();
     statusUpdates = widget.parentObject.statusUpdates;
 
-    //This is temporary code plaeas refactor this to make the program more robust --------------------------
+    //This is temporary code please refactor this to make the program more robust --------------------------
     if(tempStatusUpdates.length > statusUpdates.length)
     {
       debugPrint("[ViewAllStatusUpdatesPage-> setUp()] ERROR updating collecting status updates via user failed!!!!!!!!!!!!!!!!!!!");

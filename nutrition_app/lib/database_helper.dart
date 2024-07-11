@@ -45,13 +45,11 @@ class DatabaseHelper {
   String colFoodItemID = "food_item_id";
   String colAmount = "amount";
   //-------------------------------------
-  String colAmount = "amount";
   String colFoodName = "foodName";
   String colIngredient = "ingredient";
-  String ColAllergen = "allergen";
-  String colFoodItemID = "food_item_id";
+  String colAllergen = "allergen";
+  String colServingSize = "serving_size";
   //--------------- DELETE ---------------
-  
   String colRequired_Var01 = "required_var01";
   String colRequired_Var02 = "required_var02";
 
@@ -194,10 +192,7 @@ class DatabaseHelper {
     debugPrint("$space[DatabaseHelper -> createTable($tableName)] End");
   }
 
-  Future<int> insert(
-      {required String tableName,
-      required Map<String, dynamic> objectAsMap,
-      int? recursiveIterationCount}) async {
+  Future<int> insert({required String tableName, required Map<String, dynamic> objectAsMap, int? recursiveIterationCount}) async {
     String space = "";
     if (recursiveIterationCount != null) {
       space = "-";
