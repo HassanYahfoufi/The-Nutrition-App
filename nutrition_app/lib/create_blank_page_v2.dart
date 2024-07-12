@@ -74,6 +74,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
         
       }
     }
+    debugPrint("[CreateBlankPage-> submit()] The new Blank With Space as a map: ${blankMap.toString()}...");
     
     debugPrint("[CreateBlankPage-> submit()] creating the new Blank With Space...");
     newBlank = Blank.fromMap(blankMap);
@@ -194,6 +195,20 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
     variablesInfo["required_var02"]!["name_with_underscore"] = "required_var_underscore02";
     variablesInfo["required_var02"]!["NameWithSpace"] = "Required Variable With Space #02";
     //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    variablesInfo["required_var03"] = <String, dynamic>{};
+    variablesInfo["required_var03"]!["TextEditingController"] = TextEditingController();
+    variablesInfo["required_var03"]!["DataType"] = requiredVar03_DataType;
+    variablesInfo["required_var03"]!["name_with_underscore"] = "required_var_underscore03";
+    variablesInfo["required_var03"]!["NameWithSpace"] = "Required Variable With Space #03";
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    variablesInfo["required_var04"] = <String, dynamic>{};
+    variablesInfo["required_var04"]!["TextEditingController"] = TextEditingController();
+    variablesInfo["required_var04"]!["DataType"] = requiredVar04_DataType;
+    variablesInfo["required_var04"]!["name_with_underscore"] = "required_var_underscore04";
+    variablesInfo["required_var04"]!["NameWithSpace"] = "Required Variable With Space #04";
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -209,6 +224,20 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
     variablesInfo["required_conversion_var02"]!["DataType"] = required_conversionVar02_DataType;
     variablesInfo["required_conversion_var02"]!["name_with_underscore"] = "required_conversion_var_underscore02";
     variablesInfo["required_conversion_var02"]!["NameWithSpace"] = "Required Conversion Variable With Space #02";
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    variablesInfo["required_conversion_var03"] = <String, dynamic>{};
+    variablesInfo["required_conversion_var03"]!["TextEditingController"] = TextEditingController();
+    variablesInfo["required_conversion_var03"]!["DataType"] = required_conversionVar03_DataType;
+    variablesInfo["required_conversion_var03"]!["name_with_underscore"] = "required_conversion_var_underscore03";
+    variablesInfo["required_conversion_var03"]!["NameWithSpace"] = "Required Conversion Variable With Space #03";
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    variablesInfo["required_conversion_var04"] = <String, dynamic>{};
+    variablesInfo["required_conversion_var04"]!["TextEditingController"] = TextEditingController();
+    variablesInfo["required_conversion_var04"]!["DataType"] = required_conversionVar04_DataType;
+    variablesInfo["required_conversion_var04"]!["name_with_underscore"] = "required_conversion_var_underscore04";
+    variablesInfo["required_conversion_var04"]!["NameWithSpace"] = "Required Conversion Variable With Space #04";
     //!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!

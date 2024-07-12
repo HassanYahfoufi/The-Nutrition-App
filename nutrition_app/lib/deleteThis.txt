@@ -1,29 +1,23 @@
 /*
-  Food Item = Food Item
-  FoodItem = FoodItem
-  foodItem = foodItem
-
+  Food Item Nutrient = Food Item Nutrient
+  FoodItemNutrient = FoodItemNutrient
+  foodItemNutrient = foodItemNutrient
   
-  name = name
-  String = String
-  Name = Name
-  name = name
-  Name = Name
-
-  servingSize = servingSize
+  foodItemID = foodItemID
   int = int
-  ServingSize = ServingSize
-  serving_size = serving_size
-  Serving Size = Serving Size
+  FoodItemID = FoodItemID
+  food_item_id = food_item_id
+  Food Item ID = Food Item ID
 
-  note = note
-  String = String
-  Note = Note
-  note = note
-  Note = Note
+  nutrientInfoID = nutrientInfoID
+  int = int
+  NutrientInfoID = NutrientInfoID
+  nutrient_info_id = nutrient_info_id
+  Nutrient Info ID = Nutrient Info ID
 
-  nutrients = nutrients
-  Nutrient = Nutrient
-  Nutrients = Nutrients
-  
+  amount = amount
+  double = double
+  Amount = Amount
+  amount = amount
+  Amount = Amount
 */

@@ -1185,6 +1185,569 @@ class FoodItem {
 }
 
 
+class FoodItemNutrient {
+  FoodItemNutrient(
+      {ID,
+      required int FoodItemID,
+      required int NutrientInfoID,
+      required double Amount,
+      }) {
+    debugPrint("[Classes->FoodItemNutrient-> CONSTRUCTOR] Start");
+    if (ID != null) {
+      _id = ID;
+    }
+    foodItemID = FoodItemID;
+    nutrientInfoID = NutrientInfoID;
+    amount = Amount;
+    
+
+    debugPrint("[Classes->FoodItemNutrient-> CONSTRUCTOR] End");
+  }
+ 
+
+  int? _id;
+
+  late int foodItemID;
+  late int nutrientInfoID;
+  late double amount;
+  
+
+  DatabaseHelper _databaseHelper = DatabaseHelper();
+
+
+  int? get id => _id;
+  
+
+
+  Future<int> countMatching() async {
+    debugPrint("[Classes->FoodItemNutrient->countMatching()] Entered");
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+    matchConditions[_databaseHelper.colFoodItemID] = foodItemID;
+    matchConditions[_databaseHelper.colNutrientInfoID] = nutrientInfoID;
+    
+    //A list of rows that matched the given criteria from the target table
+    List<Map<String, dynamic>> matchingFoodItemNutrients =
+        await _databaseHelper.getMatchingRows_WhereColumns(
+            tableName: "FoodItemNutrientTable", conditions: matchConditions);
+
+    if (matchingFoodItemNutrients.length == 1) {
+      debugPrint("[Classes->FoodItemNutrient->countMatching()] End");
+      return 1;
+    } else if (matchingFoodItemNutrients.length > 1) {
+      debugPrint(
+          "[Classes->FoodItemNutrient->countMatching()] Error more than 1 foodItemNutrient found but there should only be 1 or 0.");
+      debugPrint("[Classes->FoodItemNutrient->countMatching()] End");
+      return matchingFoodItemNutrients.length;
+    } else {
+      debugPrint("[Classes->FoodItemNutrient->countMatching()] End");
+      return 0;
+    }
+  }
+  
+  Future<void> readID() async {
+    debugPrint("[Classes->FoodItemNutrient-> readID()] Start");
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+    
+    matchConditions[_databaseHelper.colFoodItemID] = foodItemID;
+    matchConditions[_databaseHelper.colNutrientInfoID] = nutrientInfoID;
+    
+    List<String> outputColumns = [_databaseHelper.colID];
+
+    debugPrint("[Classes->FoodItemNutrient-> readID()] retrieving data from database ...");
+    //a list of matching rows except only the requested columns of each row are output.
+    List<Map<String, dynamic>> output =
+        await _databaseHelper.getMatchingColumns_WhereColumns(
+            tableName: "FoodItemNutrientTable",
+            conditions: matchConditions,
+            outputColumns: outputColumns);
+
+    debugPrint("[Classes->FoodItemNutrient-> readID()] processing ...");
+    if(output.length == 1)
+    {
+      _id = output[0][_databaseHelper.colID];
+    }
+    else
+    {
+      if(output.length == 0)
+      {
+        debugPrint("[Classes->FoodItemNutrient-> readID()] ERROR: No matching users found!");
+      }
+      else
+      {
+        debugPrint("[Classes->FoodItemNutrient-> readID()] ERROR: ${output.length} matching users found!");
+      }
+      
+    }
+
+    debugPrint("[Classes->FoodItemNutrient-> readID()] End");
+  }
+  
+  
+
+  
+
+  
+
+  Future<int> create() async {
+    debugPrint("[Classes->FoodItemNutrient-> create()] Start");
+
+    debugPrint("[Classes->FoodItemNutrient-> create()] inserting new foodItemNutrient into database ...");
+    int result = await _databaseHelper.insert(tableName: "FoodItemNutrientTable", objectAsMap: toMap());
+    debugPrint("[Classes->FoodItemNutrient-> create()] Insertion COMPLETE. result = ${result}");
+    
+    debugPrint("[Classes->FoodItemNutrient-> create()] End");
+    return result;
+  }
+
+  Future<bool> readFromDatabase() async {
+    debugPrint("[Classes->FoodItemNutrient-> readFromDatabase()] Start");
+    if (_id == null) {
+      Map<String, dynamic> matchConditions = Map<String, dynamic>();
+      
+      
+      matchConditions[_databaseHelper.colFoodItemID] = foodItemID;
+      matchConditions[_databaseHelper.colNutrientInfoID] = nutrientInfoID;
+    
+
+      
+      debugPrint("[Classes->FoodItemNutrient-> readFromDatabase()] Retrieving data from database (using required variables)...");
+      
+      List<Map<String, dynamic>> matchingFoodItemNutrients = await _databaseHelper.getMatchingRows_WhereColumns( tableName: "FoodItemNutrientTable", conditions: matchConditions);
+
+      if (matchingFoodItemNutrients.length == 1) 
+      {
+        debugPrint("[Classes->FoodItemNutrient-> readFromDatabase()] processing data...");
+        readFromMap(matchingFoodItemNutrients[0]);
+        
+
+        return true;
+      } 
+      else if (matchingFoodItemNutrients.length > 1) 
+      {
+        debugPrint("[Classes->FoodItemNutrient-> readFromDatabase()] Error more than 1 foodItemNutrient found but there should only be 1 or 0.");
+        debugPrint("[Classes->FoodItemNutrient-> readFromDatabase()] End");
+        return false;
+      } 
+      else 
+      {
+        debugPrint("[Classes->FoodItemNutrient-> readFromDatabase()] No matching foodItemNutrients found!");
+        debugPrint("[Classes->FoodItemNutrient-> readFromDatabase()] End");
+        return false;
+      }
+    } else {
+      debugPrint(
+          "[Classes->FoodItemNutrient-> readFromDatabase()] Retrieving data from database (using id)...");
+      List<Map<String, dynamic>> matchingFoodItemNutrients =
+          await _databaseHelper.getMatchingRows(
+              tableName: "FoodItemNutrientTable",
+              column: _databaseHelper.colID,
+              value: _id.toString());
+
+      debugPrint("[Classes->FoodItemNutrient-> readFromDatabase()] processing data...");
+      readFromMap(matchingFoodItemNutrients[0]);
+      debugPrint("[Classes->FoodItemNutrient-> readFromDatabase()] End");
+      return true;
+    }
+  }
+  
+  FoodItemNutrient.fromMap(Map<String, dynamic> map) {
+    debugPrint("[Classes->FoodItemNutrient-> FoodItemNutrient.fromMap()] Start");
+
+    _id = map["id"];
+
+    foodItemID = map["food_item_id"];
+    nutrientInfoID = map["nutrient_info_id"];
+    amount = map["amount"];
+    
+    debugPrint("[Classes->FoodItemNutrient-> FoodItemNutrient.fromMap()] End");
+  }
+  Future<void> readFromMap(Map<String, dynamic> map) async 
+  {
+    debugPrint("[Classes->FoodItemNutrient-> readFoodItemNutrientFromMap()] Start");
+
+    _id = map["id"];
+    foodItemID = map["food_item_id"];
+    nutrientInfoID = map["nutrient_info_id"];
+    amount = map["amount"];
+    
+
+    debugPrint("[Classes->FoodItemNutrient-> readFoodItemNutrientFromMap()] End");
+  }
+  
+  Future<FoodItemNutrient> fromMap(Map<String, dynamic> map) async {
+    debugPrint("[Classes->FoodItemNutrient-> readFoodItemNutrientFromMap()] Start");
+
+    FoodItemNutrient tempFoodItemNutrient = FoodItemNutrient.fromMap(map);
+
+    
+    debugPrint("[Classes->FoodItemNutrient-> readFoodItemNutrientFromMap()] End");
+    return tempFoodItemNutrient;
+  }
+  Map<String, dynamic> toMap() {
+    debugPrint("[Classes->FoodItemNutrient-> toMap()] Start");
+    Map<String, dynamic> map = Map<String, dynamic>();
+
+
+    if (_id != null) {
+      map['id'] = _id;
+    }
+    map["food_item_id"] = this.foodItemID;
+    map["nutrient_info_id"] = this.nutrientInfoID;
+    map["amount"] = this.foodItemID;
+    
+    debugPrint("[Classes->FoodItemNutrient-> toMap()] End");
+    return map;
+  }
+  
+
+  Future<int> update() async {
+    debugPrint("[Classes->FoodItemNutrient-> update()] Start");
+    int result = 0;
+
+    debugPrint("[Classes->FoodItemNutrient-> update()] updating...");
+    result = await _databaseHelper.update(tableName: "FoodItemNutrientTable", tableRow: this);
+    //result = await _databaseHelper.update_fromMap(tableName: "FoodItemNutrientTable", values: toMap());
+    debugPrint("[Classes->FoodItemNutrient-> update()] update result: $result");
+
+    
+    debugPrint("[Classes->FoodItemNutrient-> update()] end");
+    return result;
+  }
+
+  Future<int> delete() async {
+    int result = 0;
+
+    return result;
+  }
+}
+
+
+class NutrientInfo {
+  NutrientInfo(
+      {ID,
+      required int UserID,
+      required int NutrientID,
+      required String Name,
+      required double RecomendedDietaryAllowance,
+      required int UnitOfMeasurement_RecomendedDietaryAllowance,
+      String? Description,
+      double? AdequateIntake,
+      int? UnitOfMeasurement_AdequateIntake,
+      double? EstimatedAverageRequirement,
+      int? UnitOfMeasurement_EstimatedAverageRequirement,
+      double? TolerableUpperIntakeLevel,
+      int? UnitOfMeasurement_TolerableUpperIntakeLevel,
+      int? Age,
+      int? Sex,
+      double? Weight,
+      int? Lifestyle,
+      int? PhysiologicalStatus,
+      }) {
+    debugPrint("[Classes->NutrientInfo-> CONSTRUCTOR] Start");
+    if (ID != null) {
+      _id = ID;
+    }
+    userID = UserID;
+    nutrientID = NutrientID;
+    name = Name;
+    recomendedDietaryAllowance = RecomendedDietaryAllowance;
+    unitOfMeasurement_recomendedDietaryAllowance = UnitOfMeasurement_RecomendedDietaryAllowance;
+    description = Description;
+    adequateIntake = AdequateIntake;
+    unitOfMeasurement_adequateIntake = UnitOfMeasurement_AdequateIntake;
+    estimatedAverageRequirement = EstimatedAverageRequirement;
+    unitOfMeasurement_estimatedAverageRequirement = UnitOfMeasurement_EstimatedAverageRequirement;
+    tolerableUpperIntakeLevel = TolerableUpperIntakeLevel;
+    unitOfMeasurement_tolerableUpperIntakeLevel = UnitOfMeasurement_TolerableUpperIntakeLevel;
+    _age = Age;
+    _sex = Sex;
+    _weight = Weight;
+    _lifestyle = Lifestyle;
+    _physiologicalStatus = PhysiologicalStatus;
+    
+    debugPrint("[Classes->NutrientInfo-> CONSTRUCTOR] End");
+  }
+ 
+
+  int? _id;
+
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  late int userID;
+  late int nutrientID;
+  late String name;
+  late double recomendedDietaryAllowance;
+  late int unitOfMeasurement_recomendedDietaryAllowance;
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  String? description;
+  double? adequateIntake;
+  int? unitOfMeasurement_adequateIntake;
+  double? estimatedAverageRequirement;
+  int? unitOfMeasurement_estimatedAverageRequirement;
+  double? tolerableUpperIntakeLevel;
+  int? unitOfMeasurement_tolerableUpperIntakeLevel;
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  int? _age;
+  int? _sex;
+  double? _weight;
+  int? _lifestyle;
+  int? _physiologicalStatus;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+
+  DatabaseHelper _databaseHelper = DatabaseHelper();
+
+
+  int? get id => _id;
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  int? get age => _age;
+  int? get sex => _sex;
+  double? get weight => _weight;
+  int? get lifestyle => _lifestyle;
+  int? get physiologicalStatus => _physiologicalStatus;
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+  Future<int> countMatching() async {
+    debugPrint("[Classes->NutrientInfo->countMatching()] Entered");
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+    matchConditions[_databaseHelper.colUserID] = userID;
+    matchConditions[_databaseHelper.colNutrientID] = nutrientID;
+    matchConditions[_databaseHelper.colName] = name;
+
+    //A list of rows that matched the given criteria from the target table
+    List<Map<String, dynamic>> matchingNutrientInfos =
+        await _databaseHelper.getMatchingRows_WhereColumns(
+            tableName: "NutrientInfoTable", conditions: matchConditions);
+
+    if (matchingNutrientInfos.length == 1) {
+      debugPrint("[Classes->NutrientInfo->countMatching()] End");
+      return 1;
+    } else if (matchingNutrientInfos.length > 1) {
+      debugPrint(
+          "[Classes->NutrientInfo->countMatching()] Error more than 1 nutrientInfo found but there should only be 1 or 0.");
+      debugPrint("[Classes->NutrientInfo->countMatching()] End");
+      return matchingNutrientInfos.length;
+    } else {
+      debugPrint("[Classes->NutrientInfo->countMatching()] End");
+      return 0;
+    }
+  }
+  
+  Future<void> readID() async {
+    debugPrint("[Classes->NutrientInfo-> readID()] Start");
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+
+    matchConditions[_databaseHelper.colUserID] = userID;
+    matchConditions[_databaseHelper.colNutrientID] = nutrientID;
+    matchConditions[_databaseHelper.colName] = name;
+      
+    List<String> outputColumns = [_databaseHelper.colID];
+
+    debugPrint("[Classes->NutrientInfo-> readID()] retrieving data from database ...");
+    //a list of matching rows except only the requested columns of each row are output.
+    List<Map<String, dynamic>> output =
+        await _databaseHelper.getMatchingColumns_WhereColumns(
+            tableName: "NutrientInfoTable",
+            conditions: matchConditions,
+            outputColumns: outputColumns);
+
+    debugPrint("[Classes->NutrientInfo-> readID()] processing ...");
+    if(output.length == 1)
+    {
+      _id = output[0][_databaseHelper.colID];
+    }
+    else
+    {
+      if(output.length == 0)
+      {
+        debugPrint("[Classes->NutrientInfo-> readID()] ERROR: No matching users found!");
+      }
+      else
+      {
+        debugPrint("[Classes->NutrientInfo-> readID()] ERROR: ${output.length} matching users found!");
+      }
+      
+    }
+
+    debugPrint("[Classes->NutrientInfo-> readID()] End");
+  }
+  
+  
+
+  
+
+
+  
+
+
+
+
+  Future<int> create() async {
+    debugPrint("[Classes->NutrientInfo-> create()] Start");
+
+    debugPrint("[Classes->NutrientInfo-> create()] inserting new nutrientInfo into database ...");
+    int result = await _databaseHelper.insert(tableName: "NutrientInfoTable", objectAsMap: toMap());
+    debugPrint("[Classes->NutrientInfo-> create()] Insertion COMPLETE. result = ${result}");
+    
+    debugPrint("[Classes->NutrientInfo-> create()] End");
+    return result;
+  }
+
+  Future<bool> readFromDatabase() async {
+    debugPrint("[Classes->NutrientInfo-> readFromDatabase()] Start");
+    if (_id == null) {
+      Map<String, dynamic> matchConditions = Map<String, dynamic>();
+      
+      matchConditions[_databaseHelper.colUserID] = userID;
+      matchConditions[_databaseHelper.colNutrientID] = nutrientID;
+      matchConditions[_databaseHelper.colName] = name;
+      
+      
+      debugPrint("[Classes->NutrientInfo-> readFromDatabase()] Retrieving data from database (using required variables)...");
+      
+      List<Map<String, dynamic>> matchingNutrientInfos = await _databaseHelper.getMatchingRows_WhereColumns( tableName: "NutrientInfoTable", conditions: matchConditions);
+
+      if (matchingNutrientInfos.length == 1) 
+      {
+        debugPrint("[Classes->NutrientInfo-> readFromDatabase()] processing data...");
+        readFromMap(matchingNutrientInfos[0]);
+
+        return true;
+      } 
+      else if (matchingNutrientInfos.length > 1) 
+      {
+        debugPrint("[Classes->NutrientInfo-> readFromDatabase()] Error more than 1 nutrientInfo found but there should only be 1 or 0.");
+        debugPrint("[Classes->NutrientInfo-> readFromDatabase()] End");
+        return false;
+      } 
+      else 
+      {
+        debugPrint("[Classes->NutrientInfo-> readFromDatabase()] No matching nutrientInfos found!");
+        debugPrint("[Classes->NutrientInfo-> readFromDatabase()] End");
+        return false;
+      }
+    } else {
+      debugPrint(
+          "[Classes->NutrientInfo-> readFromDatabase()] Retrieving data from database (using id)...");
+      List<Map<String, dynamic>> matchingNutrientInfos =
+          await _databaseHelper.getMatchingRows(
+              tableName: "NutrientInfoTable",
+              column: _databaseHelper.colID,
+              value: _id.toString());
+
+      debugPrint("[Classes->NutrientInfo-> readFromDatabase()] processing data...");
+      readFromMap(matchingNutrientInfos[0]);
+      debugPrint("[Classes->NutrientInfo-> readFromDatabase()] End");
+      return true;
+    }
+  }
+  
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  NutrientInfo.fromMap(Map<String, dynamic> map) {
+    debugPrint("[Classes->NutrientInfo-> NutrientInfo.fromMap()] Start");
+
+    _id = map["id"];
+    
+    userID = map["user_id"];
+    nutrientID = map["nutrient_id"];
+    name = map["name"];
+    recomendedDietaryAllowance = map["recomended_dietary_allowance"];
+    unitOfMeasurement_recomendedDietaryAllowance = map["unit_of_measurement_for_recomended_dietary_allowance"];
+    description = map["description"];
+    adequateIntake = map["adequate_intake"];
+    unitOfMeasurement_adequateIntake = map["unit_of_measurement_for_adequate_intake"];
+    estimatedAverageRequirement = map["estimated_average_requirement"];
+    unitOfMeasurement_estimatedAverageRequirement = map["unit_of_measurement_for_estimated_average_requirement"];
+    tolerableUpperIntakeLevel = map["tolerable_upper_intake_level"];
+    unitOfMeasurement_tolerableUpperIntakeLevel = map["unit_of_measurement_for_tolerable_upper_intake_level"];
+    
+
+    debugPrint("[Classes->NutrientInfo-> NutrientInfo.fromMap()] End");
+  }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  Future<void> readFromMap(Map<String, dynamic> map) async 
+  {
+    debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromMap()] Start");
+
+    _id = map["id"];
+    userID = map["user_id"];
+    nutrientID = map["nutrient_id"];
+    name = map["name"];
+    recomendedDietaryAllowance = map["recomended_dietary_allowance"];
+    unitOfMeasurement_recomendedDietaryAllowance = map["unit_of_measurement_for_recomended_dietary_allowance"];
+    description = map["description"];
+    adequateIntake = map["adequate_intake"];
+    unitOfMeasurement_adequateIntake = map["unit_of_measurement_for_adequate_intake"];
+    estimatedAverageRequirement = map["estimated_average_requirement"];
+    unitOfMeasurement_estimatedAverageRequirement = map["unit_of_measurement_for_estimated_average_requirement"];
+    tolerableUpperIntakeLevel = map["tolerable_upper_intake_level"];
+    unitOfMeasurement_tolerableUpperIntakeLevel = map["unit_of_measurement_for_tolerable_upper_intake_level"];
+    
+    debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromMap()] End");
+  }
+  
+  Future<NutrientInfo> fromMap(Map<String, dynamic> map) async {
+    debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromMap()] Start");
+
+    NutrientInfo tempNutrientInfo = NutrientInfo.fromMap(map);
+
+    debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromMap()] End");
+    return tempNutrientInfo;
+  }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> map = Map<String, dynamic>();
+
+    if (_id != null) {
+      map['id'] = _id;
+    }
+    map["user_id"] = this.userID;
+    map["nutrient_id"] = this.nutrientID;
+    map["name"] = this.name;
+    map["recomended_dietary_allowance"] = this.recomendedDietaryAllowance;
+    map["unit_of_measurement_for_recomended_dietary_allowance"] = this.unitOfMeasurement_recomendedDietaryAllowance;
+    map["description"] = description;
+    map["adequate_intake"] = adequateIntake;
+    map["unit_of_measurement_for_adequate_intake"] = unitOfMeasurement_adequateIntake;
+    map["estimated_average_requirement"] = estimatedAverageRequirement;
+    map["unit_of_measurement_for_estimated_average_requirement"] = unitOfMeasurement_estimatedAverageRequirement;
+    map["tolerable_upper_intake_level"] = tolerableUpperIntakeLevel;
+    map["unit_of_measurement_for_tolerable_upper_intake_level"] = unitOfMeasurement_tolerableUpperIntakeLevel;
+    
+    return map;
+  }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  Future<int> update() async {
+    debugPrint("[Classes->NutrientInfo-> update()] Start");
+    int result = 0;
+
+    debugPrint("[Classes->NutrientInfo-> update()] updating...");
+    result = await _databaseHelper.update(tableName: "NutrientInfoTable", tableRow: this);
+    //result = await _databaseHelper.update_fromMap(tableName: "NutrientInfoTable", values: toMap());
+    debugPrint("[Classes->NutrientInfo-> update()] update result: $result");
+
+    
+    debugPrint("[Classes->NutrientInfo-> update()] end");
+    return result;
+  }
+
+  Future<int> delete() async {
+    int result = 0;
+
+    return result;
+  }
+}
+
+
 
 class ConsumedFood {
   ConsumedFood(
