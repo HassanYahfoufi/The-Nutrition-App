@@ -15,6 +15,7 @@ import 'package:nutrition_app/create_food_item_nutrient_page.dart';
 import 'package:nutrition_app/view_all_food_item_nutrients_page.dart';
 import 'package:nutrition_app/create_nutrient_info_page.dart';
 import 'package:nutrition_app/view_all_nutrient_infos_page.dart';
+//import 'package:nutrition_app/create_new_food_items.dart';
 
 
 
@@ -56,21 +57,23 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: (spacerHeight * 2)),
         //SizedOutlinedButton(text: "View Food Items", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewFoodItems(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
 
+        SizedBox(height: spacerHeight),
+        //SizedOutlinedButton(text: "Add New Food Item", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFoodItem(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         
 
         SizedOutlinedButton(text: "Update Status", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateStatusUpdatePage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "Update Status v2", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateStatusUpdatePage_v2(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
-        SizedOutlinedButton(text: "Add New ConsumedFood", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateConsumedFoodPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
+        SizedOutlinedButton(text: "Add ConsumedFood", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateConsumedFoodPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
-        SizedOutlinedButton(text: "Add New Food Item", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFoodItemPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
+        SizedOutlinedButton(text: "Add Food Item", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFoodItemPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
-        SizedOutlinedButton(text: "Add New Blank", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateBlankPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
+        SizedOutlinedButton(text: "Add Blank", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateBlankPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
-        SizedOutlinedButton(text: "Add New Nutrient Info", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateNutrientInfoPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
+        SizedOutlinedButton(text: "Add Nutrient Info", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateNutrientInfoPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
-        SizedOutlinedButton(text: "Add New Food Item Nutrient", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFoodItemNutrientPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
+        SizedOutlinedButton(text: "Add Food Item Nutrient", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFoodItemNutrientPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "View Status Updates", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllStatusUpdatesPage(parentObject:widget.thisUser, thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),

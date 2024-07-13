@@ -878,10 +878,10 @@ class FoodItem {
   late String name;
   late int servingSize;
   String? note;
-  List<Nutrient> _nutrientss = <Nutrient>[];
-  List<Nutrient> newNutrientss = <Nutrient>[];
-  List<Nutrient> updatedNutrientss = <Nutrient>[];
-  List<Nutrient> deleteNutrientss = <Nutrient>[];
+  List<FoodItemNutrient> _nutrients = <FoodItemNutrient>[];
+  List<FoodItemNutrient> newNutrients = <FoodItemNutrient>[];
+  List<FoodItemNutrient> updatedNutrients = <FoodItemNutrient>[];
+  List<FoodItemNutrient> deleteNutrients = <FoodItemNutrient>[];
   
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
@@ -956,55 +956,57 @@ class FoodItem {
   
   
 
-  void addNutrients(Nutrient newNutrients)
+  void addNutrients(FoodItemNutrient newNutrient)
   {
-    newNutrientss.add(newNutrients);
+    newNutrients.add(newNutrient);
   }
-  void removeNutrients(Nutrient nutrients)
+  void removeNutrients(FoodItemNutrient nutrient)
   {
-    if(_nutrientss.contains(nutrients))
+    if(_nutrients.contains(nutrient))
     {
-      //_nutrientss.remove(nutrients);//There is no need to remove it from this list. It would cause an issue if you wanted to add it later after you removed it initially(the object wouldn't be able to tell if it is an entity from the database, updated, or new and therefore wouldn't know what to do with it)
-      deleteNutrientss.add(nutrients);
+      //_nutrients.remove(nutrients);//There is no need to remove it from this list. It would cause an issue if you wanted to add it later after you removed it initially(the object wouldn't be able to tell if it is an entity from the database, updated, or new and therefore wouldn't know what to do with it)
+      deleteNutrients.add(nutrient);
     }
-    else if(newNutrientss.contains(nutrients))
+    else if(newNutrients.contains(nutrient))
     {
-      newNutrientss.remove(nutrients);
+      newNutrients.remove(nutrient);
     }
-    else if(updatedNutrientss.contains(nutrients))
+    else if(updatedNutrients.contains(nutrient))
     {
-      updatedNutrientss.remove(nutrients);
+      updatedNutrients.remove(nutrient);
     }
   }
-  List<Nutrient> get nutrientss => _nutrientss;
+  List<FoodItemNutrient> get nutrients => _nutrients;
 
-  Future<List<int>> createNutrientss() async
+  Future<List<int>> createNutrients() async
   {
-    debugPrint("[Classes->FoodItem-> createNutrientss()] Start");
+    debugPrint("[Classes->FoodItem-> createNutrients()] Start");
     List<int> results = [];
-    for (Nutrient newNutrients in newNutrientss) 
+    for (FoodItemNutrient newNutrient in newNutrients) 
     { 
-      debugPrint("[Classes->FoodItem-> createNutrientss()] inserting new nutrients into database ...");
-      int result = await _databaseHelper.insert(tableName: "FoodItemNutrientsConnectionTable", objectAsMap: newNutrients.toMap());
-      debugPrint("[Classes->FoodItem-> createNutrientss()] Insertion COMPLETE. result = ${result}");
+      debugPrint("[Classes->FoodItem-> createNutrients()] updating new nutrients food item id...");
+      newNutrient.foodItemID = _id!;
+      debugPrint("[Classes->FoodItem-> createNutrients()] inserting new nutrients into database ...");
+      int result = await _databaseHelper.insert(tableName: "FoodItemNutrientTable", objectAsMap: newNutrient.toMap());
+      debugPrint("[Classes->FoodItem-> createNutrients()] Insertion COMPLETE. result = ${result}");
       results.add(result);
 
     }
 
-    debugPrint("[Classes->FoodItem-> createNutrientss()] End");
+    debugPrint("[Classes->FoodItem-> createNutrients()] End");
     return results;
   }
-  Future<void> readNutrientss() async 
+  Future<void> readNutrients() async 
   {
     debugPrint("[Classes->FoodItem-> readNutrients()] Start");
-    _nutrientss.clear();
+    _nutrients.clear();
     
 
 
-    debugPrint("[Classes->Account-> readNutrients()] retrieving nutrientss...");
-    List<Map<String, dynamic>> matchingNutrientss = await _databaseHelper.getMatchingRows(tableName: "NutrientsTable", column: "foodItem_id", value: _id!.toString());
+    debugPrint("[Classes->Account-> readNutrients()] retrieving nutrients...");
+    List<Map<String, dynamic>> matchingNutrients = await _databaseHelper.getMatchingRows(tableName: "NutrientsTable", column: "foodItem_id", value: _id!.toString());
 
-    _nutrientss = matchingNutrientss.map((nutrients) => Nutrient.fromMap(nutrients)).toList();
+    _nutrients = matchingNutrients.map((nutrient) => FoodItemNutrient.fromMap(nutrient)).toList();
     debugPrint("[Classes->FoodItem-> readNutrients()] End");
   } 
   /*Future<int> updateNutrients()
@@ -1023,7 +1025,7 @@ class FoodItem {
   }
   Future<void> createM2Os() async
   {    
-    await createNutrientss();
+    await createNutrients();
   }
   Future<void> readLists() async
   {
@@ -1032,7 +1034,7 @@ class FoodItem {
   Future<void> readM2Os() async
   {
     
-    await readNutrientss();
+    await readNutrients();
     
   }
   
@@ -1046,10 +1048,14 @@ class FoodItem {
     debugPrint("[Classes->FoodItem-> create()] inserting new foodItem into database ...");
     int result = await _databaseHelper.insert(tableName: "FoodItemTable", objectAsMap: toMap());
     debugPrint("[Classes->FoodItem-> create()] Insertion COMPLETE. result = ${result}");
+    debugPrint("[Classes->FoodItem-> create()] retrieving updating id ...");
+    _id = result;
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     if(result >= 1)
     {
-      
+      ///debugPrint("[Classes->FoodItem-> create()] retrieving food item id ...");
+      //await readID();//This doesn't work. It say it can't find a matching food item
+      debugPrint("[Classes->FoodItem-> create()] creating lists ...");
       await createLists();
       
     }
@@ -1061,7 +1067,8 @@ class FoodItem {
 
   Future<bool> readFromDatabase() async {
     debugPrint("[Classes->FoodItem-> readFromDatabase()] Start");
-    if (_id == null) {
+    if (_id == null) 
+    {
       Map<String, dynamic> matchConditions = Map<String, dynamic>();
       
       matchConditions[_databaseHelper.colName] = name;
@@ -1093,7 +1100,8 @@ class FoodItem {
         debugPrint("[Classes->FoodItem-> readFromDatabase()] End");
         return false;
       }
-    } else {
+    } 
+    else {
       debugPrint(
           "[Classes->FoodItem-> readFromDatabase()] Retrieving data from database (using id)...");
       List<Map<String, dynamic>> matchingFoodItems =

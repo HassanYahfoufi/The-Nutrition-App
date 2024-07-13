@@ -383,7 +383,7 @@ class Blank {
     for (m2oVar01_DataType newM2O_Var01 in newM2O_Var01s) 
     { 
       debugPrint("[Classes->Blank-> createM2O_Var01s()] inserting new m2o_var01 into database ...");
-      int result = await _databaseHelper.insert(tableName: "BlankM2O_Var01ConnectionTable", objectAsMap: newM2O_Var01.toMap());
+      int result = await _databaseHelper.insert(tableName: "BlankM2O_Var01Table", objectAsMap: newM2O_Var01.toMap());
       debugPrint("[Classes->Blank-> createM2O_Var01s()] Insertion COMPLETE. result = ${result}");
       results.add(result);
 
@@ -556,7 +556,7 @@ class Blank {
   }
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-
+  
 
 
 

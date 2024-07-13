@@ -368,19 +368,22 @@ class DatabaseHelper {
     return result;
   }
 
-  Future<List<Map<String, dynamic>>> getMatchingRows_WhereColumns(
-      {required String tableName,
-      required Map<String, dynamic> conditions}) async {
+  Future<List<Map<String, dynamic>>> getMatchingRows_WhereColumns({required String tableName,required Map<String, dynamic> conditions}) async 
+  {
     debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] Start");
     String connditionSQL = "";
     conditions.forEach((key, value) {
-      if (value != null) {
+      if (value != null) 
+      {
         connditionSQL = "$connditionSQL AND $key = '${value.toString()}'";
-      } else {
+      } 
+      else 
+      {
         connditionSQL = "$connditionSQL AND $key ISNULL";
       }
     });
-    if (connditionSQL.startsWith(" AND ")) {
+    if (connditionSQL.startsWith(" AND ")) 
+    {
       debugPrint("\tconnditionSQL(before): $connditionSQL");
       connditionSQL = connditionSQL.substring(5);
       debugPrint("\tconnditionSQL(after): $connditionSQL");
@@ -388,10 +391,8 @@ class DatabaseHelper {
     String tableType = table[tableName]!.type;
     Database? db = await getDatabase();
     //List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column = $value");
-    debugPrint(
-        "[DatabaseHelper -> getMatchingRows_WhereColumns()] SELECT * FROM $tableType WHERE $connditionSQL...");
-    List<Map<String, dynamic>> result =
-        await db!.rawQuery("SELECT * FROM $tableType WHERE $connditionSQL");
+    debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] SELECT * FROM $tableType WHERE $connditionSQL...");
+    List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $connditionSQL");
     debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] End");
     return result;
   }
@@ -420,26 +421,24 @@ class DatabaseHelper {
     return result;
   }
 
-  Future<List<Map<String, dynamic>>> getMatchingColumns_WhereColumns(
-      {required String tableName,
-      required Map<String, dynamic> conditions,
-      required List<String> outputColumns}) async {
-    debugPrint(
-        "[DatabaseHelper -> getMatchingColumns_WhereColumns()] Start"); //!!!!!!!!!!!!!!!!!!!!!!!
+  Future<List<Map<String, dynamic>>> getMatchingColumns_WhereColumns({required String tableName, required Map<String, dynamic> conditions, required List<String> outputColumns}) async 
+  {
+    debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] Start"); //!!!!!!!!!!!!!!!!!!!!!!!
     String connditionSQL = "";
-    //List<String> conditionsList = conditions.forEach((key, value) {return key;});
     conditions.forEach((key, value) {
-      connditionSQL = "$connditionSQL AND $key = ${value.toString()}";
+      connditionSQL = "$connditionSQL AND $key = '${value.toString()}'";
     });
-    if (connditionSQL.startsWith(" AND ")) {
+    if (connditionSQL.startsWith(" AND ")) 
+    {
       debugPrint("\tconnditionSQL(before): $connditionSQL");
       //debugPrint("substring: ${connditionSQL.substring(5)}");
       connditionSQL = connditionSQL.substring(5);
 
       debugPrint("\tconnditionSQL(after): $connditionSQL");
-    } else {
-      debugPrint(
-          "[DatabaseHelper -> getMatchingColumns_WhereColumns()] ERROR!");
+    } 
+    else 
+    {
+      debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] ERROR!");
     }
     String outputColumnsSQL = "";
 
@@ -450,10 +449,8 @@ class DatabaseHelper {
     String tableType = table[tableName]!.type;
     Database? db = await getDatabase();
     //List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column = $value");
-    debugPrint(
-        "[DatabaseHelper -> getMatchingColumns_WhereColumns()] SELECT $outputColumnsSQL FROM $tableType WHERE $connditionSQL...");
-    List<Map<String, dynamic>> result = await db!.rawQuery(
-        "SELECT $outputColumnsSQL FROM $tableType WHERE $connditionSQL");
+    debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] SELECT $outputColumnsSQL FROM $tableType WHERE $connditionSQL...");
+    List<Map<String, dynamic>> result = await db!.rawQuery("SELECT $outputColumnsSQL FROM $tableType WHERE $connditionSQL");
     debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] End");
     return result;
   }
