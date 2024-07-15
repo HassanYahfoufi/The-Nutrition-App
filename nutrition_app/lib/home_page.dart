@@ -43,15 +43,25 @@ class _HomePageState extends State<HomePage> {
       child: Column(children: [
         
         SizedBox(height: 25),
+       
+
         Center(child:
-          Column(children:[
-            Row(children:[
-              SizedBox(width: 200),
+          Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+            children:[
+  
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              
+              children:[
+
               SizedOutlinedButton(text: "Calories", height: buttonHeight, width: buttonWidth),
               SizedOutlinedButton(text: "BMI", height: buttonHeight, width: buttonWidth),
               SizedOutlinedButton(text: "Weight", height: buttonHeight, width: buttonWidth),
             ]),
-            SizedBox(child: LineChartWidget(), height: 200, width: 700),
+            SizedBox(child: LineChartWidget(), height: 300, width: 700),
           ]),
         ),
         SizedBox(height: (spacerHeight * 2)),
@@ -84,8 +94,6 @@ class _HomePageState extends State<HomePage> {
         SizedOutlinedButton(text: "View All Nutrient Infos", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllNutrientInfosPage(thisUser: widget.thisUser)));}),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "View Food Item Nutrientss", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllFoodItemNutrientsPage(parentObject:widget.thisUser, thisUser: widget.thisUser)),);}),
-        SizedBox(height: spacerHeight),
-        SizedOutlinedButton(text: "Sign Out", height: buttonHeight, width: buttonWidth, onPressed: () {displayDialogSignOut(context);},)
       ],),
     )]);
   }
