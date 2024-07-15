@@ -1,48 +1,23 @@
-  Status Update = Status Update
-  StatusUpdate = StatusUpdate
-  statusUpdate = statusUpdate
+/*
+  Food Item Nutrient = Food Item Nutrient
+  FoodItemNutrient = FoodItemNutrient
+  foodItemNutrient = foodItemNutrient
   
-  userID = userID
+  foodItemID = foodItemID
   int = int
-  UserID = UserID
-  user_id = user_id
-  User ID = User ID
+  FoodItemID = FoodItemID
+  food_item_id = food_item_id
+  Food Item ID = Food Item ID
 
-  title = title
-  String = String
-  Title = Title
-  title = title
-  Title = Title
-  
-  timestamp = timestamp
-  DateTime = DateTime
-  Timestamp = Timestamp
-  timestamp = timestamp
-  Timestamp = Timestamp
+  nutrientInfoID = nutrientInfoID
+  int = int
+  NutrientInfoID = NutrientInfoID
+  nutrient_info_id = nutrient_info_id
+  Nutrient Info ID = Nutrient Info ID
 
-  dateCreated = dateCreated
-  DateTime = DateTime
-  DateCreated = DateCreated
-  date_created = date_created
-  Date Created = Date Created
-
-  dateModified = dateModified
-  DateTime = DateTime
-  DateModified = DateModified
-  date_modified = date_modified
-  Date Modified = Date Modified
-
-  
-
-
-  note = note
-  String = String
-  Note = Note
-  note = note
-  Note = Note
-
-  weight = weight
+  amount = amount
   double = double
-  Weight = Weight
-  weight = weight
-  Weight = Weight
+  Amount = Amount
+  amount = amount
+  Amount = Amount
+*/
