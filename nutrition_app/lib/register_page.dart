@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 
@@ -18,6 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController weightController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  String oldvalue = "Male";
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
@@ -170,13 +172,62 @@ class _RegisterPageState extends State<RegisterPage> {
                             fillColor: Colors.white,
                             filled: true,
                             hintText: "Sex"),
+                            readOnly: true,
+                            onTap: (){
+                              showModalBottomSheet( // substitue for dropdownmenu
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min, // allows it to where the menu doesn't block the screen
+                                      children: <Widget>[
+                                        ListTile(
+                                          title: Text('Male'),
+                                          onTap: () {
+                                            setState(() {
+                                              oldvalue = 'Male';
+                                              sexController.text = oldvalue;
+                                            });
+                                           Navigator.pop(context); // allows it to where the menu goes away once user makes selection
+                                          },
+                                        ),
+                                        ListTile(
+                                          title: Text('Female'),
+                                          onTap: () {
+                                            setState(() {
+                                              oldvalue = 'Female';
+                                              sexController.text = oldvalue;
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                        ListTile(
+                                          title: Text('Prefer Not to Say'),
+                                          onTap: () {
+                                            setState(() {
+                                              oldvalue = 'Prefer Not to Say';
+                                              sexController.text = oldvalue; // saves
+                                            });
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                                          
                       ),
                     ),
+
                     SizedBox(height: 10),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 30),
                       child: TextField(
                         controller: heightController,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.white),
@@ -186,7 +237,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             fillColor: Colors.white,
                             filled: true,
-                            hintText: "Height"),
+                            hintText: "Height (must be numerical)"),
                       ),
                     ),
                     SizedBox(height: 10),
@@ -194,6 +245,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       padding: EdgeInsets.symmetric(horizontal: 30),
                       child: TextField(
                         controller: weightController,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                            ], 
+                            keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.white),
@@ -203,7 +258,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             fillColor: Colors.white,
                             filled: true,
-                            hintText: "Weight"),
+                            hintText: "Weight (must be numerical)"),
                       ),
                     ),
                     SizedBox(height: 10),
@@ -317,3 +372,4 @@ Future<void> DateSeletctor() async {
 
 }
 }
+                            
