@@ -217,14 +217,14 @@ class _SizedOutlinedButtonState extends State<SizedOutlinedButton> {
     );
   }
 }*/
-class LineChartWidget extends StatefulWidget {
-  const LineChartWidget({super.key});
+class WeightLineGraph extends StatefulWidget {
+  const WeightLineGraph({super.key});
 
   @override
-  State<LineChartWidget> createState() => _LineChartWidgetState();
+  State<WeightLineGraph> createState() => _WeightLineGraphState();
 }
 
-class _LineChartWidgetState extends State<LineChartWidget> {
+class _WeightLineGraphState extends State<WeightLineGraph> {
   @override
   Widget build(BuildContext context) {
     
@@ -351,5 +351,218 @@ void displayDialogSignOut(BuildContext context){
       );
     },
   );
+}
+
+class CalorieLineGraph extends StatefulWidget {
+  const CalorieLineGraph({super.key});
+
+  @override
+  State<CalorieLineGraph> createState() => _CalorieLineGraphState();
+}
+
+class _CalorieLineGraphState extends State<CalorieLineGraph> {
+  @override
+  Widget build(BuildContext context) {
+    
+    return LineChart(
+      LineChartData(
+        lineBarsData: [
+          LineChartBarData(
+             spots: [
+              FlSpot(1, 50), //temporary data
+              FlSpot(2, 150),
+              FlSpot(3, 300),
+              FlSpot(4, 200),
+              FlSpot(5, 250),
+            ],
+            isCurved: true,
+           
+      
+           
+          
+          ),
+        ],
+        
+        titlesData: FlTitlesData(
+          topTitles: AxisTitles(
+            
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          rightTitles: AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+            showTitles: true,
+            getTitlesWidget: (value, meta){
+              switch(value.toInt()){
+                case 1:
+                  return Text('January');
+                case 2:
+                  return Text('February');
+                case 3:
+                  return Text('March');
+                case 4:
+                  return Text('April');
+                case 5:
+                  return Text('May');
+                case 6:
+                  return Text('June');
+                case 7:
+                  return Text('July');
+                case 8:
+                  return Text('August');
+                case 9:
+                  return Text('September');
+                case 10:
+                  return Text('October');
+                case 11:
+                  return Text('November');
+                case 12:
+                  return Text('December');
+                default:
+                  return Container();
+              }
+            },
+           interval: 1,
+          )
+          ),
+          leftTitles: AxisTitles(
+            sideTitles: SideTitles(
+              
+              showTitles: true,
+            getTitlesWidget: (value, meta){
+              switch(value.toInt()){
+                case 50:
+                  return Text('50');
+                case 100:
+                  return Text('100');
+                case 150:
+                  return Text('150');
+                case 200:
+                  return Text('200');
+                case 250:
+                  return Text('250');
+                case 300:
+                  return Text('300');
+                
+                default:
+                  return Container();
+              }
+            },
+            interval: 50,
+            ),
+          ),
+        ),
+      ),
+
+    );
+  }
+}
+class BMILineGraph extends StatefulWidget {
+  const BMILineGraph ({super.key});
+
+  @override
+  State<BMILineGraph> createState() => _BMILineGraphState();
+}
+
+class _BMILineGraphState extends State<BMILineGraph> {
+  @override
+  Widget build(BuildContext context) {
+    
+    return LineChart(
+      LineChartData(
+        lineBarsData: [
+          LineChartBarData(
+             spots: [
+              FlSpot(1, 15.0), //temporary data
+              FlSpot(2, 12.0),
+              FlSpot(3, 11.0),
+              FlSpot(4, 14.0),
+              FlSpot(5, 16.0),
+            ],
+            isCurved: true,
+           
+      
+           
+          
+          ),
+        ],
+        
+        titlesData: FlTitlesData(
+          topTitles: AxisTitles(
+            
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          rightTitles: AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+            showTitles: true,
+            getTitlesWidget: (value, meta){
+              switch(value.toInt()){
+                case 1:
+                  return Text('January');
+                case 2:
+                  return Text('February');
+                case 3:
+                  return Text('March');
+                case 4:
+                  return Text('April');
+                case 5:
+                  return Text('May');
+                case 6:
+                  return Text('June');
+                case 7:
+                  return Text('July');
+                case 8:
+                  return Text('August');
+                case 9:
+                  return Text('September');
+                case 10:
+                  return Text('October');
+                case 11:
+                  return Text('November');
+                case 12:
+                  return Text('December');
+                default:
+                  return Container();
+              }
+            },
+           interval: 1,
+          )
+          ),
+          leftTitles: AxisTitles(
+            sideTitles: SideTitles(
+              
+              showTitles: true,
+            getTitlesWidget: (value, meta){
+              switch(value.toInt()){
+                case 11.0:
+                  return Text('11');
+                case 12.0:
+                  return Text('12');
+                case 13.0:
+                  return Text('13');
+                case 14.0:
+                  return Text('14');
+                case 15.0:
+                  return Text('15');
+                case 16.0:
+                  return Text('16');
+                
+                default:
+                  return Container();
+              }
+            },
+            interval: 1,
+            ),
+          ),
+        ),
+      ),
+
+    );
+  }
 }
 

@@ -230,15 +230,15 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
                 child: DropDownMultiSelect(
                   onChanged: (List<NutrientInfo> collection){
                     setState(() {
-                      //nutrientInfos = collection;
+                      nutrientInfos = collection;
                       selectedNutrientInfos = collection;
-                      /*selectedNutrientInfos.clear;
+                      selectedNutrientInfos.clear;
                       for (NutrientInfo? element in collection) {
                         if(element != null)
                         {
                           selectedNutrientInfos.add(element);
                         }
-                      }*/
+                      }
                   });
                   },
                   options: nutrientInfos,
