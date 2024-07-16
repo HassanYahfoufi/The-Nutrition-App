@@ -149,6 +149,10 @@ class _RegisterPageState extends State<RegisterPage> {
                             fillColor: Colors.white,
                             filled: true,
                             hintText: "Date of Birth"),
+                      readOnly: true,
+                      onTap: (){
+                        DateSeletctor();
+                      }
                       ),
                     ),
                     SizedBox(height: 10),
@@ -292,4 +296,24 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+Future<void> DateSeletctor() async {
+  DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(1940),
+    lastDate: DateTime(2025),
+
+
+
+  );
+
+  if (picked != null){
+    setState(() {
+
+      dobController.text = picked.toString().split(" ")[0];
+
+    });
+  }
+
+}
 }

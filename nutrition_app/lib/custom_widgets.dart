@@ -27,6 +27,7 @@ class _PageWidgetState extends State<PageWidget> {
 
     return Scaffold( 
             resizeToAvoidBottomInset : true,
+            backgroundColor: Colors.grey[300],
 
             appBar: AppBar(actions: [
               IconButton(onPressed: widget.home ?? (){debugPrint("[${widget.pageName}] widget.home was empty. Navigating to default which is HomePage()...");Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser)));}, icon: Icon(Icons.home)), 
@@ -39,7 +40,9 @@ class _PageWidgetState extends State<PageWidget> {
 
 
             ], 
-            title: Text(widget.pageName)),
+            title: Text(widget.pageName),
+            backgroundColor: Colors.green,
+            ),
             body: Stack(
               children: [
                 SingleChildScrollView(
@@ -155,7 +158,7 @@ class SizedOutlinedButton extends StatefulWidget {
   double height;
   double width;
   void Function()? onPressed;
-
+  
 
   @override
   State<SizedOutlinedButton> createState() => _SizedOutlinedButtonState();
@@ -165,9 +168,10 @@ class _SizedOutlinedButtonState extends State<SizedOutlinedButton> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      
       children: [
         
-        Container(height: widget.height, width: widget.width, child: OutlinedButton(onPressed: widget.onPressed, child: Text(widget.text)),),
+        Container( height: widget.height, width: widget.width, child: OutlinedButton(onPressed: widget.onPressed, child: Text(widget.text)),),
       ],
     );
   }
