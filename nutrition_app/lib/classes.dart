@@ -610,9 +610,9 @@ class FoodItem{
     required int UserId,
     required String FoodName,
     required double Amount,
-    required String Nutrient,
-    required String Ingredient,
-    required String Allergen,
+    // required String Nutrient,
+    // required String Ingredient,
+    // required String Allergen,
 
 }){
   //
@@ -622,20 +622,20 @@ class FoodItem{
 
   userID = UserId;
   foodName = FoodName;
-  amount = Amount;
-  nutrient = Nutrient;
-  ingredient = Ingredient;
-  allergen = Allergen;
+  servingAmount = Amount;
+  // nutrient = Nutrient;
+  // ingredient = Ingredient;
+  // allergen = Allergen;
 
 
 }
 int? _id;
 late int userID;
 late String foodName;
-late double amount;
-late String nutrient;
-late String ingredient;
-late String allergen;
+late double servingAmount;
+// late String nutrient;
+// late String ingredient;
+// late String allergen;
 
 DatabaseHelper _databaseHelper = DatabaseHelper();
 int? get id => _id;
@@ -645,10 +645,11 @@ Future<int> countMatching() async {
     Map<String, dynamic> matchConditions = Map<String, dynamic>();
     matchConditions[_databaseHelper.colUserID] = userID;
     matchConditions[_databaseHelper.colFoodName] = foodName;
-    matchConditions[_databaseHelper.colAmount] = amount;
-    matchConditions[_databaseHelper.colTimestamp] = nutrient;
-    matchConditions[_databaseHelper.colIngredient] = ingredient;
-    matchConditions[_databaseHelper.colAllergen] = allergen;
+    matchConditions[_databaseHelper.colAmount] = servingAmount;
+    // matchConditions[_databaseHelper.colTimestamp] = nutrient;
+    // matchConditions[_databaseHelper.colIngredient] = ingredient;
+    // matchConditions[_databaseHelper.ColAllergen] = allergen;
+
 
     
     List<Map<String, dynamic>> matchingFoodItem =
@@ -675,10 +676,10 @@ Future<void> readID() async {
     Map<String, dynamic> matchConditions = Map<String, dynamic>();
     matchConditions[_databaseHelper.colUserID] = userID;
     matchConditions[_databaseHelper.colFoodName] = foodName;
-    matchConditions[_databaseHelper.colAmount] = amount;
-    matchConditions[_databaseHelper.colTimestamp] = nutrient;
-    matchConditions[_databaseHelper.colIngredient] = ingredient;
-    matchConditions[_databaseHelper.colAllergen] = allergen;
+    matchConditions[_databaseHelper.colAmount] = servingAmount;
+    // matchConditions[_databaseHelper.colTimestamp] = nutrient;
+    // matchConditions[_databaseHelper.colIngredient] = ingredient;
+    // matchConditions[_databaseHelper.ColAllergen] = allergen;
         
         List<String> outputColumns = [_databaseHelper.colID];
 
@@ -729,11 +730,12 @@ Future<int> create() async {
       Map<String, dynamic> matchConditions = Map<String, dynamic>();
       
       matchConditions[_databaseHelper.colUserID] = userID;
-    matchConditions[_databaseHelper.colFoodName] = foodName;
-    matchConditions[_databaseHelper.colAmount] = amount;
-    matchConditions[_databaseHelper.colTimestamp] = nutrient;
-    matchConditions[_databaseHelper.colIngredient] = ingredient;
-    matchConditions[_databaseHelper.colAllergen] = allergen;
+      matchConditions[_databaseHelper.colFoodName] = foodName;
+      matchConditions[_databaseHelper.colAmount] = servingAmount;
+      // matchConditions[_databaseHelper.colTimestamp] = nutrient;
+      // matchConditions[_databaseHelper.colIngredient] = ingredient;
+      // matchConditions[_databaseHelper.ColAllergen] = allergen;
+
 
       
       debugPrint("[Classes->FoodItem-> readFromDatabase()] Retrieving data from database (using required variables)...");
@@ -783,10 +785,10 @@ Future<int> create() async {
     
     userID = map["user_id"];
     foodName = map["FoodName"];
-    amount = map["amount"];
-    nutrient = map["nutrient"];
-    ingredient = map["nutrient"];
-    allergen = map["allergen"];
+    servingAmount = map["amount"];
+    // nutrient = map["nutrient"];
+    // ingredient = map["nutrient"];
+    // allergen = map["allergen"];
     
     
     
@@ -801,10 +803,10 @@ Future<int> create() async {
     _id = map["id"];
     userID = map["user_id"];
     foodName = map["FoodName"];
-    amount = map["amount"];
-    nutrient = map["nutrient"];
-    ingredient = map["ingredient"];
-    allergen = map["allergen"];
+    servingAmount = map["amount"];
+    // nutrient = map["nutrient"];
+    // ingredient = map["ingredient"];
+    // allergen = map["allergen"];
     
 
     debugPrint("[Classes->FoodItem-> readFoodItemFromMap()] End");
@@ -827,10 +829,10 @@ Future<int> create() async {
     }
     map["user_id"] = this.userID;
     map["foodName"] = this.foodName;
-    map["amount"] = this.amount;
-    map["nutrient"] = this.nutrient;
-    map["ingredient"] = this.ingredient;
-    map["allergen"] = this.allergen;
+    map["amount"] = this.servingAmount;
+    // map["nutrient"] = this.nutrient;
+    // map["ingredient"] = this.ingredient;
+    // map["allergen"] = this.allergen;
      
 
     return map;
