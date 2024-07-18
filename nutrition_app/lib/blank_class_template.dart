@@ -4,52 +4,71 @@ import "package:nutrition_app/database_helper.dart";
 import 'package:nutrition_app/models.dart'; 
 
 /*
-  Blank With Space
-  Blank
-  blank
+  Blank With Space = 
+  Blank = 
+  blank = 
 
   
 
   
-  required_var01
-  requiredVar01_DataType
-  Required_Var01
-  required_var_underscore01
-  Required Variable With Space #01
+  required_var01 = 
+  requiredVar01_DataType = 
+  Required_Var01 = 
+  required_var_underscore01 = 
+  Required Variable With Space #01 = 
 
-  required_conversion_var01
-  required_conversionVar01_DataType
-  Required_Conversion_Var01
-  required_conversion_var_underscore01
-  Required Conversion Variable With Space #01
+  required_var02 = 
+  requiredVar02_DataType = 
+  Required_Var02 = 
+  required_var_underscore02 = 
+  Required Variable With Space #02 = 
+
+  required_var03 = 
+  requiredVar03_DataType = 
+  Required_Var03 = 
+  required_var_underscore03 = 
+  Required Variable With Space #03 = 
+
+  required_var04 = 
+  requiredVar04_DataType = 
+  Required_Var04 = 
+  required_var_underscore04 = 
+  Required Variable With Space #04 = 
+
+  required_conversion_var01 = 
+  required_conversionVar01_DataType = 
+  Required_Conversion_Var01 = 
+  required_conversion_var_underscore01 = 
+  Required Conversion Variable With Space #01 = 
 
 
-  optional_var01
-  optionalVar01_DataType
-  Optional_Var01
-  optional_var_underscore01
-  Optional Variable With Space #01
+  optional_var01 = 
+  optionalVar01_DataType = 
+  Optional_Var01 = 
+  optional_var_underscore01 = 
+  Optional Variable With Space #01 = 
 
-  optional_conversion_var01
-  optional_conversionVar01_DataType
-  Optional_Conversion_Var01
-  optional_conversion_var_underscore01
-  Optional Conversion Variable With Space #01
+  optional_conversion_var01 = 
+  optional_conversionVar01_DataType = 
+  Optional_Conversion_Var01 = 
+  optional_conversion_var_underscore01 = 
+  Optional Conversion Variable With Space #01 = 
 
 
-  nonDB_var01
-  nonDBVar01_DataType
-  NonDB_Var01
+  nonDB_var01 = 
+  nonDBVar01_DataType = 
+  NonDB_Var01 = 
 
-  m2o_var01
-  m2oVar01_DataType
-  M2O_Var01
+  m2o_var01 = 
+  m2oVar01_DataType = 
+  M2O_Var01 = 
 
-  m2m_var01
-  m2mVar01_DataType
-  M2M_Var01
+  m2m_var01 = 
+  m2mVar01_DataType = 
+  M2M_Var01 = 
   
 */
+
 
 
 class Blank {
@@ -59,10 +78,14 @@ class Blank {
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       required requiredVar01_DataType Required_Var01,
       required requiredVar02_DataType Required_Var02,
+      required requiredVar03_DataType Required_Var03,
+      required requiredVar04_DataType Required_Var04,
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       required required_conversionVar01_DataType Required_Conversion_Var01,
       required required_conversionVar02_DataType Required_Conversion_Var02,
+      required required_conversionVar03_DataType Required_Conversion_Var03,
+      required required_conversionVar04_DataType Required_Conversion_Var04,
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       optionalVar01_DataType? Optional_Var01,
@@ -78,7 +101,9 @@ class Blank {
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       nonDBVar01_DataType? NonDB_Var01,
-      nonDBVar02_DataType? NonDB_Var02
+      nonDBVar02_DataType? NonDB_Var02,
+      nonDBVar03_DataType? NonDB_Var03,
+      nonDBVar04_DataType? NonDB_Var04,
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*//*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
       }) {
@@ -90,11 +115,14 @@ class Blank {
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     required_var01 = Required_Var01;
     required_var02 = Required_Var02;
+    required_var03 = Required_Var03;
+    required_var04 = Required_Var04;
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     required_conversion_var01 = Required_Conversion_Var01;
     required_conversion_var02 = Required_Conversion_Var02;
-    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    required_conversion_var03 = Required_Conversion_Var03;
+    required_conversion_var04 = Required_Conversion_Var04;/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     optional_var01 = Optional_Var01;
     optional_var02 = Optional_Var02;
@@ -110,6 +138,9 @@ class Blank {
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     _nonDB_var01 = NonDB_Var01;
     _nonDB_var02 = NonDB_Var02;
+    _nonDB_var03 = NonDB_Var03;
+    _nonDB_var04 = NonDB_Var04;
+    
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*//*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
@@ -127,6 +158,12 @@ class Blank {
   //!!!!!!!!!!!!!!!!!!!!!!!!
   late requiredVar02_DataType required_var02;
   //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  late requiredVar03_DataType required_var03;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  late requiredVar04_DataType required_var04;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
@@ -134,6 +171,12 @@ class Blank {
   //!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
   late required_conversionVar02_DataType required_conversion_var02;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  late required_conversionVar03_DataType required_conversion_var03;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  late required_conversionVar04_DataType required_conversion_var04;
   //!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -171,6 +214,12 @@ class Blank {
   //!!!!!!!!!!!!!!!!!!!!!!!!
   nonDBVar02_DataType? _nonDB_var02;
   //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  nonDBVar03_DataType? _nonDB_var03;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //!!!!!!!!!!!!!!!!!!!!!!!!
+  nonDBVar04_DataType? _nonDB_var04;
+  //!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!
@@ -207,6 +256,8 @@ class Blank {
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   nonDBVar01_DataType? get nonDB_var01 => _nonDB_var01;
   nonDBVar02_DataType? get nonDB_var02 => _nonDB_var02;
+  nonDBVar03_DataType? get nonDB_var03 => _nonDB_var03;
+  nonDBVar04_DataType? get nonDB_var04 => _nonDB_var04;
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -219,10 +270,14 @@ class Blank {
     //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
     matchConditions[_databaseHelper.colRequired_Var01] = required_var01;
     matchConditions[_databaseHelper.colRequired_Var02] = required_var02;
+    matchConditions[_databaseHelper.colRequired_Var03] = required_var03;
+    matchConditions[_databaseHelper.colRequired_Var04] = required_var04;
     //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
     matchConditions[_databaseHelper.colRequired_Conversion_Var01] = required_conversion_var01;
     matchConditions[_databaseHelper.colRequired_Conversion_Var02] = required_conversion_var02;
+    matchConditions[_databaseHelper.colRequired_Conversion_Var03] = required_conversion_var03;
+    matchConditions[_databaseHelper.colRequired_Conversion_Var04] = required_conversion_var04;
     //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
 
     //A list of rows that matched the given criteria from the target table
@@ -252,10 +307,14 @@ class Blank {
     //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
     matchConditions[_databaseHelper.colRequired_Var01] = required_var01;
     matchConditions[_databaseHelper.colRequired_Var02] = required_var02;
+    matchConditions[_databaseHelper.colRequired_Var03] = required_var03;
+    matchConditions[_databaseHelper.colRequired_Var04] = required_var04;
     //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
     matchConditions[_databaseHelper.colRequired_Conversion_Var01] = required_conversion_var01;
     matchConditions[_databaseHelper.colRequired_Conversion_Var02] = required_conversion_var02;
+    matchConditions[_databaseHelper.colRequired_Conversion_Var03] = required_conversion_var03;
+    matchConditions[_databaseHelper.colRequired_Conversion_Var04] = required_conversion_var04;
     //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
 
     List<String> outputColumns = [_databaseHelper.colID];
@@ -324,7 +383,7 @@ class Blank {
     for (m2oVar01_DataType newM2O_Var01 in newM2O_Var01s) 
     { 
       debugPrint("[Classes->Blank-> createM2O_Var01s()] inserting new m2o_var01 into database ...");
-      int result = await _databaseHelper.insert(tableName: "BlankM2O_Var01ConnectionTable", objectAsMap: newM2O_Var01.toMap());
+      int result = await _databaseHelper.insert(tableName: "BlankM2O_Var01Table", objectAsMap: newM2O_Var01.toMap());
       debugPrint("[Classes->Blank-> createM2O_Var01s()] Insertion COMPLETE. result = ${result}");
       results.add(result);
 
@@ -497,7 +556,7 @@ class Blank {
   }
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-
+  
 
 
 
@@ -526,14 +585,18 @@ class Blank {
     if (_id == null) {
       Map<String, dynamic> matchConditions = Map<String, dynamic>();
       
-      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
       matchConditions[_databaseHelper.colRequired_Var01] = required_var01;
       matchConditions[_databaseHelper.colRequired_Var02] = required_var02;
-      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+      matchConditions[_databaseHelper.colRequired_Var03] = required_var03;
+      matchConditions[_databaseHelper.colRequired_Var04] = required_var04;
+      //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
+      //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
       matchConditions[_databaseHelper.colRequired_Conversion_Var01] = required_conversion_var01;
       matchConditions[_databaseHelper.colRequired_Conversion_Var02] = required_conversion_var02;
-      //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+      matchConditions[_databaseHelper.colRequired_Conversion_Var03] = required_conversion_var03;
+      matchConditions[_databaseHelper.colRequired_Conversion_Var04] = required_conversion_var04;
+      //!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!
 
       
       debugPrint("[Classes->Blank-> readFromDatabase()] Retrieving data from database (using required variables)...");
@@ -585,14 +648,20 @@ class Blank {
     debugPrint("[Classes->Blank-> Blank.fromMap()] Start");
 
     _id = map["id"];
+
+    
     
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     required_var01 = map["required_var_underscore01"];
     required_var02 = map["required_var_underscore02"];
+    required_var03 = map["required_var_underscore03"];
+    required_var04 = map["required_var_underscore04"];
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     required_conversion_var01 = required_conversionVar01_DataType.parse(map["required_conversion_var_underscore01"]);
     required_conversion_var02 = required_conversionVar02_DataType.parse(map["required_conversion_var_underscore02"]);
+    required_conversion_var03 = required_conversionVar03_DataType.parse(map["required_conversion_var_underscore03"]);
+    required_conversion_var04 = required_conversionVar04_DataType.parse(map["required_conversion_var_underscore04"]);
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     optional_var01 = map["optional_var_underscore01"];
@@ -621,10 +690,14 @@ class Blank {
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     required_var01 = map["required_var_underscore01"];
     required_var02 = map["required_var_underscore02"];
+    required_var03 = map["required_var_underscore03"];
+    required_var04 = map["required_var_underscore04"];
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     required_conversion_var01 = required_conversionVar01_DataType.parse(map["required_conversion_var_underscore01"]);
     required_conversion_var02 = required_conversionVar02_DataType.parse(map["required_conversion_var_underscore02"]);
+    required_conversion_var03 = required_conversionVar03_DataType.parse(map["required_conversion_var_underscore03"]);
+    required_conversion_var04 = required_conversionVar04_DataType.parse(map["required_conversion_var_underscore04"]);
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     optional_var01 = map["optional_var_underscore01"];
@@ -670,11 +743,15 @@ class Blank {
     }
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     map["required_var_underscore01"] = this.required_var01;
-    map["required_var_underscore01"] = this.required_var02;
+    map["required_var_underscore02"] = this.required_var02;
+    map["required_var_underscore03"] = this.required_var03;
+    map["required_var_underscore04"] = this.required_var04;
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     map["required_conversion_var_underscore01"] = required_conversion_var01.toString();
     map["required_conversion_var_underscore02"] = required_conversion_var02.toString();
+    map["required_conversion_var_underscore03"] = required_conversion_var03.toString();
+    map["required_conversion_var_underscore04"] = required_conversion_var04.toString();
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     map["optional_var_underscore01"] = optional_var01;
@@ -733,10 +810,14 @@ main()
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   databaseHelper.table["BlankTable"]!.addColumn("required_var_underscore01", "BLOB");
   databaseHelper.table["BlankTable"]!.addColumn("required_var_underscore02", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("required_var_underscore03", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("required_var_underscore04", "BLOB");
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   databaseHelper.table["BlankTable"]!.addColumn("required_conversion_var_underscore01", "BLOB");
   databaseHelper.table["BlankTable"]!.addColumn("required_conversion_var_underscore02", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("required_conversion_var_underscore03", "BLOB");
+  databaseHelper.table["BlankTable"]!.addColumn("required_conversion_var_underscore04", "BLOB");
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   databaseHelper.table["BlankTable"]!.addColumn("optional_var_underscore01", "BLOB");
@@ -780,6 +861,21 @@ class requiredVar02_DataType {
   }
   
 }
+class requiredVar03_DataType {
+  static requiredVar03_DataType parse(String input)
+  {
+
+    return requiredVar03_DataType();
+  }
+}
+class requiredVar04_DataType {
+  static requiredVar04_DataType parse(String input)
+  {
+
+    return requiredVar04_DataType();
+  }
+  
+}
 
 class required_conversionVar01_DataType {
   static required_conversionVar01_DataType parse(String input)
@@ -796,6 +892,22 @@ class required_conversionVar02_DataType {
   }
   
 }
+class required_conversionVar03_DataType {
+  static required_conversionVar03_DataType parse(String input)
+  {
+
+    return required_conversionVar03_DataType();
+  }
+}
+class required_conversionVar04_DataType {
+  static required_conversionVar04_DataType parse(String input)
+  {
+
+    return required_conversionVar04_DataType();
+  }
+  
+}
+
 
 
 class optionalVar01_DataType {
@@ -865,6 +977,13 @@ class nonDBVar01_DataType {
 class nonDBVar02_DataType {
   
 }
+class nonDBVar03_DataType {
+  
+}
+class nonDBVar04_DataType {
+  
+}
+
 
 
 class m2oVar01_DataType {

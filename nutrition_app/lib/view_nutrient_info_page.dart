@@ -4,12 +4,12 @@ import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-import 'package:nutrition_app/blank_class_template.dart';
+import 'package:nutrition_app/nutrient_info_class_template.dart';
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 /*
-Blank
+NutrientInfo
 
 required_var##
 Required_Var##
@@ -23,19 +23,19 @@ nonDB_var##
 Non Database Var With Space ###
 */
 
-class ViewBlankPage extends StatefulWidget {
-  ViewBlankPage({required this.nextPage, required this.thisBlank, required this.thisUser, super.key});
+class ViewNutrientInfoPage extends StatefulWidget {
+  ViewNutrientInfoPage({required this.nextPage, required this.thisNutrientInfo, required this.thisUser, super.key});
   final Widget nextPage;
-  Blank thisBlank;
+  NutrientInfo thisNutrientInfo;
   User thisUser;
 
   @override
-  State<ViewBlankPage> createState() => _ViewBlankPageState();
+  State<ViewNutrientInfoPage> createState() => _ViewNutrientInfoPageState();
 }
 
-class _ViewBlankPageState extends State<ViewBlankPage> {
+class _ViewNutrientInfoPageState extends State<ViewNutrientInfoPage> {
 
-  late Blank newBlank;
+  late NutrientInfo newNutrientInfo;
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
@@ -46,7 +46,7 @@ class _ViewBlankPageState extends State<ViewBlankPage> {
           child: Column(children: [
             const SizedBox(height: 60),
             const Text(
-              'Blank',
+              'NutrientInfo',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -57,52 +57,34 @@ class _ViewBlankPageState extends State<ViewBlankPage> {
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.required_var01.toString()),
+              child: Text(widget.thisNutrientInfo.userID.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.required_var02.toString()),
-            ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.required_var03.toString()),
-            ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!
-            const SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.required_var04.toString()),
-            ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.required_conversion_var01.toString()),
-            ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            const SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.required_conversion_var02.toString()),
-            ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.required_conversion_var03.toString()),
+              child: Text(widget.thisNutrientInfo.nutrientID.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.required_conversion_var04.toString()),
+              child: Text(widget.thisNutrientInfo.name.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisNutrientInfo.recomendedDietaryAllowance.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisNutrientInfo.unitOfMeasurement_recomendedDietaryAllowance.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -111,56 +93,47 @@ class _ViewBlankPageState extends State<ViewBlankPage> {
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.optional_var01.toString()),
+              child: Text(widget.thisNutrientInfo.description.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.optional_var02.toString()),
+              child: Text(widget.thisNutrientInfo.adequateIntake.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.optional_var03.toString()),
-            ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            const SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.optional_var04.toString()),
-            ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            const SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.optional_conversion_var01.toString()),
+              child: Text(widget.thisNutrientInfo.unitOfMeasurement_adequateIntake.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.optional_conversion_var02.toString()),
-            ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            const SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.optional_conversion_var03.toString()),
+              child: Text(widget.thisNutrientInfo.estimatedAverageRequirement.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.optional_conversion_var04.toString()),
+              child: Text(widget.thisNutrientInfo.unitOfMeasurement_estimatedAverageRequirement.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisNutrientInfo.tolerableUpperIntakeLevel.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisNutrientInfo.unitOfMeasurement_tolerableUpperIntakeLevel.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -169,14 +142,35 @@ class _ViewBlankPageState extends State<ViewBlankPage> {
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.nonDB_var01.toString()),
+              child: Text(widget.thisNutrientInfo.age.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisBlank.nonDB_var02.toString()),
+              child: Text(widget.thisNutrientInfo.sex.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisNutrientInfo.weight.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisNutrientInfo.lifestyle.toString()),
+            ),
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!
+            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Text(widget.thisNutrientInfo.physiologicalStatus.toString()),
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -187,12 +181,12 @@ class _ViewBlankPageState extends State<ViewBlankPage> {
 
   @override
   initState() {
-    debugPrint("[ViewBlankPage] Start");
+    debugPrint("[ViewNutrientInfoPage] Start");
   }
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(pageName: "View Singular Blank With Space Page", body: [currentPage()], thisUser: widget.thisUser,);
+    return PageWidget(pageName: "View Singular Nutrient Info Page", body: [currentPage()], thisUser: widget.thisUser,);
     
   }
 }

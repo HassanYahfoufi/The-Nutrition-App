@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
+import 'package:multiselect/multiselect.dart';
+
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 import 'package:nutrition_app/blank_class_template.dart';
@@ -34,6 +36,8 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   TextEditingController required_var01Controller = TextEditingController();
   TextEditingController required_var02Controller = TextEditingController();
+  List<String> choices = [];
+
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   TextEditingController required_conversion_var01Controller = TextEditingController();
@@ -89,7 +93,7 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
 
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    newBlank = Blank(/*!!!!!*/Required_Var01: tempRequired_Var01, Required_Var02: tempRequired_Var02/*!!!!!*//*!!!!!*/, Required_Conversion_Var01: tempRequired_Conversion_Var01, Required_Conversion_Var02: tempRequired_Conversion_Var02/*!!!!!*//*!!!!!*/, Optional_Var01: tempOptional_Var01, Optional_Var02: tempOptional_Var02, Optional_Var03: tempOptional_Var03, Optional_Var04: tempOptional_Var04/*!!!!!*//*!!!!!*/, Optional_Conversion_Var01: tempOptional_Conversion_Var01, Optional_Conversion_Var02: tempOptional_Conversion_Var02, Optional_Conversion_Var03: tempOptional_Conversion_Var03, Optional_Conversion_Var04: tempOptional_Conversion_Var04/*!!!!!*/);
+    //newBlank = Blank(/*!!!!!*/Required_Var01: tempRequired_Var01, Required_Var02: tempRequired_Var02/*!!!!!*//*!!!!!*/, Required_Conversion_Var01: tempRequired_Conversion_Var01, Required_Conversion_Var02: tempRequired_Conversion_Var02/*!!!!!*//*!!!!!*/, Optional_Var01: tempOptional_Var01, Optional_Var02: tempOptional_Var02, Optional_Var03: tempOptional_Var03, Optional_Var04: tempOptional_Var04/*!!!!!*//*!!!!!*/, Optional_Conversion_Var01: tempOptional_Conversion_Var01, Optional_Conversion_Var02: tempOptional_Conversion_Var02, Optional_Conversion_Var03: tempOptional_Conversion_Var03, Optional_Conversion_Var04: tempOptional_Conversion_Var04/*!!!!!*/);
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
     debugPrint("[Create Blank With Space Page-> submit()] Validating...");
@@ -194,7 +198,7 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
                 children: <Widget>[
                   
                   Text('Serving\nSize',style: TextStyle(
-                    backgroundColor: Colors.white,
+                    backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
                     
                               ),
                   ),
@@ -267,23 +271,91 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(10)
               ),
+             //CardWidget(title: "search", body: [required_var01Controller, required_var02Controller, required_conversion_var01Controller, required_conversion_var02Controller,],),
               
-              
-              child: TextField(
-                controller: required_conversion_var02Controller,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Search"),
+              child: DropDownMultiSelect(
+                onChanged: (List<String> y){
+                  setState(() {
+                    choices = y;
+                });
+                },
+                options: ['Calories', 'Saturated Fat', 'Trans Fat', 'Carbohydrates', 'Cholesterol', 'Sodium', 'Sugars', 'Protein', 'Vitamin A', 'Vitamin B12', 'Vitamin C', 'Vitamin D', 'Calcium', 'Iron', 'Potassium', 'Zinc'],
+                selectedValues: choices,
+             //   whenEmpty: "Select nutrient",
               ),
+              
+              // child: TextField(
+              //   controller: required_conversion_var02Controller,
+              //   decoration: InputDecoration(
+              //       enabledBorder: OutlineInputBorder(
+              //         borderSide: BorderSide(color: Colors.white),
+              //       ),
+              //       focusedBorder: OutlineInputBorder(
+              //         borderSide: BorderSide(color: Colors.grey),
+              //       ),
+              //       fillColor: Colors.white,
+              //       filled: true,
+              //       hintText: "Search"),
+              // ),
             
             ),
+            Text(
+              'Selected Choices:',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            
+            ...choices.map((choice){
+                return Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      
+                        Text(choice),
+                        SizedBox(width: 5),
+                      
+                      Expanded(
+                        child: TextField(
+                           decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              hintText: "Amount"),
+                        ),
+                      ),
+                      SizedBox(width: 8),
+              Column(
+                children: <Widget>[
+                  DropdownButton<String>(
+                    value: oldvalue,
+                    onChanged: (String? newValue){
+                      setState(() {
+                        oldvalue = newValue!;
+                      });
+                    },
+                    items: <String>['g', 'mg']
+                    .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+                    ],
+                    
+                  ),
+                );
+                
+
+            }).toList(),
+
+            
             const SizedBox(height: 20),
             Divider (height: 1, color: Colors.black),
             const SizedBox(height: 20),
@@ -554,27 +626,27 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
             // //!!!!!!!!!!!!!!!!!!!!!!!!
             // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
             // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            // SizedBox(height: 10),
-            // TextButton(
-            //   onPressed: () {
-            //     submit();
-            //   },
-            //   child: Container(
-            //     padding: EdgeInsets.all(20),
-            //     margin: EdgeInsets.symmetric(vertical: 10),
-            //     decoration: BoxDecoration(
-            //       color: Colors.green,
-            //       borderRadius: BorderRadius.circular(6),
-            //     ),
-            //     child: const Center(
-            //         child: Text('Submit',
-            //             style: TextStyle(
-            //               color: Colors.white,
-            //               fontWeight: FontWeight.bold,
-            //               fontSize: 16,
-            //             ))),
-            //   ),
-            // ),
+            SizedBox(height: 10),
+            TextButton(
+              onPressed: () {
+                submit();
+              },
+              child: Container(
+                padding: EdgeInsets.all(20),
+                margin: EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Center(
+                    child: Text('Add new food',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ))),
+              ),
+            ),
           ]),
         );}
 

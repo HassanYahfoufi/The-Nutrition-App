@@ -45,31 +45,41 @@ class DatabaseHelper {
   String colFoodItemID = "food_item_id";
   String colAmount = "amount";
   //-------------------------------------
-  String colAmount = "amount";
   String colFoodName = "foodName";
   String colIngredient = "ingredient";
-  String ColAllergen = "allergen";
-  String colFoodItemID = "food_item_id";
+  String colAllergen = "allergen";
+  String colServingSize = "serving_size";
+  String colNutrientID = "nutrient_id";
+  String colRecomendedDietaryAllowance = "recomended_dietary_allowance";
+  String colUnitOfMeasurement_RecomendedDietaryAllowance = "unit_of_measurement_for_recomended_dietary_allowance";
+  String colAdequateIntake = "adequate_intake";
+  String colUnitOfMeasurement_AdequateIntake = "unit_of_measurement_for_adequate_intake";
+  String colEstimatedAverageRequirement = "estimated_average_requirement";
+  String colUnitOfMeasurement_EstimatedAverageRequirement = "unit_of_measurement_for_estimated_average_requirement";
+  String colTolerableUpperIntakeLevel = "tolerable_upper_intake_level";
+  String colUnitOfMeasurement_TolerableUpperIntakeLevel = "unit_of_measurement_for_tolerable_upper_intake_level";
+  String colNutrientInfoID = "nutrient_info_id";
+  //-------------------------------------
   //--------------- DELETE ---------------
-  
-  String colRequired_Var01 = "required_var01";
-  String colRequired_Var02 = "required_var02";
+  String colRequired_Var01 = "required_var_underscore01";
+  String colRequired_Var02 = "required_var_underscore02";
+  String colRequired_Var03 = "required_var_underscore03";
+  String colRequired_Var04 = "required_var_underscore04";
 
-  String colRequired_Conversion_Var01 = "required_conversion_var01";
-  String colRequired_Conversion_Var02 = "required_conversion_var02";
+  String colRequired_Conversion_Var01 = "required_conversion_var_underscore01";
+  String colRequired_Conversion_Var02 = "required_conversion_var_underscore02";
+  String colRequired_Conversion_Var03 = "required_conversion_var_underscore03";
+  String colRequired_Conversion_Var04 = "required_conversion_var_underscore04";
 
-  String colOptional_Var01 = "optional_var01";
-  String colOptional_Var02 = "optional_var02";
-  String colOptional_Var03 = "optional_var03";
-  String colOptional_Var04 = "optional_var04";
+  String colOptional_Var01 = "optional_var_underscore01";
+  String colOptional_Var02 = "optional_var_underscore02";
+  String colOptional_Var03 = "optional_var_underscore03";
+  String colOptional_Var04 = "optional_var_underscore04";
 
-  String colOptional_Conversion_Var01 = "optional_conversion_var01";
-  String colOptional_Conversion_Var02 = "optional_conversion_var02";
-  String colOptional_Conversion_Var03 = "optional_conversion_var03";
-  String colOptional_Conversion_Var04 = "optional_conversion_var04";
-
-  String colnonDB_Var01 = "nonDB_var01";
-  String colnonDB_Var02 = "nonDB_var02";
+  String colOptional_Conversion_Var01 = "optional_conversion_var_underscore01";
+  String colOptional_Conversion_Var02 = "optional_conversion_var_underscore02";
+  String colOptional_Conversion_Var03 = "optional_conversion_var_underscore03";
+  String colOptional_Conversion_Var04 = "optional_conversion_var_underscore04";
   //--------------- DELETE ---------------
   DatabaseHelper._createInstance();
 
@@ -194,10 +204,7 @@ class DatabaseHelper {
     debugPrint("$space[DatabaseHelper -> createTable($tableName)] End");
   }
 
-  Future<int> insert(
-      {required String tableName,
-      required Map<String, dynamic> objectAsMap,
-      int? recursiveIterationCount}) async {
+  Future<int> insert({required String tableName, required Map<String, dynamic> objectAsMap, int? recursiveIterationCount}) async {
     String space = "";
     if (recursiveIterationCount != null) {
       space = "-";
@@ -309,8 +316,7 @@ class DatabaseHelper {
       {required String tableName,
       required String column,
       required String value}) async {
-    debugPrint(
-        "[DatabaseHelper -> doesExist($tableName, $column, $value)] Start");
+    debugPrint("[DatabaseHelper -> doesExist($tableName, $column, $value)] Start");
 
     String tableType = table[tableName]!.type;
     Database? db = await getDatabase();
@@ -323,15 +329,15 @@ class DatabaseHelper {
     return valueExists;
   }
 
-  Future<List<Map<String, dynamic>>> getMatchingRows(
-      {required String tableName,
-      required String column,
-      required String value}) async {
+  Future<List<Map<String, dynamic>>> getMatchingRows({required String tableName, required String column, required String value}) async 
+  {
+    debugPrint("[DatabaseHelper -> getMatchingRows()] Start");
     String tableType = table[tableName]!.type;
     Database? db = await getDatabase();
     //List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column = $value");
-    List<Map<String, dynamic>> result =
-        await db!.rawQuery("SELECT * FROM $tableType WHERE $column=?", [value]);
+    debugPrint("[DatabaseHelper -> getMatchingRows()] Excecuting: await db!.rawQuery(\"SELECT * FROM $tableType WHERE $column=?\", [$value]);..");
+    List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column=?", [value]);
+    debugPrint("[DatabaseHelper -> getMatchingRows()] End");
     return result;
   }
 
@@ -361,19 +367,22 @@ class DatabaseHelper {
     return result;
   }
 
-  Future<List<Map<String, dynamic>>> getMatchingRows_WhereColumns(
-      {required String tableName,
-      required Map<String, dynamic> conditions}) async {
+  Future<List<Map<String, dynamic>>> getMatchingRows_WhereColumns({required String tableName,required Map<String, dynamic> conditions}) async 
+  {
     debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] Start");
     String connditionSQL = "";
     conditions.forEach((key, value) {
-      if (value != null) {
+      if (value != null) 
+      {
         connditionSQL = "$connditionSQL AND $key = '${value.toString()}'";
-      } else {
+      } 
+      else 
+      {
         connditionSQL = "$connditionSQL AND $key ISNULL";
       }
     });
-    if (connditionSQL.startsWith(" AND ")) {
+    if (connditionSQL.startsWith(" AND ")) 
+    {
       debugPrint("\tconnditionSQL(before): $connditionSQL");
       connditionSQL = connditionSQL.substring(5);
       debugPrint("\tconnditionSQL(after): $connditionSQL");
@@ -381,10 +390,8 @@ class DatabaseHelper {
     String tableType = table[tableName]!.type;
     Database? db = await getDatabase();
     //List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column = $value");
-    debugPrint(
-        "[DatabaseHelper -> getMatchingRows_WhereColumns()] SELECT * FROM $tableType WHERE $connditionSQL...");
-    List<Map<String, dynamic>> result =
-        await db!.rawQuery("SELECT * FROM $tableType WHERE $connditionSQL");
+    debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] SELECT * FROM $tableType WHERE $connditionSQL...");
+    List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $connditionSQL");
     debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] End");
     return result;
   }
@@ -413,26 +420,24 @@ class DatabaseHelper {
     return result;
   }
 
-  Future<List<Map<String, dynamic>>> getMatchingColumns_WhereColumns(
-      {required String tableName,
-      required Map<String, dynamic> conditions,
-      required List<String> outputColumns}) async {
-    debugPrint(
-        "[DatabaseHelper -> getMatchingColumns_WhereColumns()] Start"); //!!!!!!!!!!!!!!!!!!!!!!!
+  Future<List<Map<String, dynamic>>> getMatchingColumns_WhereColumns({required String tableName, required Map<String, dynamic> conditions, required List<String> outputColumns}) async 
+  {
+    debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] Start"); //!!!!!!!!!!!!!!!!!!!!!!!
     String connditionSQL = "";
-    //List<String> conditionsList = conditions.forEach((key, value) {return key;});
     conditions.forEach((key, value) {
-      connditionSQL = "$connditionSQL AND $key = ${value.toString()}";
+      connditionSQL = "$connditionSQL AND $key = '${value.toString()}'";
     });
-    if (connditionSQL.startsWith(" AND ")) {
+    if (connditionSQL.startsWith(" AND ")) 
+    {
       debugPrint("\tconnditionSQL(before): $connditionSQL");
       //debugPrint("substring: ${connditionSQL.substring(5)}");
       connditionSQL = connditionSQL.substring(5);
 
       debugPrint("\tconnditionSQL(after): $connditionSQL");
-    } else {
-      debugPrint(
-          "[DatabaseHelper -> getMatchingColumns_WhereColumns()] ERROR!");
+    } 
+    else 
+    {
+      debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] ERROR!");
     }
     String outputColumnsSQL = "";
 
@@ -443,10 +448,8 @@ class DatabaseHelper {
     String tableType = table[tableName]!.type;
     Database? db = await getDatabase();
     //List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column = $value");
-    debugPrint(
-        "[DatabaseHelper -> getMatchingColumns_WhereColumns()] SELECT $outputColumnsSQL FROM $tableType WHERE $connditionSQL...");
-    List<Map<String, dynamic>> result = await db!.rawQuery(
-        "SELECT $outputColumnsSQL FROM $tableType WHERE $connditionSQL");
+    debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] SELECT $outputColumnsSQL FROM $tableType WHERE $connditionSQL...");
+    List<Map<String, dynamic>> result = await db!.rawQuery("SELECT $outputColumnsSQL FROM $tableType WHERE $connditionSQL");
     debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] End");
     return result;
   }
