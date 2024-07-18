@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/food_item_class_template.dart';
 
+
+//for every "amount" make it private
+//have a getter that converts the amount to the appropriate unit of measurement
+  //the getter should probably indicate what unit of measurement to convert to
+//the setter will have the same logic as the getter
+
 class User {
   User(
       {ID,
@@ -978,6 +984,23 @@ class FoodItem {
   }
   List<FoodItemNutrient> get nutrients => _nutrients;
 
+  Future<FoodItemNutrient> getNutrient(String nutrientName) async
+  {
+    for(FoodItemNutrient nutrient in _nutrients)
+    {
+      if(nutrient.info == null)
+      {
+        await nutrient.readNutrientInfoFromDatabase();
+      }
+      if(nutrient.info!.name == nutrientName)
+      {
+        return nutrient;
+      }
+    }
+    
+    return FoodItemNutrient(FoodItemID: -1, NutrientInfoID: -1, Amount: -1);
+  }
+
   Future<List<int>> createNutrients() async
   {
     debugPrint("[Classes->FoodItem-> createNutrients()] Start");
@@ -1838,11 +1861,13 @@ class ConsumedFood {
   int? _id;
   late int userID;
   late int foodItemID;
+  FoodItem? foodItem;
   late double amount;
   late DateTime timestamp;
   late DateTime dateCreated;
   late DateTime dateModified;
   String? note;
+
   
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
@@ -1922,8 +1947,47 @@ class ConsumedFood {
     debugPrint("[Classes->ConsumedFood-> readID()] End");
   }
   
+
+  
+  
+  Future<bool> readFoodItemFromDatabase() async {
+    debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] Start");
+    
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+    
+
+    matchConditions[_databaseHelper.colID] = foodItemID;
   
 
+    
+    debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] Retrieving data from database...");
+    List<Map<String, dynamic>> matchingFoodItems = await _databaseHelper.getMatchingRows_WhereColumns(tableName: "FoodItemTable", conditions: matchConditions);
+
+    if (matchingFoodItems.length == 1) 
+    {
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] processing data...");
+      foodItem = FoodItem.fromMap(matchingFoodItems[0]);//!!!!!!!!!!!!!!!!!!!!!
+      
+
+      return true;
+    } 
+    else if (matchingFoodItems.length > 1) 
+    {
+      //int endIndex = matchingFoodItems.length - 1;
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] Error more than 1 foodItem found but there should only be 1 or 0.");
+      //foodItem = FoodItem.fromMap(matchingFoodItems[endIndex]);
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] End");
+      return false;
+    } 
+    else 
+    {
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] No matching foodItems found!");
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] End");
+      return false;
+    }
+  }
+
+  
   
 
   

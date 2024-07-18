@@ -1,3 +1,5 @@
+import 'dart:js_interop_unsafe';
+
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 import 'package:nutrition_app/create_status_update_page.dart';
@@ -32,11 +34,54 @@ class HomePage extends StatefulWidget {
 }
 
 
+
+
 class _HomePageState extends State<HomePage> {
   double buttonHeight = 50;
   double buttonWidth = 200;
   double spacerHeight = 15;
   @override
+
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  int timestampToX(DateTime timestamp)
+  {
+    return 0;
+  }
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+  Future<Map<int, double>> totalConsumed(String nutrientName, DateTime start, DateTime end) async
+  {
+    debugPrint("[HomePage-> totalConsumed()] Start");
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //get all items where time stamp is >= start && timestaamp <= end
+    List<ConsumedFood> matchingConsumedFoods = [];
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Map<int, double> dataPoints = Map<int, double>();
+    int newX;
+    double newY;
+    FoodItemNutrient newNutrient;
+    for(ConsumedFood consumedFood in matchingConsumedFoods)
+    {
+      consumedFood.update();
+
+      newX = timestampToX(consumedFood.timestamp);
+      newNutrient = await consumedFood.foodItem!.getNutrient(nutrientName);
+
+      if(dataPoints.containsKey(newX))
+      {
+        newY = dataPoints[newX]! + newNutrient.amount;
+      }
+      else
+      {
+        newY = newNutrient.amount;
+      }
+      dataPoints[newX] = newY;
+    }
+
+    debugPrint("[HomePage-> totalConsumed()] End");
+
+    return dataPoints;
+  }
 
   Widget build(BuildContext context) {
     return PageWidget(home: () { debugPrint("[HomePage-> build] Going to Log-In Page"); Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);}, pageName: "Home Page", thisUser: widget.thisUser, body: [Center(
