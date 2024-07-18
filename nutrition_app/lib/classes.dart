@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/food_item_class_template.dart';
 
+
+//for every "amount" make it private
+//have a getter that converts the amount to the appropriate unit of measurement
+  //the getter should probably indicate what unit of measurement to convert to
+//the setter will have the same logic as the getter
+
 class User {
   User(
       {ID,
@@ -170,7 +176,7 @@ class User {
 
       if (matchingUsers.length == 1) {
         debugPrint("[Classes->User-> readFromDatabase()] processing data...");
-        readFromMap(matchingUsers[0]);
+        await readFromMap(matchingUsers[0]);
 
         debugPrint("[Classes->User-> readFromDatabase()] reading lists...");
         await readLists();
@@ -473,7 +479,7 @@ class StatusUpdate {
       if (matchingStatusUpdates.length == 1) 
       {
         debugPrint("[Classes->StatusUpdate-> readFromDatabase()] processing data...");
-        readFromMap(matchingStatusUpdates[0]);
+        await readFromMap(matchingStatusUpdates[0]);
         
 
         return true;
@@ -980,6 +986,23 @@ class FoodItem {
   }
   List<FoodItemNutrient> get nutrients => _nutrients;
 
+  Future<FoodItemNutrient> getNutrient(String nutrientName) async
+  {
+    for(FoodItemNutrient nutrient in _nutrients)
+    {
+      if(nutrient.info == null)
+      {
+        await nutrient.readNutrientInfoFromDatabase();
+      }
+      if(nutrient.info!.name == nutrientName)
+      {
+        return nutrient;
+      }
+    }
+    
+    return FoodItemNutrient(FoodItemID: -1, NutrientInfoID: -1, Amount: -1);
+  }
+
   Future<List<int>> createNutrients() async
   {
     debugPrint("[Classes->FoodItem-> createNutrients()] Start");
@@ -1004,11 +1027,26 @@ class FoodItem {
     _nutrients.clear();
     
 
-
-    debugPrint("[Classes->Account-> readNutrients()] retrieving nutrients...");
-    List<Map<String, dynamic>> matchingNutrients = await _databaseHelper.getMatchingRows(tableName: "NutrientsTable", column: "foodItem_id", value: _id!.toString());
-
+    if(_id == null)
+    {
+      debugPrint("[Classes->FoodItem-> readNutrients()] id is null! Retrieving id...");
+      await readID();
+      if(_id == null)
+      {
+        debugPrint("[Classes->FoodItem-> readNutrients()] ERROR id is null ven after attempting to retrieve id from database! exiting...");
+        return;
+      }
+    }
+    else
+    {
+      debugPrint("[Classes->FoodItem-> readNutrients()] id is not null. id: $_id");
+    }
+    debugPrint("[Classes->Account-> readNutrients()] retrieving matching nutrients...");
+    List<Map<String, dynamic>> matchingNutrients = await _databaseHelper.getMatchingRows(tableName: "FoodItemNutrientTable", column: _databaseHelper.colFoodItemID, value: _id!.toString());
+    debugPrint("[Classes->Account-> readNutrients()] ${matchingNutrients.length} matching nutrients found...");
+    
     _nutrients = matchingNutrients.map((nutrient) => FoodItemNutrient.fromMap(nutrient)).toList();
+    debugPrint("[Classes->Account-> readNutrients()] there are now ${_nutrients.length} nutrients...");
     debugPrint("[Classes->FoodItem-> readNutrients()] End");
   } 
   /*Future<int> updateNutrients()
@@ -1084,8 +1122,7 @@ class FoodItem {
       if (matchingFoodItems.length == 1) 
       {
         debugPrint("[Classes->FoodItem-> readFromDatabase()] processing data...");
-        readFromMap(matchingFoodItems[0]);
-        await readLists();
+        await readFromMap(matchingFoodItems[0]);
         
 
         return true;
@@ -1220,6 +1257,7 @@ class FoodItemNutrient {
   late int foodItemID;
   late int nutrientInfoID;
   late double amount;
+  NutrientInfo? info;
   
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
@@ -1292,7 +1330,42 @@ class FoodItemNutrient {
     debugPrint("[Classes->FoodItemNutrient-> readID()] End");
   }
   
+  Future<bool> readNutrientInfoFromDatabase() async {
+    debugPrint("[Classes->FoodItemNutrient-> readNutrientInfoFromDatabase()] Start");
+    
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+    
+
+    matchConditions[_databaseHelper.colID] = nutrientInfoID;
   
+
+    
+    debugPrint("[Classes->FoodItemNutrient-> readNutrientInfoFromDatabase()] Retrieving data from database...");
+    List<Map<String, dynamic>> matchingNutrientInfos = await _databaseHelper.getMatchingRows_WhereColumns(tableName: "NutrientInfoTable", conditions: matchConditions);
+
+    if (matchingNutrientInfos.length == 1) 
+    {
+      debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromDatabase()] processing data...");
+      info = NutrientInfo.fromMap(matchingNutrientInfos[0]);//!!!!!!!!!!!!!!!!!!!!!
+      
+
+      return true;
+    } 
+    else if (matchingNutrientInfos.length > 1) 
+    {
+      //int endIndex = matchingNutrientInfos.length - 1;
+      debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromDatabase()] Error more than 1 nutrientInfo found but there should only be 1 or 0.");
+      //info = NutrientInfo.fromMap(matchingNutrientInfos[endIndex]);
+      debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromDatabase()] End");
+      return false;
+    } 
+    else 
+    {
+      debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromDatabase()] No matching nutrientInfos found!");
+      debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromDatabase()] End");
+      return false;
+    }
+  }
 
   
 
@@ -1328,6 +1401,7 @@ class FoodItemNutrient {
       {
         debugPrint("[Classes->FoodItemNutrient-> readFromDatabase()] processing data...");
         readFromMap(matchingFoodItemNutrients[0]);
+        await readNutrientInfoFromDatabase();
         
 
         return true;
@@ -1371,7 +1445,7 @@ class FoodItemNutrient {
     
     debugPrint("[Classes->FoodItemNutrient-> FoodItemNutrient.fromMap()] End");
   }
-  Future<void> readFromMap(Map<String, dynamic> map) async 
+  readFromMap(Map<String, dynamic> map) 
   {
     debugPrint("[Classes->FoodItemNutrient-> readFoodItemNutrientFromMap()] Start");
 
@@ -1654,7 +1728,7 @@ class NutrientInfo {
               value: _id.toString());
 
       debugPrint("[Classes->NutrientInfo-> readFromDatabase()] processing data...");
-      readFromMap(matchingNutrientInfos[0]);
+      await readFromMap(matchingNutrientInfos[0]);
       debugPrint("[Classes->NutrientInfo-> readFromDatabase()] End");
       return true;
     }
@@ -1789,11 +1863,13 @@ class ConsumedFood {
   int? _id;
   late int userID;
   late int foodItemID;
+  FoodItem? foodItem;
   late double amount;
   late DateTime timestamp;
   late DateTime dateCreated;
   late DateTime dateModified;
   String? note;
+
   
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
@@ -1873,8 +1949,47 @@ class ConsumedFood {
     debugPrint("[Classes->ConsumedFood-> readID()] End");
   }
   
+
+  
+  
+  Future<bool> readFoodItemFromDatabase() async {
+    debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] Start");
+    
+    Map<String, dynamic> matchConditions = Map<String, dynamic>();
+    
+
+    matchConditions[_databaseHelper.colID] = foodItemID;
   
 
+    
+    debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] Retrieving data from database...");
+    List<Map<String, dynamic>> matchingFoodItems = await _databaseHelper.getMatchingRows_WhereColumns(tableName: "FoodItemTable", conditions: matchConditions);
+
+    if (matchingFoodItems.length == 1) 
+    {
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] processing data...");
+      foodItem = FoodItem.fromMap(matchingFoodItems[0]);//!!!!!!!!!!!!!!!!!!!!!
+      
+
+      return true;
+    } 
+    else if (matchingFoodItems.length > 1) 
+    {
+      //int endIndex = matchingFoodItems.length - 1;
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] Error more than 1 foodItem found but there should only be 1 or 0.");
+      //foodItem = FoodItem.fromMap(matchingFoodItems[endIndex]);
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] End");
+      return false;
+    } 
+    else 
+    {
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] No matching foodItems found!");
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] End");
+      return false;
+    }
+  }
+
+  
   
 
   
@@ -1911,7 +2026,7 @@ class ConsumedFood {
       if (matchingConsumedFoods.length == 1) 
       {
         debugPrint("[Classes->ConsumedFood-> readFromDatabase()] processing data...");
-        readFromMap(matchingConsumedFoods[0]);
+        await readFromMap(matchingConsumedFoods[0]);
         
 
         return true;
