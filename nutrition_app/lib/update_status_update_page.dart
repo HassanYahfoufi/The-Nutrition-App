@@ -32,6 +32,8 @@ class _UpdateStatusUpdatePageState extends State<UpdateStatusUpdatePage> {
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
+  TimeOfDay userSelectedTime = TimeOfDay.now();
+
   Future<void> submit() async
   {
     debugPrint("\[UpdateStatusUpdatePage-> submit()] Start");
@@ -167,6 +169,15 @@ class _UpdateStatusUpdatePageState extends State<UpdateStatusUpdatePage> {
                     fillColor: Colors.white,
                     filled: true,
                     hintText: "Timestamp"),
+                    readOnly: true,
+                    onTap: () async {
+                      final TimeOfDay? time = await showTimePicker(context: context, initialTime: userSelectedTime, initialEntryMode: TimePickerEntryMode.dial);
+                      if(time != null){
+                        setState(() {
+                          userSelectedTime = time;
+                        });
+                      }
+                    },
                     
               ),
             ),

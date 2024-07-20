@@ -571,3 +571,13 @@ class _BMILineGraphState extends State<BMILineGraph> {
   }
 }
 
+// Future <void> showTime(BuildContext context) async{
+//     TimeOfDay userSelectedTime = TimeOfDay.now();
+//    final TimeOfDay? time = await showTimePicker(context: context, initialTime: userSelectedTime, initialEntryMode: TimePickerEntryMode.dial);
+//                       if(time != null){
+//                         setState(() {
+//                           userSelectedTime = time;
+//                         });
+//                       }
+//                     }
+
