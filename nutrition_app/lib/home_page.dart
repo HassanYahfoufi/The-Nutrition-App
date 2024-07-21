@@ -19,6 +19,8 @@ import 'package:nutrition_app/create_nutrient_info_page.dart';
 import 'package:nutrition_app/view_all_nutrient_infos_page.dart';
 //import 'package:nutrition_app/create_new_food_items.dart';
 import 'package:nutrition_app/database_helper.dart';
+import 'package:fl_chart/fl_chart.dart';
+
 
 
 
@@ -40,15 +42,23 @@ class _HomePageState extends State<HomePage> {
   double buttonHeight = 50;
   double buttonWidth = 200;
   double spacerHeight = 15;
+  DateTime start = DateTime.now(); 
+  DateTime end = DateTime.now();
   
   DatabaseHelper databaseHelper = DatabaseHelper();
 
   String SelectedGraph = 'Calories';
 
+  List<FlSpot> chartData = [];
+
   void onPressedGraph(String graph) {
+    debugPrint("[HomePage-> onPressedGraph()] Start");
     setState(() {
       SelectedGraph = graph;
+      debugPrint("[HomePage-> onPressedGraph()] SelectedGraph: $SelectedGraph");
+      totalConsumed(SelectedGraph);
     });
+    debugPrint("[HomePage-> onPressedGraph()] End");
   }
 
 
@@ -82,7 +92,7 @@ class _HomePageState extends State<HomePage> {
   }
   
 
-  Future<Map<int, double>> totalConsumed(String nutrientName, DateTime start, DateTime end) async
+  Future<void> totalConsumed(String nutrientName) async
   {
     debugPrint("[HomePage-> totalConsumed()] Start");
     
@@ -125,12 +135,27 @@ class _HomePageState extends State<HomePage> {
       dataPoints[newX] = newY;
     }
 
-    debugPrint("[HomePage-> totalConsumed()] End");
 
-    return dataPoints;
+    chartData.clear;
+
+    chartData = dataPoints.entries.map((dataPoint) => FlSpot(dataPoint.key.toDouble(), dataPoint.value)).toList();
+
+
+
+    debugPrint("[HomePage-> totalConsumed()] End");
   }
   
-  
+  Future<void> SetUp() async
+  {
+    debugPrint("[HomePage-> SetUp()] Start");
+
+    start = DateTime(2024, 1, 1);
+    end = DateTime(2024, 5, 1);
+    totalConsumed(SelectedGraph);
+
+
+    debugPrint("[HomePage-> SetUp()] End");
+  }
   
 
   @override
@@ -194,6 +219,7 @@ class _HomePageState extends State<HomePage> {
       ],),
     )]);
   }
+
 Widget DisplayGraph() {
     switch (SelectedGraph) {
       case 'BMI':
@@ -202,7 +228,7 @@ Widget DisplayGraph() {
         return WeightLineGraph();
       case 'Calories':
       default:
-        return CalorieLineGraph();
+        return CalorieLineGraph(spots: chartData);
     }
   }
 }

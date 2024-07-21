@@ -107,6 +107,10 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
     FoodItemNutrient tempNutrient;
     for(NutrientInfo nutrientInfo in selectedNutrientInfos)
     {
+      if(nutrientInfo.id == null)
+      {
+        await nutrientInfo.readID();
+      }
       tempNutrient = FoodItemNutrient(FoodItemID: -1, NutrientInfoID: nutrientInfo.id!, Amount: double.parse(nutrientsInfo[nutrientInfo.name]!["TextEditingController"].text));
       newFoodItem.newNutrients.add(tempNutrient);
     }

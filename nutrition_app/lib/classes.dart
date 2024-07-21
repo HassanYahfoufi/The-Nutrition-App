@@ -603,265 +603,6 @@ class StatusUpdate {
   }
 }
 
-/*
-class FoodItem{
-  FoodItem(
-    {ID,
-    required int UserId,
-    required String FoodName,
-    required double Amount,
-    // required String Nutrient,
-    // required String Ingredient,
-    // required String Allergen,
-
-}){
-  //
-  if(ID != null){
-    _id = ID;
-  }
-
-  userID = UserId;
-  foodName = FoodName;
-  servingAmount = Amount;
-  // nutrient = Nutrient;
-  // ingredient = Ingredient;
-  // allergen = Allergen;
-
-
-}
-int? _id;
-late int userID;
-late String foodName;
-late double servingAmount;
-// late String nutrient;
-// late String ingredient;
-// late String allergen;
-
-DatabaseHelper _databaseHelper = DatabaseHelper();
-int? get id => _id;
-
-Future<int> countMatching() async {
-    debugPrint("[Classes->FoodItem->countMatching()] Entered");
-    Map<String, dynamic> matchConditions = Map<String, dynamic>();
-    matchConditions[_databaseHelper.colUserID] = userID;
-    matchConditions[_databaseHelper.colFoodName] = foodName;
-    matchConditions[_databaseHelper.colAmount] = servingAmount;
-    // matchConditions[_databaseHelper.colTimestamp] = nutrient;
-    // matchConditions[_databaseHelper.colIngredient] = ingredient;
-    // matchConditions[_databaseHelper.ColAllergen] = allergen;
-
-
-    
-    List<Map<String, dynamic>> matchingFoodItem =
-        await _databaseHelper.getMatchingRows_WhereColumns(
-            tableName: "FoodItemTable", conditions: matchConditions);
-     if (matchingFoodItem.length == 1) {
-      debugPrint("[Classes->FoodItem->countMatching()] End");
-      return 1;
-    } else if (matchingFoodItem.length > 1) {
-      debugPrint(
-          "[Classes->FoodItem->countMatching()] Error more than 1 FoodItem found but there should only be 1 or 0.");
-      debugPrint("[Classes->FoodItem->countMatching()] End");
-      return matchingFoodItem.length;
-    } else {
-      debugPrint("[Classes->FoodItem->countMatching()] End");
-      return 0;
-    }
-        
-
-}
-
-Future<void> readID() async {
-    debugPrint("[Classes->FoodItem-> readID()] Start");
-    Map<String, dynamic> matchConditions = Map<String, dynamic>();
-    matchConditions[_databaseHelper.colUserID] = userID;
-    matchConditions[_databaseHelper.colFoodName] = foodName;
-    matchConditions[_databaseHelper.colAmount] = servingAmount;
-    // matchConditions[_databaseHelper.colTimestamp] = nutrient;
-    // matchConditions[_databaseHelper.colIngredient] = ingredient;
-    // matchConditions[_databaseHelper.ColAllergen] = allergen;
-        
-        List<String> outputColumns = [_databaseHelper.colID];
-
-    debugPrint("[Classes->FoodItem-> readID()] retrieving data from database ...");
-    //a list of matching rows except only the requested columns of each row are output.
-    List<Map<String, dynamic>> output =
-        await _databaseHelper.getMatchingColumns_WhereColumns(
-            tableName: "FoodItemTable",
-            conditions: matchConditions,
-            outputColumns: outputColumns);
-
-    debugPrint("[Classes->FoodItem-> readID()] processing ...");
-    if(output.length == 1)
-    {
-      _id = output[0][_databaseHelper.colID];
-    }
-    else
-    {
-      if(output.length == 0)
-      {
-        debugPrint("[Classes->FoodItem-> readID()] ERROR: No matching users found!");
-      }
-      else
-      {
-        debugPrint("[Classes->FoodItem-> readID()] ERROR: ${output.length} matching users found!");
-      }
-      
-
-}
-debugPrint("[Classes->FoodItem-> readID()] End");
-
-}
-
-Future<int> create() async {
-    debugPrint("[Classes->FoodItem-> create()] Start");
-
-    debugPrint("[Classes->FoodItem-> create()] inserting new FoodItem into database ...");
-    int result = await _databaseHelper.insert(tableName: "FoodItemTable", objectAsMap: toMap());
-    debugPrint("[Classes->FoodItem-> create()] Insertion COMPLETE. result = ${result}");
-
-    debugPrint("[Classes->FoodItem-> create()] End");
-    return result;
-  }
-
-  Future<bool> readFromDatabase() async {
-    debugPrint("[Classes->FoodItem-> readFromDatabase()] Start");
-    if (_id == null) {
-      Map<String, dynamic> matchConditions = Map<String, dynamic>();
-      
-      matchConditions[_databaseHelper.colUserID] = userID;
-      matchConditions[_databaseHelper.colFoodName] = foodName;
-      matchConditions[_databaseHelper.colAmount] = servingAmount;
-      // matchConditions[_databaseHelper.colTimestamp] = nutrient;
-      // matchConditions[_databaseHelper.colIngredient] = ingredient;
-      // matchConditions[_databaseHelper.ColAllergen] = allergen;
-
-
-      
-      debugPrint("[Classes->FoodItem-> readFromDatabase()] Retrieving data from database (using required variables)...");
-      
-      List<Map<String, dynamic>> matchingFoodItem = await _databaseHelper.getMatchingRows_WhereColumns( tableName: "FoodItemTable", conditions: matchConditions);
-
-      if (matchingFoodItem.length == 1) 
-      {
-        debugPrint("[Classes->FoodItem-> readFromDatabase()] processing data...");
-        readFromMap(matchingFoodItem[0]);
-        
-
-        return true;
-      } 
-      else if (matchingFoodItem.length > 1) 
-      {
-        debugPrint("[Classes->FoodItem-> readFromDatabase()] Error more than 1 FoodItem found but there should only be 1 or 0.");
-        debugPrint("[Classes->FoodItem-> readFromDatabase()] End");
-        return false;
-      } 
-      else 
-      {
-        debugPrint("[Classes->FoodItem-> readFromDatabase()] No matching FoodItems found!");
-        debugPrint("[Classes->FoodItem-> readFromDatabase()] End");
-        return false;
-      }
-    } else {
-      debugPrint(
-          "[Classes->FoodItem-> readFromDatabase()] Retrieving data from database (using id)...");
-      List<Map<String, dynamic>> matchingFoodItem =
-          await _databaseHelper.getMatchingRows(
-              tableName: "FoodItemTable",
-              column: _databaseHelper.colID,
-              value: _id.toString());
-
-      debugPrint("[Classes->FoodItem-> readFromDatabase()] processing data...");
-      readFromMap(matchingFoodItem[0]);
-      debugPrint("[Classes->FoodItem-> readFromDatabase()] End");
-      return true;
-    }
-  }
-  
-  FoodItem.fromMap(Map<String, dynamic> map) {
-    debugPrint("[Classes->FoodItem-> FoodItem.fromMap()] Start");
-
-    _id = map["id"];
-    
-    userID = map["user_id"];
-    foodName = map["FoodName"];
-    servingAmount = map["amount"];
-    // nutrient = map["nutrient"];
-    // ingredient = map["nutrient"];
-    // allergen = map["allergen"];
-    
-    
-    
-    
-
-    debugPrint("[Classes->FoodItem-> FoodItem.fromMap()] End");
-  }
-  Future<void> readFromMap(Map<String, dynamic> map) async 
-  {
-    debugPrint("[Classes->FoodItem-> readFoodItemFromMap()] Start");
-
-    _id = map["id"];
-    userID = map["user_id"];
-    foodName = map["FoodName"];
-    servingAmount = map["amount"];
-    // nutrient = map["nutrient"];
-    // ingredient = map["ingredient"];
-    // allergen = map["allergen"];
-    
-
-    debugPrint("[Classes->FoodItem-> readFoodItemFromMap()] End");
-  }
-  
-  Future<FoodItem> fromMap(Map<String, dynamic> map) async {
-    debugPrint("[Classes->FoodItem-> readFoodItemFromMap()] Start");
-
-    FoodItem tempFoodItem = FoodItem.fromMap(map);
-
-    
-    debugPrint("[Classes->FoodItem-> readFoodItemFromMap()] End");
-    return tempFoodItem;
-  }
-  Map<String, dynamic> toMap() {
-    Map<String, dynamic> map = Map<String, dynamic>();
-
-    if (_id != null) {
-      map['id'] = _id;
-    }
-    map["user_id"] = this.userID;
-    map["foodName"] = this.foodName;
-    map["amount"] = this.servingAmount;
-    // map["nutrient"] = this.nutrient;
-    // map["ingredient"] = this.ingredient;
-    // map["allergen"] = this.allergen;
-     
-
-    return map;
-  }
-  
-  Future<int> update() async {
-    debugPrint("[Classes->FoodItem-> update()] Start");
-    int result = 0;
-
-    debugPrint("[Classes->FoodItem-> update()] updating...");
-    result = await _databaseHelper.update(tableName: "FoodItemTable", tableRow: this);
-    //result = await _databaseHelper.update_fromMap(tableName: "FoodItemTable", values: toMap());
-    debugPrint("[Classes->FoodItem-> update()] update result: $result");
-
-    
-    debugPrint("[Classes->FoodItem-> update()] end");
-    return result;
-  }
-
-  Future<int> delete() async {
-    int result = 0;
-
-    return result;
-  }
-
-
-}
-*/
-
 class FoodItem {
   FoodItem(
       {ID,
@@ -1159,13 +900,20 @@ class FoodItem {
   FoodItem.fromMap(Map<String, dynamic> map) {
     debugPrint("[Classes->FoodItem-> FoodItem.fromMap()] Start");
 
-    _id = map["id"];
+    if(map["id"] != null)
+    {
+      _id = map["id"];
+      debugPrint("[Classes->FoodItem-> FoodItem.fromMap()] map[\"id\"]: ${map["id"]}");
+    }
+    else
+    {
+      debugPrint("[Classes->FoodItem-> FoodItem.fromMap()] id = null !");
+    }
+    
     
     name = map["name"];
     servingSize = map["serving_size"];
     note = map["note"];
-    
-    
     
 
     debugPrint("[Classes->FoodItem-> FoodItem.fromMap()] End");
@@ -1738,8 +1486,14 @@ class NutrientInfo {
   NutrientInfo.fromMap(Map<String, dynamic> map) {
     debugPrint("[Classes->NutrientInfo-> NutrientInfo.fromMap()] Start");
 
-    _id = map["id"];
-    
+    if(_id != null)
+    {
+      _id = map["id"];
+    }
+    else
+    {
+      debugPrint("[Classes->NutrientInfo-> NutrientInfo.fromMap()] id is null!");
+    }
     userID = map["user_id"];
     nutrientID = map["nutrient_id"];
     name = map["name"];

@@ -74,10 +74,16 @@ class _CreateNutrientInfoPageState extends State<CreateNutrientInfoPage> {
         
       }
     }
+    
+    nutrientInfoMap["user_id"] = widget.thisUser.id!;
+    nutrientInfoMap["nutrient_id"] = -1;
+
     debugPrint("[CreateNutrientInfoPage-> submit()] The new Nutrient Info as a map: ${nutrientInfoMap.toString()}...");
     
     debugPrint("[CreateNutrientInfoPage-> submit()] creating the new Nutrient Info...");
     newNutrientInfo = NutrientInfo.fromMap(nutrientInfoMap);
+    //newNutrientInfo.userID = widget.thisUser.id!;
+    //newNutrientInfo.nutrientID = -1;
     
 
     debugPrint("[CreateNutrientInfoPage-> submit()] Validating...");
@@ -179,7 +185,7 @@ class _CreateNutrientInfoPageState extends State<CreateNutrientInfoPage> {
   @override
   initState() {
     debugPrint("[CreateNutrientInfoPage] Start");
-    variablesInfo["userID"] = <String, dynamic>{};
+    /*variablesInfo["userID"] = <String, dynamic>{};
     variablesInfo["userID"]!["TextEditingController"] = TextEditingController();
     variablesInfo["userID"]!["DataType"] = int;
     variablesInfo["userID"]!["name_with_underscore"] = "user_id";
@@ -190,6 +196,7 @@ class _CreateNutrientInfoPageState extends State<CreateNutrientInfoPage> {
     variablesInfo["nutrientID"]!["DataType"] = int;
     variablesInfo["nutrientID"]!["name_with_underscore"] = "nutrient_id";
     variablesInfo["nutrientID"]!["NameWithSpace"] = "Nutrient ID";
+    */
 
     variablesInfo["name"] = <String, dynamic>{};
     variablesInfo["name"]!["TextEditingController"] = TextEditingController();
