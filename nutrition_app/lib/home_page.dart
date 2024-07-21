@@ -18,7 +18,7 @@ import 'package:nutrition_app/view_all_food_item_nutrients_page.dart';
 import 'package:nutrition_app/create_nutrient_info_page.dart';
 import 'package:nutrition_app/view_all_nutrient_infos_page.dart';
 //import 'package:nutrition_app/create_new_food_items.dart';
-
+import 'package:nutrition_app/database_helper.dart';
 
 
 
@@ -40,7 +40,8 @@ class _HomePageState extends State<HomePage> {
   double buttonHeight = 50;
   double buttonWidth = 200;
   double spacerHeight = 15;
-  @override
+  
+  DatabaseHelper databaseHelper = DatabaseHelper();
 
   
   int timestampToX_hours(DateTime timestamp)
@@ -74,10 +75,24 @@ class _HomePageState extends State<HomePage> {
   Future<Map<int, double>> totalConsumed(String nutrientName, DateTime start, DateTime end) async
   {
     debugPrint("[HomePage-> totalConsumed()] Start");
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
     //get all items where time stamp is >= start && timestaamp <= end
     List<ConsumedFood> matchingConsumedFoods = [];
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    debugPrint("[HomePage-> totalConsumed()] retrieving consumed foods...");
+    List<Map<String, dynamic>> matchingConsumedFoods_map = await databaseHelper.getMatchingRows(tableName: "ConsumedFoodTable", column: databaseHelper.colUserID, value: widget.thisUser.id!.toString());
+    debugPrint("[HomePage-> totalConsumed()] processing...");
+    matchingConsumedFoods = matchingConsumedFoods_map.map((consumedFood) => ConsumedFood.fromMap(consumedFood)).toList();
+
+    debugPrint("[HomePage-> totalConsumed()] removing consumed foods that are out of intended time range");
+    for (ConsumedFood consumedFood in matchingConsumedFoods) {
+      if(consumedFood.timestamp.isBefore(start) || consumedFood.timestamp.isAfter(end))
+      {
+        matchingConsumedFoods.remove(consumedFood);
+      }
+      
+    }
+    
     Map<int, double> dataPoints = Map<int, double>();
     int newX;
     double newY;
@@ -105,6 +120,7 @@ class _HomePageState extends State<HomePage> {
     return dataPoints;
   }
 
+  @override
   Widget build(BuildContext context) {
     return PageWidget(home: () { debugPrint("[HomePage-> build] Going to Log-In Page"); Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);}, pageName: "Home Page", thisUser: widget.thisUser, body: [Center(
       child: Column(children: [
