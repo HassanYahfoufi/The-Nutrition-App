@@ -80,7 +80,7 @@ class _ViewFoodItemPageState extends State<ViewFoodItemPage> {
           child: Column(children: [
             const SizedBox(height: 60),
             const Text(
-              'FoodItem',
+              'Food Item',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -89,17 +89,45 @@ class _ViewFoodItemPageState extends State<ViewFoodItemPage> {
             const SizedBox(height: 30),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisFoodItem.name.toString()),
+              child: Row( 
+                children: [
+                  Text("Name: "),
+                  
+                  SizedBox(width: 8),
+                  
+                  Text(widget.thisFoodItem.name.toString()),
+                ]
+              )
             ),
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisFoodItem.servingSize.toString()),
+              child: Row(
+                children: [
+                  Text("Serving size: "),
+
+                  SizedBox(width: 8),
+
+                  Text(widget.thisFoodItem.servingSize.toString()),
+                ]
+              ),
             ),
             const SizedBox(height: 10),
+            Divider (height: 1, color: Colors.black),
+            const SizedBox(height: 10),
+
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(widget.thisFoodItem.note.toString()),
+              child: Row(
+                children: [
+                  Text("Notes: "),
+
+                  SizedBox(width: 8),
+                  
+                  Text(widget.thisFoodItem.note.toString()),
+                ]
+              ),
             ),
 
             Divider(),

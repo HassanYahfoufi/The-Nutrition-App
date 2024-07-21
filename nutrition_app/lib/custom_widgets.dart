@@ -30,17 +30,17 @@ class _PageWidgetState extends State<PageWidget> {
             backgroundColor: Colors.grey[300],
 
             appBar: AppBar(actions: [
-              IconButton(onPressed: widget.home ?? (){debugPrint("[${widget.pageName}] widget.home was empty. Navigating to default which is HomePage()...");Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser)));}, icon: Icon(Icons.home)), 
-              (widget.lastPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.lastPage!),), icon: Icon(Icons.close )) : Container(),
+              IconButton(onPressed: widget.home ?? (){debugPrint("[${widget.pageName}] widget.home was empty. Navigating to default which is HomePage()...");Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser)));}, icon: Icon(Icons.home), color: Colors.white), 
+              (widget.lastPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.lastPage!),), icon: Icon(Icons.close ), color: Colors.white) : Container(),
               
               (widget.editPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.editPage!),), icon: Icon(Icons.edit )) : SizedBox.shrink(),
-              IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle )),
+              IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle ), color: Colors.white),
 
-              IconButton(onPressed: () { displayDialogSignOut(context);}, icon: Icon(Icons.exit_to_app)),
+              IconButton(onPressed: () { displayDialogSignOut(context);}, icon: Icon(Icons.exit_to_app), color: Colors.white),
 
 
             ], 
-            title: Text(widget.pageName),
+            title: Text(widget.pageName, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold )),
             backgroundColor: Colors.green,
             ),
             body: Stack(
@@ -171,7 +171,7 @@ class _SizedOutlinedButtonState extends State<SizedOutlinedButton> {
       
       children: [
         
-        Container( height: widget.height, width: widget.width, child: OutlinedButton(onPressed: widget.onPressed, child: Text(widget.text)),),
+        Container( height: widget.height, width: widget.width, child: OutlinedButton(style: ButtonStyle(backgroundColor: WidgetStatePropertyAll <Color>(Colors.green),), onPressed: widget.onPressed, child: Text(widget.text, style: TextStyle(color: Colors.white))),),
       ],
     );
   }
@@ -244,7 +244,7 @@ class _WeightLineGraphState extends State<WeightLineGraph> {
               FlSpot(5, 250),
             ],
             isCurved: true,
-           
+            color: Colors.green
       
            
           
@@ -337,13 +337,13 @@ void displayDialogSignOut(BuildContext context){
 
         actions: <Widget>[
           TextButton(
-            child: Text('Cancel'),
+            child: Text('Cancel', style: TextStyle(color: Colors.green),),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           TextButton(
-            child: Text("Sign Out"),
+            child: Text("Sign Out", style: TextStyle(color: Colors.green),),
             
             onPressed: () {
               Navigator.of(context).pop();
@@ -380,6 +380,7 @@ class _CalorieLineGraphState extends State<CalorieLineGraph> {
               FlSpot(5, 250),
             ],
             isCurved: true,
+            color: Colors.green
            
       
            
@@ -486,7 +487,7 @@ class _BMILineGraphState extends State<BMILineGraph> {
               FlSpot(5, 16.0),
             ],
             isCurved: true,
-           
+            color: Colors.green
       
            
           
@@ -569,4 +570,14 @@ class _BMILineGraphState extends State<BMILineGraph> {
     );
   }
 }
+
+// Future <void> showTime(BuildContext context) async{
+//     TimeOfDay userSelectedTime = TimeOfDay.now();
+//    final TimeOfDay? time = await showTimePicker(context: context, initialTime: userSelectedTime, initialEntryMode: TimePickerEntryMode.dial);
+//                       if(time != null){
+//                         setState(() {
+//                           userSelectedTime = time;
+//                         });
+//                       }
+//                     }
 
