@@ -61,9 +61,48 @@ class _ViewAllFoodItemsPageState extends State<ViewAllFoodItemsPage> {
       home: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(HomePage(thisUser: widget.thisUser,))),);},
       pageName: "FoodItems",
       body: [
-        (foodItems.length > 0) ? Column(children: [...foodItems.map((foodItem) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewFoodItemPage(thisFoodItem: foodItem, nextPage: ViewAllFoodItemsPage(thisUser: widget.thisUser, parentObject: widget.parentObject), thisUser: widget.thisUser))),);}, child: Text(foodItem.name.toString())))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
-      ],
+            foodItems.isNotEmpty
+             ? Column(
+                children: foodItems.map((foodItem) {
+                  return buildFoodItemCard(foodItem);
+                }).toList(),
+              )
+            : TextButton(onPressed: () {}, child: Text("Loading...")),      ],
+      
     );
+    
     //Navigator.push(context, MaterialPageRoute(builder: (context) =>(widget.nextPage)),);
   }
+   Widget buildFoodItemCard(FoodItem foodItem) {
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 8.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      elevation: 5,
+      child: InkWell(
+        onTap: () { Navigator.push( context, MaterialPageRoute( builder: (context) => ViewFoodItemPage( thisFoodItem: foodItem, nextPage: ViewAllFoodItemsPage( thisUser: widget.thisUser, parentObject: widget.parentObject,), thisUser: widget.thisUser,), ),);},
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              Center(
+                child: Text(
+                  foodItem.name.toString(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18.0,
+             
+                  ),
+                ),
+              ),
+              SizedBox(width: 8.0),
+            //  Text(foodItem.details.toString()),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
+

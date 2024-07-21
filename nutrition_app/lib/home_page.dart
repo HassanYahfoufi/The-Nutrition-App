@@ -43,6 +43,15 @@ class _HomePageState extends State<HomePage> {
   
   DatabaseHelper databaseHelper = DatabaseHelper();
 
+  String SelectedGraph = 'Calories';
+
+  void onPressedGraph(String graph) {
+    setState(() {
+      SelectedGraph = graph;
+    });
+  }
+
+
   
   int timestampToX_hours(DateTime timestamp)
   {
@@ -57,6 +66,7 @@ class _HomePageState extends State<HomePage> {
 
     return dateInt;
   }
+
 
   int timestampToX_days(DateTime timestamp)
   {
@@ -119,6 +129,9 @@ class _HomePageState extends State<HomePage> {
 
     return dataPoints;
   }
+  
+  
+  
 
   @override
   Widget build(BuildContext context) {
@@ -126,17 +139,28 @@ class _HomePageState extends State<HomePage> {
       child: Column(children: [
         
         SizedBox(height: 25),
+       
+
         Center(child:
-          Column(children:[
-            Row(children:[
-              SizedBox(width: 200),
-              SizedOutlinedButton(text: "Calories", height: buttonHeight, width: buttonWidth),
-              SizedOutlinedButton(text: "BMI", height: buttonHeight, width: buttonWidth),
-              SizedOutlinedButton(text: "Weight", height: buttonHeight, width: buttonWidth),
+          Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+            children:[
+  
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              
+              children:[
+
+              SizedOutlinedButton(text: "Calories", height: buttonHeight, width: buttonWidth, onPressed:() => onPressedGraph('Calories'),),
+              SizedOutlinedButton(text: "BMI", height: buttonHeight, width: buttonWidth, onPressed:() => onPressedGraph('BMI'),),
+              SizedOutlinedButton(text: "Weight", height: buttonHeight, width: buttonWidth, onPressed:() => onPressedGraph('Weight'),),
             ]),
-            SizedBox(child: LineChartWidget(), height: 200, width: 700),
+            SizedBox(child: DisplayGraph(), height: 300, width: 700),
           ]),
         ),
+        
         SizedBox(height: (spacerHeight * 2)),
         //SizedOutlinedButton(text: "View Food Items", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewFoodItems(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
 
@@ -167,9 +191,18 @@ class _HomePageState extends State<HomePage> {
         SizedOutlinedButton(text: "View All Nutrient Infos", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllNutrientInfosPage(thisUser: widget.thisUser)));}),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "View Food Item Nutrientss", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ViewAllFoodItemNutrientsPage(parentObject:widget.thisUser, thisUser: widget.thisUser)),);}),
-        SizedBox(height: spacerHeight),
-        SizedOutlinedButton(text: "Sign Out", height: buttonHeight, width: buttonWidth, onPressed: () {displayDialogSignOut(context);},)
       ],),
     )]);
+  }
+Widget DisplayGraph() {
+    switch (SelectedGraph) {
+      case 'BMI':
+        return BMILineGraph();
+      case 'Weight':
+        return WeightLineGraph();
+      case 'Calories':
+      default:
+        return CalorieLineGraph();
+    }
   }
 }

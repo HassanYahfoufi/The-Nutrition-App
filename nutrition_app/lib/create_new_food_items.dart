@@ -23,7 +23,7 @@ Optional Var With Space ###
 */
 
 class CreateFoodItem extends StatefulWidget {
-  CreateFoodItem({required this.nextPage, required this.thisUser, super.key});
+  CreateFoodItem({required this.nextPage,required this.thisUser, super.key});
   final Widget nextPage;
   User thisUser;
 
@@ -32,72 +32,120 @@ class CreateFoodItem extends StatefulWidget {
 }
 
 class _CreateFoodItemState extends State<CreateFoodItem> {
+  late FoodItem foodItem;
+  TextEditingController FoodNameController = TextEditingController();
+  TextEditingController ServingSizeAmountController = TextEditingController();
+  TextEditingController NutrientAmountController = TextEditingController();
+  
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  TextEditingController required_var01Controller = TextEditingController();
-  TextEditingController required_var02Controller = TextEditingController();
+  // TextEditingController required_var01Controller = TextEditingController();
+  // TextEditingController required_var02Controller = TextEditingController();
   List<String> choices = [];
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  TextEditingController required_conversion_var01Controller = TextEditingController();
-  TextEditingController required_conversion_var02Controller = TextEditingController();
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  TextEditingController optional_var01Controller = TextEditingController();
-  TextEditingController optional_var02Controller = TextEditingController();
-  TextEditingController optional_var03Controller = TextEditingController();
-  TextEditingController optional_var04Controller = TextEditingController();
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  TextEditingController optional_conversion_var01Controller = TextEditingController();
-  TextEditingController optional_conversion_var02Controller = TextEditingController();
-  TextEditingController optional_conversion_var03Controller = TextEditingController();
-  TextEditingController optional_conversion_var04Controller = TextEditingController();
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  // TextEditingController required_conversion_var01Controller = TextEditingController();
+  // TextEditingController required_conversion_var02Controller = TextEditingController();
+  // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  // TextEditingController optional_var01Controller = TextEditingController();
+  // TextEditingController optional_var02Controller = TextEditingController();
+  // TextEditingController optional_var03Controller = TextEditingController();
+  // TextEditingController optional_var04Controller = TextEditingController();
+  // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  // TextEditingController optional_conversion_var01Controller = TextEditingController();
+  // TextEditingController optional_conversion_var02Controller = TextEditingController();
+  // TextEditingController optional_conversion_var03Controller = TextEditingController();
+  // TextEditingController optional_conversion_var04Controller = TextEditingController();
+  // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  late Blank newBlank;
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
+    Map<String,Map<String, dynamic>> variablesInfo = Map<String,Map<String, dynamic>>();
   Future<void> submit() async
   {
-    debugPrint("[Create Blank With Space Page-> submit()] Start");
+  Map<String, dynamic> FoodItemMap = Map<String, dynamic>();
+
+
+
+    FoodItemMap[databaseHelper.colUserID] = widget.thisUser.id;
+    String underscoreName;
+
+    debugPrint("[CreateNewFoodItemsPage Page-> submit()] Start");
+    for (var entry in variablesInfo.entries) 
+    {
+      debugPrint("[CreateNewFoodItemsPage-> submit()]\tprocessing ${entry.key} info...");
+      debugPrint("[CreateNewFoodItemsPage-> submit()]\t\texcecuting: underscoreName = entry.value[\"name_with_underscore\"];...");
+      underscoreName = entry.value["name_with_underscore"];
+      
+      debugPrint("[CreateNewFoodItemsPage-> submit()]\t\t checking data type of ${entry.key}");
+      debugPrint("[CreateNewFoodItemsPage-> submit()]\t\t${entry.key}'s data type: ${entry.value["DataType"]}");
+      if(entry.value["DataType"] == String)
+      {
+        debugPrint("[CreateNewFoodItemsPage-> submit()]\t\t${entry.key} is a String");
+        FoodItemMap[underscoreName] = entry.value["TextEditingController"].text;
+      }
+      else
+      {
+        debugPrint("[CreateNewFoodItemsPage-> submit()]\t\t${entry.key} is not a String");
+        if(entry.value["DataType"] == int)
+        {
+          FoodItemMap[underscoreName] = int.parse(entry.value["TextEditingController"].text);
+        }
+        else if(entry.value["DataType"] == double)
+        {
+          FoodItemMap[underscoreName] = double.parse(entry.value["TextEditingController"].text);
+        }
+        else
+        {
+          FoodItemMap[underscoreName] = entry.value["TextEditingController"].text;
+        }
+        
+      }
+    }
+    
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    late requiredVar01_DataType tempRequired_Var01 = requiredVar01_DataType.parse(required_var01Controller.text);
-    late requiredVar02_DataType tempRequired_Var02 = requiredVar02_DataType.parse(required_var02Controller.text);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    late required_conversionVar01_DataType tempRequired_Conversion_Var01 = required_conversionVar01_DataType.parse(required_conversion_var01Controller.text);
-    late required_conversionVar02_DataType tempRequired_Conversion_Var02 = required_conversionVar02_DataType.parse(required_conversion_var02Controller.text);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    optionalVar01_DataType? tempOptional_Var01 = optionalVar01_DataType.parse(optional_var01Controller.text);
-    optionalVar02_DataType? tempOptional_Var02 = optionalVar02_DataType.parse(optional_var02Controller.text);
-    optionalVar03_DataType? tempOptional_Var03 = optionalVar03_DataType.parse(optional_var03Controller.text);
-    optionalVar04_DataType? tempOptional_Var04 = optionalVar04_DataType.parse(optional_var04Controller.text);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    optional_conversionVar01_DataType? tempOptional_Conversion_Var01 = optional_conversionVar01_DataType.parse(optional_conversion_var01Controller.text);
-    optional_conversionVar02_DataType? tempOptional_Conversion_Var02 = optional_conversionVar02_DataType.parse(optional_conversion_var02Controller.text);
-    optional_conversionVar03_DataType? tempOptional_Conversion_Var03 = optional_conversionVar03_DataType.parse(optional_conversion_var03Controller.text);
-    optional_conversionVar04_DataType? tempOptional_Conversion_Var04 = optional_conversionVar04_DataType.parse(optional_conversion_var04Controller.text);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    // late requiredVar01_DataType tempRequired_Var01 = requiredVar01_DataType.parse(required_var01Controller.text);
+    // late requiredVar02_DataType tempRequired_Var02 = requiredVar02_DataType.parse(required_var02Controller.text);
+    // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    // late required_conversionVar01_DataType tempRequired_Conversion_Var01 = required_conversionVar01_DataType.parse(required_conversion_var01Controller.text);
+    // late required_conversionVar02_DataType tempRequired_Conversion_Var02 = required_conversionVar02_DataType.parse(required_conversion_var02Controller.text);
+    // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    // optionalVar01_DataType? tempOptional_Var01 = optionalVar01_DataType.parse(optional_var01Controller.text);
+    // optionalVar02_DataType? tempOptional_Var02 = optionalVar02_DataType.parse(optional_var02Controller.text);
+    // optionalVar03_DataType? tempOptional_Var03 = optionalVar03_DataType.parse(optional_var03Controller.text);
+    // optionalVar04_DataType? tempOptional_Var04 = optionalVar04_DataType.parse(optional_var04Controller.text);
+    // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    // optional_conversionVar01_DataType? tempOptional_Conversion_Var01 = optional_conversionVar01_DataType.parse(optional_conversion_var01Controller.text);
+    // optional_conversionVar02_DataType? tempOptional_Conversion_Var02 = optional_conversionVar02_DataType.parse(optional_conversion_var02Controller.text);
+    // optional_conversionVar03_DataType? tempOptional_Conversion_Var03 = optional_conversionVar03_DataType.parse(optional_conversion_var03Controller.text);
+    // optional_conversionVar04_DataType? tempOptional_Conversion_Var04 = optional_conversionVar04_DataType.parse(optional_conversion_var04Controller.text);
+    // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
     
     
 
 
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //newBlank = Blank(/*!!!!!*/Required_Var01: tempRequired_Var01, Required_Var02: tempRequired_Var02/*!!!!!*//*!!!!!*/, Required_Conversion_Var01: tempRequired_Conversion_Var01, Required_Conversion_Var02: tempRequired_Conversion_Var02/*!!!!!*//*!!!!!*/, Optional_Var01: tempOptional_Var01, Optional_Var02: tempOptional_Var02, Optional_Var03: tempOptional_Var03, Optional_Var04: tempOptional_Var04/*!!!!!*//*!!!!!*/, Optional_Conversion_Var01: tempOptional_Conversion_Var01, Optional_Conversion_Var02: tempOptional_Conversion_Var02, Optional_Conversion_Var03: tempOptional_Conversion_Var03, Optional_Conversion_Var04: tempOptional_Conversion_Var04/*!!!!!*/);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    debugPrint("[Create Blank With Space Page-> submit()] Validating...");
-    if (await newBlank.countMatching() >= 1) {
+    //newBlank = Blank(/*!!!!!*/Required_Var01: FoodNameController, Required_Var02: tempRequired_Var02/*!!!!!*//*!!!!!*/, Required_Conversion_Var01: tempRequired_Conversion_Var01, Required_Conversion_Var02: tempRequired_Conversion_Var02/*!!!!!*//*!!!!!*/, Optional_Var01: tempOptional_Var01, Optional_Var02: tempOptional_Var02, Optional_Var03: tempOptional_Var03, Optional_Var04: tempOptional_Var04/*!!!!!*//*!!!!!*/, Optional_Conversion_Var01: tempOptional_Conversion_Var01, Optional_Conversion_Var02: tempOptional_Conversion_Var02, Optional_Conversion_Var03: tempOptional_Conversion_Var03, Optional_Conversion_Var04: tempOptional_Conversion_Var04/*!!!!!*/);
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+       
+        foodItem = FoodItem.fromMap(FoodItemMap);
+
+    debugPrint("[CreateNewFoodItemsPage Page-> submit()] Validating...");
+    if (await foodItem.countMatching() >= 1) {
       setState(() {
         showDialog(
             context: context,
@@ -107,14 +155,14 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
                       Text("The Blank already exists"),
                 ));
         debugPrint(
-            "[Create Blank With Space Page-> submit()]sign up fail! Blank already exists!!!!!!!!!!!!!!!!!!!!");
+            "[CreateNewFoodItemsPage Page-> submit()]sign up fail! Blank already exists!!!!!!!!!!!!!!!!!!!!");
       });
     } else //if you are here then the combonation of alues for the required parameters hasn't been used yet
     {
-      debugPrint("[Create Blank With Space Page-> submit()] the combo of values for the required parameters hasn't been used yet");
+      debugPrint("[CreateNewFoodItemsPage Page-> submit()] the combo of values for the required parameters hasn't been used yet");
       
 
-      int insertResult = await newBlank.create();
+      int insertResult = await foodItem.create();
 
       if (insertResult != 0) {
         setState(() {
@@ -122,21 +170,21 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
         });
       } else {
         setState(() {
-          debugPrint("[Create Blank With Space Page-> submit()] Sign up failed!");
+          debugPrint("[CreateNewFoodItemsPage Page-> submit()] Sign up failed!");
           showDialog(
               context: context,
               builder: (_) => AlertDialog(
                     title: Text("Sign in failed!"),
                     content: Text("Insert operation failed!"),
                   ));
-          debugPrint("[Create Blank With Space Page-> submit()] Sign up failed!");
+          debugPrint("[CreateNewFoodItemsPage Page-> submit()] Sign up failed!");
         });
       }
     }
   }
   
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  Widget currentPage({/*!!!!!*/required required_var01Controller, required required_var02Controller/*!!!!!*//*!!!!!*/, required required_conversion_var01Controller, required required_conversion_var02Controller/*!!!!!*//*!!!!!*/, required optional_var01Controller, required optional_var02Controller, required optional_var03Controller, required optional_var04Controller/*!!!!!*//*!!!!!*/, required optional_conversion_var01Controller, required optional_conversion_var02Controller, required optional_conversion_var03Controller, required optional_conversion_var04Controller/*!!!!!*/})
+  Widget currentPage({required variablesInfo})
   //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
   { 
     String oldvalue = 'g';
@@ -153,23 +201,15 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
             const SizedBox(height: 30),
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+           ...variablesInfo.entries.map((variableInfo) => Column(children: [
             Padding(
               padding: EdgeInsets.all(15),
-              child: Row(
-                children: <Widget>[
                   
-                  Text('Name',style: TextStyle(
-                    backgroundColor: Colors.white,
-                    
-                              ),
-                  ),
-                  SizedBox(width: 8,),
-                  Expanded(
                     child: Column(
                       children: <Widget>[
                         Container(height: 1, color: Colors.black),
                         TextField(
-                          controller: required_var01Controller,
+                          controller: variableInfo.value["TextEditingController"],
                           decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
@@ -179,79 +219,25 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
                               ),
                               fillColor: Colors.white,
                               filled: true,
-                              hintText: "Name"),
+                              hintText: variableInfo.value["NameWithSpace"]),
                               ),
                               Container(height: 1, color: Colors.black),
                             ],
-                         ),
-              ),
-                ],
+                ),
+              
+                
+           ), ],
               ) 
               
             ),
             //!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!
-            const SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: Row(
-                children: <Widget>[
-                  
-                  Text('Serving\nSize',style: TextStyle(
-                    backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                    
-                              ),
-                  ),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        Container(height: 1, color: Colors.black),
-                        TextField(
-                          controller: required_var01Controller,
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
-                              ),
-                              fillColor: Colors.white,
-                              filled: true,
-                              hintText: "Amount"),
-                              ),
-                              Container(height: 1, color: Colors.black),
-                            ],
-                         ),
-              ),
-              SizedBox(width: 8),
-              Column(
-                children: <Widget>[
-                  DropdownButton<String>(
-                    value: oldvalue,
-                    onChanged: (String? newValue){
-                      setState(() {
-                        oldvalue = newValue!;
-                      });
-                    },
-                    items: <String>['g', 'mg']
-                    .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
-                ],
-              ),
-                ],
-              ) 
-            ),
+            
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             Divider (height: 1, color: Colors.black),
              const SizedBox(height: 20),
             const Text(
@@ -379,7 +365,7 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
               
               
               child: TextField(
-                controller: required_conversion_var02Controller,
+               // controller: required_conversion_var02Controller,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -417,7 +403,7 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
               
               
               child: TextField(
-                controller: required_conversion_var01Controller,
+              //  controller: required_conversion_var01Controller,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -435,197 +421,6 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
 
 
 
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: TextField(
-            //     controller: required_conversion_var01Controller,
-            //     decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         fillColor: Colors.white,
-            //         filled: true,
-            //         hintText: "Required Conversion Variable With Space #01"),
-            //   ),
-            // ),
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // const SizedBox(height: 10),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: TextField(
-            //     controller: required_conversion_var02Controller,
-            //     decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         fillColor: Colors.white,
-            //         filled: true,
-            //         hintText: "Required Conversion Variable With Space #02"),
-            //   ),
-            // ),
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // const SizedBox(height: 10),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: TextField(
-            //     controller: optional_var01Controller,
-            //     decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         fillColor: Colors.white,
-            //         filled: true,
-            //         hintText: "Optional Var With Space #01"),
-            //   ),
-            // ),
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // const SizedBox(height: 10),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: TextField(
-            //     controller: optional_var02Controller,
-            //     decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         fillColor: Colors.white,
-            //         filled: true,
-            //         hintText: "Optional Var With Space #02"),
-            //   ),
-            // ),
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // const SizedBox(height: 10),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: TextField(
-            //     controller: optional_var03Controller,
-            //     decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         fillColor: Colors.white,
-            //         filled: true,
-            //         hintText: "Optional Var With Space #03"),
-            //   ),
-            // ),
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // const SizedBox(height: 10),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: TextField(
-            //     controller: optional_var04Controller,
-            //     decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         fillColor: Colors.white,
-            //         filled: true,
-            //         hintText: "Optional Var With Space #04"),
-            //   ),
-            // ),
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // const SizedBox(height: 10),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: TextField(
-            //     controller: optional_conversion_var01Controller,
-            //     decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         fillColor: Colors.white,
-            //         filled: true,
-            //         hintText: "Optional Conversion Variable With Space #01"),
-            //   ),
-            // ),
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // const SizedBox(height: 10),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: TextField(
-            //     controller: optional_conversion_var02Controller,
-            //     decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         fillColor: Colors.white,
-            //         filled: true,
-            //         hintText: "Optional Conversion Variable With Space #02"),
-            //   ),
-            // ),
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // const SizedBox(height: 10),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: TextField(
-            //     controller: optional_conversion_var03Controller,
-            //     decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         fillColor: Colors.white,
-            //         filled: true,
-            //         hintText: "Optional Conversion Variable With Space #03"),
-            //   ),
-            // ),
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // const SizedBox(height: 10),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 30),
-            //   child: TextField(
-            //     controller: optional_conversion_var04Controller,
-            //     decoration: InputDecoration(
-            //         enabledBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.grey),
-            //         ),
-            //         fillColor: Colors.white,
-            //         filled: true,
-            //         hintText: "Optional Conversion Variable With Space #04"),
-            //   ),
-            // ),
-            // //!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            // //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
             SizedBox(height: 10),
             TextButton(
               onPressed: () {
@@ -654,10 +449,20 @@ class _CreateFoodItemState extends State<CreateFoodItem> {
   @override
   initState() {
     debugPrint("[CreateFoodItem] Start");
+    variablesInfo["FoodName"] = <String, dynamic>{};
+    variablesInfo["FoodName"]!["TextEditingController"] = TextEditingController();
+    variablesInfo["FoodName"]!["DataType"] = String;
+    variablesInfo["FoodName"]!["name_with_underscore"] = "food_name";
+    variablesInfo["FoodName"]!["NameWithSpace"] = "FoodName";
+    variablesInfo["amount"] = <String, dynamic>{};
+    variablesInfo["amount"]!["TextEditingController"] = TextEditingController();
+    variablesInfo["amount"]!["DataType"] = double;
+    variablesInfo["amount"]!["name_with_underscore"] = "Serving_Size_Amount";
+    variablesInfo["amount"]!["NameWithSpace"] = "Serving Size Amount";
   }
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(pageName: "Create new food item", body: [currentPage(/*!!!!!*/required_var01Controller: required_var01Controller, required_var02Controller: required_var02Controller/*!!!!!*//*!!!!!*/, required_conversion_var01Controller: required_conversion_var01Controller, required_conversion_var02Controller: required_conversion_var02Controller/*!!!!!*//*!!!!!*/, optional_var01Controller: optional_var01Controller, optional_var02Controller: optional_var02Controller, optional_var03Controller: optional_var03Controller, optional_var04Controller: optional_var04Controller/*!!!!!*//*!!!!!*/, optional_conversion_var01Controller: optional_conversion_var01Controller, optional_conversion_var02Controller: optional_conversion_var02Controller, optional_conversion_var03Controller: optional_conversion_var03Controller, optional_conversion_var04Controller: optional_conversion_var04Controller/*!!!!!*/)], thisUser: widget.thisUser,);
+    return PageWidget(pageName: "Create New Food Item", body: [currentPage(variablesInfo: variablesInfo)], thisUser: widget.thisUser,);
   }
 }
