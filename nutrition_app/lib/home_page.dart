@@ -1,4 +1,4 @@
-import 'dart:js_interop_unsafe';
+//import 'dart:js_interop_unsafe';
 
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/custom_widgets.dart';
@@ -42,13 +42,35 @@ class _HomePageState extends State<HomePage> {
   double spacerHeight = 15;
   @override
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  int timestampToX(DateTime timestamp)
-  {
-    return 0;
-  }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
+  int timestampToX_hours(DateTime timestamp)
+  {
+    //x = hours
+      //each unit of the x axis represents an hour
+    int year = timestamp.year * 8760;
+    int month = timestamp.month * 720;
+    int day = timestamp.day * 24;
+    int hour = timestamp.hour * 1;
+
+    int dateInt = day + month + year + hour;
+
+    return dateInt;
+  }
+
+  int timestampToX_days(DateTime timestamp)
+  {
+    //x = days
+      //each unit of the x axis represents a day
+    int year = timestamp.year * 365;
+    int month = timestamp.month * 30;
+    int day = timestamp.day;
+
+    int dateInt = day + month + year;
+
+    return dateInt;
+  }
+  
+
   Future<Map<int, double>> totalConsumed(String nutrientName, DateTime start, DateTime end) async
   {
     debugPrint("[HomePage-> totalConsumed()] Start");
@@ -64,7 +86,7 @@ class _HomePageState extends State<HomePage> {
     {
       consumedFood.update();
 
-      newX = timestampToX(consumedFood.timestamp);
+      newX = timestampToX_days(consumedFood.timestamp);
       newNutrient = await consumedFood.foodItem!.getNutrient(nutrientName);
 
       if(dataPoints.containsKey(newX))
