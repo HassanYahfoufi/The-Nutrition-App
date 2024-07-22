@@ -36,7 +36,7 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
 
   late FoodItem newFoodItem;
 
-  List<NutrientInfo> nutrientInfos = [];
+  late final List<NutrientInfo> nutrientInfos;
   List<NutrientInfo> selectedNutrientInfos = [];
   
 
@@ -107,6 +107,10 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
     FoodItemNutrient tempNutrient;
     for(NutrientInfo nutrientInfo in selectedNutrientInfos)
     {
+      if(nutrientInfo.id == null)
+      {
+        await nutrientInfo.readID();
+      }
       tempNutrient = FoodItemNutrient(FoodItemID: -1, NutrientInfoID: nutrientInfo.id!, Amount: double.parse(nutrientsInfo[nutrientInfo.name]!["TextEditingController"].text));
       newFoodItem.newNutrients.add(tempNutrient);
     }
@@ -195,7 +199,6 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
 
             SizedBox(height: 10),
             Divider(),
-            //CardWidget(title: "Test card widget!!!!!!!!!!", body:[
               
 
 
@@ -230,15 +233,15 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
                 child: DropDownMultiSelect(
                   onChanged: (List<NutrientInfo> collection){
                     setState(() {
-                      //nutrientInfos = collection;
+                      //`nutrientInfos = collection;//!!!!!!!!!!!!!
                       selectedNutrientInfos = collection;
-                      /*selectedNutrientInfos.clear;
+                      /*selectedNutrientInfos.clear;//!!!!!!!!!!!!!!!!!!
                       for (NutrientInfo? element in collection) {
                         if(element != null)
                         {
                           selectedNutrientInfos.add(element);
                         }
-                      }*/
+                      }*/ //!!!!!!!!!!!!!!!
                   });
                   },
                   options: nutrientInfos,

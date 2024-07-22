@@ -174,7 +174,8 @@ class _CreateFoodItemNutrientPageState extends State<CreateFoodItemNutrientPage>
               ),
             ),
           ]),
-        );}
+        );
+  }
 
 
   @override

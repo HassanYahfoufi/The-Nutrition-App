@@ -316,8 +316,7 @@ class DatabaseHelper {
       {required String tableName,
       required String column,
       required String value}) async {
-    debugPrint(
-        "[DatabaseHelper -> doesExist($tableName, $column, $value)] Start");
+    debugPrint("[DatabaseHelper -> doesExist($tableName, $column, $value)] Start");
 
     String tableType = table[tableName]!.type;
     Database? db = await getDatabase();
@@ -330,15 +329,15 @@ class DatabaseHelper {
     return valueExists;
   }
 
-  Future<List<Map<String, dynamic>>> getMatchingRows(
-      {required String tableName,
-      required String column,
-      required String value}) async {
+  Future<List<Map<String, dynamic>>> getMatchingRows({required String tableName, required String column, required String value}) async 
+  {
+    debugPrint("[DatabaseHelper -> getMatchingRows()] Start");
     String tableType = table[tableName]!.type;
     Database? db = await getDatabase();
     //List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column = $value");
-    List<Map<String, dynamic>> result =
-        await db!.rawQuery("SELECT * FROM $tableType WHERE $column=?", [value]);
+    debugPrint("[DatabaseHelper -> getMatchingRows()] Excecuting: await db!.rawQuery(\"SELECT * FROM $tableType WHERE $column=?\", [$value]);..");
+    List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column=?", [value]);
+    debugPrint("[DatabaseHelper -> getMatchingRows()] End");
     return result;
   }
 
@@ -396,6 +395,40 @@ class DatabaseHelper {
     debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] End");
     return result;
   }
+
+
+  /*
+  Future<List<Map<String, dynamic>>> getMatchingRows_WhereColumns_advanced({required String tableName,required Map<String, Map<String, dynamic>> conditions}) async 
+  {
+    debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] Start");
+    String connditionSQL = "";
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    conditions.forEach((key, value) {
+      if (value != null) 
+      {
+        connditionSQL = "$connditionSQL AND $key = '${value.toString()}'";
+      } 
+      else 
+      {
+        connditionSQL = "$connditionSQL AND $key ISNULL";
+      }
+    });
+    if (connditionSQL.startsWith(" AND ")) 
+    {
+      debugPrint("\tconnditionSQL(before): $connditionSQL");
+      connditionSQL = connditionSQL.substring(5);
+      debugPrint("\tconnditionSQL(after): $connditionSQL");
+    }
+    String tableType = table[tableName]!.type;
+    Database? db = await getDatabase();
+    //List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column = $value");
+    debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] SELECT * FROM $tableType WHERE $connditionSQL...");
+    List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $connditionSQL");
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] End");
+    return result;
+  }*/
 
   Future<List<Map<String, dynamic>>> getMatchingColumns(
       {required String tableName,

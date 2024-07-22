@@ -59,6 +59,13 @@ Future<void> setUpDatabase() async {
   databaseHelper.table["FoodItemTable"]!.addColumn("serving_size", "INTEGER");
   databaseHelper.table["FoodItemTable"]!.addColumn("note", "TEXT");
 
+  debugPrint("[main.dart-> setUpDatabase()] setting up FoodItemNutrient table ...");
+  databaseHelper.table["FoodItemNutrientTable"] = TableInfo(name: "FoodItemNutrientTable", type: "foodItemNutrient_table_v2");
+  databaseHelper.table["FoodItemNutrientTable"]!.addColumn("id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
+  databaseHelper.table["FoodItemNutrientTable"]!.addColumn("food_item_id", "INTEGER");
+  databaseHelper.table["FoodItemNutrientTable"]!.addColumn("nutrient_info_id", "INTEGER");
+  databaseHelper.table["FoodItemNutrientTable"]!.addColumn("amount", "REAL"); 
+
   debugPrint("[main.dart-> setUpDatabase()] setting up NutrientInfo table ...");
   databaseHelper.table["NutrientInfoTable"] = TableInfo(name: "NutrientInfoTable", type: "nutrientInfo_table_v1_3");
   databaseHelper.table["NutrientInfoTable"]!.addColumn("id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
@@ -76,12 +83,6 @@ Future<void> setUpDatabase() async {
   databaseHelper.table["NutrientInfoTable"]!.addColumn("unit_of_measurement_for_tolerable_upper_intake_level", "INTEGER");
 
 
-  debugPrint("[main.dart-> setUpDatabase()] setting up FoodItemNutrient table ...");
-  databaseHelper.table["FoodItemNutrientTable"] = TableInfo(name: "FoodItemNutrientTable", type: "foodItemNutrient_table_v2");
-  databaseHelper.table["FoodItemNutrientTable"]!.addColumn("id", "INTEGER PRIMARY KEY AUTOINCREMENT"); //replace id with account_id
-  databaseHelper.table["FoodItemNutrientTable"]!.addColumn("food_item_id", "INTEGER");
-  databaseHelper.table["FoodItemNutrientTable"]!.addColumn("nutrient_info_id", "INTEGER");
-  databaseHelper.table["FoodItemNutrientTable"]!.addColumn("amount", "REAL");
   
 
   databaseHelper.printTableVarKeys();
