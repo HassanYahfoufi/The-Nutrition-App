@@ -358,7 +358,8 @@ void displayDialogSignOut(BuildContext context){
 }
 
 class CalorieLineGraph extends StatefulWidget {
-  const CalorieLineGraph({super.key});
+  CalorieLineGraph({required this.spots, super.key});
+  List<FlSpot> spots;
 
   @override
   State<CalorieLineGraph> createState() => _CalorieLineGraphState();
@@ -372,13 +373,7 @@ class _CalorieLineGraphState extends State<CalorieLineGraph> {
       LineChartData(
         lineBarsData: [
           LineChartBarData(
-             spots: [
-              FlSpot(1, 50), //temporary data
-              FlSpot(2, 150),
-              FlSpot(3, 300),
-              FlSpot(4, 200),
-              FlSpot(5, 250),
-            ],
+             spots: widget.spots,
             isCurved: true,
             color: Colors.green
            

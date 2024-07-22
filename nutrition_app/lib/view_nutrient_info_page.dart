@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
+import 'package:nutrition_app/update_nutrient_info_page.dart';
+import 'package:nutrition_app/view_all_nutrient_infos_page.dart';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 import 'package:nutrition_app/nutrient_info_class_template.dart';
@@ -176,7 +178,8 @@ class _ViewNutrientInfoPageState extends State<ViewNutrientInfoPage> {
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
             //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
           ]),
-        );}
+        );
+  }
 
 
   @override
@@ -186,7 +189,12 @@ class _ViewNutrientInfoPageState extends State<ViewNutrientInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(pageName: "View Singular Nutrient Info Page", body: [currentPage()], thisUser: widget.thisUser,);
+    return PageWidget(
+      pageName: "View Singular Nutrient Info Page", 
+      body: [currentPage()], 
+      thisUser: widget.thisUser,
+      editPage: UpdateNutrientInfoPage(nextPage: ViewNutrientInfoPage(thisNutrientInfo: widget.thisNutrientInfo, nextPage: ViewAllNutrientInfosPage(thisUser: widget.thisUser), thisUser: widget.thisUser), thisNutrientInfo: widget.thisNutrientInfo, thisUser: widget.thisUser),
+    );
     
   }
 }

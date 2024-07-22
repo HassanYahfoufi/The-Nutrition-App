@@ -1,4 +1,4 @@
-import 'dart:js_interop_unsafe';
+//import 'dart:js_interop_unsafe';
 
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/custom_widgets.dart';
@@ -18,6 +18,8 @@ import 'package:nutrition_app/view_all_food_item_nutrients_page.dart';
 import 'package:nutrition_app/create_nutrient_info_page.dart';
 import 'package:nutrition_app/view_all_nutrient_infos_page.dart';
 //import 'package:nutrition_app/create_new_food_items.dart';
+import 'package:nutrition_app/database_helper.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 
 
@@ -40,29 +42,77 @@ class _HomePageState extends State<HomePage> {
   double buttonHeight = 50;
   double buttonWidth = 200;
   double spacerHeight = 15;
+  DateTime start = DateTime.now(); 
+  DateTime end = DateTime.now();
+  
+  DatabaseHelper databaseHelper = DatabaseHelper();
+
   String SelectedGraph = 'Calories';
 
+  List<FlSpot> chartData = [];
+
   void onPressedGraph(String graph) {
+    debugPrint("[HomePage-> onPressedGraph()] Start");
     setState(() {
       SelectedGraph = graph;
+      debugPrint("[HomePage-> onPressedGraph()] SelectedGraph: $SelectedGraph");
+      totalConsumed(SelectedGraph);
     });
+    debugPrint("[HomePage-> onPressedGraph()] End");
   }
-  @override
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  int timestampToX(DateTime timestamp)
-  {
-    return 0;
-  }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
   
-  Future<Map<int, double>> totalConsumed(String nutrientName, DateTime start, DateTime end) async
+  int timestampToX_hours(DateTime timestamp)
+  {
+    //x = hours
+      //each unit of the x axis represents an hour
+    int year = timestamp.year * 8760;
+    int month = timestamp.month * 720;
+    int day = timestamp.day * 24;
+    int hour = timestamp.hour * 1;
+
+    int dateInt = day + month + year + hour;
+
+    return dateInt;
+  }
+
+
+  int timestampToX_days(DateTime timestamp)
+  {
+    //x = days
+      //each unit of the x axis represents a day
+    int year = timestamp.year * 365;
+    int month = timestamp.month * 30;
+    int day = timestamp.day;
+
+    int dateInt = day + month + year;
+
+    return dateInt;
+  }
+  
+
+  Future<void> totalConsumed(String nutrientName) async
   {
     debugPrint("[HomePage-> totalConsumed()] Start");
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
     //get all items where time stamp is >= start && timestaamp <= end
     List<ConsumedFood> matchingConsumedFoods = [];
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    debugPrint("[HomePage-> totalConsumed()] retrieving consumed foods...");
+    List<Map<String, dynamic>> matchingConsumedFoods_map = await databaseHelper.getMatchingRows(tableName: "ConsumedFoodTable", column: databaseHelper.colUserID, value: widget.thisUser.id!.toString());
+    debugPrint("[HomePage-> totalConsumed()] processing...");
+    matchingConsumedFoods = matchingConsumedFoods_map.map((consumedFood) => ConsumedFood.fromMap(consumedFood)).toList();
+
+    debugPrint("[HomePage-> totalConsumed()] removing consumed foods that are out of intended time range");
+    for (ConsumedFood consumedFood in matchingConsumedFoods) {
+      if(consumedFood.timestamp.isBefore(start) || consumedFood.timestamp.isAfter(end))
+      {
+        matchingConsumedFoods.remove(consumedFood);
+      }
+      
+    }
+    
     Map<int, double> dataPoints = Map<int, double>();
     int newX;
     double newY;
@@ -71,7 +121,7 @@ class _HomePageState extends State<HomePage> {
     {
       consumedFood.update();
 
-      newX = timestampToX(consumedFood.timestamp);
+      newX = timestampToX_days(consumedFood.timestamp);
       newNutrient = await consumedFood.foodItem!.getNutrient(nutrientName);
 
       if(dataPoints.containsKey(newX))
@@ -85,11 +135,30 @@ class _HomePageState extends State<HomePage> {
       dataPoints[newX] = newY;
     }
 
+
+    chartData.clear;
+
+    chartData = dataPoints.entries.map((dataPoint) => FlSpot(dataPoint.key.toDouble(), dataPoint.value)).toList();
+
+
+
     debugPrint("[HomePage-> totalConsumed()] End");
-
-    return dataPoints;
   }
+  
+  Future<void> SetUp() async
+  {
+    debugPrint("[HomePage-> SetUp()] Start");
 
+    start = DateTime(2024, 1, 1);
+    end = DateTime(2024, 5, 1);
+    totalConsumed(SelectedGraph);
+
+
+    debugPrint("[HomePage-> SetUp()] End");
+  }
+  
+
+  @override
   Widget build(BuildContext context) {
     return PageWidget(home: () { debugPrint("[HomePage-> build] Going to Log-In Page"); Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);}, pageName: "Home Page", thisUser: widget.thisUser, body: [Center(
       child: Column(children: [
@@ -150,6 +219,7 @@ class _HomePageState extends State<HomePage> {
       ],),
     )]);
   }
+
 Widget DisplayGraph() {
     switch (SelectedGraph) {
       case 'BMI':
@@ -158,7 +228,7 @@ Widget DisplayGraph() {
         return WeightLineGraph();
       case 'Calories':
       default:
-        return CalorieLineGraph();
+        return CalorieLineGraph(spots: chartData);
     }
   }
 }
