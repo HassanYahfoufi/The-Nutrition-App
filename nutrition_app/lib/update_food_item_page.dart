@@ -110,10 +110,10 @@ class _UpdateFoodItemPageState extends State<UpdateFoodItemPage> {
           child: Column(children: [
             const SizedBox(height: 60),
             const Text(
-              'FoodItem',
+              'Food Item',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 16,
+                fontSize: 30,
               ),
             ),
             const SizedBox(height: 30),

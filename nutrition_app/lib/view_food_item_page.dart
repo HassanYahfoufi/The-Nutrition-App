@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
+import 'package:nutrition_app/update_food_item_page.dart';
+import 'package:nutrition_app/view_all_food_items_page.dart';
 import 'package:nutrition_app/view_nutrient_info_page.dart';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -83,7 +85,7 @@ class _ViewFoodItemPageState extends State<ViewFoodItemPage> {
               'Food Item',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 16,
+                fontSize: 30,
               ),
             ),
             const SizedBox(height: 30),
@@ -91,11 +93,11 @@ class _ViewFoodItemPageState extends State<ViewFoodItemPage> {
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Row( 
                 children: [
-                  Text("Name: "),
+                  Text("Name: ", style: TextStyle(fontSize: 20)),
                   
                   SizedBox(width: 8),
                   
-                  Text(widget.thisFoodItem.name.toString()),
+                  Text(widget.thisFoodItem.name.toString(), style: TextStyle(fontSize: 20)),
                 ]
               )
             ),
@@ -104,11 +106,11 @@ class _ViewFoodItemPageState extends State<ViewFoodItemPage> {
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Row(
                 children: [
-                  Text("Serving size: "),
+                  Text("Serving size: ", style: TextStyle(fontSize: 20)),
 
                   SizedBox(width: 8),
 
-                  Text(widget.thisFoodItem.servingSize.toString()),
+                  Text(widget.thisFoodItem.servingSize.toString(), style: TextStyle(fontSize: 20)),
                 ]
               ),
             ),
@@ -121,19 +123,23 @@ class _ViewFoodItemPageState extends State<ViewFoodItemPage> {
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Row(
                 children: [
-                  Text("Notes: "),
+                  Text("Notes: ", style: TextStyle(fontSize: 20)),
 
                   SizedBox(width: 8),
                   
-                  Text(widget.thisFoodItem.note.toString()),
+                  Text(widget.thisFoodItem.note.toString(), style: TextStyle(fontSize: 20)),
                 ]
               ),
             ),
 
             Divider(),
+            SizedBox(height: 10),
 
-            CardWidget(title: "Nutrients", body: [
-              ( widget.thisFoodItem.nutrients.length > 0) ? Column(children: [...widget.thisFoodItem.nutrients.map((nutrient) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewNutrientInfoPage(thisNutrientInfo: nutrient.info!, nextPage: ViewFoodItemPage(thisUser: widget.thisUser, nextPage: widget.nextPage, thisFoodItem: widget.thisFoodItem), thisUser: widget.thisUser))),);}, child: Row(children: [Text(nutrient.info!.name),  SizedBox(width: 10), Text("Amount: ${nutrient.amount}")],)))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
+
+            CardWidget( appBarColor: Colors.green ,cardColor: Colors.white, title: "Nutrients", body: [
+              ( widget.thisFoodItem.nutrients.length > 0) ? Column(children: [...widget.thisFoodItem.nutrients.map((nutrient) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewNutrientInfoPage(thisNutrientInfo: nutrient.info!, nextPage: ViewFoodItemPage(thisUser: widget.thisUser, nextPage: widget.nextPage, thisFoodItem: widget.thisFoodItem), thisUser: widget.thisUser))),);}, child: Text(nutrient.info!.name, style: TextStyle(color: Colors.green))))]) : TextButton(onPressed: (){}, child: Text("Loading..."),),
+            SizedBox(height: 30),
+
             ]),
           ]),
         );
@@ -156,7 +162,9 @@ class _ViewFoodItemPageState extends State<ViewFoodItemPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(pageName: "View Singular Food Item Page", body: [currentPage()], thisUser: widget.thisUser,);
+    return PageWidget(pageName: "View Singular Food Item Page", body: [currentPage()], thisUser: widget.thisUser,
+    editPage: UpdateFoodItemPage(nextPage: ViewFoodItemPage(thisFoodItem: widget.thisFoodItem, nextPage: ViewAllFoodItemsPage(parentObject:widget.thisUser,thisUser: widget.thisUser), thisUser: widget.thisUser), thisFoodItem: widget.thisFoodItem, thisUser: widget.thisUser),
+    );
     
   }
 }

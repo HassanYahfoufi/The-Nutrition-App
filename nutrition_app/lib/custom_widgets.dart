@@ -30,10 +30,11 @@ class _PageWidgetState extends State<PageWidget> {
             backgroundColor: Colors.grey[300],
 
             appBar: AppBar(actions: [
+      
               IconButton(onPressed: widget.home ?? (){debugPrint("[${widget.pageName}] widget.home was empty. Navigating to default which is HomePage()...");Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser)));}, icon: Icon(Icons.home), color: Colors.white), 
               (widget.lastPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.lastPage!),), icon: Icon(Icons.close ), color: Colors.white) : Container(),
               
-              (widget.editPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.editPage!),), icon: Icon(Icons.edit )) : SizedBox.shrink(),
+              (widget.editPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.editPage!),), icon: Icon(Icons.edit ),color: Colors.white) : SizedBox.shrink(),
               IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle ), color: Colors.white),
 
               IconButton(onPressed: () { displayDialogSignOut(context);}, icon: Icon(Icons.exit_to_app), color: Colors.white),
@@ -126,6 +127,7 @@ class _CardWidgetState extends State<CardWidget> {
       // unless you need it.
       clipBehavior: Clip.hardEdge,
 
+
       child: InkWell(
         splashColor: Colors.blue.withAlpha(30),
 
@@ -138,7 +140,8 @@ class _CardWidgetState extends State<CardWidget> {
               AppBar(
                 backgroundColor: widget.appBarColor,
                 toolbarHeight: 25,
-                title: Text(title),
+                title: Text(title), titleTextStyle: TextStyle(color: Colors.white, fontSize: 18),
+                automaticallyImplyLeading: false,
               ),
               ...widget.body,
             ],
