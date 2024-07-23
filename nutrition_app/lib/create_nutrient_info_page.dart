@@ -179,7 +179,8 @@ class _CreateNutrientInfoPageState extends State<CreateNutrientInfoPage> {
               ),
             ),
           ]),
-        );}
+        );
+  }
 
 
   @override

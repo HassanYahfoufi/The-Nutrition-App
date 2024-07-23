@@ -37,15 +37,20 @@ class _ViewAllConsumedFoodsPageState extends State<ViewAllConsumedFoodsPage> {
       debugPrint("[ViewAllConsumedFoodsPage-> setUp()]\t consumedFood_map: ${consumedFood_map.toString()}");
       if(consumedFood_map["food_item_id"] != null)
       {
-        title = consumedFood_map["food_item_id"];
+        title = consumedFood_map["food_item_id"].toString();
       }
       else
       {
         title = "null";
         //consumedFood_map["food_item_id"] = 0;
       }
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      debugPrint("[ViewAllConsumedFoodsPage-> setUp()]\t about to print title..");
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!
       debugPrint("[ViewAllConsumedFoodsPage-> setUp()]\t $title");
     }
+    debugPrint("[ViewAllConsumedFoodsPage-> setUp()] printing all consumed foods COMPLETE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    
     /*for(int i = 0; i < consumedFoodTable.length; i++)
     {
       
@@ -70,7 +75,7 @@ class _ViewAllConsumedFoodsPageState extends State<ViewAllConsumedFoodsPage> {
     
 
 
-    widget.parentObject.readFromDatabase();
+    await widget.parentObject.readFromDatabase();
     consumedFoods = widget.parentObject.consumedFoods;
 
     //This is temporary code plaeas refactor this to make the program more robust --------------------------

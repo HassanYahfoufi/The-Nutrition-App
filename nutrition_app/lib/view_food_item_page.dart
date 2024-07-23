@@ -133,7 +133,7 @@ class _ViewFoodItemPageState extends State<ViewFoodItemPage> {
             Divider(),
 
             CardWidget(title: "Nutrients", body: [
-              ( widget.thisFoodItem.nutrients.length > 0) ? Column(children: [...widget.thisFoodItem.nutrients.map((nutrient) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewNutrientInfoPage(thisNutrientInfo: nutrient.info!, nextPage: ViewFoodItemPage(thisUser: widget.thisUser, nextPage: widget.nextPage, thisFoodItem: widget.thisFoodItem), thisUser: widget.thisUser))),);}, child: Text(nutrient.info!.name)))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
+              ( widget.thisFoodItem.nutrients.length > 0) ? Column(children: [...widget.thisFoodItem.nutrients.map((nutrient) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewNutrientInfoPage(thisNutrientInfo: nutrient.info!, nextPage: ViewFoodItemPage(thisUser: widget.thisUser, nextPage: widget.nextPage, thisFoodItem: widget.thisFoodItem), thisUser: widget.thisUser))),);}, child: Row(children: [Text(nutrient.info!.name),  SizedBox(width: 10), Text("Amount: ${nutrient.amount}")],)))]) : TextButton(onPressed: (){}, child: Text("Loading...")),
             ]),
           ]),
         );
