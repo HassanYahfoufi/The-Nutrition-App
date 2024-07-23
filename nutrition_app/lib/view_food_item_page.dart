@@ -135,9 +135,11 @@ class _ViewFoodItemPageState extends State<ViewFoodItemPage> {
             Divider(),
             SizedBox(height: 10),
 
+
             CardWidget( appBarColor: Colors.green ,cardColor: Colors.white, title: "Nutrients", body: [
               ( widget.thisFoodItem.nutrients.length > 0) ? Column(children: [...widget.thisFoodItem.nutrients.map((nutrient) => ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>(ViewNutrientInfoPage(thisNutrientInfo: nutrient.info!, nextPage: ViewFoodItemPage(thisUser: widget.thisUser, nextPage: widget.nextPage, thisFoodItem: widget.thisFoodItem), thisUser: widget.thisUser))),);}, child: Text(nutrient.info!.name, style: TextStyle(color: Colors.green))))]) : TextButton(onPressed: (){}, child: Text("Loading..."),),
             SizedBox(height: 30),
+
             ]),
           ]),
         );

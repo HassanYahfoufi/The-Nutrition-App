@@ -37,9 +37,16 @@ class _UpdateNutrientInfoPageState extends State<UpdateNutrientInfoPage> {
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
+  /*Future<void> SetUp() async
+  {
+    debugPrint("[UpdateNutrientInfoPage-> SetUp()] Start");
+    
+    debugPrint("[UpdateNutrientInfoPage-> SetUp()] End");
+  }*/
+
   Future<void> submit() async
   {
-    debugPrint("\[UpdateNutrientInfoPage-> submit()] Start");
+    debugPrint("[UpdateNutrientInfoPage-> submit()] Start");
 
     String underscoreName;
     Map<String, dynamic> nutrientInfoMap = Map<String, dynamic>();
@@ -78,8 +85,9 @@ class _UpdateNutrientInfoPageState extends State<UpdateNutrientInfoPage> {
     
     debugPrint("[CreateNutrientInfoPagev2-> submit()] creating the updated nutrientInfo...");
     widget.thisNutrientInfo.fromMap(nutrientInfoMap);
-    
 
+    debugPrint("[CreateNutrientInfoPage-> submit()] The new Nutrient Info as a map: ${nutrientInfoMap.toString()}... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    
     debugPrint("\[UpdateNutrientInfoPage-> submit()] Updating...");
     int updateResult = await widget.thisNutrientInfo.update();
 
@@ -160,7 +168,8 @@ class _UpdateNutrientInfoPageState extends State<UpdateNutrientInfoPage> {
               ),
             ),
           ]),
-        );}
+        );
+  }
 
 
   
@@ -174,72 +183,85 @@ class _UpdateNutrientInfoPageState extends State<UpdateNutrientInfoPage> {
     variablesInfo["userID"]!["DataType"] = int;
     variablesInfo["userID"]!["name_with_underscore"] = "user_id";
     variablesInfo["userID"]!["NameWithSpace"] = "User ID";
+    //This is required to display the current value of the variable
+    variablesInfo["userID"]!["TextEditingController"].text = widget.thisNutrientInfo.userID.toString();
 
     variablesInfo["nutrientID"] = <String, dynamic>{};
     variablesInfo["nutrientID"]!["TextEditingController"] = TextEditingController();
     variablesInfo["nutrientID"]!["DataType"] = int;
     variablesInfo["nutrientID"]!["name_with_underscore"] = "nutrient_id";
     variablesInfo["nutrientID"]!["NameWithSpace"] = "Nutrient ID";
+    variablesInfo["nutrientID"]!["TextEditingController"].text = widget.thisNutrientInfo.nutrientID.toString();
 
     variablesInfo["name"] = <String, dynamic>{};
     variablesInfo["name"]!["TextEditingController"] = TextEditingController();
     variablesInfo["name"]!["DataType"] = String;
     variablesInfo["name"]!["name_with_underscore"] = "name";
     variablesInfo["name"]!["NameWithSpace"] = "Name";
+    variablesInfo["name"]!["TextEditingController"].text = widget.thisNutrientInfo.name.toString();
     
     variablesInfo["recomendedDietaryAllowance"] = <String, dynamic>{};
     variablesInfo["recomendedDietaryAllowance"]!["TextEditingController"] = TextEditingController();
     variablesInfo["recomendedDietaryAllowance"]!["DataType"] = double;
     variablesInfo["recomendedDietaryAllowance"]!["name_with_underscore"] = "recomended_dietary_allowance";
     variablesInfo["recomendedDietaryAllowance"]!["NameWithSpace"] = "Recomended Dietary Allowance";
+    variablesInfo["recomendedDietaryAllowance"]!["TextEditingController"].text = widget.thisNutrientInfo.recomendedDietaryAllowance.toString();
     
     variablesInfo["unitOfMeasurement_recomendedDietaryAllowance"] = <String, dynamic>{};
     variablesInfo["unitOfMeasurement_recomendedDietaryAllowance"]!["TextEditingController"] = TextEditingController();
     variablesInfo["unitOfMeasurement_recomendedDietaryAllowance"]!["DataType"] = int;
     variablesInfo["unitOfMeasurement_recomendedDietaryAllowance"]!["name_with_underscore"] = "unit_of_measurement_for_recomended_dietary_allowance";
     variablesInfo["unitOfMeasurement_recomendedDietaryAllowance"]!["NameWithSpace"] = "Unit Of Measurement (Recomended Dietary Allowance)";
+    variablesInfo["unitOfMeasurement_recomendedDietaryAllowance"]!["TextEditingController"].text = widget.thisNutrientInfo.unitOfMeasurement_recomendedDietaryAllowance.toString();
     
     variablesInfo["description"] = <String, dynamic>{};
     variablesInfo["description"]!["TextEditingController"] = TextEditingController();
     variablesInfo["description"]!["DataType"] = String;
     variablesInfo["description"]!["name_with_underscore"] = "description";
     variablesInfo["description"]!["NameWithSpace"] = "Description";
+    variablesInfo["description"]!["TextEditingController"].text = widget.thisNutrientInfo.description.toString();
     
     variablesInfo["adequateIntake"] = <String, dynamic>{};
     variablesInfo["adequateIntake"]!["TextEditingController"] = TextEditingController();
     variablesInfo["adequateIntake"]!["DataType"] = double;
     variablesInfo["adequateIntake"]!["name_with_underscore"] = "adequate_intake";
     variablesInfo["adequateIntake"]!["NameWithSpace"] = "Adequate Intake";
+    variablesInfo["adequateIntake"]!["TextEditingController"].text = widget.thisNutrientInfo.adequateIntake.toString();
     
     variablesInfo["unitOfMeasurement_adequateIntake"] = <String, dynamic>{};
     variablesInfo["unitOfMeasurement_adequateIntake"]!["TextEditingController"] = TextEditingController();
     variablesInfo["unitOfMeasurement_adequateIntake"]!["DataType"] = int;
     variablesInfo["unitOfMeasurement_adequateIntake"]!["name_with_underscore"] = "unit_of_measurement_for_adequate_intake";
     variablesInfo["unitOfMeasurement_adequateIntake"]!["NameWithSpace"] = "Unit Of Measurement (Adequate Intake)";
+    variablesInfo["unitOfMeasurement_adequateIntake"]!["TextEditingController"].text = widget.thisNutrientInfo.unitOfMeasurement_adequateIntake.toString();
     
     variablesInfo["estimatedAverageRequirement"] = <String, dynamic>{};
     variablesInfo["estimatedAverageRequirement"]!["TextEditingController"] = TextEditingController();
     variablesInfo["estimatedAverageRequirement"]!["DataType"] = double;
     variablesInfo["estimatedAverageRequirement"]!["name_with_underscore"] = "estimated_average_requirement";
     variablesInfo["estimatedAverageRequirement"]!["NameWithSpace"] = "Estimated Average Requirement";
+    variablesInfo["estimatedAverageRequirement"]!["TextEditingController"].text = widget.thisNutrientInfo.estimatedAverageRequirement.toString();
     
     variablesInfo["unitOfMeasurement_estimatedAverageRequirement"] = <String, dynamic>{};
     variablesInfo["unitOfMeasurement_estimatedAverageRequirement"]!["TextEditingController"] = TextEditingController();
     variablesInfo["unitOfMeasurement_estimatedAverageRequirement"]!["DataType"] = int;
     variablesInfo["unitOfMeasurement_estimatedAverageRequirement"]!["name_with_underscore"] = "unit_of_measurement_for_estimated_average_requirement";
     variablesInfo["unitOfMeasurement_estimatedAverageRequirement"]!["NameWithSpace"] = "Unit Of Measurement (Estimated Average Requirement)";
+    variablesInfo["unitOfMeasurement_estimatedAverageRequirement"]!["TextEditingController"].text = widget.thisNutrientInfo.unitOfMeasurement_estimatedAverageRequirement.toString();
     
     variablesInfo["tolerableUpperIntakeLevel"] = <String, dynamic>{};
     variablesInfo["tolerableUpperIntakeLevel"]!["TextEditingController"] = TextEditingController();
     variablesInfo["tolerableUpperIntakeLevel"]!["DataType"] = double;
     variablesInfo["tolerableUpperIntakeLevel"]!["name_with_underscore"] = "tolerable_upper_intake_level";
     variablesInfo["tolerableUpperIntakeLevel"]!["NameWithSpace"] = "Tolerable Upper Intake Level";
+    variablesInfo["tolerableUpperIntakeLevel"]!["TextEditingController"].text = widget.thisNutrientInfo.tolerableUpperIntakeLevel.toString();
     
     variablesInfo["unitOfMeasurement_tolerableUpperIntakeLevel"] = <String, dynamic>{};
     variablesInfo["unitOfMeasurement_tolerableUpperIntakeLevel"]!["TextEditingController"] = TextEditingController();
     variablesInfo["unitOfMeasurement_tolerableUpperIntakeLevel"]!["DataType"] = int;
     variablesInfo["unitOfMeasurement_tolerableUpperIntakeLevel"]!["name_with_underscore"] = "unit_of_measurement_for_tolerable_upper_intake_level";
     variablesInfo["unitOfMeasurement_tolerableUpperIntakeLevel"]!["NameWithSpace"] = "Unit Of Measurement (Tolerable Upper Intake Level)";
+    variablesInfo["unitOfMeasurement_tolerableUpperIntakeLevel"]!["TextEditingController"].text = widget.thisNutrientInfo.unitOfMeasurement_tolerableUpperIntakeLevel.toString();
   }
 
   @override
