@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
-import 'package:multiselect/multiselect.dart';
-
+import 'package:dropdown_search/dropdown_search.dart';
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
 import 'package:nutrition_app/consumed_food_class_template.dart';
@@ -38,7 +37,7 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
   late ConsumedFood newConsumedFood;
 
   late final List<FoodItem> foodItems;
-  List<FoodItem> selectedFoodItems = [];
+  late FoodItem selectedFoodItem;
 
   DatabaseHelper databaseHelper = DatabaseHelper();
 
@@ -58,6 +57,21 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
       debugPrint("[CreateConsumedFood-> setUp()]\t $name");
     }
     foodItems = foodItemTable.map((foodItem_map)=> FoodItem.fromMap(foodItem_map)).toList();
+
+    for(FoodItem foodItem in foodItems)
+    {
+      foodItemsInfo[foodItem.name] = <String, dynamic>{};
+      foodItemsInfo[foodItem.name]!["TextEditingController"] = TextEditingController();
+    }
+
+    /*if(foodItems.isNotEmpty)
+    {
+      selectedFoodItem = foodItems[0];
+    }
+    else
+    {
+      selectedFoodItem = FoodItem(Name: 'Empty', ServingSize: -1, ID: -1);
+    }*/
     debugPrint("[CreateConsumedFoodPagev2-> setUp()] End");
   }
  
@@ -106,8 +120,8 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
     //!!!!!!!!!!!!!!!
 
     consumedFoodMap["user_id"] = widget.thisUser.id;
-    consumedFoodMap["food_item_id"] = selectedFoodItems[0].id;
-    consumedFoodMap["amount"] = double.parse(foodItemsInfo[selectedFoodItems[0].name]!["TextEditingController"].text);
+    consumedFoodMap["food_item_id"] = selectedFoodItem.id;
+    consumedFoodMap["amount"] = double.parse(foodItemsInfo[selectedFoodItem.name]!["TextEditingController"].text);
 
     debugPrint("[CreateNutrientInfoPage-> submit()] The new consumed food as a map: ${consumedFoodMap.toString()}... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     
@@ -188,7 +202,30 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
                 borderRadius: BorderRadius.circular(10)
               ),
               
-              child: DropDownMultiSelect(
+              child: DropdownSearch<FoodItem>(
+                items: foodItems,
+                dropdownDecoratorProps: DropDownDecoratorProps(
+                    dropdownSearchDecoration: InputDecoration(
+                        labelText: "Food Item",
+                        hintText: "Please select the food item from the dropdown menu",
+                    ),
+                ),
+                
+                onChanged: (value) {
+                  setState(() {
+                    selectedFoodItem = value!;
+                  });
+                },
+                selectedItem: selectedFoodItem,
+                dropdownBuilder: (context, selectedItem) => Text(selectedItem!.name),
+                itemAsString: (foodItem) => foodItem.name,
+                
+      
+
+                ),
+              
+              
+              /*DropDownMultiSelect(
                 onChanged: (List<FoodItem> collection){
                   setState(() {
                     selectedFoodItems = collection;
@@ -197,7 +234,25 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
                 },
                 options: foodItems,
                 selectedValues: selectedFoodItems,
-              ),
+                childBuilder: (selectedValues) {
+                    String selectedItemsText = "";
+                    bool notFirst = false;
+                    for (FoodItem selectedValue in selectedValues) {
+                      if(notFirst)
+                      {
+                        selectedItemsText = selectedItemsText + ", " + selectedValue.name;
+                      }
+                      else
+                      {
+                        selectedItemsText = selectedItemsText + " " + selectedValue.name;
+                        notFirst = true;
+                      }
+                    } 
+                    return Text(selectedItemsText);},
+                  menuItembuilder: (option) {
+                    return Text(option.name);
+                  },
+              ),*/
                         
             ),
 
@@ -207,7 +262,52 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
               'Selected Choices:',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            ...selectedFoodItems.map((selectedFoodItem){
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text(selectedFoodItem.name),
+                  SizedBox(width: 5),
+                  
+                  Expanded(
+                    child: TextField(
+                      controller: foodItemsInfo[selectedFoodItem.name]!["TextEditingController"],
+                      decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          fillColor: Colors.white,
+                          filled: true,
+                          hintText: "Amount"),
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Column(
+                    children: <Widget>[
+                      DropdownButton<String>(
+                        value: oldvalue,
+                        onChanged: (String? newValue){
+                          setState(() {
+                            oldvalue = newValue!;
+                          });
+                        },
+                        items: <String>['default unit of measurement'].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                ],
+                
+              ),
+            ),
+            /*...selectedFoodItems.map((selectedFoodItem){
                 if(foodItemsInfo[selectedFoodItem.name] == null)
                 {
                   foodItemsInfo[selectedFoodItem.name] = <String, dynamic>{};
@@ -258,7 +358,7 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
                     
                   ),
                 );
-            }).toList(),
+            }).toList(),*/
 
             Divider (height: 1, color: Colors.black),
             const SizedBox(height: 20),
