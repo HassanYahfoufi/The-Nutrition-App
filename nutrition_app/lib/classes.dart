@@ -752,7 +752,9 @@ class FoodItem {
     { 
       debugPrint("[Classes->FoodItem-> createNutrients()] updating new nutrients food item id...");
       newNutrient.foodItemID = _id!;
-      debugPrint("[Classes->FoodItem-> createNutrients()] inserting new nutrients into database ...");
+
+      debugPrint("[Classes->FoodItem-> createNutrients()] new nutrient as map: ${newNutrient.toMap().toString()}");
+      debugPrint("[Classes->FoodItem-> createNutrients()] inserting new nutrient into database ...");
       int result = await _databaseHelper.insert(tableName: "FoodItemNutrientTable", objectAsMap: newNutrient.toMap());
       debugPrint("[Classes->FoodItem-> createNutrients()] Insertion COMPLETE. result = ${result}");
       results.add(result);
@@ -1721,6 +1723,7 @@ class ConsumedFood {
 
     if (matchingFoodItems.length == 1) 
     {
+      debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] retrieved food item: ${matchingFoodItems[0]}");
       debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] processing data...");
       foodItem = FoodItem.fromMap(matchingFoodItems[0]);//!!!!!!!!!!!!!!!!!!!!!
       
@@ -1752,6 +1755,8 @@ class ConsumedFood {
   Future<int> create() async {
     debugPrint("[Classes->ConsumedFood-> create()] Start");
 
+    debugPrint("[Classes->ConsumedFood-> create()] The new consumed food as a map: ${toMap().toString()}... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    
     debugPrint("[Classes->ConsumedFood-> create()] inserting new consumedFood into database ...");
     int result = await _databaseHelper.insert(tableName: "ConsumedFoodTable", objectAsMap: toMap());
     debugPrint("[Classes->ConsumedFood-> create()] Insertion COMPLETE. result = ${result}");
@@ -1871,7 +1876,7 @@ class ConsumedFood {
       map['id'] = _id;
     }
     map["user_id"] = this.userID;
-    map["user_id"] = this.foodItemID;
+    map["food_item_id"] = this.foodItemID;
     map["amount"] = this.amount;
     map["timestamp"] = timestamp.toString();
     map["date_created"] = dateCreated.toString();

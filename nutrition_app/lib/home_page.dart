@@ -44,6 +44,8 @@ class _HomePageState extends State<HomePage> {
   double spacerHeight = 15;
   DateTime start = DateTime.now(); 
   DateTime end = DateTime.now();
+  late double minX;
+  late double maxX;
   
   DatabaseHelper databaseHelper = DatabaseHelper();
 
@@ -51,13 +53,15 @@ class _HomePageState extends State<HomePage> {
 
   List<FlSpot> chartData = [];
 
-  void onPressedGraph(String graph) {
+  Future<void> onPressedGraph(String graph) async
+  {
     debugPrint("[HomePage-> onPressedGraph()] Start");
     setState(() {
       SelectedGraph = graph;
       debugPrint("[HomePage-> onPressedGraph()] SelectedGraph: $SelectedGraph");
-      totalConsumed(SelectedGraph);
+      
     });
+    await totalConsumed(SelectedGraph);
     debugPrint("[HomePage-> onPressedGraph()] End");
   }
 
@@ -95,23 +99,44 @@ class _HomePageState extends State<HomePage> {
   Future<void> totalConsumed(String nutrientName) async
   {
     debugPrint("[HomePage-> totalConsumed()] Start");
-    
+    minX = timestampToX_days(start) * 1.0;
+    maxX = timestampToX_days(end) * 1.0;
+    debugPrint("[HomePage-> totalConsumed()] minX: $minX\tmaxX: $maxX");
     //get all items where time stamp is >= start && timestaamp <= end
     List<ConsumedFood> matchingConsumedFoods = [];
+
+    if(widget.thisUser.id == null)
+    {
+      await widget.thisUser.readID();
+    }
 
     debugPrint("[HomePage-> totalConsumed()] retrieving consumed foods...");
     List<Map<String, dynamic>> matchingConsumedFoods_map = await databaseHelper.getMatchingRows(tableName: "ConsumedFoodTable", column: databaseHelper.colUserID, value: widget.thisUser.id!.toString());
     debugPrint("[HomePage-> totalConsumed()] processing...");
     matchingConsumedFoods = matchingConsumedFoods_map.map((consumedFood) => ConsumedFood.fromMap(consumedFood)).toList();
 
-    debugPrint("[HomePage-> totalConsumed()] removing consumed foods that are out of intended time range");
     for (ConsumedFood consumedFood in matchingConsumedFoods) {
-      if(consumedFood.timestamp.isBefore(start) || consumedFood.timestamp.isAfter(end))
+      debugPrint("\t[HomePage-> totalConsumed()] timestamp: ${consumedFood.timestamp}\tstart: ${start}\tend: ${end}");
+      if(consumedFood.timestamp.isAfter(start) && consumedFood.timestamp.isBefore(end))
       {
-        matchingConsumedFoods.remove(consumedFood);
+        debugPrint("[HomePage-> totalConsumed()]found a consumed food in range!!!!");
       }
       
     }
+
+    debugPrint("[HomePage-> totalConsumed()] there are ${matchingConsumedFoods.length} matching consumed foods !!!!!!!!!!!!!!");
+    debugPrint("[HomePage-> totalConsumed()] removing consumed foods that are out of intended time range");
+    /*for (ConsumedFood consumedFood in matchingConsumedFoods) {
+      if(consumedFood.timestamp.isBefore(start) || consumedFood.timestamp.isAfter(end))
+      {
+        debugPrint("[HomePage-> totalConsumed()] \tremoving out of time range consumed food");
+        matchingConsumedFoods.remove(consumedFood);
+      }
+      
+    }*/
+    matchingConsumedFoods.removeWhere(((consumedFood) => consumedFood.timestamp.isBefore(start) || consumedFood.timestamp.isAfter(end)));
+    debugPrint("[HomePage-> totalConsumed()] processing the retrieved consumed foods COMPLETE");
+    debugPrint("[HomePage-> totalConsumed()] there are ${matchingConsumedFoods.length} matching consumed foods in range !!!!!!!!!!!!!!!!!!!!!!!!");
     
     Map<int, double> dataPoints = Map<int, double>();
     int newX;
@@ -119,27 +144,67 @@ class _HomePageState extends State<HomePage> {
     FoodItemNutrient newNutrient;
     for(ConsumedFood consumedFood in matchingConsumedFoods)
     {
-      consumedFood.update();
+      debugPrint("[HomePage-> totalConsumed()]\treading consumed food...");
+      await consumedFood.readFoodItemFromDatabase();
+      debugPrint("[HomePage-> totalConsumed()]\treading nutrients of ${consumedFood.foodItem!.name}...");
+      await consumedFood.foodItem!.readNutrients();
 
+      debugPrint("[HomePage-> totalConsumed()]\tconverting timestamp to int...");
       newX = timestampToX_days(consumedFood.timestamp);
+      
+
+      debugPrint("[HomePage-> totalConsumed()]\t retrieving nutrient...");
       newNutrient = await consumedFood.foodItem!.getNutrient(nutrientName);
+      debugPrint("[HomePage-> totalConsumed()]\t retrieving nutrient COMPLETE");
 
       if(dataPoints.containsKey(newX))
       {
+        debugPrint("[HomePage-> totalConsumed()]\tExcecuting: newY = dataPoints[newX]! + newNutrient.amount;");
         newY = dataPoints[newX]! + newNutrient.amount;
       }
       else
       {
         newY = newNutrient.amount;
       }
+      
       dataPoints[newX] = newY;
+      debugPrint("[HomePage-> totalConsumed()] newX: $newX\tnewY: $newY");
+
+      debugPrint("[HomePage-> totalConsumed()] food item:${consumedFood.foodItem!.name}\tnutrient map: ${newNutrient.toMap().toString()}");
     }
 
+    /*int count = 0;
+    for (int x in dataPoints.keys) {
+      if(count == 0)
+      {
+        minX = x * 1.0;
+        maxX = x * 1.0;
+      }
 
+
+
+      if(x < minX)
+      {
+        minX = x * 1.0;
+      }
+
+      if(maxX < x)
+      {
+        maxX = x * 1.0;
+      }
+
+      count++;
+      
+    }*/
+    
+
+    debugPrint("[HomePage-> totalConsumed()] updating chart data...");
     chartData.clear;
-
     chartData = dataPoints.entries.map((dataPoint) => FlSpot(dataPoint.key.toDouble(), dataPoint.value)).toList();
+    debugPrint("[HomePage-> totalConsumed()] updating chart data COMPLETE");
 
+    debugPrint("[HomePage-> totalConsumed()] sorting chart data...");
+    chartData.sort((a, b) => a.x.compareTo(b.x));
 
 
     debugPrint("[HomePage-> totalConsumed()] End");
@@ -149,14 +214,30 @@ class _HomePageState extends State<HomePage> {
   {
     debugPrint("[HomePage-> SetUp()] Start");
 
-    start = DateTime(2024, 1, 1);
-    end = DateTime(2024, 5, 1);
-    totalConsumed(SelectedGraph);
+    //start = DateTime(2024, 1, 1);
+    //end = DateTime(2024, 5, 1);
+    start = DateTime.parse("2024-01-01 12:02:02.123456");
+    end = DateTime.parse("2024-05-01 12:02:02.123456");
+    minX = timestampToX_days(start) * 1.0;
+    maxX = timestampToX_days(end) * 1.0;
+    debugPrint("\t[HomePage-> SetUp()] start: ${start}\tend: ${end}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");  
+    await totalConsumed(SelectedGraph);
 
 
     debugPrint("[HomePage-> SetUp()] End");
   }
   
+  @override
+  initState() {
+    debugPrint("[Homepage] Start");
+    SetUp().then((value){
+      debugPrint("[Homepage-> initState()] SetUp COMPLETE");
+        setState(() 
+        {
+        }
+        );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -220,10 +301,20 @@ class _HomePageState extends State<HomePage> {
     )]);
   }
 
-Widget DisplayGraph() {
+  Widget DisplayGraph() {
     switch (SelectedGraph) {
       case 'BMI':
-        return BMILineGraph();
+        chartData.clear;
+        chartData = [
+              FlSpot(1, 15.0), //temporary data
+              FlSpot(2, 12.0),
+              FlSpot(3, 11.0),
+              FlSpot(4, 14.0),
+              FlSpot(5, 16.0),
+            ];
+        minX = 1.0;
+        maxX = 10.0;
+        return BMILineGraph(spots: chartData, minX: minX, maxX: maxX,);
       case 'Weight':
         return WeightLineGraph();
       case 'Calories':

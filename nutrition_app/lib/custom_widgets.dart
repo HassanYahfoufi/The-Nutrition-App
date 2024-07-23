@@ -376,10 +376,6 @@ class _CalorieLineGraphState extends State<CalorieLineGraph> {
              spots: widget.spots,
             isCurved: true,
             color: Colors.green
-           
-      
-           
-          
           ),
         ],
         
@@ -393,39 +389,39 @@ class _CalorieLineGraphState extends State<CalorieLineGraph> {
           ),
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
-            showTitles: true,
-            getTitlesWidget: (value, meta){
-              switch(value.toInt()){
-                case 1:
-                  return Text('January');
-                case 2:
-                  return Text('February');
-                case 3:
-                  return Text('March');
-                case 4:
-                  return Text('April');
-                case 5:
-                  return Text('May');
-                case 6:
-                  return Text('June');
-                case 7:
-                  return Text('July');
-                case 8:
-                  return Text('August');
-                case 9:
-                  return Text('September');
-                case 10:
-                  return Text('October');
-                case 11:
-                  return Text('November');
-                case 12:
-                  return Text('December');
-                default:
-                  return Container();
-              }
-            },
-           interval: 1,
-          )
+              showTitles: true,
+              getTitlesWidget: (value, meta){
+                switch(value.toInt()){
+                  case 1:
+                    return Text('January');
+                  case 2:
+                    return Text('February');
+                  case 3:
+                    return Text('March');
+                  case 4:
+                    return Text('April');
+                  case 5:
+                    return Text('May');
+                  case 6:
+                    return Text('June');
+                  case 7:
+                    return Text('July');
+                  case 8:
+                    return Text('August');
+                  case 9:
+                    return Text('September');
+                  case 10:
+                    return Text('October');
+                  case 11:
+                    return Text('November');
+                  case 12:
+                    return Text('December');
+                  default:
+                    return Container();
+                }
+              },
+            interval: 1,
+            )
           ),
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
@@ -460,7 +456,10 @@ class _CalorieLineGraphState extends State<CalorieLineGraph> {
   }
 }
 class BMILineGraph extends StatefulWidget {
-  const BMILineGraph ({super.key});
+  BMILineGraph ({required this.spots, required this.minX, required this.maxX, super.key});
+  List<FlSpot> spots;
+  double minX;
+  double maxX;
 
   @override
   State<BMILineGraph> createState() => _BMILineGraphState();
@@ -472,15 +471,11 @@ class _BMILineGraphState extends State<BMILineGraph> {
     
     return LineChart(
       LineChartData(
+        minX: 1,
+        maxX: 10,
         lineBarsData: [
           LineChartBarData(
-             spots: [
-              FlSpot(1, 15.0), //temporary data
-              FlSpot(2, 12.0),
-              FlSpot(3, 11.0),
-              FlSpot(4, 14.0),
-              FlSpot(5, 16.0),
-            ],
+             spots: widget.spots,
             isCurved: true,
             color: Colors.green
       
@@ -503,11 +498,11 @@ class _BMILineGraphState extends State<BMILineGraph> {
             getTitlesWidget: (value, meta){
               switch(value.toInt()){
                 case 1:
-                  return Text('January');
+                  return Text('January1');
                 case 2:
-                  return Text('February');
+                  return Text('February2');
                 case 3:
-                  return Text('March');
+                  return Text('March3');
                 case 4:
                   return Text('April');
                 case 5:
@@ -525,7 +520,7 @@ class _BMILineGraphState extends State<BMILineGraph> {
                 case 11:
                   return Text('November');
                 case 12:
-                  return Text('December');
+                  return Text('Decemberrr');
                 default:
                   return Container();
               }

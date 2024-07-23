@@ -44,6 +44,7 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
 
   Future<void> setUp() async
   {
+    debugPrint("[CreateConsumedFoodPagev2-> setUp()] Start");
     debugPrint("[CreateConsumedFood-> setUp()] getting all Food Items... ");
     List<Map<String, dynamic>> foodItemTable = await databaseHelper.getEntireTable_asMap(tableName: "FoodItemTable");
     debugPrint("[CreateConsumedFood-> setUp()] retrieved ${foodItemTable.length} Food Items... ");
@@ -57,6 +58,7 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
       debugPrint("[CreateConsumedFood-> setUp()]\t $name");
     }
     foodItems = foodItemTable.map((foodItem_map)=> FoodItem.fromMap(foodItem_map)).toList();
+    debugPrint("[CreateConsumedFoodPagev2-> setUp()] End");
   }
  
   Future<void> submit() async
@@ -102,7 +104,14 @@ class _CreateConsumedFoodPageState extends State<CreateConsumedFoodPage> {
     //!!!!!!!!!!!!!!!!!
     //add food item id to map
     //!!!!!!!!!!!!!!!
-        
+
+    consumedFoodMap["user_id"] = widget.thisUser.id;
+    consumedFoodMap["food_item_id"] = selectedFoodItems[0].id;
+    consumedFoodMap["amount"] = double.parse(foodItemsInfo[selectedFoodItems[0].name]!["TextEditingController"].text);
+
+    debugPrint("[CreateNutrientInfoPage-> submit()] The new consumed food as a map: ${consumedFoodMap.toString()}... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    
+    
     debugPrint("[CreateConsumedFoodPagev2-> submit()] creating the new status update...");
     newConsumedFood = ConsumedFood.fromMap(consumedFoodMap);
     
