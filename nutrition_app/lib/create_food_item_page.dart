@@ -246,6 +246,24 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
                   },
                   options: nutrientInfos,
                   selectedValues: selectedNutrientInfos,
+                  childBuilder: (selectedValues) {
+                    String selectedItemsText = "";
+                    bool notFirst = false;
+                    for (NutrientInfo selectedValue in selectedValues) {
+                      if(notFirst)
+                      {
+                        selectedItemsText = selectedItemsText + ", " + selectedValue.name;
+                      }
+                      else
+                      {
+                        selectedItemsText = selectedItemsText + " " + selectedValue.name;
+                        notFirst = true;
+                      }
+                    } 
+                    return Text(selectedItemsText);},
+                  menuItembuilder: (option) {
+                    return Text(option.name);
+                  },
                 ),
                           
               ),
@@ -294,7 +312,7 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
                                   oldvalue = newValue!;
                                 });
                               },
-                              items: <String>['default unit of measurement', 'default unit of measurement2'].map<DropdownMenuItem<String>>((String value) {
+                              items: <String>['default unit of measurement'/*selectedNutrient.unitOfMeasurement_recomendedDietaryAllowance.toString()*/].map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text(value),

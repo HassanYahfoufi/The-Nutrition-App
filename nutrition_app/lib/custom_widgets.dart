@@ -152,6 +152,123 @@ class _CardWidgetState extends State<CardWidget> {
   }
 }
 
+int isLeapYear(int year)
+{
+        if(year % 100 == 0)
+        {
+            if(year % 400 == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else if(year % 4 == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+        
+}
+
+Widget getXAxisTitles(double value, TitleMeta meta){
+  int tempX = value.toInt();
+  int year = (tempX ~/ 365);
+  tempX %= 365;
+
+  int leapYear = isLeapYear(year);
+
+  int daysJan = 1;
+  int daysFeb = daysJan + 31;
+  int daysMar = daysFeb + 28 + leapYear;
+  int daysApr = daysMar + 31;
+  int daysMay = daysApr + 30;
+  int daysJun = daysMay + 31;
+  int daysJul = daysJun + 30;
+  int daysAug = daysJul + 31;
+  int daysSep = daysAug + 31;
+  int daysOct = daysSep + 30;
+  int daysNov = daysOct + 31;
+  int daysDec = daysNov + 30;
+  
+  if(tempX == daysJan)
+  {
+    return Text('January');
+  }
+  else if(tempX == daysFeb)
+  {
+    return Text('February');
+  }
+  else if(tempX == daysMar)
+  {
+    return Text('March');
+  }
+  else if(tempX == daysApr)
+  {
+    return Text('April');
+  }
+  else if(tempX == daysMay)
+  {
+    return Text('May');
+  }
+  else if(tempX == daysJun)
+  {
+    return Text('June');
+  }
+  else if(tempX == daysJul)
+  {
+    return Text('July');
+  }
+  else if(tempX == daysAug)
+  {
+    return Text('August');
+  }
+  else if(tempX == daysSep)
+  {
+    return Text('September');
+  }
+  else if(tempX == daysOct)
+  {
+    return Text('October');
+  }
+  else if(tempX == daysNov)
+  {
+    return Text('November');
+  }
+  else if(tempX == daysDec)
+  {
+    return Text('Decemberrr');
+  }
+  else
+  {
+    return Container();
+  }
+}
+
+Widget getYAxisTitles(double value, TitleMeta meta, double maxY)
+{
+  int divisor = 1;
+  while(divisor < maxY)
+  {
+    divisor *= 10;
+  }
+  divisor = (divisor/10).toInt();
+
+  for(var i = 0; i <= (maxY/divisor).floor(); i++) {
+    if(value == divisor*i)
+    {
+      return SizedBox(width: 50, child: Text((divisor*i).toString()));
+    }
+    
+  }
+
+  return Container();
+}
 
 
 
@@ -361,8 +478,12 @@ void displayDialogSignOut(BuildContext context){
 }
 
 class CalorieLineGraph extends StatefulWidget {
-  CalorieLineGraph({required this.spots, super.key});
+  CalorieLineGraph({required this.spots, required this.minX, required this.maxX, required this.maxY, required this.minY, super.key});
   List<FlSpot> spots;
+  double minX;
+  double maxX;
+  double maxY;
+  double minY;
 
   @override
   State<CalorieLineGraph> createState() => _CalorieLineGraphState();
@@ -374,6 +495,10 @@ class _CalorieLineGraphState extends State<CalorieLineGraph> {
     
     return LineChart(
       LineChartData(
+        minX: widget.minX,
+        maxX: widget.maxX,
+        maxY: widget.maxY,
+        minY: widget.minY,
         lineBarsData: [
           LineChartBarData(
              spots: widget.spots,
@@ -393,63 +518,15 @@ class _CalorieLineGraphState extends State<CalorieLineGraph> {
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
-              getTitlesWidget: (value, meta){
-                switch(value.toInt()){
-                  case 1:
-                    return Text('January');
-                  case 2:
-                    return Text('February');
-                  case 3:
-                    return Text('March');
-                  case 4:
-                    return Text('April');
-                  case 5:
-                    return Text('May');
-                  case 6:
-                    return Text('June');
-                  case 7:
-                    return Text('July');
-                  case 8:
-                    return Text('August');
-                  case 9:
-                    return Text('September');
-                  case 10:
-                    return Text('October');
-                  case 11:
-                    return Text('November');
-                  case 12:
-                    return Text('December');
-                  default:
-                    return Container();
-                }
-              },
+              getTitlesWidget: (value, meta) => getXAxisTitles(value, meta),
             interval: 1,
             )
           ),
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
-              
               showTitles: true,
-            getTitlesWidget: (value, meta){
-              switch(value.toInt()){
-                case 50:
-                  return Text('50');
-                case 100:
-                  return Text('100');
-                case 150:
-                  return Text('150');
-                case 200:
-                  return Text('200');
-                case 250:
-                  return Text('250');
-                case 300:
-                  return Text('300');
-                
-                default:
-                  return Container();
-              }
-            },
-            interval: 50,
+            getTitlesWidget: (value, meta) => getYAxisTitles(value, meta, widget.maxY),
+            interval: 1,
             ),
           ),
         ),
@@ -459,10 +536,11 @@ class _CalorieLineGraphState extends State<CalorieLineGraph> {
   }
 }
 class BMILineGraph extends StatefulWidget {
-  BMILineGraph ({required this.spots, required this.minX, required this.maxX, super.key});
+  BMILineGraph ({required this.spots, required this.minX, required this.maxX, required this.maxY, super.key});
   List<FlSpot> spots;
   double minX;
   double maxX;
+  double maxY;
 
   @override
   State<BMILineGraph> createState() => _BMILineGraphState();
@@ -474,8 +552,9 @@ class _BMILineGraphState extends State<BMILineGraph> {
     
     return LineChart(
       LineChartData(
-        minX: 1,
-        maxX: 10,
+        minX: widget.minX,
+        maxX: widget.maxX,
+        maxY: widget.maxY,
         lineBarsData: [
           LineChartBarData(
              spots: widget.spots,
@@ -499,33 +578,76 @@ class _BMILineGraphState extends State<BMILineGraph> {
             sideTitles: SideTitles(
             showTitles: true,
             getTitlesWidget: (value, meta){
-              switch(value.toInt()){
-                case 1:
-                  return Text('January1');
-                case 2:
-                  return Text('February2');
-                case 3:
-                  return Text('March3');
-                case 4:
-                  return Text('April');
-                case 5:
-                  return Text('May');
-                case 6:
-                  return Text('June');
-                case 7:
-                  return Text('July');
-                case 8:
-                  return Text('August');
-                case 9:
-                  return Text('September');
-                case 10:
-                  return Text('October');
-                case 11:
-                  return Text('November');
-                case 12:
-                  return Text('Decemberrr');
-                default:
-                  return Container();
+              int tempX = value.toInt();
+              int year = (tempX / 365).toInt();
+              tempX %= 365;
+
+              int leapYear = isLeapYear(year);
+
+              int daysJan = 1;
+              int daysFeb = daysJan + 31;
+              int daysMar = daysFeb + 28 + leapYear;
+              int daysApr = daysMar + 31;
+              int daysMay = daysApr + 30;
+              int daysJun = daysMay + 31;
+              int daysJul = daysJun + 30;
+              int daysAug = daysJul + 31;
+              int daysSep = daysAug + 31;
+              int daysOct = daysSep + 30;
+              int daysNov = daysOct + 31;
+              int daysDec = daysNov + 30;
+              
+              if(tempX == daysJan)
+              {
+                return Text('January');
+              }
+              else if(tempX == daysFeb)
+              {
+                return Text('February');
+              }
+              else if(tempX == daysMar)
+              {
+                return Text('March');
+              }
+              else if(tempX == daysApr)
+              {
+                return Text('April');
+              }
+              else if(tempX == daysMay)
+              {
+                return Text('May');
+              }
+              else if(tempX == daysJun)
+              {
+                return Text('June');
+              }
+              else if(tempX == daysJul)
+              {
+                return Text('July');
+              }
+              else if(tempX == daysAug)
+              {
+                return Text('August');
+              }
+              else if(tempX == daysSep)
+              {
+                return Text('September');
+              }
+              else if(tempX == daysOct)
+              {
+                return Text('October');
+              }
+              else if(tempX == daysNov)
+              {
+                return Text('November');
+              }
+              else if(tempX == daysDec)
+              {
+                return Text('Decemberrr');
+              }
+              else
+              {
+                return Container();
               }
             },
            interval: 1,

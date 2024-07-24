@@ -46,6 +46,8 @@ class _HomePageState extends State<HomePage> {
   DateTime end = DateTime.now();
   late double minX;
   late double maxX;
+  double minY = 0;
+  double maxY = 10;
   
   DatabaseHelper databaseHelper = DatabaseHelper();
 
@@ -56,12 +58,13 @@ class _HomePageState extends State<HomePage> {
   Future<void> onPressedGraph(String graph) async
   {
     debugPrint("[HomePage-> onPressedGraph()] Start");
+    await totalConsumed(graph);
     setState(() {
       SelectedGraph = graph;
       debugPrint("[HomePage-> onPressedGraph()] SelectedGraph: $SelectedGraph");
       
     });
-    await totalConsumed(SelectedGraph);
+    
     debugPrint("[HomePage-> onPressedGraph()] End");
   }
 
@@ -87,7 +90,7 @@ class _HomePageState extends State<HomePage> {
     //x = days
       //each unit of the x axis represents a day
     int year = timestamp.year * 365;
-    int month = timestamp.month * 30;
+    int month = (timestamp.month - 1) * 30;
     int day = timestamp.day;
 
     int dateInt = day + month + year;
@@ -95,12 +98,39 @@ class _HomePageState extends State<HomePage> {
     return dateInt;
   }
   
+  /*
+  void printAllMonths()
+  {
+    debugPrint("[HomePage-> printAllMonths()] Start");
+    //year 365
+    //get year
+    //complex calculation for month
+
+    DateTime beginDate = DateTime.parse("0000-01-01 12:02:02.123456");
+    DateTime currDate = beginDate;
+    int dateInt;
+    int year, month, day;
+    for (var i = 0; i < 120; i++) {
+      dateInt = timestampToX_days(currDate);
+      debugPrint("[HomePage-> printAllMonths()] timestamp: ${currDate.toString()}\tx: ${dateInt}");
+
+      //int currDateYear = currDate.year;
+      
+      currDate = DateTime(currDate.year, currDate.month + 1, 1);
+      //debugPrint("[HomePage-> printAllMonths()]\t timestamp: ${currDate.toString()}\tx: ${dateInt} (after adding 1 month)");
+      
+    }
+    debugPrint("[HomePage-> printAllMonths()] End");
+  }
+  */
 
   Future<void> totalConsumed(String nutrientName) async
   {
     debugPrint("[HomePage-> totalConsumed()] Start");
     minX = timestampToX_days(start) * 1.0;
     maxX = timestampToX_days(end) * 1.0;
+    maxY = 10;
+    minY = 0;
     debugPrint("[HomePage-> totalConsumed()] minX: $minX\tmaxX: $maxX");
     //get all items where time stamp is >= start && timestaamp <= end
     List<ConsumedFood> matchingConsumedFoods = [];
@@ -142,6 +172,7 @@ class _HomePageState extends State<HomePage> {
     int newX;
     double newY;
     FoodItemNutrient newNutrient;
+    double nutrientAmount;
     for(ConsumedFood consumedFood in matchingConsumedFoods)
     {
       debugPrint("[HomePage-> totalConsumed()]\treading consumed food...");
@@ -157,21 +188,49 @@ class _HomePageState extends State<HomePage> {
       newNutrient = await consumedFood.foodItem!.getNutrient(nutrientName);
       debugPrint("[HomePage-> totalConsumed()]\t retrieving nutrient COMPLETE");
 
-      if(dataPoints.containsKey(newX))
+
+      nutrientAmount = newNutrient.amount * consumedFood.amount;
+
+      if(nutrientAmount >= 0)
       {
-        debugPrint("[HomePage-> totalConsumed()]\tExcecuting: newY = dataPoints[newX]! + newNutrient.amount;");
-        newY = dataPoints[newX]! + newNutrient.amount;
+        if(dataPoints.containsKey(newX))
+        {
+          debugPrint("[HomePage-> totalConsumed()]\tExcecuting: newY = dataPoints[newX]! + nutrientAmount;");
+          newY = dataPoints[newX]! + nutrientAmount;
+        }
+        else
+        {
+          newY = nutrientAmount;
+        }
+
+        if(maxY < newY)
+        {
+          maxY = newY;
+        }
+
+        if(newY < minY)
+        {
+          minY = newY;
+        }
+        
+        dataPoints[newX] = newY;
+        debugPrint("[HomePage-> totalConsumed()] newX: $newX\tnewY: $newY");
       }
-      else
-      {
-        newY = newNutrient.amount;
-      }
-      
-      dataPoints[newX] = newY;
-      debugPrint("[HomePage-> totalConsumed()] newX: $newX\tnewY: $newY");
 
       debugPrint("[HomePage-> totalConsumed()] food item:${consumedFood.foodItem!.name}\tnutrient map: ${newNutrient.toMap().toString()}");
     }
+
+    debugPrint("[HomePage-> totalConsumed()] maxY: $maxY (before slight bump)");
+    int divisor = 1;
+    while(divisor < maxY)
+    {
+      divisor *= 10;
+    }
+    divisor = (divisor/10).toInt();
+    int multiple = (maxY / divisor).ceil();
+    maxY = divisor * multiple * 1.0;
+    debugPrint("[HomePage-> totalConsumed()] maxY: $maxY");
+
 
     /*int count = 0;
     for (int x in dataPoints.keys) {
@@ -205,6 +264,11 @@ class _HomePageState extends State<HomePage> {
 
     debugPrint("[HomePage-> totalConsumed()] sorting chart data...");
     chartData.sort((a, b) => a.x.compareTo(b.x));
+
+    debugPrint("[HomePage-> totalConsumed()] printing chart data...");
+    for (FlSpot dataPoint in chartData) {
+      debugPrint("[HomePage-> totalConsumed()] x: ${dataPoint.x}\ty: ${dataPoint.y}");
+    }
 
 
     debugPrint("[HomePage-> totalConsumed()] End");
@@ -251,19 +315,19 @@ class _HomePageState extends State<HomePage> {
           Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
-            children:[
-  
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              
               children:[
-
-              SizedOutlinedButton(text: "Calories", height: buttonHeight, width: buttonWidth, onPressed:() => onPressedGraph('Calories'),),
-              SizedOutlinedButton(text: "BMI", height: buttonHeight, width: buttonWidth, onPressed:() => onPressedGraph('BMI'),),
-              SizedOutlinedButton(text: "Weight", height: buttonHeight, width: buttonWidth, onPressed:() => onPressedGraph('Weight'),),
-            ]),
-            SizedBox(child: DisplayGraph(), height: 300, width: 700),
+    
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                
+                children:[
+                  SizedOutlinedButton(text: "Calories", height: buttonHeight, width: buttonWidth, onPressed:() => onPressedGraph('Calories'),),
+                  SizedOutlinedButton(text: "BMI", height: buttonHeight, width: buttonWidth, onPressed:() => onPressedGraph('BMI'),),
+                  SizedOutlinedButton(text: "Weight", height: buttonHeight, width: buttonWidth, onPressed:() => onPressedGraph('Weight'),),
+                ]),
+              SizedBox(child: DisplayGraph(), height: 300, width: 700),
+              SizedBox(child: Row(children: [SizedBox(width: 25,), SizedOutlinedButton(text: "Start", onPressed: () {}, height: 25, width: 100,), SizedBox(width: 475,), SizedOutlinedButton(text: "End", onPressed: () {}, height: 25, width: 100,),]), height: 300, width: 700),
           ]),
         ),
         
@@ -314,12 +378,13 @@ class _HomePageState extends State<HomePage> {
             ];
         minX = 1.0;
         maxX = 10.0;
-        return BMILineGraph(spots: chartData, minX: minX, maxX: maxX,);
+        maxY = 20;
+        return BMILineGraph(spots: chartData, minX: minX, maxX: maxX, maxY: maxY,);
       case 'Weight':
         return WeightLineGraph();
       case 'Calories':
       default:
-        return CalorieLineGraph(spots: chartData);
+        return CalorieLineGraph(spots: chartData, minX: minX, maxX: maxX, maxY: maxY, minY: minY,);
     }
   }
 }
