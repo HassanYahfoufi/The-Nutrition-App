@@ -3,9 +3,9 @@ import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/blank_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 /*
@@ -53,134 +53,134 @@ class _ViewBlankPageState extends State<ViewBlankPage> {
               ),
             ),
             const SizedBox(height: 30),
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.required_var01.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.required_var02.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.required_var03.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.required_var04.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.required_conversion_var01.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.required_conversion_var02.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.required_conversion_var03.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.required_conversion_var04.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.optional_var01.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.optional_var02.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.optional_var03.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.optional_var04.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.optional_conversion_var01.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.optional_conversion_var02.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.optional_conversion_var03.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.optional_conversion_var04.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.nonDB_var01.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisBlank.nonDB_var02.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
           ]),
         );}
 

@@ -4,9 +4,9 @@ import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 import 'package:multiselect/multiselect.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/food_item_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 /*
@@ -60,6 +60,8 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
       debugPrint("[CreateFoodItem-> setUp()]\t $name");
     }
     nutrientInfos = nutrientInfoTable.map((nutrientInfo_map)=> NutrientInfo.fromMap(nutrientInfo_map)).toList();
+
+
   }
 
   Future<void> submit() async
@@ -128,7 +130,7 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
                       Text("The FoodItem already exists"),
                 ));
         debugPrint(
-            "[CreateFoodItemPage-> submit()]sign up fail! FoodItem already exists!!!!!!!!!!!!!!!!!!!!");
+            "[CreateFoodItemPage-> submit()]sign up fail! FoodItem already existsxxxxxxxxxxxxxxxxxxxx");
       });
     } else //if you are here then the combination of alues for the required parameters hasn't been used yet
     {
@@ -161,7 +163,7 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
   
   Widget currentPage({required variablesInfo})
   {
-    String oldvalue = 'default unit of measurement';//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    String oldvalue = 'default unit of measurement';//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     
     return Center(
           child: Column(children: [
@@ -233,15 +235,15 @@ class _CreateFoodItemPageState extends State<CreateFoodItemPage> {
                 child: DropDownMultiSelect(
                   onChanged: (List<NutrientInfo> collection){
                     setState(() {
-                      //`nutrientInfos = collection;//!!!!!!!!!!!!!
+                      //`nutrientInfos = collection;//xxxxxxxxxx!!!
                       selectedNutrientInfos = collection;
-                      /*selectedNutrientInfos.clear;//!!!!!!!!!!!!!!!!!!
+                      /*selectedNutrientInfos.clear;//xxxxxxxxxxxxxxx!!!
                       for (NutrientInfo? element in collection) {
                         if(element != null)
                         {
                           selectedNutrientInfos.add(element);
                         }
-                      }*/ //!!!!!!!!!!!!!!!
+                      }*/ //xxxxxxxxxxxxxxx
                   });
                   },
                   options: nutrientInfos,
