@@ -3,9 +3,9 @@ import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/consumed_food_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 
@@ -159,56 +159,56 @@ class _UpdateConsumedFoodPageState extends State<UpdateConsumedFoodPage> {
   initState() {
     debugPrint("[UpdateConsumedFoodPage] Start");
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["userID"]!["TextEditingController"] = TextEditingController();
     variablesInfo["userID"]!["DataType"] = int;
     variablesInfo["userID"]!["name_with_underscore"] = "user_id";
     variablesInfo["userID"]!["NameWithSpace"] = "User ID";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["foodItemID"]!["TextEditingController"] = TextEditingController();
     variablesInfo["foodItemID"]!["DataType"] = int;
     variablesInfo["foodItemID"]!["name_with_underscore"] = "food_item_id";
     variablesInfo["foodItemID"]!["NameWithSpace"] = "Food Item ID";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["amount"]!["TextEditingController"] = TextEditingController();
     variablesInfo["amount"]!["DataType"] = double;
     variablesInfo["amount"]!["name_with_underscore"] = "amount";
     variablesInfo["amount"]!["NameWithSpace"] = "Amount";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["timestamp"]!["TextEditingController"] = TextEditingController();
     variablesInfo["timestamp"]!["DataType"] = DateTime;
     variablesInfo["timestamp"]!["name_with_underscore"] = "timestamp";
     variablesInfo["timestamp"]!["NameWithSpace"] = "Timestamp";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["dateCreated"]!["TextEditingController"] = TextEditingController();
     variablesInfo["dateCreated"]!["DataType"] = DateTime;
     variablesInfo["dateCreated"]!["name_with_underscore"] = "date_created";
     variablesInfo["dateCreated"]!["NameWithSpace"] = "Date Created";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["dateModified"]!["TextEditingController"] = TextEditingController();
     variablesInfo["dateModified"]!["DataType"] = DateTime;
     variablesInfo["dateModified"]!["name_with_underscore"] = "date_modified";
     variablesInfo["dateModified"]!["NameWithSpace"] = "Date Modified";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["note"]!["TextEditingController"] = TextEditingController();
     variablesInfo["note"]!["DataType"] = String;
     variablesInfo["note"]!["name_with_underscore"] = "note";
     variablesInfo["note"]!["NameWithSpace"] = "Note";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
     
   }
 

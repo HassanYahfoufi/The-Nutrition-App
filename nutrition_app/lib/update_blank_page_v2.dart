@@ -3,9 +3,9 @@ import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/blank_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 /*
@@ -170,120 +170,120 @@ class _UpdateBlankPageState extends State<UpdateBlankPage> {
     debugPrint("[UpdateBlankPage] Start");
 
     debugPrint("[CreateBlankPage] Start");
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["required_var01"] = <String, dynamic>{};
     variablesInfo["required_var01"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_var01"]!["DataType"] = requiredVar01_DataType;
     variablesInfo["required_var01"]!["name_with_underscore"] = "required_var_underscore01";
     variablesInfo["required_var01"]!["NameWithSpace"] = "Required Variable With Space #01";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["required_var02"] = <String, dynamic>{};
     variablesInfo["required_var02"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_var02"]!["DataType"] = requiredVar02_DataType;
     variablesInfo["required_var02"]!["name_with_underscore"] = "required_var_underscore02";
     variablesInfo["required_var02"]!["NameWithSpace"] = "Required Variable With Space #02";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["required_var03"] = <String, dynamic>{};
     variablesInfo["required_var03"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_var03"]!["DataType"] = requiredVar03_DataType;
     variablesInfo["required_var03"]!["name_with_underscore"] = "required_var_underscore03";
     variablesInfo["required_var03"]!["NameWithSpace"] = "Required Variable With Space #03";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["required_var04"] = <String, dynamic>{};
     variablesInfo["required_var04"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_var04"]!["DataType"] = requiredVar04_DataType;
     variablesInfo["required_var04"]!["name_with_underscore"] = "required_var_underscore04";
     variablesInfo["required_var04"]!["NameWithSpace"] = "Required Variable With Space #04";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["required_conversion_var01"] = <String, dynamic>{};
     variablesInfo["required_conversion_var01"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_conversion_var01"]!["DataType"] = required_conversionVar01_DataType;
     variablesInfo["required_conversion_var01"]!["name_with_underscore"] = "required_conversion_var_underscore01";
     variablesInfo["required_conversion_var01"]!["NameWithSpace"] = "Required Conversion Variable With Space #01";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["required_conversion_var02"] = <String, dynamic>{};
     variablesInfo["required_conversion_var02"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_conversion_var02"]!["DataType"] = required_conversionVar02_DataType;
     variablesInfo["required_conversion_var02"]!["name_with_underscore"] = "required_conversion_var_underscore02";
     variablesInfo["required_conversion_var02"]!["NameWithSpace"] = "Required Conversion Variable With Space #02";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["required_conversion_var03"] = <String, dynamic>{};
     variablesInfo["required_conversion_var03"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_conversion_var03"]!["DataType"] = required_conversionVar03_DataType;
     variablesInfo["required_conversion_var03"]!["name_with_underscore"] = "required_conversion_var_underscore03";
     variablesInfo["required_conversion_var03"]!["NameWithSpace"] = "Required Conversion Variable With Space #03";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["required_conversion_var04"] = <String, dynamic>{};
     variablesInfo["required_conversion_var04"]!["TextEditingController"] = TextEditingController();
     variablesInfo["required_conversion_var04"]!["DataType"] = required_conversionVar04_DataType;
     variablesInfo["required_conversion_var04"]!["name_with_underscore"] = "required_conversion_var_underscore04";
     variablesInfo["required_conversion_var04"]!["NameWithSpace"] = "Required Conversion Variable With Space #04";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["optional_var01"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_var01"]!["DataType"] = optionalVar01_DataType;
     variablesInfo["optional_var01"]!["name_with_underscore"] = "optional_var_underscore01";
     variablesInfo["optional_var01"]!["NameWithSpace"] = "Optional Variable With Space #01";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["optional_var02"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_var02"]!["DataType"] = optionalVar02_DataType;
     variablesInfo["optional_var02"]!["name_with_underscore"] = "optional_var_underscore02";
     variablesInfo["optional_var02"]!["NameWithSpace"] = "Optional Variable With Space #02";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["optional_var03"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_var03"]!["DataType"] = optionalVar03_DataType;
     variablesInfo["optional_var03"]!["name_with_underscore"] = "optional_var_underscore03";
     variablesInfo["optional_var03"]!["NameWithSpace"] = "Optional Variable With Space #03";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["optional_var04"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_var04"]!["DataType"] = optionalVar04_DataType;
     variablesInfo["optional_var04"]!["name_with_underscore"] = "optional_var_underscore04";
     variablesInfo["optional_var04"]!["NameWithSpace"] = "Optional Variable With Space #04";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["optional_conversion_var01"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_conversion_var01"]!["DataType"] = optional_conversionVar01_DataType;
     variablesInfo["optional_conversion_var01"]!["name_with_underscore"] = "optional_conversion_var_underscore01";
     variablesInfo["optional_conversion_var01"]!["NameWithSpace"] = "Optional Conversion Variable With Space #01";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["optional_conversion_var02"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_conversion_var02"]!["DataType"] = optional_conversionVar02_DataType;
     variablesInfo["optional_conversion_var02"]!["name_with_underscore"] = "optional_conversion_var_underscore02";
     variablesInfo["optional_conversion_var02"]!["NameWithSpace"] = "Optional Conversion Variable With Space #02";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["optional_conversion_var03"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_conversion_var03"]!["DataType"] = optional_conversionVar03_DataType;
     variablesInfo["optional_conversion_var03"]!["name_with_underscore"] = "optional_conversion_var_underscore03";
     variablesInfo["optional_conversion_var03"]!["NameWithSpace"] = "Optional Conversion Variable With Space #03";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
     variablesInfo["optional_conversion_var04"]!["TextEditingController"] = TextEditingController();
     variablesInfo["optional_conversion_var04"]!["DataType"] = optional_conversionVar04_DataType;
     variablesInfo["optional_conversion_var04"]!["name_with_underscore"] = "optional_conversion_var_underscore04";
     variablesInfo["optional_conversion_var04"]!["NameWithSpace"] = "Optional Conversion Variable With Space #04";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   }
 
   @override

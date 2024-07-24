@@ -5,9 +5,9 @@ import 'package:nutrition_app/custom_widgets.dart';
 import 'package:nutrition_app/update_nutrient_info_page.dart';
 import 'package:nutrition_app/view_all_nutrient_infos_page.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/nutrient_info_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 /*
@@ -55,128 +55,128 @@ class _ViewNutrientInfoPageState extends State<ViewNutrientInfoPage> {
               ),
             ),
             const SizedBox(height: 30),
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.userID.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.nutrientID.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.name.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.recomendedDietaryAllowance.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.unitOfMeasurement_recomendedDietaryAllowance.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.description.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.adequateIntake.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.unitOfMeasurement_adequateIntake.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.estimatedAverageRequirement.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.unitOfMeasurement_estimatedAverageRequirement.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.tolerableUpperIntakeLevel.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.unitOfMeasurement_tolerableUpperIntakeLevel.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.age.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.sex.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.weight.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.lifestyle.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(widget.thisNutrientInfo.physiologicalStatus.toString()),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
           ]),
         );
   }

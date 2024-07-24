@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
         "\t[LoginPage-> setUp()] Excecuting: await createNewDatabases();...");
     await createNewDatabases(currentTables_names);
 
-    //!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxx!!!
     debugPrint("[LoginPage-> setUp()] Retrieving the User table...");
     //User tempUser = User(Username: "Username", Password: "Password");
     //databaseHelper.getEntireTable(tableName: "UserTable", maptoObject: tempUser.fromMap);
@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
     for (Map<String, dynamic> user in userTable) {
       debugPrint("\t${user["username"]}");
     }
-    //!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxx!!!
   }
 
   @override
@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 10),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/registerpage'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        Navigator.pushNamed(context, '/registerpage'); //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!
                       },
                       child: Container(
                         padding: EdgeInsets.all(20),

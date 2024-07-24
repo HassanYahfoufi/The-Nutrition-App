@@ -42,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       Text("User ${usernameController.text} already exists"),
                 ));
         debugPrint(
-            "[Register Page-> signUp()]sign up fail! User already exists!!!!!!!!!!!!!!!!!!!!");
+            "[Register Page-> signUp()]sign up fail! User already existsxxxxxxxxxxxxxxxxxxxx");
       });
     } else //if you are here then the username and password combo hasn't been used yet
     {
@@ -55,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
       if (insertResult != 0) {
         setState(() {
           Navigator.pushNamed(context,
-              '/homepage'); //change pages !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+              '/homepage'); //change pages xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!
         });
       } else {
         setState(() {

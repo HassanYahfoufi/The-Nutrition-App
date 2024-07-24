@@ -3,9 +3,9 @@ import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/food_item_nutrient_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 /*
@@ -92,7 +92,7 @@ class _CreateFoodItemNutrientPageState extends State<CreateFoodItemNutrientPage>
                       Text("The FoodItemNutrient already exists"),
                 ));
         debugPrint(
-            "[CreateFoodItemNutrientPage-> submit()]sign up fail! FoodItemNutrient already exists!!!!!!!!!!!!!!!!!!!!");
+            "[CreateFoodItemNutrientPage-> submit()]sign up fail! FoodItemNutrient already existsxxxxxxxxxxxxxxxxxxxx");
       });
     } else //if you are here then the combination of alues for the required parameters hasn't been used yet
     {

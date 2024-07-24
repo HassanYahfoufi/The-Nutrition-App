@@ -156,7 +156,7 @@ class DatabaseHelper {
     }
     else
     {
-      debugPrint("$tableName table NOT created!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      debugPrint("$tableName table NOT createdxxxxxxxxxxxxxxxxxxxxxxxxx!!!");
     }
     debugPrint("[DatabaseHelper -> _createDb(..., $tableName)] End");
   }
@@ -199,7 +199,7 @@ class DatabaseHelper {
           "$space[DatabaseHelper -> createTable($tableName)] $tableName table created!WWWWWWWWWWWWWWWWWWWWWWWWWWW");
     } else {
       debugPrint(
-          "$space[DatabaseHelper -> createTable($tableName)] $tableName table NOT created!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+          "$space[DatabaseHelper -> createTable($tableName)] $tableName table NOT createdxxxxxxxxxxxxxxxxxxxxxxxxx!!!");
     }
     debugPrint("$space[DatabaseHelper -> createTable($tableName)] End");
   }
@@ -226,10 +226,10 @@ class DatabaseHelper {
 
     debugPrint("$space[DatabaseHelper -> insert()] Adding to $tableName.....");
     result = await db!
-        .insert(tableType, objectAsMap); //!!!!!!! replace with raw query
+        .insert(tableType, objectAsMap); //xxxxx!! replace with raw query
     if (result != 0) {
       debugPrint(
-          "$space[DatabaseHelper -> insert()]  added successfully!!!!!!!!!!!!!!!!!!!");
+          "$space[DatabaseHelper -> insert()]  added successfullyxxxxxxxxxxxxxxx!!!!");
     } else {
       debugPrint(
           "$space[DatabaseHelper -> insert()] Failed!  couldn't be added XXXXXXXXXX");
@@ -243,10 +243,10 @@ class DatabaseHelper {
     debugPrint("[DatabaseHelper-> databaseCount()] Start");
     List<String> names = await getTableNames();
     int count = names.length;
-    if (names.contains("android_metadata")) //!!!!!!!!!!!!!
+    if (names.contains("android_metadata")) //xxxxxxxxxx!!!
     {
       count--;
-    } //!!!!!!!!!!!!!!!!
+    } //xxxxxxxxxxxxxxx!
     debugPrint("Current number of databases: $count");
     debugPrint("[DatabaseHelper-> databaseCount()] End");
     return count;
@@ -403,7 +403,7 @@ class DatabaseHelper {
     debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] Start");
     String connditionSQL = "";
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!
     conditions.forEach((key, value) {
       if (value != null) 
       {
@@ -425,7 +425,7 @@ class DatabaseHelper {
     //List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column = $value");
     debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] SELECT * FROM $tableType WHERE $connditionSQL...");
     List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $connditionSQL");
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!
     debugPrint("[DatabaseHelper -> getMatchingRows_WhereColumns()] End");
     return result;
   }*/
@@ -438,11 +438,11 @@ class DatabaseHelper {
     debugPrint("[DatabaseHelper -> getMatchingColumns()] Start");
     String outputColumnsSQL = "";
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     outputColumnsSQL = "${outputColumns[0]}";
     for (int i = 1; i < outputColumns.length; i++) {
       outputColumnsSQL = ", ${outputColumns[i]}";
-    } //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    } //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!
     String tableType = table[tableName]!.type;
     Database? db = await getDatabase();
     //List<Map<String, dynamic>> result = await db!.rawQuery("SELECT * FROM $tableType WHERE $column = $value");
@@ -456,7 +456,7 @@ class DatabaseHelper {
 
   Future<List<Map<String, dynamic>>> getMatchingColumns_WhereColumns({required String tableName, required Map<String, dynamic> conditions, required List<String> outputColumns}) async 
   {
-    debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] Start"); //!!!!!!!!!!!!!!!!!!!!!!!
+    debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] Start"); //xxxxxxxxxxxxxxxxxxxx!!!
     String connditionSQL = "";
     conditions.forEach((key, value) {
       connditionSQL = "$connditionSQL AND $key = '${value.toString()}'";
@@ -523,7 +523,7 @@ class DatabaseHelper {
   }
 
   //Change from account to User
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!
   Future<List<Map<String, dynamic>>> getRowsFromAccount_WhereColumns(
       {required String tableName,
       required String column,
@@ -578,7 +578,7 @@ class DatabaseHelper {
       required Map<String, dynamic> conditions,
       required List<String> outputColumns}) async {
     debugPrint(
-        "[DatabaseHelper -> getMatchingColumns_WhereColumns()] Start"); //!!!!!!!!!!!!!!!!!!!!!!!
+        "[DatabaseHelper -> getMatchingColumns_WhereColumns()] Start"); //xxxxxxxxxxxxxxxxxxxx!!!
     String connditionSQL = "";
     //List<String> conditionsList = conditions.forEach((key, value) {return key;});
     conditions.forEach((key, value) {
@@ -610,7 +610,7 @@ class DatabaseHelper {
     debugPrint("[DatabaseHelper -> getMatchingColumns_WhereColumns()] End");
     return result;
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!
 
   Future<List<Map<String, dynamic>>> getMapList(
       {required String tableName, String orderByCol = ""}) async {
@@ -701,7 +701,7 @@ class DatabaseHelper {
     return result;
   }
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   Future<void> deleteTable(String tableName) async {
     debugPrint("[DatabaseHelper -> deleteTable()] Start");
     String tableType;
@@ -752,7 +752,7 @@ class DatabaseHelper {
         table.remove(tableName);
       } else {
         debugPrint(
-            "[DatabaseHelper -> deleteTable()] Delete operation (DROP TABLE IF EXISTS $tableType) was called but failed!!!!!!!!!!");
+            "[DatabaseHelper -> deleteTable()] Delete operation (DROP TABLE IF EXISTS $tableType) was called but failedxxxxxxxxxx");
         debugPrint("db.path: ${db.path}");
 
         debugPrint(
@@ -776,7 +776,7 @@ class DatabaseHelper {
       for (String key in table.keys) {
         debugPrint("\t$key");
         if (table[key] == null) {
-          debugPrint("\t\tNULL!!!!!");
+          debugPrint("\t\tNULLxxxxx");
         }
       }
       debugPrint(
@@ -792,6 +792,6 @@ class DatabaseHelper {
     debugPrint("[DatabaseHelper -> deleteTable()] End");*/
   }
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!
 }

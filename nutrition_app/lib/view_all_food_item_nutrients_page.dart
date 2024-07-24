@@ -5,9 +5,9 @@ import 'package:nutrition_app/custom_widgets.dart';
 import 'package:nutrition_app/view_food_item_nutrient_page.dart';
 import 'package:nutrition_app/home_page.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/food_item_nutrient_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 class ViewAllFoodItemNutrientsPage extends StatefulWidget {
   ViewAllFoodItemNutrientsPage({required this.parentObject, required this.thisUser, super.key});
@@ -31,7 +31,7 @@ class _ViewAllFoodItemNutrientsPageState extends State<ViewAllFoodItemNutrientsP
     //widget.parentObject.readFromDatabase();
     //foodItemNutrients = widget.parentObject.foodItemNutrients;
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx!
     debugPrint("[ViewAllFoodItemNutrientsPage-> setUp()] getting all Food Item Nutrients... ");
     List<Map<String, dynamic>> foodItemNutrientTable = await databaseHelper.getEntireTable_asMap(tableName: "FoodItemNutrientTable");
     debugPrint("[ViewAllFoodItemNutrientsPage-> setUp()] retrieved ${foodItemNutrientTable.length} Food Item Nutrients... ");
@@ -44,7 +44,7 @@ class _ViewAllFoodItemNutrientsPageState extends State<ViewAllFoodItemNutrientsP
       debugPrint("[ViewAllFoodItemNutrientsPage-> setUp()]\t nutrient info id: $nutrientInfoID");
     }
     foodItemNutrients = foodItemNutrientTable.map((foodItemNutrient_map)=> FoodItemNutrient.fromMap(foodItemNutrient_map)).toList();
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!
 
   }
 
