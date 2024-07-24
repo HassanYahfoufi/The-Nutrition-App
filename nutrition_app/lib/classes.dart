@@ -527,8 +527,16 @@ class StatusUpdate {
     debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing timestamp(${map["timestamp"]})...");
     timestamp = DateTime.parse(map["timestamp"]);
     debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing date_created(${map["date_created"]})...");
+    if(map["date_created"] == null)
+    {
+      map["date_created"] = DateTime.now().toString();
+    }
     dateCreated = DateTime.parse(map["date_created"]);
     debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing date_modified(${map["date_modified"]})...");
+    if(map["date_modified"] == null)
+    {
+      map["date_modified"] = DateTime.now().toString();
+    }
     dateModified = DateTime.parse(map["date_modified"]);
     debugPrint("[Classes->StatusUpdate-> StatusUpdate.fromMap()] processing note(${map["note"]})...");
     note = map["note"];
@@ -833,7 +841,7 @@ class FoodItem {
     debugPrint("[Classes->FoodItem-> create()] Insertion COMPLETE. result = ${result}");
     debugPrint("[Classes->FoodItem-> create()] retrieving updating id ...");
     _id = result;
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
     if(result >= 1)
     {
       ///debugPrint("[Classes->FoodItem-> create()] retrieving food item id ...");
@@ -842,7 +850,7 @@ class FoodItem {
       await createLists();
       
     }
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
     debugPrint("[Classes->FoodItem-> create()] End");
     return result;
@@ -1096,7 +1104,7 @@ class FoodItemNutrient {
     if (matchingNutrientInfos.length == 1) 
     {
       debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromDatabase()] processing data...");
-      info = NutrientInfo.fromMap(matchingNutrientInfos[0]);//!!!!!!!!!!!!!!!!!!!!!
+      info = NutrientInfo.fromMap(matchingNutrientInfos[0]);//xxxxxxxxxxxxxxxxxxxx!
       
 
       return true;
@@ -1305,15 +1313,15 @@ class NutrientInfo {
 
   int? _id;
 
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   late int userID;
   late int nutrientID;
   late String name;
   late double recomendedDietaryAllowance;
   late int unitOfMeasurement_recomendedDietaryAllowance;
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   String? description;
   double? adequateIntake;
   int? unitOfMeasurement_adequateIntake;
@@ -1321,31 +1329,31 @@ class NutrientInfo {
   int? unitOfMeasurement_estimatedAverageRequirement;
   double? tolerableUpperIntakeLevel;
   int? unitOfMeasurement_tolerableUpperIntakeLevel;
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxx!!!!
   int? _age;
   int? _sex;
   double? _weight;
   int? _lifestyle;
   int? _physiologicalStatus;
-  //!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxx!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
 
 
   int? get id => _id;
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   int? get age => _age;
   int? get sex => _sex;
   double? get weight => _weight;
   int? get lifestyle => _lifestyle;
   int? get physiologicalStatus => _physiologicalStatus;
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 
@@ -1484,9 +1492,10 @@ class NutrientInfo {
     }
   }
   
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   NutrientInfo.fromMap(Map<String, dynamic> map) {
     debugPrint("[Classes->NutrientInfo-> NutrientInfo.fromMap()] Start");
+    debugPrint("[Classes->NutrientInfo-> NutrientInfo.fromMap()] map: ${map.toString()}");
 
     if(_id != null)
     {
@@ -1512,7 +1521,7 @@ class NutrientInfo {
 
     debugPrint("[Classes->NutrientInfo-> NutrientInfo.fromMap()] End");
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   Future<void> readFromMap(Map<String, dynamic> map) async 
   {
     debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromMap()] Start");
@@ -1542,7 +1551,7 @@ class NutrientInfo {
     debugPrint("[Classes->NutrientInfo-> readNutrientInfoFromMap()] End");
     return tempNutrientInfo;
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = Map<String, dynamic>();
 
@@ -1564,7 +1573,7 @@ class NutrientInfo {
     
     return map;
   }
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
   Future<int> update() async {
     debugPrint("[Classes->NutrientInfo-> update()] Start");
@@ -1725,7 +1734,7 @@ class ConsumedFood {
     {
       debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] retrieved food item: ${matchingFoodItems[0]}");
       debugPrint("[Classes->ConsumedFood-> readFoodItemFromDatabase()] processing data...");
-      foodItem = FoodItem.fromMap(matchingFoodItems[0]);//!!!!!!!!!!!!!!!!!!!!!
+      foodItem = FoodItem.fromMap(matchingFoodItems[0]);//xxxxxxxxxxxxxxxxxxxx!
       
 
       return true;
@@ -1755,7 +1764,7 @@ class ConsumedFood {
   Future<int> create() async {
     debugPrint("[Classes->ConsumedFood-> create()] Start");
 
-    debugPrint("[Classes->ConsumedFood-> create()] The new consumed food as a map: ${toMap().toString()}... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    debugPrint("[Classes->ConsumedFood-> create()] The new consumed food as a map: ${toMap().toString()}... xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!");
     
     debugPrint("[Classes->ConsumedFood-> create()] inserting new consumedFood into database ...");
     int result = await _databaseHelper.insert(tableName: "ConsumedFoodTable", objectAsMap: toMap());
@@ -1834,7 +1843,15 @@ class ConsumedFood {
     }
     amount = map["amount"];
     timestamp = DateTime.parse(map["timestamp"]);
+    if(map["date_created"] == null)
+    {
+      map["date_created"] = DateTime.now().toString();
+    }
     dateCreated = DateTime.parse(map["date_created"]);
+    if(map["date_modified"] == null)
+    {
+      map["date_modified"] = DateTime.now().toString();
+    }
     dateModified = DateTime.parse(map["date_modified"]);
     note = map["note"];
     

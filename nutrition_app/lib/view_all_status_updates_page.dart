@@ -7,9 +7,9 @@ import 'package:nutrition_app/create_status_update_page.dart';
 import 'package:nutrition_app/home_page.dart';
 
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/status_update_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 class ViewAllStatusUpdatesPage extends StatefulWidget {
   ViewAllStatusUpdatesPage({required this.parentObject, required this.thisUser, super.key});
@@ -35,7 +35,7 @@ class _ViewAllStatusUpdatesPageState extends State<ViewAllStatusUpdatesPage> {
     debugPrint("[ViewAllStatusUpdatesPage-> setUp()] getting all status updates... ");
     List<Map<String, dynamic>> statusUpdateTable = await databaseHelper.getEntireTable_asMap(tableName: "StatusUpdateTable");
     String title;
-    debugPrint("[ViewAllStatusUpdatesPage-> setUp()] printing all status updates... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    debugPrint("[ViewAllStatusUpdatesPage-> setUp()] printing all status updates... xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     for(Map<String, dynamic> statusUpdate_map in statusUpdateTable)
     {
       title = statusUpdate_map["title"];
@@ -49,7 +49,7 @@ class _ViewAllStatusUpdatesPageState extends State<ViewAllStatusUpdatesPage> {
     //This is temporary code please refactor this to make the program more robust --------------------------
     if(tempStatusUpdates.length > statusUpdates.length)
     {
-      debugPrint("[ViewAllStatusUpdatesPage-> setUp()] ERROR updating collecting status updates via user failed!!!!!!!!!!!!!!!!!!!");
+      debugPrint("[ViewAllStatusUpdatesPage-> setUp()] ERROR updating collecting status updates via user failedxxxxxxxxxxxxxxx!!!!");
       statusUpdates = tempStatusUpdates;
     }
     //------------------------------------------------------------------------------------------------------

@@ -5,9 +5,9 @@ import 'package:nutrition_app/custom_widgets.dart';
 import 'package:nutrition_app/view_food_item_page.dart';
 import 'package:nutrition_app/home_page.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/food_item_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 class ViewAllFoodItemsPage extends StatefulWidget {
   ViewAllFoodItemsPage({required this.parentObject, required this.thisUser, super.key});

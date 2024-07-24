@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:nutrition_app/custom_widgets.dart';
-import 'package:nutrition_app/create_status_update_page.dart';
 import 'package:nutrition_app/create_status_update_page_v2.dart';
 import 'package:nutrition_app/create_blank_page_v2.dart';
 import 'package:nutrition_app/create_consumed_food_page.dart';
@@ -154,7 +153,7 @@ class _HomePageState extends State<HomePage> {
       
     }
 
-    debugPrint("[HomePage-> totalConsumed()] there are ${matchingConsumedFoods.length} matching consumed foods !!!!!!!!!!!!!!");
+    debugPrint("[HomePage-> totalConsumed()] there are ${matchingConsumedFoods.length} matching consumed foods xxxxxxxxxx!!!!");
     debugPrint("[HomePage-> totalConsumed()] removing consumed foods that are out of intended time range");
     /*for (ConsumedFood consumedFood in matchingConsumedFoods) {
       if(consumedFood.timestamp.isBefore(start) || consumedFood.timestamp.isAfter(end))
@@ -166,7 +165,7 @@ class _HomePageState extends State<HomePage> {
     }*/
     matchingConsumedFoods.removeWhere(((consumedFood) => consumedFood.timestamp.isBefore(start) || consumedFood.timestamp.isAfter(end)));
     debugPrint("[HomePage-> totalConsumed()] processing the retrieved consumed foods COMPLETE");
-    debugPrint("[HomePage-> totalConsumed()] there are ${matchingConsumedFoods.length} matching consumed foods in range !!!!!!!!!!!!!!!!!!!!!!!!");
+    debugPrint("[HomePage-> totalConsumed()] there are ${matchingConsumedFoods.length} matching consumed foods in range xxxxxxxxxxxxxxxxxxxx!!!!");
     
     Map<int, double> dataPoints = Map<int, double>();
     int newX;
@@ -284,7 +283,7 @@ class _HomePageState extends State<HomePage> {
     end = DateTime.parse("2024-05-01 12:02:02.123456");
     minX = timestampToX_days(start) * 1.0;
     maxX = timestampToX_days(end) * 1.0;
-    debugPrint("\t[HomePage-> SetUp()] start: ${start}\tend: ${end}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");  
+    debugPrint("\t[HomePage-> SetUp()] start: ${start}\tend: ${end}xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!");  
     await totalConsumed(SelectedGraph);
 
 
@@ -339,8 +338,6 @@ class _HomePageState extends State<HomePage> {
         
 
         SizedOutlinedButton(text: "Update Status", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateStatusUpdatePage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
-        SizedBox(height: spacerHeight),
-        SizedOutlinedButton(text: "Update Status v2", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateStatusUpdatePage_v2(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),
         SizedOutlinedButton(text: "Add ConsumedFood", height: buttonHeight, width: buttonWidth, onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => CreateConsumedFoodPage(nextPage: HomePage(thisUser: widget.thisUser,), thisUser: widget.thisUser)),);}),
         SizedBox(height: spacerHeight),

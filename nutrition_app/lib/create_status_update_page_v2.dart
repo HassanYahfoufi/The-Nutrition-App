@@ -3,9 +3,9 @@ import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 //import 'package:nutrition_app/statusUpdate_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 /*
@@ -20,16 +20,16 @@ Optional_Var##
 Optional Var With Space ###
 */
 
-class CreateStatusUpdatePage_v2 extends StatefulWidget {
-  CreateStatusUpdatePage_v2({required this.nextPage, required this.thisUser, super.key});
+class CreateStatusUpdatePage extends StatefulWidget {
+  CreateStatusUpdatePage({required this.nextPage, required this.thisUser, super.key});
   final Widget nextPage;
   User thisUser;
 
   @override
-  State<CreateStatusUpdatePage_v2> createState() => _CreateStatusUpdatePage_v2State();
+  State<CreateStatusUpdatePage> createState() => _CreateStatusUpdatePageState();
 }
 
-class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
+class _CreateStatusUpdatePageState extends State<CreateStatusUpdatePage> {
   Map<String,Map<String, dynamic>> variablesInfo = Map<String,Map<String, dynamic>>();
 
   late StatusUpdate newStatusUpdate;
@@ -38,31 +38,31 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
 
   Future<void> submit() async
   {
-    debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] Start");
+    debugPrint("[CreateStatusUpdatePage-> submit()] Start");
 
     String underscoreName;
     Map<String, dynamic> statusUpdateMap = Map<String, dynamic>();
-    debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] creating map...");
+    debugPrint("[CreateStatusUpdatePage-> submit()] creating map...");
 
-    debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] processing user id...");
+    debugPrint("[CreateStatusUpdatePage-> submit()] processing user id...");
     statusUpdateMap[databaseHelper.colUserID] = widget.thisUser.id;
 
     for (var entry in variablesInfo.entries) 
     {
-      debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\tprocessing ${entry.key} info...");
-      debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\t\texcecuting: underscoreName = entry.value[\"name_with_underscore\"];...");
+      debugPrint("[CreateStatusUpdatePage-> submit()]\tprocessing ${entry.key} info...");
+      debugPrint("[CreateStatusUpdatePage-> submit()]\t\texcecuting: underscoreName = entry.value[\"name_with_underscore\"];...");
       underscoreName = entry.value["name_with_underscore"];
       
-      debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\t\t checking data type of ${entry.key}");
-      debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\t\t${entry.key}'s data type: ${entry.value["DataType"]}");
+      debugPrint("[CreateStatusUpdatePage-> submit()]\t\t checking data type of ${entry.key}");
+      debugPrint("[CreateStatusUpdatePage-> submit()]\t\t${entry.key}'s data type: ${entry.value["DataType"]}");
       if(entry.value["DataType"] == String)
       {
-        debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\t\t${entry.key} is a String");
+        debugPrint("[CreateStatusUpdatePage-> submit()]\t\t${entry.key} is a String");
         statusUpdateMap[underscoreName] = entry.value["TextEditingController"].text;
       }
       else
       {
-        debugPrint("[CreateStatusUpdatePage_v2v2-> submit()]\t\t${entry.key} is not a String");
+        debugPrint("[CreateStatusUpdatePage-> submit()]\t\t${entry.key} is not a String");
         if(entry.value["DataType"] == int)
         {
           statusUpdateMap[underscoreName] = int.parse(entry.value["TextEditingController"].text);
@@ -79,11 +79,13 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
       }
     }
     
-    debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] creating the new status update...");
+    debugPrint("[CreateStatusUpdatePage-> submit()] creating the new status update...");
     newStatusUpdate = StatusUpdate.fromMap(statusUpdateMap);
+    newStatusUpdate.dateCreated = DateTime.now();
+    newStatusUpdate.dateModified = DateTime.now();
     
 
-    debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] Validating...");
+    debugPrint("[CreateStatusUpdatePage-> submit()] Validating...");
     if (await newStatusUpdate.countMatching() >= 1) {
       setState(() {
         showDialog(
@@ -94,11 +96,11 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
                       Text("The StatusUpdate already exists"),
                 ));
         debugPrint(
-            "[CreateStatusUpdatePage_v2v2-> submit()]sign up fail! StatusUpdate already exists!!!!!!!!!!!!!!!!!!!!");
+            "[CreateStatusUpdatePage-> submit()]sign up fail! StatusUpdate already existsxxxxxxxxxxxxxxxxxxxx");
       });
     } else //if you are here then the combination of alues for the required parameters hasn't been used yet
     {
-      debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] the combo of values for the required parameters hasn't been used yet");
+      debugPrint("[CreateStatusUpdatePage-> submit()] the combo of values for the required parameters hasn't been used yet");
       
 
       int insertResult = await newStatusUpdate.create();
@@ -109,14 +111,14 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
         });
       } else {
         setState(() {
-          debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] Sign up failed!");
+          debugPrint("[CreateStatusUpdatePage-> submit()] Sign up failed!");
           showDialog(
               context: context,
               builder: (_) => AlertDialog(
                     title: Text("Sign in failed!"),
                     content: Text("Insert operation failed!"),
                   ));
-          debugPrint("[CreateStatusUpdatePage_v2v2-> submit()] Sign up failed!");
+          debugPrint("[CreateStatusUpdatePage-> submit()] Sign up failed!");
         });
       }
     }
@@ -193,12 +195,13 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
               ),
             ),
           ]),
-        );}
+        );
+    }
 
 
   @override
   initState() {
-    debugPrint("[CreateStatusUpdatePage_v2] Start");
+    debugPrint("[CreateStatusUpdatePage] Start");
 
     debugPrint("[CreateStatusUpdatePag e_v2] Processing title info...");
     variablesInfo["title"] = <String, dynamic>{};
@@ -207,14 +210,14 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
     variablesInfo["title"]!["name_with_underscore"] = "title";
     variablesInfo["title"]!["NameWithSpace"] = "Title";
 
-    debugPrint("[CreateStatusUpdatePage_v2_v2] Processing timestamp info...");
+    debugPrint("[CreateStatusUpdatePage_v2] Processing timestamp info...");
     variablesInfo["timestamp"] = <String, dynamic>{};
     variablesInfo["timestamp"]!["TextEditingController"] = TextEditingController();
     variablesInfo["timestamp"]!["DataType"] = DateTime;
     variablesInfo["timestamp"]!["name_with_underscore"] = "timestamp";
     variablesInfo["timestamp"]!["NameWithSpace"] = "Timestamp";
 
-    debugPrint("[CreateStatusUpdatePage_v2_v2] Processing dateCreated info...");
+    /*debugPrint("[CreateStatusUpdatePage_v2] Processing dateCreated info...");
     variablesInfo["dateCreated"] = <String, dynamic>{};
     variablesInfo["dateCreated"]!["TextEditingController"] = TextEditingController();
     variablesInfo["dateCreated"]!["DataType"] = DateTime;
@@ -222,15 +225,15 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
     variablesInfo["dateCreated"]!["NameWithSpace"] = "Date Created";
     
 
-    debugPrint("[CreateStatusUpdatePage_v2_v2] Processing dateModified info...");
+    debugPrint("[CreateStatusUpdatePage_v2] Processing dateModified info...");
     variablesInfo["dateModified"] = <String, dynamic>{};
     variablesInfo["dateModified"]!["TextEditingController"] = TextEditingController();
     variablesInfo["dateModified"]!["DataType"] = DateTime;
     variablesInfo["dateModified"]!["name_with_underscore"] = "date_modified";
-    variablesInfo["dateModified"]!["NameWithSpace"] = "Date Modified";
+    variablesInfo["dateModified"]!["NameWithSpace"] = "Date Modified"; */
     
 
-    debugPrint("[CreateStatusUpdatePage_v2_v2] Processing note info...");
+    debugPrint("[CreateStatusUpdatePage_v2] Processing note info...");
     variablesInfo["note"] = <String, dynamic>{};
     variablesInfo["note"]!["TextEditingController"] = TextEditingController();
     variablesInfo["note"]!["DataType"] = String;
@@ -238,7 +241,7 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
     variablesInfo["note"]!["NameWithSpace"] = "Note";
     
 
-    debugPrint("[CreateStatusUpdatePage_v2_v2] Processing weight info...");
+    debugPrint("[CreateStatusUpdatePage_v2] Processing weight info...");
     variablesInfo["weight"] = <String, dynamic>{};
     variablesInfo["weight"]!["TextEditingController"] = TextEditingController();
     variablesInfo["weight"]!["DataType"] = double;
@@ -249,7 +252,7 @@ class _CreateStatusUpdatePage_v2State extends State<CreateStatusUpdatePage_v2> {
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(pageName: "CreateStatusUpdatePage_v2v2", body: [currentPage(variablesInfo: variablesInfo)], thisUser: widget.thisUser,);
+    return PageWidget(pageName: "CreateStatusUpdatePage", body: [currentPage(variablesInfo: variablesInfo)], thisUser: widget.thisUser,);
   }
   Future<void> DateSeletctor(TextEditingController dobController) async {
   DateTime? picked = await showDatePicker(

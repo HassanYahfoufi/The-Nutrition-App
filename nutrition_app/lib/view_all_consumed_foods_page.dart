@@ -30,7 +30,7 @@ class _ViewAllConsumedFoodsPageState extends State<ViewAllConsumedFoodsPage> {
     debugPrint("[ViewAllConsumedFoodsPage-> setUp()] getting all consumed foods... ");
     List<Map<String, dynamic>> consumedFoodTable = await databaseHelper.getEntireTable_asMap(tableName: "ConsumedFoodTable");
     String title;
-    debugPrint("[ViewAllConsumedFoodsPage-> setUp()] printing all consumed foods... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    debugPrint("[ViewAllConsumedFoodsPage-> setUp()] printing all consumed foods... xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     
     for(Map<String, dynamic> consumedFood_map in consumedFoodTable)
     {
@@ -44,12 +44,12 @@ class _ViewAllConsumedFoodsPageState extends State<ViewAllConsumedFoodsPage> {
         title = "null";
         //consumedFood_map["food_item_id"] = 0;
       }
-      //!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //xxxxxxxxxxxxxxxxxxxxxxxxx!!
       debugPrint("[ViewAllConsumedFoodsPage-> setUp()]\t about to print title..");
-      //!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      //xxxxxxxxxxxxxxxxxxxxxxxxx!!
       debugPrint("[ViewAllConsumedFoodsPage-> setUp()]\t $title");
     }
-    debugPrint("[ViewAllConsumedFoodsPage-> setUp()] printing all consumed foods COMPLETE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    debugPrint("[ViewAllConsumedFoodsPage-> setUp()] printing all consumed foods COMPLETE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     
     /*for(int i = 0; i < consumedFoodTable.length; i++)
     {
@@ -81,7 +81,7 @@ class _ViewAllConsumedFoodsPageState extends State<ViewAllConsumedFoodsPage> {
     //This is temporary code plaeas refactor this to make the program more robust --------------------------
     if(tempConsumedFoods.length > consumedFoods.length)
     {
-      debugPrint("[ViewAllConsumedFoodsPage-> setUp()] ERROR updating collecting consumed foods via user failed!!!!!!!!!!!!!!!!!!!");
+      debugPrint("[ViewAllConsumedFoodsPage-> setUp()] ERROR updating collecting consumed foods via user failedxxxxxxxxxxxxxxx!!!!");
       consumedFoods = tempConsumedFoods;
     }
     else

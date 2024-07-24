@@ -3,9 +3,9 @@ import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/blank_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 /*
@@ -30,28 +30,28 @@ class CreateBlankPage extends StatefulWidget {
 }
 
 class _CreateBlankPageState extends State<CreateBlankPage> {
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   TextEditingController required_var01Controller = TextEditingController();
   TextEditingController required_var02Controller = TextEditingController();
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   TextEditingController required_conversion_var01Controller = TextEditingController();
   TextEditingController required_conversion_var02Controller = TextEditingController();
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   TextEditingController optional_var01Controller = TextEditingController();
   TextEditingController optional_var02Controller = TextEditingController();
   TextEditingController optional_var03Controller = TextEditingController();
   TextEditingController optional_var04Controller = TextEditingController();
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   TextEditingController optional_conversion_var01Controller = TextEditingController();
   TextEditingController optional_conversion_var02Controller = TextEditingController();
   TextEditingController optional_conversion_var03Controller = TextEditingController();
   TextEditingController optional_conversion_var04Controller = TextEditingController();
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
   late Blank newBlank;
 
@@ -61,39 +61,39 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
   {
     debugPrint("[Create Blank With Space Page-> submit()] Start");
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
     late requiredVar01_DataType tempRequired_Var01 = requiredVar01_DataType.parse(required_var01Controller.text);
     late requiredVar02_DataType tempRequired_Var02 = requiredVar02_DataType.parse(required_var02Controller.text);
     late requiredVar03_DataType tempRequired_Var03 = requiredVar01_DataType.parse(required_var03Controller.text);
     late requiredVar04_DataType tempRequired_Var04 = requiredVar02_DataType.parse(required_var04Controller.text);
     
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
     late required_conversionVar01_DataType tempRequired_Conversion_Var01 = required_conversionVar01_DataType.parse(required_conversion_var01Controller.text);
     late required_conversionVar02_DataType tempRequired_Conversion_Var02 = required_conversionVar02_DataType.parse(required_conversion_var02Controller.text);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
     optionalVar01_DataType? tempOptional_Var01 = optionalVar01_DataType.parse(optional_var01Controller.text);
     optionalVar02_DataType? tempOptional_Var02 = optionalVar02_DataType.parse(optional_var02Controller.text);
     optionalVar03_DataType? tempOptional_Var03 = optionalVar03_DataType.parse(optional_var03Controller.text);
     optionalVar04_DataType? tempOptional_Var04 = optionalVar04_DataType.parse(optional_var04Controller.text);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
     optional_conversionVar01_DataType? tempOptional_Conversion_Var01 = optional_conversionVar01_DataType.parse(optional_conversion_var01Controller.text);
     optional_conversionVar02_DataType? tempOptional_Conversion_Var02 = optional_conversionVar02_DataType.parse(optional_conversion_var02Controller.text);
     optional_conversionVar03_DataType? tempOptional_Conversion_Var03 = optional_conversionVar03_DataType.parse(optional_conversion_var03Controller.text);
     optional_conversionVar04_DataType? tempOptional_Conversion_Var04 = optional_conversionVar04_DataType.parse(optional_conversion_var04Controller.text);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
     
     
 
 
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-    newBlank = Blank(/*!!!!!*/Required_Var01: tempRequired_Var01, Required_Var02: tempRequired_Var02, Required_Var03: tempRequired_Var03, Required_Var04: tempRequired_Var04/*!!!!!*//*!!!!!*/, Required_Conversion_Var01: tempRequired_Conversion_Var01, Required_Conversion_Var02: tempRequired_Conversion_Var02/*!!!!!*//*!!!!!*/, Optional_Var01: tempOptional_Var01, Optional_Var02: tempOptional_Var02, Optional_Var03: tempOptional_Var03, Optional_Var04: tempOptional_Var04/*!!!!!*//*!!!!!*/, Optional_Conversion_Var01: tempOptional_Conversion_Var01, Optional_Conversion_Var02: tempOptional_Conversion_Var02, Optional_Conversion_Var03: tempOptional_Conversion_Var03, Optional_Conversion_Var04: tempOptional_Conversion_Var04/*!!!!!*/);
-    //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+    newBlank = Blank(/*xxxxx*/Required_Var01: tempRequired_Var01, Required_Var02: tempRequired_Var02, Required_Var03: tempRequired_Var03, Required_Var04: tempRequired_Var04/*xxxxx*//*xxxxx*/, Required_Conversion_Var01: tempRequired_Conversion_Var01, Required_Conversion_Var02: tempRequired_Conversion_Var02/*xxxxx*//*xxxxx*/, Optional_Var01: tempOptional_Var01, Optional_Var02: tempOptional_Var02, Optional_Var03: tempOptional_Var03, Optional_Var04: tempOptional_Var04/*xxxxx*//*xxxxx*/, Optional_Conversion_Var01: tempOptional_Conversion_Var01, Optional_Conversion_Var02: tempOptional_Conversion_Var02, Optional_Conversion_Var03: tempOptional_Conversion_Var03, Optional_Conversion_Var04: tempOptional_Conversion_Var04/*xxxxx*/);
+    //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
     debugPrint("[Create Blank With Space Page-> submit()] Validating...");
     if (await newBlank.countMatching() >= 1) {
@@ -106,7 +106,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                       Text("The Blank already exists"),
                 ));
         debugPrint(
-            "[Create Blank With Space Page-> submit()]sign up fail! Blank already exists!!!!!!!!!!!!!!!!!!!!");
+            "[Create Blank With Space Page-> submit()]sign up fail! Blank already existsxxxxxxxxxxxxxxxxxxxx");
       });
     } else //if you are here then the combination of alues for the required parameters hasn't been used yet
     {
@@ -134,9 +134,9 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
     }
   }
   
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-  Widget currentPage({/*!!!!!*/required required_var01Controller, required required_var02Controller/*!!!!!*//*!!!!!*/, required required_conversion_var01Controller, required required_conversion_var02Controller/*!!!!!*//*!!!!!*/, required optional_var01Controller, required optional_var02Controller, required optional_var03Controller, required optional_var04Controller/*!!!!!*//*!!!!!*/, required optional_conversion_var01Controller, required optional_conversion_var02Controller, required optional_conversion_var03Controller, required optional_conversion_var04Controller/*!!!!!*/})
-  //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+  Widget currentPage({/*xxxxx*/required required_var01Controller, required required_var02Controller/*xxxxx*//*xxxxx*/, required required_conversion_var01Controller, required required_conversion_var02Controller/*xxxxx*//*xxxxx*/, required optional_var01Controller, required optional_var02Controller, required optional_var03Controller, required optional_var04Controller/*xxxxx*//*xxxxx*/, required optional_conversion_var01Controller, required optional_conversion_var02Controller, required optional_conversion_var03Controller, required optional_conversion_var04Controller/*xxxxx*/})
+  //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
   { 
     return Center(
           child: Column(children: [
@@ -149,8 +149,8 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
               ),
             ),
             const SizedBox(height: 30),
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: TextField(
@@ -167,8 +167,8 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Var With Space #01"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -186,9 +186,9 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Required Variable With Space #02"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -206,7 +206,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Required Conversion Variable With Space #01"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -224,10 +224,10 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Required Conversion Variable With Space #02"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -245,8 +245,8 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Optional Var With Space #01"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -264,7 +264,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Optional Var With Space #02"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -282,8 +282,8 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Optional Var With Space #03"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -301,10 +301,10 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Optional Var With Space #04"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -322,8 +322,8 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Optional Conversion Variable With Space #01"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -341,7 +341,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Optional Conversion Variable With Space #02"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -359,8 +359,8 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Optional Conversion Variable With Space #03"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -378,9 +378,9 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
                     hintText: "Optional Conversion Variable With Space #04"),
               ),
             ),
-            //!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+            //xxxxxxxxxxxxxxxxxxxx!!!!
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
+            //xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
             SizedBox(height: 10),
             TextButton(
               onPressed: () {
@@ -413,7 +413,7 @@ class _CreateBlankPageState extends State<CreateBlankPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(pageName: "Create Blank With Space Page", body: [currentPage(/*!!!!!*/required_var01Controller: required_var01Controller, required_var02Controller: required_var02Controller/*!!!!!*//*!!!!!*/, required_conversion_var01Controller: required_conversion_var01Controller, required_conversion_var02Controller: required_conversion_var02Controller/*!!!!!*//*!!!!!*/, optional_var01Controller: optional_var01Controller, optional_var02Controller: optional_var02Controller, optional_var03Controller: optional_var03Controller, optional_var04Controller: optional_var04Controller/*!!!!!*//*!!!!!*/, optional_conversion_var01Controller: optional_conversion_var01Controller, optional_conversion_var02Controller: optional_conversion_var02Controller, optional_conversion_var03Controller: optional_conversion_var03Controller, optional_conversion_var04Controller: optional_conversion_var04Controller/*!!!!!*/)], thisUser: widget.thisUser,);
+    return PageWidget(pageName: "Create Blank With Space Page", body: [currentPage(/*xxxxx*/required_var01Controller: required_var01Controller, required_var02Controller: required_var02Controller/*xxxxx*//*xxxxx*/, required_conversion_var01Controller: required_conversion_var01Controller, required_conversion_var02Controller: required_conversion_var02Controller/*xxxxx*//*xxxxx*/, optional_var01Controller: optional_var01Controller, optional_var02Controller: optional_var02Controller, optional_var03Controller: optional_var03Controller, optional_var04Controller: optional_var04Controller/*xxxxx*//*xxxxx*/, optional_conversion_var01Controller: optional_conversion_var01Controller, optional_conversion_var02Controller: optional_conversion_var02Controller, optional_conversion_var03Controller: optional_conversion_var03Controller, optional_conversion_var04Controller: optional_conversion_var04Controller/*xxxxx*/)], thisUser: widget.thisUser,);
   }
 }
 */

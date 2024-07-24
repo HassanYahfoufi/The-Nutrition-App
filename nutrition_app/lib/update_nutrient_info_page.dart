@@ -3,9 +3,9 @@ import 'package:nutrition_app/classes.dart';
 import 'package:nutrition_app/database_helper.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 import 'package:nutrition_app/nutrient_info_class_template.dart';
-//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!
+//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx//xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 /*
@@ -86,7 +86,7 @@ class _UpdateNutrientInfoPageState extends State<UpdateNutrientInfoPage> {
     debugPrint("[CreateNutrientInfoPagev2-> submit()] creating the updated nutrientInfo...");
     widget.thisNutrientInfo.fromMap(nutrientInfoMap);
 
-    debugPrint("[CreateNutrientInfoPage-> submit()] The new Nutrient Info as a map: ${nutrientInfoMap.toString()}... !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    debugPrint("[CreateNutrientInfoPage-> submit()] The new Nutrient Info as a map: ${nutrientInfoMap.toString()}... xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!");
     
     debugPrint("\[UpdateNutrientInfoPage-> submit()] Updating...");
     int updateResult = await widget.thisNutrientInfo.update();
