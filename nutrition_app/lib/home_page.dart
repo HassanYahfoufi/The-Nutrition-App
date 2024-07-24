@@ -1,6 +1,7 @@
 //import 'dart:js_interop_unsafe';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nutrition_app/custom_widgets.dart';
 import 'package:nutrition_app/create_status_update_page_v2.dart';
 import 'package:nutrition_app/create_blank_page_v2.dart';
@@ -47,6 +48,7 @@ class _HomePageState extends State<HomePage> {
   late double maxX;
   double minY = 0;
   double maxY = 10;
+  
   
   DatabaseHelper databaseHelper = DatabaseHelper();
 
@@ -254,8 +256,7 @@ class _HomePageState extends State<HomePage> {
       count++;
       
     }*/
-    
-
+     
     debugPrint("[HomePage-> totalConsumed()] updating chart data...");
     chartData.clear;
     chartData = dataPoints.entries.map((dataPoint) => FlSpot(dataPoint.key.toDouble(), dataPoint.value)).toList();
@@ -326,7 +327,7 @@ class _HomePageState extends State<HomePage> {
                   SizedOutlinedButton(text: "Weight", height: buttonHeight, width: buttonWidth, onPressed:() => onPressedGraph('Weight'),),
                 ]),
               SizedBox(child: DisplayGraph(), height: 300, width: 700),
-              SizedBox(child: Row(children: [SizedBox(width: 25,), SizedOutlinedButton(text: "Start", onPressed: () {}, height: 25, width: 100,), SizedBox(width: 475,), SizedOutlinedButton(text: "End", onPressed: () {}, height: 25, width: 100,),]), height: 300, width: 700),
+              SizedBox(child: Row(children: [SizedBox(width: 25,), SizedOutlinedButton(text: "Start", onPressed: () {DateSeletctor(context, "start");}, height: 25, width: 100,), SizedBox(width: 475,), SizedOutlinedButton(text: "End", onPressed: () {DateSeletctor(context, "end");}, height: 25, width: 100,),]), height: 300, width: 700),
           ]),
         ),
         
@@ -384,4 +385,27 @@ class _HomePageState extends State<HomePage> {
         return CalorieLineGraph(spots: chartData, minX: minX, maxX: maxX, maxY: maxY, minY: minY,);
     }
   }
+  Future<void> DateSeletctor(BuildContext context, String type) async {
+  DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(1940),
+    lastDate: DateTime(2025),
+
+
+
+  );
+
+  if (picked != null){
+    setState(() {
+
+       if (type == "start") {
+        start = picked;
+      } else if (type == "end") {
+        end = picked;
+      }
+    });
+ await totalConsumed(SelectedGraph);
+  }
+}
 }
