@@ -59,7 +59,20 @@ class _HomePageState extends State<HomePage> {
   Future<void> onPressedGraph(String graph) async
   {
     debugPrint("[HomePage-> onPressedGraph()] Start");
-    await totalConsumed(graph);
+    SelectedGraph = graph;
+    if(graph == 'Weight')
+    {
+      await totalConsumed_weight();
+    }
+    else if(graph == 'BMI')
+    {
+
+    }
+    else
+    {
+      await totalConsumed(graph);
+    }
+    
     setState(() {
       SelectedGraph = graph;
       debugPrint("[HomePage-> onPressedGraph()] SelectedGraph: $SelectedGraph");
@@ -88,6 +101,7 @@ class _HomePageState extends State<HomePage> {
 
   int timestampToX_days(DateTime timestamp)
   {
+    debugPrint("[HomePage-> timestampToX_days()] Start");
     //x = days
       //each unit of the x axis represents a day
     int year = timestamp.year * 365;
@@ -96,6 +110,7 @@ class _HomePageState extends State<HomePage> {
 
     int dateInt = day + month + year;
 
+    debugPrint("[HomePage-> timestampToX_days()] End");
     return dateInt;
   }
   
@@ -274,6 +289,135 @@ class _HomePageState extends State<HomePage> {
     debugPrint("[HomePage-> totalConsumed()] End");
   }
   
+  Future<void> totalConsumed_weight() async
+  {
+    debugPrint("[HomePage-> totalConsumed_weight()] Start ===================================================================================");
+    minX = timestampToX_days(start) * 1.0;
+    maxX = timestampToX_days(end) * 1.0;
+    maxY = 10;
+    minY = 0;
+    debugPrint("[HomePage-> totalConsumed_weight()] minX: $minX\tmaxX: $maxX");
+    //get all items where time stamp is >= start && timestaamp <= end
+    List<StatusUpdate> matchingStatusUpdates = [];
+
+    if(widget.thisUser.id == null)
+    {
+      await widget.thisUser.readID();
+    }
+
+    debugPrint("[HomePage-> totalConsumed_weight()] retrieving status updates...");
+    List<Map<String, dynamic>> matchingStatusUpdates_map = await databaseHelper.getMatchingRows(tableName: "StatusUpdateTable", column: databaseHelper.colUserID, value: widget.thisUser.id!.toString());
+    debugPrint("[HomePage-> totalConsumed_weight()] processing...");
+    matchingStatusUpdates = matchingStatusUpdates_map.map((statusUpdate) => StatusUpdate.fromMap(statusUpdate)).toList();
+
+    for (StatusUpdate statusUpdate in matchingStatusUpdates) {
+      debugPrint("\t[HomePage-> totalConsumed_weight()] timestamp: ${statusUpdate.timestamp}\tstart: ${start}\tend: ${end}");
+      if(statusUpdate.timestamp.isAfter(start) && statusUpdate.timestamp.isBefore(end))
+      {
+        debugPrint("[HomePage-> totalConsumed_weight()]found a status update in range!!!!");
+      }
+      
+    }
+
+    debugPrint("[HomePage-> totalConsumed_weight()] there are ${matchingStatusUpdates.length} matching status updates xxxxxxxxxx!!!!");
+    debugPrint("[HomePage-> totalConsumed_weight()] removing status updates that are out of intended time range");
+    
+    matchingStatusUpdates.removeWhere(((statusUpdate) => statusUpdate.timestamp.isBefore(start) || statusUpdate.timestamp.isAfter(end)));
+    debugPrint("[HomePage-> totalConsumed_weight()] processing the retrieved status updates COMPLETE");
+    debugPrint("[HomePage-> totalConsumed_weight()] there are ${matchingStatusUpdates.length} matching status updates in range xxxxxxxxxxxxxxxxxxxx!!!!");
+    
+    Map<int, Map<String, dynamic>> dataPoints = Map<int, Map<String, dynamic>>();
+    int newX;
+    //FoodItemNutrient newNutrient;
+    //double nutrientAmount;
+    double weight;
+    for(StatusUpdate statusUpdate in matchingStatusUpdates)
+    {
+      
+      if(statusUpdate.weight != null)
+      {
+        debugPrint("[HomePage-> totalConsumed_weight()]\tconverting timestamp to int...");
+        newX = timestampToX_days(statusUpdate.timestamp);
+
+        if(statusUpdate.weight == null)
+        {
+          debugPrint("[HomePage-> totalConsumed_weight()] statusUpdate weight is null XXXXX");
+        }
+
+        debugPrint("[HomePage-> totalConsumed_weight()] statusUpdate weight: ${statusUpdate.weight.toString()}");
+        weight = statusUpdate.weight!;
+        
+        if(weight >= 0)
+        {
+          debugPrint("[HomePage-> totalConsumed_weight()] statusUpdate weight os positive");
+          if(dataPoints.containsKey(newX) == false)//XXXXXXXXXXXXXXXXX
+          {
+            dataPoints[newX] = Map<String, dynamic>();
+            dataPoints[newX]!['sum'] = 0;
+            dataPoints[newX]!['count'] = 0;
+            dataPoints[newX]!['avg'] = 0;
+
+
+            /*dataPoints[newX]!['sum'] = weight;
+            dataPoints[newX]!['count'] = 1;
+            dataPoints[newX]!['avg'] = weight;*/
+          }
+          
+
+          dataPoints[newX]!['sum'] += weight;
+          dataPoints[newX]!['count']++;
+          dataPoints[newX]!['avg'] = dataPoints[newX]!['sum'] / dataPoints[newX]!['count'];
+          
+          
+          //dataPoints[newX] = newY;//XXXXXXXXXXXXXXX
+          debugPrint("[HomePage-> totalConsumed_weight()] newX: $newX\tnewY: ${dataPoints[newX]!['avg']}");
+        }
+
+        debugPrint("[HomePage-> totalConsumed_weight()] Status update as map:${statusUpdate.toMap().toString()}");
+      }
+    }
+
+    
+
+
+
+    debugPrint("[HomePage-> totalConsumed_weight()] updating chart data...");
+    chartData.clear;
+    chartData = dataPoints.entries.map((dataPoint) => FlSpot(dataPoint.key.toDouble(), dataPoint.value["avg"])).toList(); //XXXXXXXXXXXXX
+    debugPrint("[HomePage-> totalConsumed_weight()] updating chart data COMPLETE");
+
+    debugPrint("[HomePage-> totalConsumed_weight()] sorting chart data...");
+    chartData.sort((a, b) => a.x.compareTo(b.x));
+
+    debugPrint("[HomePage-> totalConsumed_weight()] printing chart data...");
+    for (FlSpot dataPoint in chartData) 
+    {
+      debugPrint("[HomePage-> totalConsumed_weight()] x: ${dataPoint.x}\ty: ${dataPoint.y}");
+      if(maxY < dataPoint.y)
+      {
+        maxY = dataPoint.y;
+      }
+
+      if(dataPoint.y < minY)
+      {
+        minY = dataPoint.y;
+      }
+    }
+
+    debugPrint("[HomePage-> totalConsumed_weight()] maxY: $maxY (before slight bump)");
+    int divisor = 1;
+    while(divisor < maxY)
+    {
+      divisor *= 10;
+    }
+    divisor = (divisor/10).toInt();
+    int multiple = (maxY / divisor).ceil();
+    maxY = divisor * multiple * 1.0;
+    debugPrint("[HomePage-> totalConsumed_weight()] maxY: $maxY");
+
+    debugPrint("[HomePage-> totalConsumed_weight()] End");
+  }
+  
   Future<void> SetUp() async
   {
     debugPrint("[HomePage-> SetUp()] Start");
@@ -379,10 +523,10 @@ class _HomePageState extends State<HomePage> {
         maxY = 20;
         return BMILineGraph(spots: chartData, minX: minX, maxX: maxX, maxY: maxY,);
       case 'Weight':
-        return WeightLineGraph();
+        return WeightLineGraph(spots: chartData, minX: minX, maxX: maxX, maxY: maxY);
       case 'Calories':
       default:
-        return CalorieLineGraph(spots: chartData, minX: minX, maxX: maxX, maxY: maxY, minY: minY,);
+        return CalorieLineGraph(spots: chartData, minX: minX, maxX: maxX, maxY: maxY, minY: 0,);
     }
   }
   Future<void> DateSeletctor(BuildContext context, String type) async {
