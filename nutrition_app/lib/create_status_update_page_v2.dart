@@ -153,22 +153,22 @@ class _CreateStatusUpdatePageState extends State<CreateStatusUpdatePage> {
                       fillColor: Colors.white,
                       filled: true,
                       hintText: variableInfo.value["NameWithSpace"]/*"User ID"*/),
-                       readOnly: variableInfo.key == "dateCreated" || variableInfo.key == "dateModified" || variableInfo.key == "timestamp",
+                      readOnly: variableInfo.key == "dateCreated" || variableInfo.key == "dateModified" || variableInfo.key == "timestamp",
                       onTap: () async {
-                        if (variableInfo.key == "dateCreated" || variableInfo.key == "dateModified") {
+                        if (variableInfo.key == "dateCreated" || variableInfo.key == "dateModified" || variableInfo.key == "timestamp") {
                           await DateSeletctor(variableInfo.value["TextEditingController"]); // does the date selectorss
-                        } else if (variableInfo.key == "timestamp") { // does timestamp
-                          final TimeOfDay? time = await showTimePicker(
-                            context: context,
-                            initialTime: TimeOfDay.now(),
-                            initialEntryMode: TimePickerEntryMode.dial,
-                          );
-                          if (time != null) {
-                              variableInfo.value["TextEditingController"].text = time.format(context); 
-                            setState(() {
-                            });
-                          }
-                        }
+                        } //else if (variableInfo.key == "timestamp") { // does timestamp
+                        //   final TimeOfDay? time = await showTimePicker(
+                        //     context: context,
+                        //     initialTime: TimeOfDay.now(),
+                        //     initialEntryMode: TimePickerEntryMode.dial,
+                        //   );
+                        //   if (time != null) {
+                        //       variableInfo.value["TextEditingController"].text = time.format(context); 
+                        //     setState(() {
+                        //     });
+                        //   }
+                        // }
                       },
                 ),
               ),
@@ -275,5 +275,7 @@ class _CreateStatusUpdatePageState extends State<CreateStatusUpdatePage> {
 
 }
 }
+
+
 
 
