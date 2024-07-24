@@ -30,11 +30,10 @@ class _PageWidgetState extends State<PageWidget> {
             backgroundColor: Colors.grey[300],
 
             appBar: AppBar(actions: [
-      
               IconButton(onPressed: widget.home ?? (){debugPrint("[${widget.pageName}] widget.home was empty. Navigating to default which is HomePage()...");Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(thisUser: widget.thisUser)));}, icon: Icon(Icons.home), color: Colors.white), 
               (widget.lastPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.lastPage!),), icon: Icon(Icons.close ), color: Colors.white) : Container(),
               
-              (widget.editPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.editPage!),), icon: Icon(Icons.edit ),color: Colors.white) : SizedBox.shrink(),
+              (widget.editPage != null) ? IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widget.editPage!),), icon: Icon(Icons.edit )) : SizedBox.shrink(),
               IconButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(thisUser: widget.thisUser)),), icon: Icon(Icons.account_circle ), color: Colors.white),
 
               IconButton(onPressed: () { displayDialogSignOut(context);}, icon: Icon(Icons.exit_to_app), color: Colors.white),
@@ -127,7 +126,6 @@ class _CardWidgetState extends State<CardWidget> {
       // unless you need it.
       clipBehavior: Clip.hardEdge,
 
-
       child: InkWell(
         splashColor: Colors.blue.withAlpha(30),
 
@@ -140,8 +138,7 @@ class _CardWidgetState extends State<CardWidget> {
               AppBar(
                 backgroundColor: widget.appBarColor,
                 toolbarHeight: 25,
-                title: Text(title), titleTextStyle: TextStyle(color: Colors.white, fontSize: 18),
-                automaticallyImplyLeading: false,
+                title: Text(title),
               ),
               ...widget.body,
             ],
@@ -342,8 +339,11 @@ class _SizedOutlinedButtonState extends State<SizedOutlinedButton> {
   }
 }*/
 class WeightLineGraph extends StatefulWidget {
-  const WeightLineGraph({super.key});
-
+  WeightLineGraph({required this.spots, required this.minX, required this.maxX, required this.maxY, super.key});
+  List<FlSpot> spots;
+  double minX;
+  double maxX;
+  double maxY;
   @override
   State<WeightLineGraph> createState() => _WeightLineGraphState();
 }
@@ -353,16 +353,15 @@ class _WeightLineGraphState extends State<WeightLineGraph> {
   Widget build(BuildContext context) {
     
     return LineChart(
+      
       LineChartData(
+        minX: widget.minX,
+        maxX: widget.maxX,
+        maxY: widget.maxY,
+        minY: 0,
         lineBarsData: [
           LineChartBarData(
-             spots: [
-              FlSpot(1, 50), //temporary data
-              FlSpot(2, 150),
-              FlSpot(3, 100),
-              FlSpot(4, 200),
-              FlSpot(5, 250),
-            ],
+             spots: widget.spots,
             isCurved: true,
             color: Colors.green
       
@@ -382,36 +381,8 @@ class _WeightLineGraphState extends State<WeightLineGraph> {
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
             showTitles: true,
-            getTitlesWidget: (value, meta){
-              switch(value.toInt()){
-                case 1:
-                  return Text('January');
-                case 2:
-                  return Text('February');
-                case 3:
-                  return Text('March');
-                case 4:
-                  return Text('April');
-                case 5:
-                  return Text('May');
-                case 6:
-                  return Text('June');
-                case 7:
-                  return Text('July');
-                case 8:
-                  return Text('August');
-                case 9:
-                  return Text('September');
-                case 10:
-                  return Text('October');
-                case 11:
-                  return Text('November');
-                case 12:
-                  return Text('December');
-                default:
-                  return Container();
-              }
-            },
+            getTitlesWidget: (value, meta) => getXAxisTitles(value, meta),
+            
            interval: 1,
           )
           ),
@@ -419,25 +390,7 @@ class _WeightLineGraphState extends State<WeightLineGraph> {
             sideTitles: SideTitles(
               
               showTitles: true,
-            getTitlesWidget: (value, meta){
-              switch(value.toInt()){
-                case 50:
-                  return Text('50');
-                case 100:
-                  return Text('100');
-                case 150:
-                  return Text('150');
-                case 200:
-                  return Text('200');
-                case 250:
-                  return Text('250');
-                case 300:
-                  return Text('300');
-                
-                default:
-                  return Container();
-              }
-            },
+            getTitlesWidget: (value, meta) => getYAxisTitles(value, meta, widget.maxY),
             interval: 50,
             ),
           ),
@@ -498,7 +451,7 @@ class _CalorieLineGraphState extends State<CalorieLineGraph> {
         minX: widget.minX,
         maxX: widget.maxX,
         maxY: widget.maxY,
-        minY: widget.minY,
+        minY: 0,//widget.minY,
         lineBarsData: [
           LineChartBarData(
              spots: widget.spots,
